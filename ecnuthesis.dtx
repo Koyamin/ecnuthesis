@@ -939,20 +939,32 @@
 %
 % \subsection{载入文档类与宏包}
 %
-% 将选项传入 \cls{ctexrep} 文档类。正文字号应设置为小四，
+% 将选项传入 \cls{ctexrep} 文档类。
+% 
+% 根据《华东师范大学本科生毕业论文（设计）格式要求》的
+% 相关要求，学士学位论文的正文字号应设置为小四，
 % 正文行间距应设置为 1.5 倍行距。由于在 Word 中，中易宋体
 % 的单倍行距的长度约为字号长度的 1.3 倍，而在 \LaTeX 中
 % 单倍行距的长度是字号长度的 1.2 倍，这意味着 Word 中的
 % 1.5 倍行距相当于 \LaTeX 中的约 $1.3 \times 1.5 / 1.2 = 1.625$
 % 倍行距。
+%
+% 根据《华东师范大学博士、硕士学位论文基本格式要求》的
+% 相关要求，博士、硕士学位论文的正文字号应设置为小四，
+% 正文行间距应设置为 25 磅。所以，在 \LaTeX 中的行距应为
+% $\qty{25}{pt} / (1.2\times\qty{12}{bp}) $。
+%
 %    \begin{macrocode}
+\fp_const:Nn \c_@@_line_spread_fp
+%<thesis-ug>  { 1.625 }
+%<thesis-pg>  { \dim_ratio:nn { 25 pt } { 12 bp } / 1.2 }
 \PassOptionsToClass
   {
     UTF8,
     heading     = true,
     zihao       = -4,
     fontset     = none,
-    linespread  = 1.625,
+    linespread  = \c_@@_line_spread_fp,
     \g_@@_to_ctexart_clist,
   }
   { ctexrep }
@@ -995,16 +1007,57 @@
 %
 % 使用 \pkg{geometry} 宏包设置纸张大小、页面边距以及页眉高度。
 %
+% 根据《华东师范大学本科生毕业论文（设计）格式要求》的相关要求，
+% 学士学位论文的页边距应设置为：上边距 \qty{2.5}{cm}，
+% 下边距 \qty{2.0}{cm}，左边距 \qty{3.0}{cm}，右边距 
+% \qty{2.5}{cm}。
+%
+% 根据《华东师范大学博士、硕士学位论文基本格式要求》的相关要求，
+% 博士、硕士学位论文的页边距应按 Word 格式 A4 纸（“页面设置”按
+% Word 默认值）设置。在 Word 提供的默认的页面设置中，左、右
+% 边距均为 \qty{3.18}{cm}；上、下边距均为 \qty{2.54}{cm}。
+%
 %    \begin{macrocode}
 \geometry
   {
     paper     = a4paper,
+%</class>
+%<*thesis-ug>
     top       = 2.5 cm,
     bottom    = 2.0 cm,
     left      = 3.0 cm,
     right     = 2.5 cm,
-    footskip  = 6 mm,
-    headsep   = \dimexpr(9.55mm-11.7pt)
+%</thesis-ug>
+%<*thesis-pg>
+    hmargin   = 3.18 cm,
+    vmargin   = 2.54 cm,
+%</thesis-pg>
+%    \end{macrocode}
+%
+% 在 Word 的默认设置中，页眉至顶端的距离设置为 \qty{15}{mm}，
+% 页眉文字的字号为小五（即 \qty{9}{bp}），页眉分隔线的宽度为 \qty{0.5}{pt}。
+% 在学士学位论文中，由于上边距为 \qty{25}{mm}，于是页眉与正文的间距应为
+% \[ \qty{25}{mm}-\qty{15}{mm}-\qty{0.5}{pt}-1.3\times\qty{9}{bp} = \qty{10}{mm}-\qty{0.5}{pt}-\qty{11.7}{bp} \]
+% 在博士、硕士学位论文中，由于上边距为 \qty{25.4}{mm}，于是页眉与正文的间距应为
+% \[ \qty{25.4}{mm}-\qty{15}{mm}-\qty{0.5}{pt}-1.3\times\qty{9}{bp} = \qty{10.4}{mm}-\qty{0.5}{pt}-\qty{11.7}{bp} \]
+%
+% 在 Word 的默认设置中，页脚至底端的距离设置为 \qty{17.5}{mm}，
+% 在学士学位论文中，由于下边距为 \qty{20}{mm}，若页脚至底端的距离仍为 \qty{17.5}{mm}，
+% 则页脚高度仅为 \qty{2.5}{mm}，不足以容纳小五号字体。本模板将页脚与正文的间距设置
+% 为 \qty{6}{mm}，这样页脚与正文之间将会留有一定的空白，也较为美观。
+% 在博士、硕士学位论文中，由于下边距为 \qty{25.4}{mm}，于是页脚与正文的间距应为
+% \[ \qty{25.4}{mm}-\qty{17.5}{mm} = \qty{7.9}{mm} \]
+%
+%    \begin{macrocode}
+%<*thesis-ug>
+    headsep   = \dim_eval:n { 10 mm - 0.5 pt - 11.7 bp },
+    footskip  = 6 mm
+%</thesis-ug>
+%<*thesis-pg>
+    headsep   = \dim_eval:n { 10.4 mm - 0.5 pt - 11.7 bp },
+    footskip  = 7.9 mm
+%</thesis-pg>
+%<*class>
   }
 %    \end{macrocode}
 %
