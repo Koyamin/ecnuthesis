@@ -23,8 +23,7 @@
 %<class>  {Undergraduate Thesis Template for East China Normal University}
 %<ecnudoc>  {Documentation class for ECNUThesis}
 %<ecnulogo>  {logo for ECNUThesis}
-%<thesis-ug>\ProvidesExplClass{ecnuthesis-ug}
-%<thesis-pg>\ProvidesExplClass{ecnuthesis-pg}
+%<class>\ProvidesExplClass{\ExplFileName}
 %<ecnudoc>\ProvidesExplClass{ecnudoc}
 %<ecnulogo>\ProvidesExplPackage{ecnulogo}
 %<class|ecnudoc|ecnulogo>  {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
@@ -759,6 +758,15 @@
 %    \end{macrocode}
 % \end{variable}
 %
+% \begin{variable}{\g_@@_thesis_type_tl, \g_@@_is_bachelor_bool}
+% 论文类型。
+%    \begin{macrocode}
+\tl_new:N \g_@@_thesis_type_tl
+\bool_new:N \g_@@_is_bachelor_bool
+\bool_set_false:N \g_@@_is_bachelor_bool
+%    \end{macrocode}
+% \end{variable}
+%
 % \begin{variable}{\g_@@_twoside_bool}
 % 是否开启双面打印模式（默认关闭）。
 %    \begin{macrocode}
@@ -887,6 +895,22 @@
   {
 %    \end{macrocode}
 %
+% \begin{macro}{type}
+% 设置论文类型。默认为硕士论文。
+%    \begin{macrocode}
+    type        .choices:nn = 
+      { doctor, master, bachelor }
+      {
+        \tl_set_eq:NN \g_@@_thesis_type_tl \l_keys_choice_tl
+        \tl_if_eq:NnTF \l_keys_choice_tl { bachelor }
+          { \bool_set_true:N \g_@@_is_bachelor_bool }
+          { \bool_set_false:N \g_@@_is_bachelor_bool }
+      },
+    type .value_required:n  = true,
+    type .initial:n         = master,
+%    \end{macrocode}
+% \end{macro}
+%
 % \begin{macro}{printMode}
 % 设置开启打印模式。若开启打印模式，则将输出适合双面打印的文档，否则将输出适合单面打印的
 % 文档。默认关闭打印模式。
@@ -912,13 +936,9 @@
 %    \begin{macrocode}
     declarePage   .choice:,
     declarePage / true  .code:n =
-      {
-        \bool_set_true:N    \g__ecnu_decl_page_bool
-      },
+      { \bool_set_true:N \g_@@_decl_page_bool },
     declarePage / false  .code:n =
-      {
-        \bool_set_false:N    \g__ecnu_decl_page_bool
-      },
+      { \bool_set_false:N \g_@@_decl_page_bool },
     declarePage   .default:n = { true },
     declarePage   .initial:n = { false },
 %    \end{macrocode}
@@ -955,9 +975,12 @@
 % $\qty{25}{pt} / (1.2\times\qty{12}{bp}) $。
 %
 %    \begin{macrocode}
-\fp_const:Nn \c_@@_line_spread_fp
-%<thesis-ug>  { 1.625 }
-%<thesis-pg>  { \dim_ratio:nn { 25 pt } { 12 bp } / 1.2 }
+\bool_if:NTF \g_@@_is_bachelor_bool
+  { \fp_const:Nn \c_@@_line_spread_fp { 1.625 } }
+  {
+    \fp_const:Nn \c_@@_line_spread_fp 
+      { \dim_ratio:nn { 25 pt } { 12 bp } / 1.2 }
+  }
 \PassOptionsToClass
   {
     UTF8,
@@ -1017,23 +1040,6 @@
 % Word 默认值）设置。在 Word 提供的默认的页面设置中，左、右
 % 边距均为 \qty{3.18}{cm}；上、下边距均为 \qty{2.54}{cm}。
 %
-%    \begin{macrocode}
-\geometry
-  {
-    paper     = a4paper,
-%</class>
-%<*thesis-ug>
-    top       = 2.5 cm,
-    bottom    = 2.0 cm,
-    left      = 3.0 cm,
-    right     = 2.5 cm,
-%</thesis-ug>
-%<*thesis-pg>
-    hmargin   = 3.18 cm,
-    vmargin   = 2.54 cm,
-%</thesis-pg>
-%    \end{macrocode}
-%
 % 在 Word 的默认设置中，页眉至顶端的距离设置为 \qty{15}{mm}，
 % 页眉文字的字号为小五（即 \qty{9}{bp}），页眉分隔线的宽度为 \qty{0.5}{pt}。
 % 在学士学位论文中，由于上边距为 \qty{25}{mm}，于是页眉与正文的间距应为
@@ -1049,15 +1055,28 @@
 % \[ \qty{25.4}{mm}-\qty{17.5}{mm} = \qty{7.9}{mm} \]
 %
 %    \begin{macrocode}
-%<*thesis-ug>
-    headsep   = \dim_eval:n { 10 mm - 0.5 pt - 11.7 bp },
-    footskip  = 6 mm
-%</thesis-ug>
-%<*thesis-pg>
-    headsep   = \dim_eval:n { 10.4 mm - 0.5 pt - 11.7 bp },
-    footskip  = 7.9 mm
-%</thesis-pg>
-%<*class>
+\bool_if:NTF \g_@@_is_bachelor_bool
+  {
+    \geometry
+      {
+        paper     = a4paper,
+        top       = 2.5 cm,
+        bottom    = 2.0 cm,
+        left      = 3.0 cm,
+        right     = 2.5 cm,
+        headsep   = \dim_eval:n { 10 mm - 0.5 pt - 11.7 bp },
+        footskip  = 6 mm
+      }
+  }
+  {
+    \geometry
+      {
+        paper     = a4paper,
+        hmargin   = 3.18 cm,
+        vmargin   = 2.54 cm,
+        headsep   = \dim_eval:n { 10.4 mm - 0.5 pt - 11.7 bp },
+        footskip  = 7.9 mm
+      }
   }
 %    \end{macrocode}
 %
@@ -1758,6 +1777,15 @@
 %    \end{macrocode}
 % \end{variable}
 %
+% \begin{variable}{\l_@@_info_degree_type_tl, \l_@@_is_professional_degree_tl}
+% 学位类型。
+%    \begin{macrocode}
+\tl_new:N \l_@@_info_degree_type_tl
+\bool_new:N \l_@@_is_professional_degree_tl
+\bool_set_false:N \l_@@_is_professional_degree_tl
+%    \end{macrocode}
+% \end{variable}
+%
 % \begin{variable}{\l_@@_info_year_int,
 %   \l_@@_info_month_int,
 %   \l_@@_info_graduation_year_int}
@@ -1775,6 +1803,21 @@
 \keys_define:nn { ecnu / info }
   {
 %    \end{macrocode}
+%
+% \begin{macro}{info/degree}
+% 学位类型。
+%    \begin{macrocode}
+    degree          .choices:nn   =
+      { academic, professional }
+      {
+        \tl_set_eq:NN \l_@@_info_degree_type_tl \l_keys_choice_tl
+        \tl_if_eq:NnTF \l_keys_choice_tl { professional }
+          { \bool_set_true:N \l_@@_is_professional_degree_tl }
+          { \bool_set_false:N \l_@@_is_professional_degree_tl }
+      },
+    degree          .value_required:n = true,
+%    \end{macrocode}
+% \end{macro}
 %
 % \begin{macro}{info/title,info/titleEN}
 % 论文中外文标题。
@@ -2811,6 +2854,7 @@
   }
 \keys_set:nn { ecnu / info }
   {
+    degree          = academic,
     title           = {(中文标题)},
     titleEN         = {(English Title)},
     author          = {(作者姓名)},
