@@ -1,0 +1,166 @@
+%%
+%% This is file `ecnuthesis.def',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% ecnuthesis.dtx  (with options: `definition')
+%% 
+%%     Copyright (C) 2021--2026 by Koyamin <contact@koyamin.com>
+%% 
+%%     This work may be distributed and/or modified under the
+%%     conditions of the LaTeX Project Public License, either
+%%     version 1.3c of this license or (at your option) any later
+%%     version. The latest version of this license is in:
+%% 
+%%       http://www.latex-project.org/lppl.txt
+%% 
+%%     and version 1.3 or later is part of all distributions of
+%%     LaTeX version 2005/12/01 or later.
+%% 
+\GetIdInfo $Id: ecnuthesis.dtx 0.2.1 2026-01-20 15:00:00Z Koyamin <contact@koyamin.com> Qucheng <i@qcmiao.cn> $
+  {Definition file for ecnuthesis}
+\ProvidesExplFile{\ExplFileName.def}
+  {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
+\tl_const:Nn \c__ecnu_info_name_tl               { 姓名 }
+\tl_const:Nn \c__ecnu_info_studentId_tl          { 学号 }
+\tl_const:Nn \c__ecnu_info_studentId_en_tl       { Student ~ ID }
+\tl_const:Nn \c__ecnu_info_department_tl         { 学院 }
+\tl_const:Nn \c__ecnu_info_school_tl             { 院系 }
+\tl_const:Nn \c__ecnu_info_major_tl              { 专业 }
+\tl_const:Nn \c__ecnu_info_major_professional_tl { 专业学位类别 }
+\tl_const:Nn \c__ecnu_info_field_tl              { 研究方向 }
+\tl_const:Nn \c__ecnu_info_field_professional_tl { 专业学位领域 }
+\tl_const:Nn \c__ecnu_info_candidate_tl          { 学位申请人 }
+\tl_const:Nn \c__ecnu_info_supervisor_tl         { 指导教师 }
+\tl_const:Nn \c__ecnu_info_academic_title_tl     { 职称 }
+\tl_const:Nn \c__ecnu_university_code_tl         { 学校代码 }
+\tl_const:Nn \c__ecnu_university_code_en_tl      { University ~ Code }
+\tl_const:Nn \c__ecnu_university_code_val_tl     { 10269 }
+\tl_const:Nn \c__ecnu_year_tl                    { 年 }
+\tl_const:Nn \c__ecnu_month_tl                   { 月 }
+\tl_const:Nn \c__ecnu_day_tl                     { 日 }
+\tl_const:Nn \c__ecnu_date_tl                    { 日期 }
+\tl_const:Nn \c__ecnu_orig_sign_tl               { 承诺人签名 }
+\tl_const:Nn \c__ecnu_author_sign_tl             { 作者签名 }
+\tl_const:Nn \c__ecnu_supervisor_sign_tl         { 导师签名 }
+\tl_const:Nn \c__ecnu_orig_title_ug_tl           { 华东师范大学学位论文诚信承诺 }
+\tl_const:Nn \c__ecnu_auth_title_ug_tl           { 华东师范大学学位论文使用授权说明 }
+\tl_const:Nn \c__ecnu_orig_title_pg_tl           { 华东师范大学学位论文原创性声明 }
+\tl_const:Nn \c__ecnu_auth_title_pg_tl           { 华东师范大学学位论文著作权使用声明 }
+\tl_const:Nn \c__ecnu_orig_text_ug_tl
+  {
+    \indent 本毕业论文是本人在导师指导下独立完成的，内容真实、可靠。本人
+    在撰写毕业论文过程中不存在请人代写、抄袭或者剽窃他人作品、伪造或者
+    篡改数据以及其他学位论文作假行为。
+    \par
+    本人清楚知道学位论文作假行为将会导致行为人受到不授予/撤销学位、开除
+    学籍等处理（处分）决定。本人如果被查证在撰写本毕业论文过程中存在学位
+    论文作假行为，愿意接受学校依法作出的处理（处分）决定。
+  }
+\tl_const:Nn \c__ecnu_auth_text_ug_tl
+  {
+    \indent 本论文的研究成果归华东师范大学所有，本论文的研究内容不得以其
+    它单位的名义发表。本学位论文作者和指导教师完全了解华东师范大学有关
+    保留、使用学位论文的规定，即：学校有权保留并向国家有关部门或机构送交
+    论文的复印件和电子版，允许论文被查阅和借阅；本人授权华东师范大学可以
+    将论文的全部或部分内容编入有关数据库进行检索、交流，可以采用影印、缩印
+    或其他复制手段保存论文和汇编本学位论文。
+    \par
+    保密的毕业论文（设计）在解密后应遵守此规定。
+  }
+\tl_const:Nn \c__ecnu_orig_text_pg_part_one_tl
+  { 郑重声明：本人呈交的学位论文 }
+\tl_const:Nn \c__ecnu_orig_text_pg_part_two_tl
+  {
+    是在华东师范大学攻读硕士/博士（请勾选）学位期间，
+    在导师的指导下进行的研究工作及取得的研究成果。除文中已经注明引用的内容外，
+    本论文不包含其他个人已经发表或撰写过的研究成果。
+    对本文的研究做出重要贡献的个人和集体，
+    均已在文中作了明确说明并表示谢意。
+  }
+\tl_const:Nn \c__ecnu_auth_text_pg_part_one_tl
+  {
+    系本人在华东师范大学攻读学位期间在导师指导下完成的硕士/博士（请勾选）
+    学位论文，本论文的著作权归本人所有。本人同意华东师范大学根据相关规定
+    保留和使用此学位论文，并向主管部门和学校指定的相关机构送交学位论文的
+    印刷版和电子版；允许学位论文进入华东师范大学图书馆及数据库被查阅、借阅；
+    同意学校将学位论文加入全国博士、硕士学位论文共建单位数据库进行检索，
+    将学位论文的标题和摘要汇编出版，采用影印、缩印或者其它方式合理复制
+    学位论文。
+  }
+\tl_const:Nn \c__ecnu_auth_text_pg_part_two_tl
+  { 本学位论文属于（请勾选） }
+\tl_const:Nn \c__ecnu_auth_text_pg_option_one_tl
+  {
+    1. ~ 经华东师范大学相关部门审查核定的“内部”或“涉密”学位论文*，\\
+    于 \quad \quad \quad \quad 年 \quad \quad 月 \quad \quad 日
+    解密，解密后适用上述授权。
+  }
+\tl_const:Nn \c__ecnu_auth_text_pg_option_two_tl
+  { 2. ~ 不保密，适用上述授权。 }
+\tl_const:Nn \c__ecnu_auth_others_text_pg_tl
+  {
+    * “涉密”学位论文应是已经华东师范大学学位管理办公室或
+    保密委员会审定过的学位论文（需附获批的《华东师范大学
+    研究生申请学位论文“涉密”审批表》方为有效），未经上述
+    部门审定的学位论文均为公开学位论文。此声明栏不填写的，
+    默认为公开学位论文，均适用上述授权）。
+  }
+\prop_const_from_keyval:Nn \c__ecnu_thesis_type_prop
+  {
+    doctor    = 博士,
+    master    = 硕士,
+    bachelor  = 学士,
+  }
+\tl_const:Nn \c__ecnu_graduation_year_tl         { 届 }
+\tl_const:Nn \c__ecnu_undergraduate_tl           { 本科生 }
+\tl_const:Nn \c__ecnu_postgraduate_tl            { 研究生 }
+\tl_const:Nn \c__ecnu_professional_tl            { 专业 }
+\tl_const:Nn \c__ecnu_degree_tl                  { 学位 }
+\tl_const:Nn \c__ecnu_thesis_tl                  { 论文 }
+\tl_const:Nn \c__ecnu_cic_index_tl               { 分类号 }
+\tl_const:Nn \c__ecnu_secret_level_tl            { 密级 }
+\tl_const:Nn \c__ecnu_thesis_title_tl            { 论文题目 }
+\tl_const:Nn \c__ecnu_university_name_tl         { 华东师范大学 }
+\tl_const:Nn \c__ecnu_university_name_en_tl      { East ~ China ~ Normal ~ University }
+\tl_const:Nn \c__ecnu_professional_en_tl         { Professional }
+\tl_const:Nn \c__ecnu_degree_en_tl               { Degree }
+\tl_const:Nn \c__ecnu_thesis_en_tl               { Thesis }
+\tl_const:Nn \c__ecnu_dissertation_en_tl         { Dissertation }
+\tl_const:Nn \c__ecnu_for_en_tl                  { for }
+\tl_const:Nn \c__ecnu_masters_en_tl              { Master's }
+\tl_const:Nn \c__ecnu_doctors_en_tl              { Doctor's }
+\tl_const:Nn \c__ecnu_doctoral_en_tl             { Doctoral }
+\tl_const:Nn \c__ecnu_thesis_title_en_tl         { Title }
+\tl_const:Nn \c__ecnu_info_school_en_tl          { Department / School }
+\tl_const:Nn \c__ecnu_info_major_en_tl           { Major }
+\tl_const:Nn \c__ecnu_info_major_pro_en_tl       { Category }
+\tl_const:Nn \c__ecnu_info_field_en_tl           { Research ~ Direction }
+\tl_const:Nn \c__ecnu_info_field_pro_en_tl       { Field }
+\tl_const:Nn \c__ecnu_info_candidate_en_tl       { Candidate }
+\tl_const:Nn \c__ecnu_info_supervisor_en_tl      { Supervisor }
+\clist_const:Nn \c__ecnu_month_en_clist
+  {
+    January, February, March, April, May, June, July,
+    August, September, October, November, December
+  }
+\tl_const:Nn \c__ecnu_name_toc_tl                { 目录 }
+\tl_const:Nn \c__ecnu_name_lot_tl                { 表格目录 }
+\tl_const:Nn \c__ecnu_name_lof_tl                { 插图目录 }
+\tl_const:Nn \c__ecnu_name_abstract_tl           { 摘要 }
+\tl_const:Nn \c__ecnu_name_abstract_en_tl        { Abstract }
+\tl_const:Nn \c__ecnu_name_keywords_tl           { 关键词 }
+\tl_const:Nn \c__ecnu_name_keywords_en_tl        { Keywords }
+\tl_const:Nn \c__ecnu_colon_tl                   { ： }
+\tl_const:Nn \c__ecnu_colon_en_tl                { : }
+\tl_const:Nn \c__ecnu_left_guillemet_tl          { 《 }
+\tl_const:Nn \c__ecnu_right_guillemet_tl         { 》 }
+\tl_const:Nn \c__ecnu_left_round_bracket_tl      { （ }
+\tl_const:Nn \c__ecnu_right_round_bracket_tl     { ） }
+\tl_const:Nn \c__ecnu_name_appendix_tl           { 附录 }
+\tl_const:Nn \c__ecnu_name_acknowledgement_tl    { 致谢 }
+\tl_const:Nn \c__ecnu_name_pdf_creator_tl        { LaTeX~ with~ ecnuthesis~ class }
+\endinput
+%%
+%% End of file `ecnuthesis.def'.
