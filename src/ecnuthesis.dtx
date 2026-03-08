@@ -973,37 +973,42 @@
 % 由于导入 \cls{ctexrep} 文档类时需要指定行距，故在此先设置正文行距。
 % 
 % 根据《华东师范大学本科生毕业论文（设计）格式要求》的
-% 相关要求，本科生毕业论文的正文字号应设置为小四，
-% 正文行间距应设置为 1.5 倍行距。由于在 Word 中，中易宋体
-% 的单倍行距的长度为字号长度的 $332/256 = 1.296875$ 倍，而在 \LaTeX 中
-% 单倍行距的长度是字号长度的 1.2 倍，这意味着 Word 中的
-% 1.5 倍行距相当于 \LaTeX 中的 $332/256 \times 1.5 / 1.2 = 332/256 \times 1.25$
-% 倍行距。
+% 相关要求，本科生毕业论文的正文字号应设置为小四（即 \qty{12}{bp}），
+% 正文行间距应设置为 1.5 倍行距。
+%
+% 在 Word 中，默认的文档网格的行距是 \qty{15.6}{bp}。
+% 当正文字号设置为小四时，若每一行对齐到该默认文档网格，则此时的行距
+% 应为 $\qty{15.6}{bp} \times 1.5 = \qty{23.4}{bp}$。
+% 在 \LaTeX{} 中，单倍行距的长度是字号长度的 1.2 倍。
+% 这意味着 Word 中的 1.5 倍行距相当于 \LaTeX{} 中的
+% $\qty{23.4}{bp} / \qty{12}{bp} \times 1.5 / 1.2 = 1.625$ 倍行距。
+% 故将本科生毕业论文的行距设置为
+% \begin{macro}{\c_@@_ug_line_spread_fp}
+%    \begin{macrocode}
+\fp_const:Nn \c_@@_ug_line_spread_fp { 1.625 }
+%    \end{macrocode}
+% \end{macro}
 %
 % 根据《华东师范大学博士、硕士学位论文基本格式要求》的
 % 相关要求，博士、硕士学位论文的正文字号应设置为小四，
-% 正文行间距应设置为 \qty{25}{bp}。所以，在 \LaTeX 中的行距应为
+% 正文行间距应设置为 \qty{25}{bp}。所以，在 \LaTeX{} 中的行距应为
 % $\qty{25}{bp} / (1.2\times\qty{12}{bp}) $。
-%
+% \begin{macro}{\c_@@_pg_line_spread_fp}
+% 故将博士、硕士学位论文的行距设置为
 %    \begin{macrocode}
-\fp_const:Nn \c_@@_single_space_line_spread_fp
-  { \dim_ratio:nn { 332 pt } { 256 pt } / 1.2 }
-%    \end{macrocode}
-% 
-% 正文行距倍数。在本科生毕业论文中，为 1.5 倍行距；而在博士、硕士学位论文中，为
-% 25磅所对应的行距。
-%    \begin{macrocode}
-\fp_const:Nn \c_@@_line_spread_fp
+\fp_const:Nn \c_@@_pg_line_spread_fp
   {
-    \bool_if:NTF \g_@@_is_bachelor_bool
-      {
-        \dim_ratio:nn { 332 pt } { 256 pt } * 1.25
-      }
-      {
-        \dim_ratio:nn { 25 bp } { 12 bp } / 1.2
-      }
+    \dim_ratio:nn { 25 bp } { 12 bp } / 1.2
   }
 %    \end{macrocode}
+% \end{macro}
+%
+% 为了方便，此处再定义一个标准的单倍行距。
+%    \begin{macrocode}
+\fp_const:Nn \c_@@_single_space_line_spread_fp
+  { \dim_ratio:nn { 15.6 pt } { 12 pt } / 1.2 }
+%    \end{macrocode}
+% 
 % \subsection{载入文档类与宏包}
 %
 % 将选项传入 \cls{ctexrep} 文档类。
@@ -1014,7 +1019,9 @@
     heading     = true,
     zihao       = -4,
     fontset     = none,
-    linespread  = \c_@@_line_spread_fp,
+    linespread  = \bool_if:NTF \g_@@_is_bachelor_bool
+      { \c_@@_ug_line_spread_fp }
+      { \c_@@_pg_line_spread_fp },
     \g_@@_to_ctexrep_clist,
   }
   { ctexrep }
