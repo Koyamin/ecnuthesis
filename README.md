@@ -1,13 +1,12 @@
-# ECNUThesis-Undergraduate
+# ECNUThesis
 
 [![](https://img.shields.io/badge/Overleaf-ECNUthesis-brightgreen.svg)](https://www.overleaf.com/latex/templates/ecnuthesis-latex-thesis-template-for-east-china-normal-university/szppdtkvgvpk)
 
-## 华东师范大学本科生学士学位论文模版
+## 华东师范大学学位论文 LaTeX 模版（ECNUThesis）
 
-本模版使用 LaTeX3 重构了 [YijunYuan](https://github.com/YijunYuan) 的 [ECNU-Undergraduate-LaTeX](https://github.com/YijunYuan/ECNU-Undergraduate-LaTeX)，
-并将个人信息的填写、个性化设置、命令、环境等进行了一定的封装，让使用者可以更加方便地利用 LaTeX 进行创作。
+本本项目为华东师范大学学位论文 LaTeX 模版（ECNUThesis），支持使用 LaTeX 撰写华东师范大学的博士、硕士学位论文和本科生毕业论文。
 
-## 使用本模版
+## 使用 ECNUThesis
 
 ### 使用环境
 
@@ -17,13 +16,13 @@
 
 ### 使用方法
 
-请移步 [Wiki](https://github.com/Koyamin/ECNUThesis-Undergraduate/wiki) 阅读相关文档。
+请移步 [Wiki](https://github.com/Koyamin/ECNUThesis/wiki) 阅读相关文档。
 
-**注意**：为了保证正确的参考文献显示，请使用 `latexmk` 命令编译。具体方法详见 [编译](https://github.com/Koyamin/ECNUThesis-Undergraduate/wiki/使用模版编写论文#编译)。
+**注意**：为了保证正确的参考文献显示，请使用 `latexmk` 命令编译。具体方法详见 [编译](https://github.com/Koyamin/ECNUThesis/wiki/使用模版编写论文#编译)。
 
 ### 帮助
 
-若您在使用本模版的过程中有疑问，请先参考 [Wiki](https://github.com/Koyamin/ECNUThesis-Undergraduate/wiki) 中的 [常见问题](https://github.com/Koyamin/ECNUThesis-Undergraduate/wiki/常见问题)。若仍未能解决您的疑问，请移步 [Discussions](https://github.com/Koyamin/ECNUThesis-Undergraduate/discussions) 进行讨论。
+若您在使用本模版的过程中有疑问，请先参考 [Wiki](https://github.com/Koyamin/ECNUThesis/wiki) 中的 [常见问题](https://github.com/Koyamin/ECNUThesis/wiki/常见问题)。若仍未能解决您的疑问，请移步 [Discussions](https://github.com/Koyamin/ECNUThesis/discussions) 进行讨论。
 
 ## 重要提醒
 
@@ -32,11 +31,11 @@
 
 ## 更新日志
 
-每个版本的详细更新日志见 [CHANGELOG.md](https://github.com/Koyamin/ECNUThesis-Undergraduate/blob/main/CHANGELOG.md)。
+每个版本的详细更新日志见 [CHANGELOG.md](https://github.com/Koyamin/ECNUThesis/blob/main/CHANGELOG.md)。
 
 ## 贡献
 
-若您对本模版有改进意见或建议，欢迎您提交 [Issues](https://github.com/Koyamin/ECNUThesis-Undergraduate/issues) 以及 [Pull requests](https://github.com/Koyamin/ECNUThesis-Undergraduate/pulls)。
+若您对本模版有改进意见或建议，欢迎您提交 [Issues](https://github.com/Koyamin/ECNUThesis/issues) 以及 [Pull requests](https://github.com/Koyamin/ECNUThesis/pulls)。
 
 ## 参考
 
