@@ -1,0 +1,52 @@
+\input{regression-test.tex}
+
+\def\DEFAULTSETUP{%
+  \ecnusetup{
+    info = {
+      clc = {TS803.23},
+      secret-level = {公开},
+      title = {基于微信小程序的\\线下课程考勤系统的设计与实现},
+      title-en = {Design and Implementation of Offline Course Attendance System Based on WeChat Mini Program},
+      author = {张三},
+      student-id = {10000000000},
+      department = {计算机科学与技术学院},
+      department-en = {School of Computer Science and Tec hnology},
+      major = {计算机科学与技术},
+      major-en = {Computer Science and Technology},
+      field = {计算机技术},
+      field-en = {Computer Technology},
+      supervisor = {李四教授},
+      supervisor-en = {Prof. Si Li},
+      academic-title = {教授},
+      year  = 2077,
+      month = 3,
+      graduation-year = 2077,
+      keywords = {XML, XSL, 数据批处理, “双赢”},
+      keywords-en = {XML, XSL, batch, ‘Win-Win’},
+    }
+  }
+}
+
+% To skip log for font setup, PDF strings etc.
+% (from fduthesis)
+\ExplSyntaxOn
+\cs_set:Npn \EMPTYPAGE
+{
+  \clist_map_inline:nn
+    { \normalfont, \sffamily, \ttfamily, \bfseries, \itshape }
+    { \mbox { ##1 E ~ 华} ~ }
+  \clist_map_inline:nn
+    {
+      \tiny, \scriptsize, \footnotesize, \small, \normalsize,
+      \large, \Large, \LARGE, \huge, \HUGE
+    }
+    { \mbox { ##1 $\sin x^{x^x}$ } ~ }
+  \newpage
+}
+\ExplSyntaxOff
+
+% For testing entire page.
+\def\COMPLETEPAGE{\vfil\break}
+
+\def\CHECKCOMPILATION{%
+  \TYPE{Checking compilation. No log file data expected.}}

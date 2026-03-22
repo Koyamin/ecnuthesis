@@ -1,0 +1,31 @@
+% Copyright (C) 2021-2026 by Koyamin <contact@koyamin.com>
+
+\input{ecnuthesis-regression-test.tex}
+
+\documentclass[type=bachelor,cover=false,declaration=false]{ecnuthesis}
+
+\DEFAULTSETUP
+
+\ecnusetup{
+  style =  {
+    logo-src = {ecnu-vi-inner-cover-logo-ug.pdf}
+  }
+}
+
+\begin{document}
+
+\START
+
+\OMIT
+\EMPTYPAGE
+\TIMO
+
+\loggingoutput
+
+\begin{titlepage}
+  \makecoveri
+\end{titlepage}
+
+\END
+
+\end{document}
