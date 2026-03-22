@@ -346,6 +346,13 @@
 % 一些模板选项为布尔型，它们只能在 \texttt{true} 和 \texttt{false}
 % 中取值。对于这些选项，\texttt{\meta{选项}=true} 中的 \texttt{=true}
 % 可以被省略。
+%
+% \begin{function}{type}
+%   \begin{syntax}
+%     type = bachelor{\textbar}master{\textbar}doctor
+%   \end{syntax}
+%   选择论文类型。三种选项分别代表本科生毕业论文、硕士学位论文和博士学位论文。
+% \end{function}
 % 
 % \begin{function}{oneside,twoside}
 %   指明论文的单双面模式，默认为 \texttt{twoside}。该选项会影响每章
@@ -442,6 +449,36 @@
 %   该选项用于录入论文信息。该选项拥有一些子选项，具体的设置子选项如下所示。
 % \end{function}
 %
+% \begin{function}{info/degree}
+%   \begin{syntax}
+%     info/degree = academic{\textbar}professional
+%   \end{syntax}
+%   论文的学位类型。该子选项的值分别代表学术学位和专业学位。
+% 
+%   该选项当且仅当
+%   \texttt{type=master} 或 \texttt{type=doctor} 时有效。
+% \end{function}
+%
+% \begin{function}{info/clc}
+%   \begin{syntax}
+%     info/clc = \marg{中图分类号}
+%   \end{syntax}
+%   中图分类号。
+% 
+%   该选项当且仅当
+%   \texttt{type=master} 或 \texttt{type=doctor} 时有效。
+% \end{function}
+%
+% \begin{function}{info/secret-level}
+%   \begin{syntax}
+%     info/secret-level = \marg{密级}
+%   \end{syntax}
+%   密级
+% 
+%   该选项当且仅当
+%   \texttt{type=master} 或 \texttt{type=doctor} 时有效。
+% \end{function}
+%
 % \begin{function}{info/title, info/title-en}
 %   \begin{syntax}
 %     info/title = \marg{中文标题}
@@ -462,21 +499,36 @@
 %     info/student-id = \marg{学号}
 %   \end{syntax}
 %   \indent
-%   作者的学号。该子选项用于填写内封面的“学号”信息。
+%   作者的学号。该子选项用于填写本科生毕业论文内封面中的“学号”信息。
 % \end{function}
 %
 % \begin{function}{info/department}
 %   \begin{syntax}
 %     info/department = \marg{名称}
 %   \end{syntax}
-%   作者所在学院名称。该子选项用于填写内封面的“学院”信息。
+%   作者所在学院名称。该子选项用于填写本科生毕业论文内封面中的“学院”信息。
 % \end{function}
 %
-% \begin{function}{info/major}
+% \begin{function}{info/major,info/major-en}
 %   \begin{syntax}
 %     info/major = \marg{名称}
+%     info/major-en = \marg{英文名称}
 %   \end{syntax}
-%   作者所在专业名称。该子选项用于填写内封面的“专业”信息。
+%   作者所在专业名称。该子选项用于填写本科生毕业论文内封面中的“专业”信息。
+% \end{function}
+%
+% \begin{function}{info/field,info/field-en}
+%   \begin{syntax}
+%     info/field = \marg{名称}
+%     info/field-en = \marg{英文名称}
+%   \end{syntax}
+%   作者所在研究方向的中英文名称。
+%   
+%   该子选项用于填写博士、硕士毕业论文内封面
+%   中的“研究方向”信息（学术学位）或“专业学位领域”信息（专业学位）。
+%
+%   该选项当且仅当
+%   \texttt{type=master} 或 \texttt{type=doctor} 时有效。
 % \end{function}
 %
 % \begin{function}{info/supervisor}
@@ -491,6 +543,8 @@
 %     info/academic-title = \marg{职称}
 %   \end{syntax}
 %   论文指导教师职称。该子选项用于填写内封面的“职称”信息。
+%
+%   该选项当且仅当 \texttt{type=bachelor} 时有效。
 % \end{function}
 %
 % \begin{function}{info/year}
@@ -936,7 +990,7 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{printMode}
+% \begin{macro}{oneside,twoside}
 % 设置开启打印模式。若开启打印模式，则将输出适合双面打印的文档，否则将输出适合单面打印的
 % 文档。默认关闭打印模式。
 %    \begin{macrocode}
@@ -1014,7 +1068,7 @@
 % 应为 $\qty{15.6}{bp} \times 1.5 = \qty{23.4}{bp}$。
 % 在 \LaTeX{} 中，单倍行距的长度是字号长度的 1.2 倍。
 % 这意味着 Word 中的 1.5 倍行距相当于 \LaTeX{} 中的
-% $\qty{23.4}{bp} / \qty{12}{bp} \times 1.5 / 1.2 = 1.625$ 倍行距。
+% $\qty{23.4}{bp} / \qty{12}{bp} / 1.2 = 1.625$ 倍行距。
 % 故将本科生毕业论文的行距设置为
 % \begin{macro}{\c_@@_ug_line_spread_fp}
 %    \begin{macrocode}
@@ -1039,7 +1093,7 @@
 % 为了方便，此处再定义一个标准的单倍行距。
 %    \begin{macrocode}
 \fp_const:Nn \c_@@_single_space_line_spread_fp
-  { \dim_ratio:nn { 15.6 pt } { 12 pt } / 1.2 }
+  { \dim_ratio:nn { 15.6 bp } { 12 bp } / 1.2 }
 %    \end{macrocode}
 % 
 % \subsection{载入文档类与宏包}
@@ -1779,8 +1833,8 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_abs_title:n}
-% 手动生成摘要页的标题。这些标题的字体大小为小三，行距为单倍行距。
+% \begin{macro}{\@@_abs_title:n,\@@_absEN_title:n}
+% 手动生成摘要页的标题。这些标题的字体大小为小三。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_abs_title:n #1
   {
@@ -1790,7 +1844,6 @@
         { 
           chapter / numbering   = false,
           chapter / format      = \sffamily\bfseries\centering\large,
-          chapter / afterskip   = 2em,
         }
       \chapter* {#1}
     \group_end:
@@ -1804,7 +1857,6 @@
         {
           chapter / numbering   = false,
           chapter / format      = \rmfamily\bfseries\centering\large,
-          chapter / afterskip   = 2em,
         }
       \chapter* {#1}
     \group_end:
@@ -3305,7 +3357,7 @@
 %    \end{macrocode}
 %
 % 
-% \begin{macro}{\tocChapterFormat,\tocSectionFormat}
+% \begin{macro}{\tocchapterformat,\tocsectionformat}
 % 单独定义命令配置目录中章节标题、节标题的具体内容。其中，\cs{contentsmargin} 
 % 用于设置右边距。我们将其设置为 \qty{0}{pt}，以去除点线与页码之间的间距。
 % 
@@ -3315,14 +3367,14 @@
 % 在博士、硕士学位论文中，章标题的字体为黑体，字号为四号；节标题的字体
 % 为黑体，字号为小四。
 %    \begin{macrocode}
-\NewDocumentCommand \tocChapterFormat { }
+\NewDocumentCommand \tocchapterformat { }
   {
-    \addvspace{6pt}\contentsmargin{0pt}
+    \addvspace{6pt} \contentsmargin{0pt}
     \bool_if:NTF \g_@@_is_bachelor_bool
       { \rmfamily \bfseries }
       { \sffamily \zihao{ 4 } }
   }
-\NewDocumentCommand \tocSectionFormat {}
+\NewDocumentCommand \tocsectionformat {}
   {
     \contentsmargin{0pt}
     \bool_if:NF \g_@@_is_bachelor_bool { \sffamily }
@@ -3355,9 +3407,9 @@
 %
 % 调整目录各层级项目格式。
 %    \begin{macrocode}
-\titlecontents{chapter}[0em]{\tocChapterFormat}{\tocchaptercontents}{}
+\titlecontents{chapter}[0em]{\tocchapterformat}{\tocchaptercontents}{}
               {\titlerule*[.25pc]{.}{\rmfamily\thecontentspage}}[\addvspace{3pt}]
-\titlecontents{section}[1em]{\tocSectionFormat}{\tocsectioncontents}{}
+\titlecontents{section}[1em]{\tocsectionformat}{\tocsectioncontents}{}
               {\titlerule*[.25pc]{.}{\rmfamily\thecontentspage}}[\addvspace{3pt}]
 \titlecontents{subsection}[2em]{\contentsmargin{0pt}}{\tocsubsectioncontents}{}
               {\titlerule*[.25pc]{.}{\rmfamily\thecontentspage}}
@@ -3397,7 +3449,9 @@
 % 
 %    \begin{macrocode}
       \chapter* { #1 }
-      \@@_line_spread:N \c_@@_single_space_line_spread_fp
+      \bool_if:NTF \g_@@_is_bachelor_bool
+        { \@@_line_spread:N \c_@@_single_space_line_spread_fp }
+        { \@@_line_spread:n { 1.3 } }
       \@starttoc{#2}
     \group_end:
     \cleardoublepage
@@ -3446,13 +3500,13 @@
         \addcontentsline{toc}{chapter}{\c_@@_name_abstract_tl}
         \small
         \group_begin:
-          \skip_vertical:n { 12 bp }
+          \skip_vertical:n { 17.6 bp }
           \noindent \rmfamily \bfseries \c_@@_name_abstract_tl \c_@@_colon_tl
           \skip_vertical:n { 3 bp }
         \group_end:
         \par
       }
-      { \@@_abs_title:V \c_@@_name_abstract_tl }
+      { \@@_abs_title:V \c_@@_name_chinese_abstract_tl }
   }
 \cs_new_protected:Npn \@@_abstract_en_begin:
   {
@@ -3462,7 +3516,7 @@
         \addcontentsline{toc}{chapter}{ABSTRACT}
         \small
         \group_begin:
-          \skip_vertical:n { 12 bp }
+          \skip_vertical:n { 17.6 bp }
           \noindent \rmfamily\bfseries \c_@@_name_abstract_en_tl \c_@@_colon_en_tl
           \skip_vertical:n { 3 bp }
         \group_end:
@@ -3537,7 +3591,6 @@
   { 
     \cleardoublepage
     \@@_title:V \c_@@_name_appendix_tl
-    \setcounter{chapter}{0}
     \setcounter{section}{0}
     \bool_if:NT \g_@@_is_bachelor_bool { \small }
   }
@@ -3561,10 +3614,11 @@
 % 声明变量。
 %    \begin{macrocode}
 \tl_new:N \l_@@_acknowledgement_title_tl
+\tl_new:N \g_@@_acknowledgement_zihao_tl
 %    \end{macrocode}
 % \end{variable}
 %
-% 定义致谢环境接口，标题字段可设置指定文字。
+% 为致谢环境定义标题字段。设置该字段后，可设置致谢页标题文字。
 %    \begin{macrocode}
 \keys_define:nn { ecnu / acknowledgement }
   {
@@ -3586,15 +3640,18 @@
 % \end{environment}
 %
 % \begin{macro}{\@@_acknowledgements_begin:}
-% 致谢页标题。将致谢页环境内正文的字号调整为五号。
+% 致谢页。
+% 在本科生毕业论文中，致谢页环境内正文的字号为五号宋体。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_acknowledgement_begin:
   {
     \cleardoublepage
     \@@_title:V \l_@@_acknowledgement_title_tl
     \bool_if:NTF \g_@@_is_bachelor_bool
-      { \small }
-      { \ecnu@kai \@@_line_spread:N \c_@@_single_space_line_spread_fp }
+      { \zihao {5} }
+      {
+        \@@_line_spread:N \c_@@_single_space_line_spread_fp
+      }
   }
 %    \end{macrocode}
 % \end{macro}
@@ -3603,9 +3660,7 @@
 % 在打印模式下，保证致谢页为偶数页。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_acknowledgement_end:
-  {
-    \cleardoublepage
-  }
+  { \cleardoublepage }
 %    \end{macrocode}
 % \end{macro}
 %
@@ -3649,25 +3704,33 @@
   {
     \PassOptionsToPackage 
       {
-        backend   = biber,
-        style     = gb7714-2015,
-        seconds   = true,
-        hyperref  = true,
-        gbpub     = false,
-        gbpunctin = true,
+        backend       = biber,
+        style         = gb7714-2015,
+        seconds       = true,
+        hyperref      = true,
+        gbpub         = false,
+        gbpunctin     = true,
       } 
       { biblatex }
   }
 %    \end{macrocode}
 % 
-% 设置参考文献相关格式。参考文献字体为五号，参考文献间
-% 没有额外间距。
+% 设置参考文献相关格式。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_biblatex_post_setup:
   {
     \exp_args:NV \addbibresource \l_@@_bib_resource_tl
     \@@_biblatex_allow_url_break:
-    \RenewDocumentCommand \bibfont { } { \small }
+%    \end{macrocode}
+%
+% 在本科生毕业论文中，参考文献的字体大小为五号。
+%    \begin{macrocode}
+    \bool_if:NT \g_@@_is_bachelor_bool
+      { \RenewDocumentCommand \bibfont { } { \small } }
+%    \end{macrocode}
+%
+% 参考文献间没有额外间距。
+%    \begin{macrocode}
     \setlength{\bibitemsep}{0pt}
     \defbibheading { bibliography } [ \bibname ] 
       { \@@_title:n {##1} }
@@ -3797,16 +3860,26 @@
 %    \begin{macrocode}
 \NewDocumentCommand \backmatter { }
   {
-    \clearpage{\thispagestyle{empty}\cleardoublepage}
+%    \end{macrocode}
+% 
+% 当双面模式时，确保后置部分内容在奇数页开始。
+%    \begin{macrocode}
+    \cleardoublepage
+%    \end{macrocode}
+% 
+% 设置章节编号样式。在每一章开始时，节的计数器需要手动设置为 0。
+%    \begin{macrocode}
+    \setcounter{section}{0}
     \ctexset
       {
+        secnumdepth             = 1,
         chapter / numbering     = false,
+        chapter / format        += \setcounter{section}{0},
         section / name          = {,.},
         section / number        = {\arabic{section}},
-        section / numberformat  += \rmfamily,
-        section / aftername     = \quad,
       }
-    \bool_if:NF \g_@@_is_bachelor_bool { \addtocontents{toc}{\protect\vspace{25bp}} }
+    \bool_if:NF \g_@@_is_bachelor_bool
+      { \addtocontents{toc}{\protect\vspace{25bp}} }
   }
 %    \end{macrocode}
 % \end{macro}
@@ -4091,6 +4164,7 @@
 \tl_const:Nn \c_@@_name_toc_tl                { 目录 }
 \tl_const:Nn \c_@@_name_lot_tl                { 表格目录 }
 \tl_const:Nn \c_@@_name_lof_tl                { 插图目录 }
+\tl_const:Nn \c_@@_name_chinese_abstract_tl   { 中文摘要 }
 \tl_const:Nn \c_@@_name_abstract_tl           { 摘要 }
 \tl_const:Nn \c_@@_name_abstract_en_tl        { Abstract }
 \tl_const:Nn \c_@@_name_keywords_tl           { 关键词 }
