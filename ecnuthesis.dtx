@@ -1833,8 +1833,8 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_abs_title:n,\@@_absEN_title:n}
-% 手动生成摘要页的标题。这些标题的字体大小为小三。
+% \begin{macro}{\@@_abs_title:n,\@@_abs_title:V}
+% 手动生成摘要页的中文标题。这些标题的字体大小为小三。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_abs_title:n #1
   {
@@ -1849,6 +1849,12 @@
     \group_end:
   }
 \cs_generate_variant:Nn \@@_abs_title:n { V }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_absEN_title:n,\@@_absEN_title:V}
+% 手动生成摘要页的英文标题。这些标题的字体大小为小三。
+%    \begin{macrocode}
 \cs_new_protected:Npn \@@_absEN_title:n #1
   {
     \group_begin:
@@ -3628,7 +3634,7 @@
 %    \end{macrocode}
 %
 % \begin{environment}{acknowledgement}
-% 致谢环境。该环境可接受
+% 致谢环境。
 %    \begin{macrocode}
 \NewDocumentEnvironment { acknowledgement } { O {} }
   {
