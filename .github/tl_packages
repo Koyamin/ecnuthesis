@@ -5,7 +5,6 @@ biblatex-gb7714-2015
 bigfoot
 caption
 bicaption
-chinese-jfm
 ctex
 fancyhdr
 footmisc
@@ -18,8 +17,6 @@ ntheorem
 siunitx
 standalone
 symbol
-tex-gyre
-tex-gyre-math
 unicode-math
 xits
 xstring
