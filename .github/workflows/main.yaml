@@ -9,7 +9,7 @@ on:
 jobs:
   build-ubuntu:
     runs-on: ubuntu-latest
-    strps:
+    steps:
     - name: Checkout Repository
       uses: actions/checkout@v4
     - run: sudo apt-get update && sudo apt-get install ghostscript
