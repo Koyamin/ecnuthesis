@@ -1,7 +1,7 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
-File: ecnu-vi-inner-cover-logo-ug.pdf Graphic file (type pdf)
-<use ecnu-vi-inner-cover-logo-ug.pdf>
+File: ecnu-vi-inner-cover-logo-pg.pdf Graphic file (type pdf)
+<use ecnu-vi-inner-cover-logo-pg.pdf>
 Completed box being shipped out [1]
 \vbox(722.98454+0.0)x434.90039
 .\vbox(0.0+0.0)x0.0, glue set 29.87573fil
@@ -28,7 +28,7 @@ Completed box being shipped out [1]
 .....\special{color pop}
 ...\glue 16.872
 ...\glue(\lineskip) 0.0
-...\vbox(700.50687+0.0)x416.83289, glue set 8.03345fill
+...\vbox(700.50687+0.0)x416.83289, glue set 81.88234fill
 ....\glue(\topskip) 0.0
 ....\hbox(30.21994+24.9497)x416.83289
 .....\glue(\leftskip) 0.0 plus 1.0fil
@@ -235,25 +235,25 @@ Completed box being shipped out [1]
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\parskip) 0.0
 ....\glue(\lineskip) 1.0
-....\hbox(123.22545+117.2023)x416.83289
+....\hbox(49.37656+43.35341)x416.83289
 .....\glue(\leftskip) 0.0 plus 1.0fil
 .....\mathon
-.....\vbox(123.22545+117.2023)x416.83289
-......\hbox(193.06557+0.0)x416.83289, glue set 94.60542fil
+.....\vbox(49.37656+43.35341)x416.83289
+......\hbox(45.36778+0.0)x416.83289, glue set 94.60542fil
 .......\glue(\leftskip) 0.0 plus 1.0fil
 .......\hbox(0.0+0.0)x0.0
-.......\hbox(193.06557+0.0)x227.62204
-........\hbox(193.06606+0.0)x227.6309
-.........\hbox(193.06606+0.0)x227.6309
-..........\hbox(193.06606+0.0)x0.0
+.......\hbox(45.36778+0.0)x227.62204
+........\hbox(45.3679+0.0)x227.62526
+.........\hbox(45.3679+0.0)x227.62526
+..........\hbox(45.3679+0.0)x0.0
 ...........\special{pdf:btrans}
-...........\special{x:scale 0.74359 0.74359}
-...........\hbox(259.64001+0.0)x0.0, glue set - 306.12369fil
-............\hbox(259.64001+0.0)x306.12369
-.............\XeTeXpdffile "./ecnu-vi-inner-cover-logo-ug.pdf"
+...........\special{x:scale 0.6748 0.6748}
+...........\hbox(67.23119+0.0)x0.0, glue set - 337.32022fil
+............\hbox(67.23119+0.0)x337.32022
+.............\XeTeXpdffile "./ecnu-vi-inner-cover-logo-pg.pdf"
 ............\glue 0.0 plus 1.0fil minus 1.0fil
 ...........\special{pdf:etrans}
-..........\kern 227.6309
+..........\kern 227.62526
 ..........\glue 0.0 plus 1.0fil minus 1.0fil
 .......\penalty 10000
 .......\glue(\parfillskip) 0.0
