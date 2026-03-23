@@ -1,0 +1,21 @@
+name: Automated Testing
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+
+jobs:
+  build-ubuntu:
+    runs-on: ubuntu-latest
+    strps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+    - run: sudo apt-get update && sudo apt-get install ghostscript
+    - name: Install Tex Live
+      uses: zauguin/install-texlive@v4
+      with:
+        package_file: .github/tl_packages
+    - name: Check ecnuthesis
+      run: l3build check -q -h --show-log-on-error
