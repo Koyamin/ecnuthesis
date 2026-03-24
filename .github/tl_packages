@@ -4,7 +4,6 @@ biblatex
 biblatex-gb7714-2015
 bigfoot
 caption
-bicaption
 ctex
 fancyhdr
 footmisc
@@ -24,8 +23,6 @@ zhlipsum
 hyperref
 amsmath
 geometry
-graphicx
 xcolor
-xeCJKfntef
 pdfpages
-titletoc
+titlesec
