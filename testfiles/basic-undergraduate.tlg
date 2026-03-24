@@ -356,22 +356,6 @@ TC.}
 ...........\glue(\rightskip) 0.0
 .....\glue 0.0 plus 1.0fil minus 1.0fil
 ....\special{color pop}
-! LaTeX Error: Environment abstract* undefined.
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-l. ...\begin{abstract*}
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-! LaTeX Error: \begin{document} ended by \end{abstract*}.
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-l. ...\end{abstract*}
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
 Completed box being shipped out [2]
 \vbox(732.943+3.25217)x454.106
 .\vbox(0.0+0.0)x0.0, glue set 29.87572fil
@@ -477,23 +461,128 @@ Completed box being shipped out [2]
 .....\special{color pop}
 ...\glue 15.73387
 ...\glue(\lineskip) 0.0
-...\vbox(717.00946+0.0)x441.01773, glue set 704.93416fil
+...\vbox(717.00946+0.0)x441.01773, glue set 575.95036fil
 ....\write-{}
-....\glue(\topskip) 3.64078
-....\hbox(8.35922+2.46921)x441.01773, glue set 285.47266fil
-.....\hbox(0.0+0.0)x24.09
-.....\TU/lmr/m/n/12.045 This
-.....\glue 3.92667 plus 1.96333 minus 1.30888
-.....\TU/lmr/m/n/12.045 is
-.....\glue 3.92667 plus 1.96333 minus 1.30888
-.....\TU/lmr/m/n/12.045 English
-.....\glue 3.92667 plus 1.96333 minus 1.30888
-.....\TU/lmr/m/n/12.045 abstract.
-.....\glue 5.23555 plus 5.89 minus 0.4363
+....\write-{}
+....\special{pdf:dest (chapter*.2) [@thispage /XYZ @xpos @ypos null]}
+....\glue(\topskip) 12.0
+....\rule(0.0+0.0)x*
+....\penalty 10000
+....\glue -6.80861 plus -1.0
+....\glue 0.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\hbox(10.53937+3.02629)x441.01773, glue set 7.11673fil
+.....\glue(\leftskip) 0.0 plus 1.0fil
+.....\TU/lmr/bx/n/15.05624 Design
+.....\glue 5.64609 plus 2.82304 minus 1.88202
+.....\TU/lmr/bx/n/15.05624 and
+.....\glue 5.64609 plus 2.82304 minus 1.88202
+.....\TU/lmr/bx/n/15.05624 Implementation
+.....\glue 5.64609 plus 2.82304 minus 1.88202
+.....\TU/lmr/bx/n/15.05624 of
+.....\glue 5.64609 plus 2.82304 minus 1.88202
+.....\TU/lmr/bx/n/15.05624 Offline
+.....\glue 5.64609 plus 2.82304 minus 1.88202
+.....\TU/lmr/bx/n/15.05624 Course
+.....\glue 5.64609 plus 2.82304 minus 1.88202
+.....\TU/lmr/bx/n/15.05624 Attendance
+.....\glue(\rightskip) 0.0 plus 1.0fil
+....\penalty 10300
+....\glue(\baselineskip) 6.03746
+....\hbox(10.50926+3.02629)x441.01773, glue set 68.69676fil
+.....\glue(\leftskip) 0.0 plus 1.0fil
+.....\TU/lmr/bx/n/15.05624 System
+.....\glue 5.64609 plus 2.82304 minus 1.88202
+.....\TU/lmr/bx/n/15.05624 Based
+.....\glue 5.64609 plus 2.82304 minus 1.88202
+.....\TU/lmr/bx/n/15.05624 on
+.....\glue 5.64609 plus 2.82304 minus 1.88202
+.....\TU/lmr/bx/n/15.05624 WeChat
+.....\glue 5.64609 plus 2.82304 minus 1.88202
+.....\TU/lmr/bx/n/15.05624 Mini
+.....\glue 5.64609 plus 2.82304 minus 1.88202
+.....\TU/lmr/bx/n/15.05624 Program
+.....\kern -0.0002
+.....\kern 0.0002
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0
+.....\glue(\rightskip) 0.0 plus 1.0fil
+....\penalty 10000
+....\glue 12.97847 plus 0.03825
+....\write4{\protect \BOOKMARK [0][-]{chapter*.2}{\376\377\000A\000B\000S\000T\00\ETC.}
+....\penalty 10000
+....\write1{\@writefile{toc}{\protect \contentsline {chapter}{ABSTRACT}{\thepage \ETC.}
+....\penalty 10000
+....\glue 17.666
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\hbox(7.35648+0.06322)x441.01773, glue set 391.28246fil
+.....\TU/lmr/bx/n/10.53937 Abstract:
+.....\kern -0.0002
+.....\kern 0.0002
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
-....\glue -2.46921
+....\glue 3.01125
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\glue(\baselineskip) 13.17424
+....\hbox(7.31432+2.1711)x441.01773, glue set 307.1045fil
+.....\hbox(0.0+0.0)x21.07874
+.....\TU/lmr/m/n/10.53937 This
+.....\glue 3.50961 plus 1.7548 minus 1.16986
+.....\TU/lmr/m/n/10.53937 is
+.....\glue 3.50961 plus 1.7548 minus 1.16986
+.....\TU/lmr/m/n/10.53937 English
+.....\glue 3.50961 plus 1.7548 minus 1.16986
+.....\TU/lmr/m/n/10.53937 abstract.
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\glue(\baselineskip) 18.38068
+....\hbox(0.0+0.0)x441.01773, glue set 419.939fil
+.....\hbox(0.0+0.0)x21.07874
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\glue(\baselineskip) 13.12152
+....\hbox(7.43025+2.10786)x441.01773
+.....\TU/lmr/bx/n/10.53937 Keywords:
+.....\glue 5.3821 plus 4.03656 minus 0.67276
+.....\vbox(7.43025+2.03409)x379.82968
+......\hbox(7.43025+2.03409)x379.82968, glue set 233.96481fil
+.......\hbox(0.0+0.0)x0.0
+.......\TU/lmr/m/n/10.53937 XML,
+.......\glue 3.50961 plus 1.7548 minus 1.16986
+.......\TU/lmr/m/n/10.53937 XSL,
+.......\glue 3.50961 plus 1.7548 minus 1.16986
+.......\TU/lmr/m/n/10.53937 batch,
+.......\glue 3.50961 plus 2.1935 minus 0.93588
+.......\glue 7.27217 minus 5.2697
+.......\rule(0.0+0.0)x-7.27217
+.......\TU/FandolSong(0)/m/n/10.53937 ‘
+.......\penalty 10000
+.......\glue 0.0
+.......\TU/lmr/m/n/10.53937 Win-Win
+.......\penalty 10000
+.......\TU/FandolSong(0)/m/n/10.53937 ’
+.......\rule(0.0+0.0)x-7.27216
+.......\kern 0.00044
+.......\kern -0.00044
+.......\kern -0.12538
+.......\kern 0.12538
+.......\penalty 10000
+.......\glue(\parfillskip) 0.0 plus 1.0fil
+.......\glue(\rightskip) 0.0
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\glue -2.10786
 ....\glue 0.0 plus 1.0fil
 ....\glue 0.0
 ....\glue 0.0 plus 0.0001fil
@@ -645,6 +734,7 @@ Completed box being shipped out [1]
 ...\glue 15.73387
 ...\glue(\lineskip) 0.0
 ...\vbox(717.00946+0.0)x441.01773, glue set 530.62294fil
+....\write-{}
 ....\write-{}
 ....\write-{}
 ....\write1{\pp@pagectr{footnote}{1}{\theabspage }{\thepage }}
@@ -1263,8 +1353,8 @@ Completed box being shipped out [3]
 ....\write-{}
 ....\write-{}
 ....\write-{}
-....\special{pdf:dest (chapter*.2) [@thispage /XYZ @xpos @ypos null]}
-....\write4{\protect \BOOKMARK [0][-]{chapter*.2}{\376\377\124\016\213\260}{}% 7}
+....\special{pdf:dest (chapter*.3) [@thispage /XYZ @xpos @ypos null]}
+....\write4{\protect \BOOKMARK [0][-]{chapter*.3}{\376\377\124\016\213\260}{}% 8}
 ....\write1{\@writefile{toc}{\protect \contentsline {chapter}{后记}{\thepage }{\E
 TC.}
 ....\marks1{\MakeUppercase    []{后记}}

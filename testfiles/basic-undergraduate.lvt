@@ -24,9 +24,9 @@
   这是中文摘要。
 \end{abstract}
 
-\begin{abstract*}
+\begin{abstractEN}
   This is English abstract.
-\end{abstract*}
+\end{abstractEN}
 
 \mainmatter
 
