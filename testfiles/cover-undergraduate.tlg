@@ -28,7 +28,7 @@ Completed box being shipped out [1]
 .....\special{color pop}
 ...\glue 15.73387
 ...\glue(\lineskip) 0.0
-...\vbox(717.00946+0.0)x441.01773, glue set 34.42403fill
+...\vbox(717.00946+0.0)x441.01773, glue set 32.89236fill
 ....\glue(\topskip) 2.138
 ....\hbox(9.862+3.83887)x441.01773
 .....\glue(\leftskip) 0.0 plus 1.0fil
@@ -1014,7 +1014,6 @@ Completed box being shipped out [1]
 ....\penalty 10000
 ....\glue 0.0 plus 0.5fill
 ....\glue 0.0
-....\glue -3.52283
 ....\glue 0.0 plus 1.0fil
 ....\glue 0.0
 ....\glue 0.0 plus 0.0001fil
