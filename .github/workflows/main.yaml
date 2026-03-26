@@ -6,16 +6,87 @@ on:
       - "**"
   pull_request:
 
+env:
+  TL_PACKAGES: |
+    l3build
+    biber
+    biblatex
+    biblatex-gb7714-2015
+    bigfoot
+    caption
+    ctex
+    fancyhdr
+    footmisc
+    kantlipsum
+    latexmk
+    libertinus-fonts
+    lm-math
+    natbib
+    ntheorem
+    siunitx
+    standalone
+    symbol
+    unicode-math
+    xits
+    xstring
+    zhlipsum
+    hyperref
+    amsmath
+    geometry
+    xcolor
+    pdfpages
+    titlesec
+
 jobs:
-  build-ubuntu:
-    runs-on: ubuntu-latest
+  test-ecnuthesis:
+    strategy:
+      matrix:
+        include:
+        - runs-on: ubuntu-latest
+          shell: bash
+          tl-pkgs: ""
+        - runs-on: macos-latest
+          shell: bash
+          tl-pkgs: ""
+        - runs-on: windows
+          shell: C:\msys64\use\bin\bash.exe -e {0}
+          tl-pkgs: wintools.windows
+          
+    name: on ${{ matrix.runs-on }}
+
+    runs-on: ${{ matrix.runs-on }}
+
+    defaults:
+      run:
+        shell: ${{ matrix.shell }}
+
     steps:
     - name: Checkout Repository
-      uses: actions/checkout@v4
-    - run: sudo apt-get update && sudo apt-get install ghostscript
+      uses: actions/checkout@v6
+
     - name: Install Tex Live
-      uses: zauguin/install-texlive@v4
+      uses: TeX-Live/setup-texlive-action@v4
       with:
-        package_file: .github/tl_packages
+        packages: |
+          ${{ env.TL_PACKAGES }}
+          ${{ matrix.tl-pkgs }}
+
     - name: Check ecnuthesis
-      run: l3build check -q -h --show-log-on-error
+      run: |
+        l3build check -q -H
+      env:
+        diffext: .diff
+        diffexe: git diff --no-index --text --
+
+    - name: Get short commit SHA
+      if: ${{ !cancelled() && steps.test.outcome == 'failure' }}
+      run: |
+        echo "SHA_SHORT=$(git rev-parse --short=8 HEAD)" >> $GITHUB_ENV
+
+    - name: Upload test diffs
+      if: ${{ !cancelled() && steps.test.outcome == 'failure' }}
+      uses: actions/upload-artifact@v6
+      with:
+        name: ecnuthesis-diff-${{ env.SHA_SHORT }}-${{ runner.os }}
+        path: |
+          build/**/*.diff
