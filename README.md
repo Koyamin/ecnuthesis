@@ -2,7 +2,7 @@
 
 [![](https://img.shields.io/badge/Overleaf-ECNUthesis-brightgreen.svg)](https://www.overleaf.com/latex/templates/ecnuthesis-latex-thesis-template-for-east-china-normal-university/szppdtkvgvpk)
 
-ecnuthesis（East China Normal University LaTeX Thesis Template）是华东师范大学学位论文模板的 LaTeX 实现，旨在帮助用户使用 LaTeX 旨在帮助华东师范大学的学生使用 LaTeX 成博士、硕士学位论文与本科生毕业论文的排版工作。
+ecnuthesis（East China Normal University LaTeX Thesis Template）是华东师范大学学位论文模板的 LaTeX 实现，旨在帮助华东师范大学的学生使用 LaTeX 成博士、硕士学位论文与本科生毕业论文的排版工作。
 
 ## 使用 ecnuthesis
 
