@@ -72,6 +72,7 @@ jobs:
           ${{ matrix.tl-pkgs }}
 
     - name: Check ecnuthesis
+      id: test
       run: |
         l3build check -q -H
       env:
