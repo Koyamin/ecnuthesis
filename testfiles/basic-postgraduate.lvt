@@ -2,9 +2,15 @@
 
 \input{ecnuthesis-regression-test.tex}
 
-\documentclass[type=bachelor,declaration=false]{ecnuthesis}
+\documentclass[type=master,declaration=false]{ecnuthesis}
 
 \DEFAULTSETUP
+
+\ecnusetup{
+  info = {
+    degree = academic
+  }
+}
 
 \begin{document}
 
