@@ -36,6 +36,7 @@
 \RecordChanges
 \begin{document}
   \DocInput{ecnuthesis.dtx}
+  \IndexLayout
   \PrintIndex
 \end{document}
 %</driver>
@@ -491,8 +492,8 @@
 %   \end{syntax}
 %   设置论文的章节编号样式。
 %   \begin{optdesc}
-%     \item[arabic] 使用数字进行编号（即理科要求）。
-%     \item[chinese] 使用数字进行编号（即文科要求）。
+%     \item[arabic] 使用阿拉伯数字进行编号（即理科要求）。
+%     \item[chinese] 使用中文数字进行编号（即文科要求）。
 %   \end{optdesc}
 % \end{function}
 %
@@ -711,7 +712,7 @@
 %
 % \begin{implementation}
 %
-% \iffalse
+% 
 %
 % \section{实现细节}
 %
@@ -1344,7 +1345,7 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_load_font_xits:}
+% \begin{macro}{\@@_load_font_lm:}
 % Latin Modern 系列西文字体。由于已作为默认字体，所以仅需额外处理数学部分。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_load_font_lm:
@@ -1935,7 +1936,7 @@
 %
 %    \begin{macrocode}
       {
-        \tl_gset_eq:NN \l_@@_fn_style_tl \l_keys_choice_tl
+        \tl_set_eq:NN \l_@@_fn_style_tl \l_keys_choice_tl
       },
     footnote  .value_required:n = true,
     footnote  .initial:n = plain
@@ -2163,6 +2164,7 @@
       { academic, professional }
       { \tl_set_eq:NN \l_@@_info_degree_type_tl \l_keys_choice_tl },
     degree          .value_required:n = true,
+    degree          .initial:n = academic,
 %    \end{macrocode}
 % \end{macro}
 %
@@ -3470,8 +3472,7 @@
 % \end{macro}
 % 
 % \begin{macro}{\tableofcontents,\listoffigures,\listoftables}
-% 使用 \cs{\@@_toc_page:Nn} 修改 \cs{tableofcontents} 、\cs{listoffigures} 、
-% \cs{listoftables}。
+% 修改 \cs{tableofcontents}、\cs{listoffigures}、\cs{listoftables}。
 %    \begin{macrocode}
 \RenewDocumentCommand \tableofcontents { }
   { \@@_toc_page:Nn \contentsname {toc} }
@@ -3909,7 +3910,7 @@
 %</class>
 %    \end{macrocode}
 %
-% 
+% \iffalse
 %
 % \subsubsection{预设文字}
 %
@@ -4027,7 +4028,6 @@
 \tl_const:Nn \c_@@_dissertation_en_tl         { Dissertation }
 \tl_const:Nn \c_@@_for_en_tl                  { for }
 \tl_const:Nn \c_@@_masters_en_tl              { Master's }
-\tl_const:Nn \c_@@_doctors_en_tl              { Doctor's }
 \tl_const:Nn \c_@@_doctoral_en_tl             { Doctoral }
 \tl_const:Nn \c_@@_thesis_title_en_tl         { Title }
 \tl_const:Nn \c_@@_info_school_en_tl          { Department / School }
@@ -4071,11 +4071,12 @@
 % 
 %    \begin{macrocode}
 %<*ecnudoc>
-%<@@=>
 \LoadClass[a4paper,full]{l3doc}
+%<@@=ecnudoc>
 \RequirePackage{xparse}
 \RequirePackage[UTF8, heading, scheme=chinese]{ctex}
 \RequirePackage{
+  geometry,
   caption,
   graphicx,
   listings,
@@ -4085,6 +4086,12 @@
   siunitx,
   metalogo,
   booktabs,
+}
+\geometry{
+  left   = 1.85 in,
+  right  = 0.85 in,
+  top    = 1.25 in,
+  bottom = 1.00 in
 }
 \RequirePackage[toc]{multitoc}
 \setmainfont[
@@ -4109,7 +4116,6 @@
   BoldItalicFont = *tx,
   HyphenChar     = None
 ]{cmun}
-
 \ctexset {
   section = {
     name        = {第,节},
@@ -4137,7 +4143,6 @@
 %    \end{macrocode}
 %
 %    \begin{macrocode}
-
 \ifxetex
   \let\ecnudocverbaddon\xeCJKVerbAddon
   \def\ecnudisableecglue{\xeCJKsetup{CJKecglue}}
@@ -4156,28 +4161,6 @@
     \ecnudisableecglue
   }
 
-\setlist{noitemsep,topsep=\smallskipamount}
-\setlist[enumerate]{
-  topsep=0pt,
-  parsep=0pt,
-  itemsep=0pt
-}
-\setlist[itemize]{
-  topsep=0pt,
-  parsep=0pt,
-  itemsep=0pt
-}
-\newlist{optdesc}{description}{3}
-\setlist[optdesc]{%
-  font          = \mdseries\small\ttfamily,
-  align         = right,
-  listparindent = \parindent,
-  labelsep      = \marginparsep,
-  labelindent   = -\marginparsep,
-  leftmargin    = 0pt,
-}
-
-
 \DeclareDocumentEnvironment{arguments}{}
   {\enumerate[label={\texttt{\#\arabic*:~}}, labelsep=0pt, nolistsep]}
   {\endenumerate}
@@ -4193,7 +4176,6 @@
     \char_set_active_eq:NN \( \defaultvalaux
   }
 %    \end{macrocode}
-%
 %
 % 抑制首段的 \cs{parskip}。
 %    \begin{macrocode}
@@ -4226,6 +4208,49 @@
 % 不显示 \env{macro} 环境最后的 “(\emph{End definition for ...})”。
 %    \begin{macrocode}
 \cs_set_eq:NN \__codedoc_macro_end_style:n \use_none:n
+%    \end{macrocode}
+% \end{macro}
+% 
+% \subsubsection{杂项}
+%
+% \begin{macro}{\StopSpecialIndexModule,
+%   \@@_special_index_module:nnnnN}
+% 不对 \cs{cs} 和 \cs{tn} 等编索引。用于目录、索引等。
+%    \begin{macrocode}
+\DeclareDocumentCommand \StopSpecialIndexModule { }
+  {
+    \cs_set_eq:NN
+      \__codedoc_special_index_module:nnnnN \use_none:nnnnn
+  }
+\tl_map_inline:nn { \actualchar \encapchar \levelchar }
+  { \exp_args:Nx \DoNotIndex { \bslash \tl_to_str:N #1 } }
+%    \end{macrocode}
+% \end{macro}
+%
+% 目录中禁止对 \cs{cs} 和 \cs{tn} 等的索引。
+%    \begin{macrocode}
+\AtBeginDocument{%
+  \addtocontents{toc}{\StopSpecialIndexModule}}
+%    \end{macrocode}
+%
+% \begin{macro}{\IndexLayout,\indexname}
+% 调整索引外观。来自 \pkg{ctex} 宏集的 \cls{ctxdoc} 文档类。
+%    \begin{macrocode}
+\IndexPrologue{%
+  \section{\indexname}%
+  \textit{意大利体的数字表示对应索引项出现的页码；
+    带下划线的数字表示定义对应索引项的代码行号；
+    其他则表示使用对应索引项的代码行号。}}
+\def\IndexLayout{%
+  \newgeometry{
+    left   = 0.85 in,
+    right  = 0.85 in,
+    top    = 1.25 in,
+    bottom = 1.00 in}%
+  \setlength\IndexMin{0.5\textheight}%
+  \ctexset{section/numbering=false}%
+  \StopSpecialIndexModule}
+\def\indexname{代码索引}
 %    \end{macrocode}
 % \end{macro}
 %
@@ -4333,6 +4358,16 @@
 \g@addto@macro{\UrlBreaks}{\UrlOrds}
 \g@addto@macro{\UrlBreaks}{\UrlAlphabet}
 \g@addto@macro{\UrlBreaks}{\UrlDigits}
+%    \end{macrocode}
+%
+% 不对下列各项添加索引。
+%    \begin{macrocode}
+\DoNotIndex{\begin,\end,
+  \a,\b,\c,\d,\e,\f,\g,\h,\i,\j,\k,\l,\m,
+  \n,\o,\p,\q,\r,\s,\t,\u,\v,\w,\x,\y,\z,
+  \A,\B,\C,\D,\E,\F,\G,\H,\I,\J,\K,\L,\M,
+  \N,\O,\P,\Q,\R,\S,\T,\U,\V,\W,\X,\Y,\Z,
+  \0,\1,\2,\3,\4,\5,\6,\7,\8,\9}
 %    \end{macrocode}
 %
 % \subsubsection{文档层命令}
@@ -4454,6 +4489,31 @@
 \lstnewenvironment{shellcode}[1][]{%
   \lstset{style=style@shell, #1}}{}
 \def\breakablethinspace{\hskip 0.16667em\relax}
+%    \end{macrocode}
+%
+% 定义列表样式。
+%    \begin{macrocode}
+\setlist{noitemsep,topsep=\smallskipamount}
+\setlist[enumerate]{
+  topsep=0pt,
+  parsep=0pt,
+  itemsep=0pt
+}
+\setlist[itemize]{
+  topsep=0pt,
+  parsep=0pt,
+  itemsep=0pt
+}
+\newlist{optdesc}{description}{3}
+\setlist[optdesc]{%
+  font          = \mdseries\small\ttfamily,
+  align         = right,
+  listparindent = \parindent,
+  labelsep      = \marginparsep,
+  labelindent   = -\marginparsep,
+  leftmargin    = 0pt,
+}
+%<@@=>
 %    \end{macrocode}
 %
 %    \begin{macrocode}
