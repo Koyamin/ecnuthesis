@@ -499,10 +499,12 @@
 %
 % \begin{function}{style/font-cjk}
 %   \begin{syntax}
-%     \CFGKEY{font-cjk} = (fandol)|mac|windows
+%     \CFGKEY{font-cjk} = (auto)|fandol|mac|windows
 %   \end{syntax}
-%   设置论文的中文字体。默认选项为 \opt{fandol}。具体的各配置选项及其所对应的中文字体
-%   见表 \ref{table:font-cjk} 。
+%   设置论文的中文字体。具体的各配置选项及其所对应的中文字体
+%   见表 \ref{table:font-cjk}。默认选项为 \opt{auto}，
+%   此时会根据操作系统自动配置自动配置：Windows 系统默认使用 \opt{windows}，
+%   macOS 系统默认使用 \opt{mac}，Linux 系统默认使用 \opt{fandol}。
 % \end{function}
 %
 % \begin{table}[ht]
@@ -525,8 +527,8 @@
 %   \begin{syntax}
 %     \CFGKEY{font} = times|(xits)|lm
 %   \end{syntax}
-%   设置论文的西文字体。默认选项为 \opt{xits}。具体的各配置选项及其所对应的西文字体
-%   见表 \ref{table:font} 。
+%   设置论文的西文和数学字体。默认选项为 \opt{xits}。具体的各配置选项及其所对应的西文字体
+%   与数学字体见表 \ref{table:font} 。
 % \end{function}
 %
 % \begin{table}[ht]
@@ -1182,10 +1184,22 @@
 \keys_define:nn { ecnu / style }
   {
     font-cjk  .choices:nn =
-      { fandol, mac, windows }
-      { \tl_set_eq:NN \g_@@_cjk_fontset_tl \l_keys_choice_tl },
+      { auto, fandol, mac, windows }
+      {
+        \tl_gset_eq:NN \g_@@_cjk_fontset_tl \l_keys_choice_tl
+        \tl_if_eq:NnT \g_@@_cjk_fontset_tl { auto }
+          {
+            \sys_if_platform_windows:TF
+              { \tl_gset:Nn \g_@@_cjk_fontset_tl { windows } }
+              {
+                \ctex_if_platform_macos:TF
+                  { \tl_gset:Nn \g_@@_cjk_fontset_tl { mac    } }
+                  { \tl_gset:Nn \g_@@_cjk_fontset_tl { fandol } }
+              }
+          }
+      },
     font-cjk  .value_required:n = true,
-    font-cjk  .initial:n  = fandol
+    font-cjk  .initial:n  = auto
   }
 %    \end{macrocode}
 % \end{macro}
