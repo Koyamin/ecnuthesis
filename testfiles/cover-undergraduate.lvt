@@ -23,7 +23,7 @@
 \loggingoutput
 
 \begin{titlepage}
-  \makecoveri
+  \innercover
 \end{titlepage}
 
 \END

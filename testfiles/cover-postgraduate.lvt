@@ -26,9 +26,9 @@
 \loggingoutput
 
 \begin{titlepage}
-  \makecoveri
+  \innercover
   \newpage
-  \makecoveriEN
+  \innercoverEN
 \end{titlepage}
 
 \END

@@ -232,18 +232,14 @@ Completed box being shipped out [1]
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
+....\rule(0.0+0.0)x*
+....\penalty 10000
+....\glue 20.55177 minus 10.53937
+....\glue 0.0
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\parskip) 0.0
-....\glue(\baselineskip) 18.69685
-....\hbox(0.0+0.0)x441.01773, glue set 419.939fil
-.....\hbox(0.0+0.0)x21.07874
-.....\penalty 10000
-.....\glue(\parfillskip) 0.0 plus 1.0fil
-.....\glue(\rightskip) 0.0
-....\glue(\parskip) 0.0 plus 1.0
-....\glue(\parskip) 0.0
-....\glue(\baselineskip) 12.33107
-....\hbox(8.2207+2.03409)x441.01773
+....\glue(\baselineskip) 10.47615
+....\hbox(8.2207+2.03409)x441.01773, glue set 239.3153fil
 .....\TU/FandolSong(0)/b/n/10.53937 关
 .....\glue 0.0 plus 0.49854
 .....\TU/FandolSong(0)/b/n/10.53937 键
@@ -257,46 +253,40 @@ Completed box being shipped out [1]
 .....\kern -0.99649
 .....\kern 0.99649
 .....\glue 7.08246 minus 5.26968
-.....\vbox(8.2207+2.03409)x398.86026
-......\hbox(8.2207+2.03409)x398.86026, glue set 239.3153fil
-.......\hbox(0.0+0.0)x0.0
-.......\TU/lmr/m/n/10.53937 XML
-.......\penalty 10000
-.......\TU/FandolSong(0)/m/n/10.53937 ，
-.......\rule(0.0+0.0)x-7.29324
-.......\glue 7.29324 minus 5.26968
-.......\TU/lmr/m/n/10.53937 XSL
-.......\penalty 10000
-.......\TU/FandolSong(0)/m/n/10.53937 ，
-.......\rule(0.0+0.0)x-7.29324
-.......\glue 7.29324 minus 5.26968
-.......\glue 0.0 plus 0.49854
-.......\TU/FandolSong(0)/m/n/10.53937 数
-.......\glue 0.0 plus 0.49854
-.......\TU/FandolSong(0)/m/n/10.53937 据
-.......\glue 0.0 plus 0.49854
-.......\TU/FandolSong(0)/m/n/10.53937 批
-.......\glue 0.0 plus 0.49854
-.......\TU/FandolSong(0)/m/n/10.53937 处
-.......\glue 0.0 plus 0.49854
-.......\TU/FandolSong(0)/m/n/10.53937 理
-.......\penalty 10000
-.......\TU/FandolSong(0)/m/n/10.53937 ，
-.......\penalty 10000
-.......\glue -5.26968 plus 5.26968 minus 6.16553
-.......\TU/FandolSong(0)/m/n/10.53937 “双
-.......\glue 0.0 plus 0.49854
-.......\TU/FandolSong(0)/m/n/10.53937 赢
-.......\penalty 10000
-.......\TU/FandolSong(0)/m/n/10.53937 ”
-.......\rule(0.0+0.0)x-6.16553
-.......\kern 0.00038
-.......\kern -0.00038
-.......\kern -0.12544
-.......\kern 0.12544
-.......\penalty 10000
-.......\glue(\parfillskip) 0.0 plus 1.0fil
-.......\glue(\rightskip) 0.0
+.....\TU/lmr/m/n/10.53937 XML
+.....\penalty 10000
+.....\TU/FandolSong(0)/m/n/10.53937 ，
+.....\rule(0.0+0.0)x-7.29324
+.....\glue 7.29324 minus 5.26968
+.....\TU/lmr/m/n/10.53937 XSL
+.....\penalty 10000
+.....\TU/FandolSong(0)/m/n/10.53937 ，
+.....\rule(0.0+0.0)x-7.29324
+.....\glue 7.29324 minus 5.26968
+.....\glue 0.0 plus 0.49854
+.....\TU/FandolSong(0)/m/n/10.53937 数
+.....\glue 0.0 plus 0.49854
+.....\TU/FandolSong(0)/m/n/10.53937 据
+.....\glue 0.0 plus 0.49854
+.....\TU/FandolSong(0)/m/n/10.53937 批
+.....\glue 0.0 plus 0.49854
+.....\TU/FandolSong(0)/m/n/10.53937 处
+.....\glue 0.0 plus 0.49854
+.....\TU/FandolSong(0)/m/n/10.53937 理
+.....\penalty 10000
+.....\TU/FandolSong(0)/m/n/10.53937 ，
+.....\penalty 10000
+.....\glue -5.26968 plus 5.26968 minus 6.16553
+.....\TU/FandolSong(0)/m/n/10.53937 “双
+.....\glue 0.0 plus 0.49854
+.....\TU/FandolSong(0)/m/n/10.53937 赢
+.....\penalty 10000
+.....\TU/FandolSong(0)/m/n/10.53937 ”
+.....\rule(0.0+0.0)x-6.16553
+.....\kern 0.00038
+.....\kern -0.00038
+.....\kern -0.12544
+.....\kern 0.12544
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
@@ -449,7 +439,7 @@ Completed box being shipped out [2]
 .....\special{color pop}
 ...\glue 15.73387
 ...\glue(\lineskip) 0.0
-...\vbox(717.00946+0.0)x441.01773, glue set 573.84273fil
+...\vbox(717.00946+0.0)x441.01773, glue set 564.05713fil
 ....\write-{}
 ....\write-{}
 ....\special{pdf:dest (chapter*.2) [@thispage /XYZ @xpos @ypos null]}
@@ -477,7 +467,7 @@ Completed box being shipped out [2]
 .....\TU/lmr/bx/n/15.05624 Attendance
 .....\glue(\rightskip) 0.0 plus 1.0fil
 ....\penalty 10300
-....\glue(\baselineskip) 6.03746
+....\glue(\baselineskip) 15.82411
 ....\hbox(10.50926+3.02629)x441.01773, glue set 68.69676fil
 .....\glue(\leftskip) 0.0 plus 1.0fil
 .....\TU/lmr/bx/n/15.05624 System
@@ -528,45 +518,35 @@ Completed box being shipped out [2]
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
+....\rule(0.0+0.0)x*
+....\penalty 10000
+....\glue 20.55177 minus 10.53937
+....\glue 0.0
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\parskip) 0.0
-....\glue(\baselineskip) 18.38068
-....\hbox(0.0+0.0)x441.01773, glue set 419.939fil
-.....\hbox(0.0+0.0)x21.07874
-.....\penalty 10000
-.....\glue(\parfillskip) 0.0 plus 1.0fil
-.....\glue(\rightskip) 0.0
-....\glue(\parskip) 0.0 plus 1.0
-....\glue(\parskip) 0.0
-....\glue(\baselineskip) 13.12152
-....\hbox(7.43025+2.10786)x441.01773
+....\glue(\baselineskip) 10.95042
+....\hbox(7.43025+2.10786)x441.01773, glue set 233.96481fil
 .....\TU/lmr/bx/n/10.53937 Keywords:
 .....\glue 5.3821 plus 4.03656 minus 0.67276
-.....\vbox(7.43025+2.03409)x379.82968
-......\hbox(7.43025+2.03409)x379.82968, glue set 233.96481fil
-.......\hbox(0.0+0.0)x0.0
-.......\TU/lmr/m/n/10.53937 XML,
-.......\glue 3.50961 plus 1.7548 minus 1.16986
-.......\TU/lmr/m/n/10.53937 XSL,
-.......\glue 3.50961 plus 1.7548 minus 1.16986
-.......\TU/lmr/m/n/10.53937 batch,
-.......\glue 3.50961 plus 2.1935 minus 0.93588
-.......\glue 7.27217 minus 5.2697
-.......\rule(0.0+0.0)x-7.27217
-.......\TU/FandolSong(0)/m/n/10.53937 ‘
-.......\penalty 10000
-.......\glue 0.0
-.......\TU/lmr/m/n/10.53937 Win-Win
-.......\penalty 10000
-.......\TU/FandolSong(0)/m/n/10.53937 ’
-.......\rule(0.0+0.0)x-7.27216
-.......\kern 0.00044
-.......\kern -0.00044
-.......\kern -0.12538
-.......\kern 0.12538
-.......\penalty 10000
-.......\glue(\parfillskip) 0.0 plus 1.0fil
-.......\glue(\rightskip) 0.0
+.....\TU/lmr/m/n/10.53937 XML,
+.....\glue 3.50961 plus 1.7548 minus 1.16986
+.....\TU/lmr/m/n/10.53937 XSL,
+.....\glue 3.50961 plus 1.7548 minus 1.16986
+.....\TU/lmr/m/n/10.53937 batch,
+.....\glue 3.50961 plus 2.1935 minus 0.93588
+.....\glue 7.27217 minus 5.2697
+.....\rule(0.0+0.0)x-7.27217
+.....\TU/FandolSong(0)/m/n/10.53937 ‘
+.....\penalty 10000
+.....\glue 0.0
+.....\TU/lmr/m/n/10.53937 Win-Win
+.....\penalty 10000
+.....\TU/FandolSong(0)/m/n/10.53937 ’
+.....\rule(0.0+0.0)x-7.27216
+.....\kern 0.00044
+.....\kern -0.00044
+.....\kern -0.12538
+.....\kern 0.12538
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
