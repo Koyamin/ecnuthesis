@@ -3367,6 +3367,7 @@
       { \includepdf [pages=-] { \l_@@_declaration_page_tl } }
   }
 %    \end{macrocode}
+% \end{macro}
 %
 % \subsection{目录}
 %
@@ -4445,11 +4446,11 @@
 % \env{syntax} 中高亮显示键名。
 %    \begin{macrocode}
 \DeclareDocumentCommand\OPTKEY{m}
-  {\textcolor{color-ecnu-red!70}{#1}}
+  {\textcolor{color-ecnu-red}{#1}}
 \DeclareDocumentCommand\CFG{m}
-  {\textcolor{color-ecnu-red!70}{#1}}
+  {\textcolor{color-ecnu-red}{#1}}
 \DeclareDocumentCommand\CFGKEY{m}
-  {\textcolor{color-ecnu-red!70}{#1}}
+  {\textcolor{color-ecnu-red}{#1}}
 \DeclareDocumentCommand\TNi{m}
   {\textcolor{color-ecnu-blue!70!violet}{\tn{#1}}}
 \DeclareDocumentCommand\TNii{m}
@@ -4494,7 +4495,7 @@
   rulecolor   = \color{color-ecnu-red},
   language    = [LaTeX]TeX,
   alsoletter  = {*, -},
-  texcsstyle  = *\color{color-ecnu-blue!80!violet},
+  texcsstyle  = *\color{color-ecnu-blue!70!violet},
   texcsstyle  = *[2]\color{color-ecnu-bronze!70!color-ecnu-red},
   texcsstyle  = *[3]\color{red!40!black},
   emphstyle   = [1]\color{color-ecnu-orange!70!color-ecnu-red},
