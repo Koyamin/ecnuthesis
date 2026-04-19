@@ -1,0 +1,1193 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+Package fontspec Info: 
+(fontspec)             Script 'CJK' not explicitly supported within font 'FandolHei-Regular'. Check the typeset output, and if it is okay then ignore this warning. Otherwise a different font should be chosen.
+Package fontspec Info: 
+(fontspec)             Font family 'FandolHei(0)' created for font 'FandolHei' with options [Script={CJK},Extension={.otf},UprightFont={*-Regular},BoldItalicFont={*-Bold},BoldFont={*-Bold},ItalicFont={*-Regular}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"[FandolHei-Regular.otf]/OT:script=hani;language=dflt;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"[FandolHei-Bold.otf]/OT:script=hani;language=dflt;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"[FandolHei-Regular.otf]/OT:script=hani;language=dflt;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"[FandolHei-Bold.otf]/OT:script=hani;language=dflt;"
+Completed box being shipped out [1]
+\vbox(722.98454+3.25217)x434.90039
+.\vbox(0.0+0.0)x0.0, glue set 29.87573fil
+..\kern 0.0
+..\kern -28.872
+..\kern -1.00374
+..\hbox(0.0+0.0)x0.0, glue set - 17.06377fil
+...\kern 0.0
+...\kern 18.0675
+...\kern -1.00374
+...\special{pdf:dest (page.I) [@thispage /XYZ @xpos @ypos null]}
+...\penalty 10000
+...\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\glue(\lineskip) 0.0
+.\vbox(722.98454+3.25217)x434.90039
+..\glue -28.872
+..\vbox(751.85654+3.25217)x416.83289, shifted 18.0675
+...\vbox(12.0+0.0)x416.83289, glue set 1.15953fil
+....\glue 0.0 plus 1.0fil
+....\hbox(10.84047+0.0)x416.83289
+.....\special{color push gray 0}
+.....\hbox(10.84047+0.0)x416.83289
+......\hbox(10.84047+0.0)x416.83289
+.......\vbox(10.84047+0.0)x416.83289
+........\hbox(7.5883+3.25217)x416.83289
+.........\hbox(0.0+0.0)x0.0, glue set - 416.83289fil
+..........\vbox(0.0+0.0)x416.83289
+...........\hbox(0.0+0.0)x416.83289, glue set 208.41644fil
+............\hbox(0.0+0.0)x0.0
+............\penalty 10000
+............\glue(\parfillskip) 0.0 plus 1.0fil
+............\glue(\rightskip) 0.0 plus 1.0fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+.........\glue 0.0 plus 1.0fill
+.........\vbox(7.5883+3.25217)x416.83289
+..........\hbox(7.5883+3.25217)x416.83289, glue set 154.21402fil
+...........\glue(\leftskip) 0.0 plus 1.0fil
+...........\hbox(0.0+0.0)x0.0
+...........\TU/FandolSong(0)/m/n/9.03374 华
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 东
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 师
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 范
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 大
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 学
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 硕
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 士
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 学
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 位
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 论
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 文
+...........\kern -0.00017
+...........\kern 0.00017
+...........\rule(7.5883+3.25217)x0.0
+...........\penalty 10000
+...........\glue(\parfillskip) 0.0
+...........\glue(\rightskip) 0.0 plus 1.0fil
+.........\glue 0.0 plus 1.0fill
+.........\hbox(0.0+0.0)x0.0, glue set - 416.83289fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\vbox(0.0+0.0)x416.83289
+...........\hbox(0.0+0.0)x416.83289, glue set 416.83289fil
+............\glue(\leftskip) 0.0 plus 1.0fil
+............\hbox(0.0+0.0)x0.0
+............\penalty 10000
+............\glue(\parfillskip) 0.0
+............\glue(\rightskip) 0.0
+........\glue 0.0
+........\rule(0.50186+0.0)x416.83289
+........\glue -0.50186
+......\glue 0.0 plus 1.0fil minus 1.0fil
+.....\special{color pop}
+...\glue 16.872
+...\glue(\lineskip) 0.0
+...\vbox(700.50687+0.0)x416.83289, glue set 571.97083fil
+....\write-{}
+....\write-{}
+....\special{pdf:docview<</OpenAction[@page1/Fit]/PageMode/UseOutlines>>}
+....\special{pdf:dest (Doc-Start) [@thispage /XYZ @xpos @ypos null]}
+....\write-{}
+....\write-{}
+....\special{pdf:dest (chapter*.1) [@thispage /XYZ @xpos @ypos null]}
+....\glue(\topskip) 12.0
+....\rule(0.0+0.0)x*
+....\penalty 10000
+....\glue 8.76556 plus -1.0
+....\glue 0.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\hbox(11.8041+2.72516)x416.83289, glue set 178.30396fil
+.....\glue(\leftskip) 0.0 plus 1.0fil
+.....\TU/FandolHei(0)/b/n/15.05624 中
+.....\glue 0.0 plus 1.01482
+.....\TU/FandolHei(0)/b/n/15.05624 文
+.....\glue 0.0 plus 1.01482
+.....\TU/FandolHei(0)/b/n/15.05624 摘
+.....\glue 0.0 plus 1.01482
+.....\TU/FandolHei(0)/b/n/15.05624 要
+.....\kern -0.00017
+.....\kern 0.00017
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0
+.....\glue(\rightskip) 0.0 plus 1.0fil
+....\penalty 10000
+....\glue 31.14835 plus -1.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\hbox(9.371+2.1199)x416.83289, glue set 316.18488fil
+.....\hbox(0.0+0.0)x24.09
+.....\TU/FandolSong(0)/m/n/12.045 这
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/n/12.045 是
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/n/12.045 中
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/n/12.045 文
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/n/12.045 摘
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/n/12.045 要
+.....\penalty 10000
+.....\TU/FandolSong(0)/m/n/12.045 。
+.....\rule(0.0+0.0)x-7.75697
+.....\kern 0.00047
+.....\kern -0.00047
+.....\kern -0.18753
+.....\kern 0.18753
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\rule(0.0+0.0)x*
+....\penalty 10000
+....\glue 25.09378 minus 12.045
+....\glue 0.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\glue(\baselineskip) 12.22372
+....\hbox(10.75015+2.47322)x416.83289, glue set 179.3698fil
+.....\TU/FandolHei(0)/b/n/14.05249 关
+.....\glue 0.0 plus 0.8653
+.....\TU/FandolHei(0)/b/n/14.05249 键
+.....\glue 0.0 plus 0.8653
+.....\TU/FandolHei(0)/b/n/14.05249 词
+.....\penalty 10000
+.....\TU/FandolHei(0)/b/n/14.05249 ：
+.....\rule(0.0+0.0)x-9.79459
+.....\kern 0.0006
+.....\kern -0.0006
+.....\kern -0.99649
+.....\kern 0.99649
+.....\glue 9.79459 minus 7.02625
+.....\TU/lmr/m/n/12.045 XML
+.....\penalty 10000
+.....\TU/FandolSong(0)/m/n/12.045 ，
+.....\rule(0.0+0.0)x-8.33514
+.....\glue 8.33514 minus 6.0225
+.....\TU/lmr/m/n/12.045 XSL
+.....\penalty 10000
+.....\TU/FandolSong(0)/m/n/12.045 ，
+.....\rule(0.0+0.0)x-8.33514
+.....\glue 8.33514 minus 6.0225
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/n/12.045 数
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/n/12.045 据
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/n/12.045 批
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/n/12.045 处
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/n/12.045 理
+.....\penalty 10000
+.....\TU/FandolSong(0)/m/n/12.045 ，
+.....\penalty 10000
+.....\glue -6.0225 plus 6.0225 minus 7.04633
+.....\TU/FandolSong(0)/m/n/12.045 “双
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/n/12.045 赢
+.....\penalty 10000
+.....\TU/FandolSong(0)/m/n/12.045 ”
+.....\rule(0.0+0.0)x-7.04633
+.....\kern 0.00043
+.....\kern -0.00043
+.....\kern -0.12544
+.....\kern 0.12544
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\glue 0.0 plus 1.0fil
+....\glue 0.0
+....\glue 0.0 plus 0.0001fil
+...\glue(\baselineskip) 10.55315
+...\hbox(11.92453+3.25217)x416.83289
+....\special{color push gray 0}
+....\hbox(11.92453+3.25217)x416.83289
+.....\hbox(11.92453+3.25217)x416.83289
+......\vbox(11.92453+3.25217)x416.83289
+.......\rule(0.0+0.0)x416.83289
+.......\glue 4.33623
+.......\hbox(7.5883+3.25217)x416.83289
+........\hbox(0.0+0.0)x0.0, glue set - 416.83289fil
+.........\vbox(0.0+0.0)x416.83289
+..........\hbox(0.0+0.0)x416.83289, glue set 208.41644fil
+...........\hbox(0.0+0.0)x0.0
+...........\penalty 10000
+...........\glue(\parfillskip) 0.0 plus 1.0fil
+...........\glue(\rightskip) 0.0 plus 1.0fil
+.........\glue 0.0 plus 1.0fil minus 1.0fil
+........\glue 0.0 plus 1.0fill
+........\vbox(7.5883+3.25217)x416.83289
+.........\hbox(7.5883+3.25217)x416.83289, glue set 206.74069fil
+..........\glue(\leftskip) 0.0 plus 1.0fil
+..........\hbox(0.0+0.0)x0.0
+..........\TU/lmr/m/n/9.03374 I
+..........\kern -0.0002
+..........\kern 0.0002
+..........\rule(7.5883+3.25217)x0.0
+..........\penalty 10000
+..........\glue(\parfillskip) 0.0
+..........\glue(\rightskip) 0.0 plus 1.0fil
+........\glue 0.0 plus 1.0fill
+........\hbox(0.0+0.0)x0.0, glue set - 416.83289fil
+.........\glue 0.0 plus 1.0fil minus 1.0fil
+.........\vbox(0.0+0.0)x416.83289
+..........\hbox(0.0+0.0)x416.83289, glue set 416.83289fil
+...........\glue(\leftskip) 0.0 plus 1.0fil
+...........\hbox(0.0+0.0)x0.0
+...........\penalty 10000
+...........\glue(\parfillskip) 0.0
+...........\glue(\rightskip) 0.0
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+....\special{color pop}
+Completed box being shipped out [2]
+\vbox(722.98454+3.25217)x434.90039
+.\vbox(0.0+0.0)x0.0, glue set 29.87573fil
+..\kern 0.0
+..\kern -28.872
+..\kern -1.00374
+..\hbox(0.0+0.0)x0.0, glue set - 17.06377fil
+...\kern 0.0
+...\kern 18.0675
+...\kern -1.00374
+...\special{pdf:dest (page.II) [@thispage /XYZ @xpos @ypos null]}
+...\penalty 10000
+...\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\glue(\lineskip) 0.0
+.\vbox(722.98454+3.25217)x434.90039
+..\glue -28.872
+..\vbox(751.85654+3.25217)x416.83289, shifted 18.0675
+...\vbox(12.0+0.0)x416.83289, glue set 1.15953fil
+....\glue 0.0 plus 1.0fil
+....\hbox(10.84047+0.0)x416.83289
+.....\special{color push gray 0}
+.....\hbox(10.84047+0.0)x416.83289
+......\hbox(10.84047+0.0)x416.83289
+.......\vbox(10.84047+0.0)x416.83289
+........\hbox(7.5883+3.25217)x416.83289
+.........\hbox(0.0+0.0)x0.0, glue set - 416.83289fil
+..........\vbox(0.0+0.0)x416.83289
+...........\hbox(0.0+0.0)x416.83289, glue set 208.41644fil
+............\hbox(0.0+0.0)x0.0
+............\penalty 10000
+............\glue(\parfillskip) 0.0 plus 1.0fil
+............\glue(\rightskip) 0.0 plus 1.0fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+.........\glue 0.0 plus 1.0fill
+.........\vbox(7.5883+3.25217)x416.83289
+..........\hbox(7.5883+3.25217)x416.83289, glue set 154.21402fil
+...........\glue(\leftskip) 0.0 plus 1.0fil
+...........\hbox(0.0+0.0)x0.0
+...........\TU/FandolSong(0)/m/n/9.03374 华
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 东
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 师
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 范
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 大
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 学
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 硕
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 士
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 学
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 位
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 论
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 文
+...........\kern -0.00017
+...........\kern 0.00017
+...........\rule(7.5883+3.25217)x0.0
+...........\penalty 10000
+...........\glue(\parfillskip) 0.0
+...........\glue(\rightskip) 0.0 plus 1.0fil
+.........\glue 0.0 plus 1.0fill
+.........\hbox(0.0+0.0)x0.0, glue set - 416.83289fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\vbox(0.0+0.0)x416.83289
+...........\hbox(0.0+0.0)x416.83289, glue set 416.83289fil
+............\glue(\leftskip) 0.0 plus 1.0fil
+............\hbox(0.0+0.0)x0.0
+............\penalty 10000
+............\glue(\parfillskip) 0.0
+............\glue(\rightskip) 0.0
+........\glue 0.0
+........\rule(0.50186+0.0)x416.83289
+........\glue -0.50186
+......\glue 0.0 plus 1.0fil minus 1.0fil
+.....\special{color pop}
+...\glue 16.872
+...\glue(\lineskip) 0.0
+...\vbox(700.50687+0.0)x416.83289, glue set 576.45409fil
+....\write-{}
+....\write-{}
+....\special{pdf:dest (chapter*.2) [@thispage /XYZ @xpos @ypos null]}
+....\glue(\topskip) 12.0
+....\rule(0.0+0.0)x*
+....\penalty 10000
+....\glue 8.76556 plus -1.0
+....\glue 0.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\hbox(10.53937+0.18066)x416.83289, glue set 160.914fil
+.....\glue(\leftskip) 0.0 plus 1.0fil
+.....\TU/lmr/bx/n/15.05624 ABSTRACT
+.....\kern -0.0002
+.....\kern 0.0002
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0
+.....\glue(\rightskip) 0.0 plus 1.0fil
+....\penalty 10000
+....\glue 31.14835 plus -1.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\hbox(8.35922+2.46921)x416.83289, glue set 266.52336fil
+.....\hbox(0.0+0.0)x24.09
+.....\TU/lmr/m/n/12.045 This
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 is
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 English
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 abstract.
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\rule(0.0+0.0)x*
+....\penalty 10000
+....\glue 25.09378 minus 12.045
+....\glue 0.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\glue(\baselineskip) 12.87215
+....\hbox(9.75243+2.81049)x416.83289, glue set 173.92345fil
+.....\TU/lmr/bx/n/14.05249 Keywords:
+.....\glue 7.02625 plus 5.26968 minus 0.87828
+.....\TU/lmr/m/it/12.045 XML,
+.....\glue 4.21574 plus 2.10786 minus 1.40524
+.....\TU/lmr/m/it/12.045 XSL,
+.....\glue 4.21574 plus 2.10786 minus 1.40524
+.....\TU/lmr/m/it/12.045 batch,
+.....\glue 4.21574 plus 2.63483 minus 1.12419
+.....\glue 8.31105 minus 6.0225
+.....\rule(0.0+0.0)x-8.31105
+.....\TU/FandolSong(0)/m/it/12.045 ‘
+.....\penalty 10000
+.....\glue 0.0
+.....\TU/lmr/m/it/12.045 Win-Win
+.....\penalty 10000
+.....\TU/FandolSong(0)/m/it/12.045 ’
+.....\rule(0.0+0.0)x-8.31105
+.....\kern 0.0005
+.....\kern -0.0005
+.....\kern -0.12538
+.....\kern 0.12538
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\glue 0.0 plus 1.0fil
+....\glue 0.0
+....\glue 0.0 plus 0.0001fil
+...\glue(\baselineskip) 10.55315
+...\hbox(11.92453+3.25217)x416.83289
+....\special{color push gray 0}
+....\hbox(11.92453+3.25217)x416.83289
+.....\hbox(11.92453+3.25217)x416.83289
+......\vbox(11.92453+3.25217)x416.83289
+.......\rule(0.0+0.0)x416.83289
+.......\glue 4.33623
+.......\hbox(7.5883+3.25217)x416.83289
+........\hbox(0.0+0.0)x0.0, glue set - 416.83289fil
+.........\vbox(0.0+0.0)x416.83289
+..........\hbox(0.0+0.0)x416.83289, glue set 208.41644fil
+...........\hbox(0.0+0.0)x0.0
+...........\penalty 10000
+...........\glue(\parfillskip) 0.0 plus 1.0fil
+...........\glue(\rightskip) 0.0 plus 1.0fil
+.........\glue 0.0 plus 1.0fil minus 1.0fil
+........\glue 0.0 plus 1.0fill
+........\vbox(7.5883+3.25217)x416.83289
+.........\hbox(7.5883+3.25217)x416.83289, glue set 204.93394fil
+..........\glue(\leftskip) 0.0 plus 1.0fil
+..........\hbox(0.0+0.0)x0.0
+..........\TU/lmr/m/n/9.03374 II
+..........\kern -0.0002
+..........\kern 0.0002
+..........\rule(7.5883+3.25217)x0.0
+..........\penalty 10000
+..........\glue(\parfillskip) 0.0
+..........\glue(\rightskip) 0.0 plus 1.0fil
+........\glue 0.0 plus 1.0fill
+........\hbox(0.0+0.0)x0.0, glue set - 416.83289fil
+.........\glue 0.0 plus 1.0fil minus 1.0fil
+.........\vbox(0.0+0.0)x416.83289
+..........\hbox(0.0+0.0)x416.83289, glue set 416.83289fil
+...........\glue(\leftskip) 0.0 plus 1.0fil
+...........\hbox(0.0+0.0)x0.0
+...........\penalty 10000
+...........\glue(\parfillskip) 0.0
+...........\glue(\rightskip) 0.0
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+....\special{color pop}
+第一章
+Completed box being shipped out [1]
+\vbox(722.98454+3.25217)x434.90039
+.\vbox(0.0+0.0)x0.0, glue set 29.87573fil
+..\kern 0.0
+..\kern -28.872
+..\kern -1.00374
+..\hbox(0.0+0.0)x0.0, glue set - 17.06377fil
+...\kern 0.0
+...\kern 18.0675
+...\kern -1.00374
+...\special{pdf:dest (page.1) [@thispage /XYZ @xpos @ypos null]}
+...\penalty 10000
+...\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\glue(\lineskip) 0.0
+.\vbox(722.98454+3.25217)x434.90039
+..\glue -28.872
+..\vbox(751.85654+3.25217)x416.83289, shifted 18.0675
+...\vbox(12.0+0.0)x416.83289, glue set 1.15953fil
+....\glue 0.0 plus 1.0fil
+....\hbox(10.84047+0.0)x416.83289
+.....\special{color push gray 0}
+.....\hbox(10.84047+0.0)x416.83289
+......\hbox(10.84047+0.0)x416.83289
+.......\vbox(10.84047+0.0)x416.83289
+........\hbox(7.5883+3.25217)x416.83289
+.........\hbox(0.0+0.0)x0.0, glue set - 416.83289fil
+..........\vbox(0.0+0.0)x416.83289
+...........\hbox(0.0+0.0)x416.83289, glue set 208.41644fil
+............\hbox(0.0+0.0)x0.0
+............\penalty 10000
+............\glue(\parfillskip) 0.0 plus 1.0fil
+............\glue(\rightskip) 0.0 plus 1.0fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+.........\glue 0.0 plus 1.0fill
+.........\vbox(7.5883+3.25217)x416.83289
+..........\hbox(7.5883+3.25217)x416.83289, glue set 154.21402fil
+...........\glue(\leftskip) 0.0 plus 1.0fil
+...........\hbox(0.0+0.0)x0.0
+...........\TU/FandolSong(0)/m/n/9.03374 华
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 东
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 师
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 范
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 大
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 学
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 硕
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 士
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 学
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 位
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 论
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 文
+...........\kern -0.00017
+...........\kern 0.00017
+...........\rule(7.5883+3.25217)x0.0
+...........\penalty 10000
+...........\glue(\parfillskip) 0.0
+...........\glue(\rightskip) 0.0 plus 1.0fil
+.........\glue 0.0 plus 1.0fill
+.........\hbox(0.0+0.0)x0.0, glue set - 416.83289fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\vbox(0.0+0.0)x416.83289
+...........\hbox(0.0+0.0)x416.83289, glue set 416.83289fil
+............\glue(\leftskip) 0.0 plus 1.0fil
+............\hbox(0.0+0.0)x0.0
+............\penalty 10000
+............\glue(\parfillskip) 0.0
+............\glue(\rightskip) 0.0
+........\glue 0.0
+........\rule(0.50186+0.0)x416.83289
+........\glue -0.50186
+......\glue 0.0 plus 1.0fil minus 1.0fil
+.....\special{color pop}
+...\glue 16.872
+...\glue(\lineskip) 0.0
+...\vbox(700.50687+0.0)x416.83289, glue set 438.74858fil
+....\write-{}
+....\write-{}
+....\write-{}
+....\write1{\pp@pagectr{footnote}{1}{\theabspage }{\thepage }}
+....\special{pdf:dest (chapter.1) [@thispage /XYZ @xpos @ypos null]}
+....\write4{\protect \BOOKMARK [0][-]{chapter.1}{\376\377\173\054\116\000\172\340}{}% 1}
+....\write1{\@writefile{toc}{\protect \contentsline {chapter}{\protect \numberline {第一章}第一章}{\thepage }{chapter.1}\protected@file@percent }}
+....\marks1{\__mark_value:nn {1}{\MakeUppercase    []{第一章\hskip 1em\relax 第一章}}}
+....\marks2{\__mark_value:nn {2}{}}
+....\write1{\@writefile{lof}{\protect \addvspace {10.0pt}}}
+....\write1{\@writefile{lot}{\protect \addvspace {10.0pt}}}
+....\glue(\topskip) 12.0
+....\rule(0.0+0.0)x*
+....\penalty 10000
+....\glue 8.76556 plus -1.0
+....\glue 0.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\hbox(12.3662+2.77837)x416.83289, glue set 152.20645fil
+.....\glue(\leftskip) 0.0 plus 1.0fil
+.....\TU/FandolHei(0)/b/n/16.06 第
+.....\glue 0.0 plus 1.36491
+.....\TU/FandolHei(0)/b/n/16.06 一
+.....\glue 0.0 plus 1.36491
+.....\TU/FandolHei(0)/b/n/16.06 章
+.....\kern -0.00017
+.....\kern 0.00017
+.....\glue 16.06
+.....\TU/FandolHei(0)/b/n/16.06 第
+.....\glue 0.0 plus 1.36491
+.....\TU/FandolHei(0)/b/n/16.06 一
+.....\glue 0.0 plus 1.36491
+.....\TU/FandolHei(0)/b/n/16.06 章
+.....\kern -0.00017
+.....\kern 0.00017
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0
+.....\glue(\rightskip) 0.0 plus 1.0fil
+....\penalty 10000
+....\glue 31.14835 plus -1.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\hbox(9.35896+2.21626)x416.83289, glue set 328.22987fil
+.....\hbox(0.0+0.0)x24.09
+.....\TU/FandolSong(0)/m/it/12.045 这
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 是
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 第
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 一
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 章
+.....\penalty 10000
+.....\TU/FandolSong(0)/m/it/12.045 。
+.....\rule(0.0+0.0)x-7.75697
+.....\kern 0.00047
+.....\kern -0.00047
+.....\kern -0.18753
+.....\kern 0.18753
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\penalty -300
+....\glue 18.16986 plus 4.19139 minus 1.03825
+....\special{pdf:dest (section.1.1) [@thispage /XYZ @xpos @ypos null]}
+....\penalty 10000
+....\glue -18.16986 plus -4.19139 minus -1.03825
+....\glue 18.16986 plus 4.19139 minus 1.03825
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\hbox(10.82042+2.29054)x416.83289, glue set 340.4014fil
+.....\hbox(9.21843+0.0)x34.27402
+......\TU/lmr/bx/n/14.05249 1.1
+......\kern -0.0002
+......\kern 0.0002
+......\glue 14.05249
+.....\TU/FandolHei(0)/b/n/14.05249 第
+.....\glue 0.0 plus 0.8653
+.....\TU/FandolHei(0)/b/n/14.05249 一
+.....\glue 0.0 plus 0.8653
+.....\TU/FandolHei(0)/b/n/14.05249 节
+.....\kern -0.00017
+.....\kern 0.00017
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\marks2{\__mark_value:nn {3}{\MakeUppercase    []{1.1\hskip 1em\relax 第一节}}}
+....\marks3{\__mark_value:nn {4}{\MakeUppercase    []{1.1\hskip 1em\relax 第一节}}}
+....\write4{\protect \BOOKMARK [1][-]{section.1.1}{\376\377\173\054\116\000\202\202}{chapter.1}% 2}
+....\write1{\@writefile{toc}{\protect \contentsline {section}{\protect \numberline {1.1}第一节}{\thepage }{section.1.1}\protected@file@percent }}
+....\penalty 10000
+....\glue 18.16986 plus 0.03825
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\hbox(9.35896+2.21626)x416.83289, glue set 280.04988fil
+.....\hbox(0.0+0.0)x24.09
+.....\TU/FandolSong(0)/m/it/12.045 这
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 是
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 第
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 一
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 章
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 的
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 第
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 一
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 节
+.....\penalty 10000
+.....\TU/FandolSong(0)/m/it/12.045 。
+.....\rule(0.0+0.0)x-7.75697
+.....\kern 0.00047
+.....\kern -0.00047
+.....\kern -0.18753
+.....\kern 0.18753
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\penalty -300
+....\glue 18.16986 plus 4.19139 minus 1.03825
+....\special{pdf:dest (section.1.2) [@thispage /XYZ @xpos @ypos null]}
+....\penalty 10000
+....\glue -18.16986 plus -4.19139 minus -1.03825
+....\glue 18.16986 plus 4.19139 minus 1.03825
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\hbox(10.82042+2.29054)x416.83289, glue set 340.4014fil
+.....\hbox(9.21843+0.0)x34.27402
+......\TU/lmr/bx/n/14.05249 1.2
+......\kern -0.0002
+......\kern 0.0002
+......\glue 14.05249
+.....\TU/FandolHei(0)/b/n/14.05249 第
+.....\glue 0.0 plus 0.8653
+.....\TU/FandolHei(0)/b/n/14.05249 二
+.....\glue 0.0 plus 0.8653
+.....\TU/FandolHei(0)/b/n/14.05249 节
+.....\kern -0.00017
+.....\kern 0.00017
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\marks2{\__mark_value:nn {5}{\MakeUppercase    []{1.2\hskip 1em\relax 第二节}}}
+....\marks3{\__mark_value:nn {6}{\MakeUppercase    []{1.2\hskip 1em\relax 第二节}}}
+....\write4{\protect \BOOKMARK [1][-]{section.1.2}{\376\377\173\054\116\214\202\202}{chapter.1}% 3}
+....\write1{\@writefile{toc}{\protect \contentsline {section}{\protect \numberline {1.2}第二节}{\thepage }{section.1.2}\protected@file@percent }}
+....\penalty 10000
+....\glue 18.16986 plus 0.03825
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\hbox(9.35896+2.21626)x416.83289, glue set 280.04988fil
+.....\hbox(0.0+0.0)x24.09
+.....\TU/FandolSong(0)/m/it/12.045 这
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 是
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 第
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 一
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 章
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 的
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 第
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 二
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 节
+.....\penalty 10000
+.....\TU/FandolSong(0)/m/it/12.045 。
+.....\rule(0.0+0.0)x-7.75697
+.....\kern 0.00047
+.....\kern -0.00047
+.....\kern -0.18753
+.....\kern 0.18753
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\penalty -300
+....\glue 18.16986 plus 4.19139 minus 1.03825
+....\special{pdf:dest (section.1.3) [@thispage /XYZ @xpos @ypos null]}
+....\penalty 10000
+....\glue -18.16986 plus -4.19139 minus -1.03825
+....\glue 18.16986 plus 4.19139 minus 1.03825
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\hbox(10.82042+2.29054)x416.83289, glue set 340.4014fil
+.....\hbox(9.21843+0.16861)x34.27402
+......\TU/lmr/bx/n/14.05249 1.3
+......\kern -0.0002
+......\kern 0.0002
+......\glue 14.05249
+.....\TU/FandolHei(0)/b/n/14.05249 第
+.....\glue 0.0 plus 0.8653
+.....\TU/FandolHei(0)/b/n/14.05249 三
+.....\glue 0.0 plus 0.8653
+.....\TU/FandolHei(0)/b/n/14.05249 节
+.....\kern -0.00017
+.....\kern 0.00017
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\marks2{\__mark_value:nn {7}{\MakeUppercase    []{1.3\hskip 1em\relax 第三节}}}
+....\marks3{\__mark_value:nn {8}{\MakeUppercase    []{1.3\hskip 1em\relax 第三节}}}
+....\write4{\protect \BOOKMARK [1][-]{section.1.3}{\376\377\173\054\116\011\202\202}{chapter.1}% 4}
+....\write1{\@writefile{toc}{\protect \contentsline {section}{\protect \numberline {1.3}第三节}{\thepage }{section.1.3}\protected@file@percent }}
+....\penalty 10000
+....\glue 18.16986 plus 0.03825
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\hbox(9.35896+2.21626)x416.83289, glue set 280.04988fil
+.....\hbox(0.0+0.0)x24.09
+.....\TU/FandolSong(0)/m/it/12.045 这
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 是
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 第
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 一
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 章
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 的
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 第
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 三
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 节
+.....\penalty 10000
+.....\TU/FandolSong(0)/m/it/12.045 。
+.....\rule(0.0+0.0)x-7.75697
+.....\kern 0.00047
+.....\kern -0.00047
+.....\kern -0.18753
+.....\kern 0.18753
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\glue 0.0 plus 1.0fil
+....\glue 0.0
+....\glue 0.0 plus 0.0001fil
+...\glue(\baselineskip) 10.55315
+...\hbox(11.92453+3.25217)x416.83289
+....\special{color push gray 0}
+....\hbox(11.92453+3.25217)x416.83289
+.....\hbox(11.92453+3.25217)x416.83289
+......\vbox(11.92453+3.25217)x416.83289
+.......\rule(0.0+0.0)x416.83289
+.......\glue 4.33623
+.......\hbox(7.5883+3.25217)x416.83289
+........\hbox(0.0+0.0)x0.0, glue set - 416.83289fil
+.........\vbox(0.0+0.0)x416.83289
+..........\hbox(0.0+0.0)x416.83289, glue set 208.41644fil
+...........\hbox(0.0+0.0)x0.0
+...........\penalty 10000
+...........\glue(\parfillskip) 0.0 plus 1.0fil
+...........\glue(\rightskip) 0.0 plus 1.0fil
+.........\glue 0.0 plus 1.0fil minus 1.0fil
+........\glue 0.0 plus 1.0fill
+........\vbox(7.5883+3.25217)x416.83289
+.........\hbox(7.5883+3.25217)x416.83289, glue set 206.09477fil
+..........\glue(\leftskip) 0.0 plus 1.0fil
+..........\hbox(0.0+0.0)x0.0
+..........\TU/lmr/m/n/9.03374 1
+..........\kern -0.0002
+..........\kern 0.0002
+..........\rule(7.5883+3.25217)x0.0
+..........\penalty 10000
+..........\glue(\parfillskip) 0.0
+..........\glue(\rightskip) 0.0 plus 1.0fil
+........\glue 0.0 plus 1.0fill
+........\hbox(0.0+0.0)x0.0, glue set - 416.83289fil
+.........\glue 0.0 plus 1.0fil minus 1.0fil
+.........\vbox(0.0+0.0)x416.83289
+..........\hbox(0.0+0.0)x416.83289, glue set 416.83289fil
+...........\glue(\leftskip) 0.0 plus 1.0fil
+...........\hbox(0.0+0.0)x0.0
+...........\penalty 10000
+...........\glue(\parfillskip) 0.0
+...........\glue(\rightskip) 0.0
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+....\special{color pop}
+第二章
+Completed box being shipped out [2]
+\vbox(722.98454+3.25217)x434.90039
+.\vbox(0.0+0.0)x0.0, glue set 29.87573fil
+..\kern 0.0
+..\kern -28.872
+..\kern -1.00374
+..\hbox(0.0+0.0)x0.0, glue set - 17.06377fil
+...\kern 0.0
+...\kern 18.0675
+...\kern -1.00374
+...\special{pdf:dest (page.2) [@thispage /XYZ @xpos @ypos null]}
+...\penalty 10000
+...\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\glue(\lineskip) 0.0
+.\vbox(722.98454+3.25217)x434.90039
+..\glue -28.872
+..\vbox(751.85654+3.25217)x416.83289, shifted 18.0675
+...\vbox(12.0+0.0)x416.83289, glue set 1.15953fil
+....\glue 0.0 plus 1.0fil
+....\hbox(10.84047+0.0)x416.83289
+.....\special{color push gray 0}
+.....\hbox(10.84047+0.0)x416.83289
+......\hbox(10.84047+0.0)x416.83289
+.......\vbox(10.84047+0.0)x416.83289
+........\hbox(7.5883+3.25217)x416.83289
+.........\hbox(0.0+0.0)x0.0, glue set - 416.83289fil
+..........\vbox(0.0+0.0)x416.83289
+...........\hbox(0.0+0.0)x416.83289, glue set 208.41644fil
+............\hbox(0.0+0.0)x0.0
+............\penalty 10000
+............\glue(\parfillskip) 0.0 plus 1.0fil
+............\glue(\rightskip) 0.0 plus 1.0fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+.........\glue 0.0 plus 1.0fill
+.........\vbox(7.5883+3.25217)x416.83289
+..........\hbox(7.5883+3.25217)x416.83289, glue set 154.21402fil
+...........\glue(\leftskip) 0.0 plus 1.0fil
+...........\hbox(0.0+0.0)x0.0
+...........\TU/FandolSong(0)/m/n/9.03374 华
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 东
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 师
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 范
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 大
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 学
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 硕
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 士
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 学
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 位
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 论
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 文
+...........\kern -0.00017
+...........\kern 0.00017
+...........\rule(7.5883+3.25217)x0.0
+...........\penalty 10000
+...........\glue(\parfillskip) 0.0
+...........\glue(\rightskip) 0.0 plus 1.0fil
+.........\glue 0.0 plus 1.0fill
+.........\hbox(0.0+0.0)x0.0, glue set - 416.83289fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\vbox(0.0+0.0)x416.83289
+...........\hbox(0.0+0.0)x416.83289, glue set 416.83289fil
+............\glue(\leftskip) 0.0 plus 1.0fil
+............\hbox(0.0+0.0)x0.0
+............\penalty 10000
+............\glue(\parfillskip) 0.0
+............\glue(\rightskip) 0.0
+........\glue 0.0
+........\rule(0.50186+0.0)x416.83289
+........\glue -0.50186
+......\glue 0.0 plus 1.0fil minus 1.0fil
+.....\special{color pop}
+...\glue 16.872
+...\glue(\lineskip) 0.0
+...\vbox(700.50687+0.0)x416.83289, glue set 621.80675fil
+....\write-{}
+....\write1{\pp@pagectr{footnote}{2}{\theabspage }{\thepage }}
+....\special{pdf:dest (chapter.2) [@thispage /XYZ @xpos @ypos null]}
+....\write4{\protect \BOOKMARK [0][-]{chapter.2}{\376\377\173\054\116\214\172\340}{}% 5}
+....\write1{\@writefile{toc}{\protect \contentsline {chapter}{\protect \numberline {第二章}第二章}{\thepage }{chapter.2}\protected@file@percent }}
+....\marks1{\__mark_value:nn {9}{\MakeUppercase    []{第二章\hskip 1em\relax 第二章}}}
+....\marks2{\__mark_value:nn {10}{}}
+....\write1{\@writefile{lof}{\protect \addvspace {10.0pt}}}
+....\write1{\@writefile{lot}{\protect \addvspace {10.0pt}}}
+....\glue(\topskip) 12.0
+....\rule(0.0+0.0)x*
+....\penalty 10000
+....\glue 8.76556 plus -1.0
+....\glue 0.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\hbox(12.3662+2.77837)x416.83289, glue set 152.20645fil
+.....\glue(\leftskip) 0.0 plus 1.0fil
+.....\TU/FandolHei(0)/b/n/16.06 第
+.....\glue 0.0 plus 1.36491
+.....\TU/FandolHei(0)/b/n/16.06 二
+.....\glue 0.0 plus 1.36491
+.....\TU/FandolHei(0)/b/n/16.06 章
+.....\kern -0.00017
+.....\kern 0.00017
+.....\glue 16.06
+.....\TU/FandolHei(0)/b/n/16.06 第
+.....\glue 0.0 plus 1.36491
+.....\TU/FandolHei(0)/b/n/16.06 二
+.....\glue 0.0 plus 1.36491
+.....\TU/FandolHei(0)/b/n/16.06 章
+.....\kern -0.00017
+.....\kern 0.00017
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0
+.....\glue(\rightskip) 0.0 plus 1.0fil
+....\penalty 10000
+....\glue 31.14835 plus -1.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\hbox(9.35896+2.21626)x416.83289, glue set 328.22987fil
+.....\hbox(0.0+0.0)x24.09
+.....\TU/FandolSong(0)/m/it/12.045 这
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 是
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 第
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 二
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 章
+.....\penalty 10000
+.....\TU/FandolSong(0)/m/it/12.045 。
+.....\rule(0.0+0.0)x-7.75697
+.....\kern 0.00047
+.....\kern -0.00047
+.....\kern -0.18753
+.....\kern 0.18753
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\glue 0.0 plus 1.0fil
+....\glue 0.0
+....\glue 0.0 plus 0.0001fil
+...\glue(\baselineskip) 10.55315
+...\hbox(11.92453+3.25217)x416.83289
+....\special{color push gray 0}
+....\hbox(11.92453+3.25217)x416.83289
+.....\hbox(11.92453+3.25217)x416.83289
+......\vbox(11.92453+3.25217)x416.83289
+.......\rule(0.0+0.0)x416.83289
+.......\glue 4.33623
+.......\hbox(7.5883+3.25217)x416.83289
+........\hbox(0.0+0.0)x0.0, glue set - 416.83289fil
+.........\vbox(0.0+0.0)x416.83289
+..........\hbox(0.0+0.0)x416.83289, glue set 208.41644fil
+...........\hbox(0.0+0.0)x0.0
+...........\penalty 10000
+...........\glue(\parfillskip) 0.0 plus 1.0fil
+...........\glue(\rightskip) 0.0 plus 1.0fil
+.........\glue 0.0 plus 1.0fil minus 1.0fil
+........\glue 0.0 plus 1.0fill
+........\vbox(7.5883+3.25217)x416.83289
+.........\hbox(7.5883+3.25217)x416.83289, glue set 206.09477fil
+..........\glue(\leftskip) 0.0 plus 1.0fil
+..........\hbox(0.0+0.0)x0.0
+..........\TU/lmr/m/n/9.03374 2
+..........\kern -0.0002
+..........\kern 0.0002
+..........\rule(7.5883+3.25217)x0.0
+..........\penalty 10000
+..........\glue(\parfillskip) 0.0
+..........\glue(\rightskip) 0.0 plus 1.0fil
+........\glue 0.0 plus 1.0fill
+........\hbox(0.0+0.0)x0.0, glue set - 416.83289fil
+.........\glue 0.0 plus 1.0fil minus 1.0fil
+.........\vbox(0.0+0.0)x416.83289
+..........\hbox(0.0+0.0)x416.83289, glue set 416.83289fil
+...........\glue(\leftskip) 0.0 plus 1.0fil
+...........\hbox(0.0+0.0)x0.0
+...........\penalty 10000
+...........\glue(\parfillskip) 0.0
+...........\glue(\rightskip) 0.0
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+....\special{color pop}
+Completed box being shipped out [3]
+\vbox(722.98454+3.25217)x434.90039
+.\vbox(0.0+0.0)x0.0, glue set 29.87573fil
+..\kern 0.0
+..\kern -28.872
+..\kern -1.00374
+..\hbox(0.0+0.0)x0.0, glue set - 17.06377fil
+...\kern 0.0
+...\kern 18.0675
+...\kern -1.00374
+...\special{pdf:dest (page.3) [@thispage /XYZ @xpos @ypos null]}
+...\penalty 10000
+...\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\glue(\lineskip) 0.0
+.\vbox(722.98454+3.25217)x434.90039
+..\glue -28.872
+..\vbox(751.85654+3.25217)x416.83289, shifted 18.0675
+...\vbox(12.0+0.0)x416.83289, glue set 1.15953fil
+....\glue 0.0 plus 1.0fil
+....\hbox(10.84047+0.0)x416.83289
+.....\special{color push gray 0}
+.....\hbox(10.84047+0.0)x416.83289
+......\hbox(10.84047+0.0)x416.83289
+.......\vbox(10.84047+0.0)x416.83289
+........\hbox(7.5883+3.25217)x416.83289
+.........\hbox(0.0+0.0)x0.0, glue set - 416.83289fil
+..........\vbox(0.0+0.0)x416.83289
+...........\hbox(0.0+0.0)x416.83289, glue set 208.41644fil
+............\hbox(0.0+0.0)x0.0
+............\penalty 10000
+............\glue(\parfillskip) 0.0 plus 1.0fil
+............\glue(\rightskip) 0.0 plus 1.0fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+.........\glue 0.0 plus 1.0fill
+.........\vbox(7.5883+3.25217)x416.83289
+..........\hbox(7.5883+3.25217)x416.83289, glue set 154.21402fil
+...........\glue(\leftskip) 0.0 plus 1.0fil
+...........\hbox(0.0+0.0)x0.0
+...........\TU/FandolSong(0)/m/n/9.03374 华
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 东
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 师
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 范
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 大
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 学
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 硕
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 士
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 学
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 位
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 论
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 文
+...........\kern -0.00017
+...........\kern 0.00017
+...........\rule(7.5883+3.25217)x0.0
+...........\penalty 10000
+...........\glue(\parfillskip) 0.0
+...........\glue(\rightskip) 0.0 plus 1.0fil
+.........\glue 0.0 plus 1.0fill
+.........\hbox(0.0+0.0)x0.0, glue set - 416.83289fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\vbox(0.0+0.0)x416.83289
+...........\hbox(0.0+0.0)x416.83289, glue set 416.83289fil
+............\glue(\leftskip) 0.0 plus 1.0fil
+............\hbox(0.0+0.0)x0.0
+............\penalty 10000
+............\glue(\parfillskip) 0.0
+............\glue(\rightskip) 0.0
+........\glue 0.0
+........\rule(0.50186+0.0)x416.83289
+........\glue -0.50186
+......\glue 0.0 plus 1.0fil minus 1.0fil
+.....\special{color pop}
+...\glue 16.872
+...\glue(\lineskip) 0.0
+...\vbox(700.50687+0.0)x416.83289, glue set 622.429fil
+....\write-{}
+....\write1{\@writefile{toc}{\protect \vspace {25bp}}}
+....\write-{}
+....\write-{}
+....\special{pdf:dest (chapter*.3) [@thispage /XYZ @xpos @ypos null]}
+....\write4{\protect \BOOKMARK [0][-]{chapter*.3}{\376\377\124\016\213\260}{}% 6}
+....\write1{\@writefile{toc}{\protect \contentsline {chapter}{后记}{\thepage }{chapter*.3}\protected@file@percent }}
+....\marks1{\__mark_value:nn {11}{\MakeUppercase    []{后记}}}
+....\marks2{\__mark_value:nn {12}{}}
+....\write1{\@writefile{lof}{\protect \addvspace {10.0pt}}}
+....\write1{\@writefile{lot}{\protect \addvspace {10.0pt}}}
+....\glue(\topskip) 12.0
+....\rule(0.0+0.0)x*
+....\penalty 10000
+....\glue 8.76556 plus -1.0
+....\glue 0.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\hbox(12.25378+2.42505)x416.83289, glue set 192.35645fil
+.....\glue(\leftskip) 0.0 plus 1.0fil
+.....\TU/FandolHei(0)/b/n/16.06 后
+.....\glue 0.0 plus 1.36491
+.....\TU/FandolHei(0)/b/n/16.06 记
+.....\kern -0.00017
+.....\kern 0.00017
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0
+.....\glue(\rightskip) 0.0 plus 1.0fil
+....\penalty 10000
+....\glue 31.14835 plus -1.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\hbox(9.32283+2.09581)x416.83289, glue set 368.6529fil
+.....\hbox(0.0+0.0)x24.09
+.....\TU/FandolSong(0)/m/it/12.045 致
+.....\glue 0.0 plus 0.60463
+.....\TU/FandolSong(0)/m/it/12.045 谢
+.....\kern -0.00018
+.....\kern 0.00018
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\glue 0.0 plus 1.0fil
+....\glue 0.0
+....\glue 0.0 plus 0.0001fil
+...\glue(\baselineskip) 10.55315
+...\hbox(11.92453+3.25217)x416.83289
+....\special{color push gray 0}
+....\hbox(11.92453+3.25217)x416.83289
+.....\hbox(11.92453+3.25217)x416.83289
+......\vbox(11.92453+3.25217)x416.83289
+.......\rule(0.0+0.0)x416.83289
+.......\glue 4.33623
+.......\hbox(7.5883+3.25217)x416.83289
+........\hbox(0.0+0.0)x0.0, glue set - 416.83289fil
+.........\vbox(0.0+0.0)x416.83289
+..........\hbox(0.0+0.0)x416.83289, glue set 208.41644fil
+...........\hbox(0.0+0.0)x0.0
+...........\penalty 10000
+...........\glue(\parfillskip) 0.0 plus 1.0fil
+...........\glue(\rightskip) 0.0 plus 1.0fil
+.........\glue 0.0 plus 1.0fil minus 1.0fil
+........\glue 0.0 plus 1.0fill
+........\vbox(7.5883+3.25217)x416.83289
+.........\hbox(7.5883+3.25217)x416.83289, glue set 206.09477fil
+..........\glue(\leftskip) 0.0 plus 1.0fil
+..........\hbox(0.0+0.0)x0.0
+..........\TU/lmr/m/n/9.03374 3
+..........\kern -0.0002
+..........\kern 0.0002
+..........\rule(7.5883+3.25217)x0.0
+..........\penalty 10000
+..........\glue(\parfillskip) 0.0
+..........\glue(\rightskip) 0.0 plus 1.0fil
+........\glue 0.0 plus 1.0fill
+........\hbox(0.0+0.0)x0.0, glue set - 416.83289fil
+.........\glue 0.0 plus 1.0fil minus 1.0fil
+.........\vbox(0.0+0.0)x416.83289
+..........\hbox(0.0+0.0)x416.83289, glue set 416.83289fil
+...........\glue(\leftskip) 0.0 plus 1.0fil
+...........\hbox(0.0+0.0)x0.0
+...........\penalty 10000
+...........\glue(\parfillskip) 0.0
+...........\glue(\rightskip) 0.0
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+....\special{color pop}

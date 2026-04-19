@@ -2,7 +2,7 @@
 % !TeX program  = XeLaTeX
 % !TeX encoding = UTF-8
 %
-% Copyright (C) 2021--2024 by Koyamin <koyafumin@gmail.com>
+% Copyright (C) 2021--2026 by Koyamin <contact@koyamin.com>
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either
@@ -19,14 +19,16 @@
 % \iffalse
 %<class|ecnudoc|ecnulogo>\NeedsTeXFormat{LaTeX2e}
 %<class|ecnudoc|ecnulogo>\RequirePackage{expl3}
-%<class|ecnudoc|ecnulogo>\GetIdInfo $Id: ecnuthesis.dtx 0.2.1 2024-01-20 15:00:00Z Koyamin <koyafumin@gmail.com> Qucheng <i@qcmiao.cn> $
-%<class>  {Undergraduate Thesis Template for East China Normal University}
-%<ecnudoc>  {Documentation class for ECNUThesis}
-%<ecnulogo>  {logo for ECNUThesis}
+%<class|ecnudoc|ecnulogo|definition>\GetIdInfo $Id: ecnuthesis.dtx 0.4 2026-04-20 15:00:00Z Koyamin <contact@koyamin.com>$
+%<class>  {LaTeX Thesis Template for East China Normal University (ECNU)}
+%<ecnudoc>  {Documentation class for ecnuthesis}
+%<ecnulogo>  {logo for ecnuthesis}
 %<class>\ProvidesExplClass{\ExplFileName}
 %<ecnudoc>\ProvidesExplClass{ecnudoc}
 %<ecnulogo>\ProvidesExplPackage{ecnulogo}
-%<class|ecnudoc|ecnulogo>  {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
+%<definition>  {Definition file for ecnuthesis}
+%<definition>\ProvidesExplFile{\ExplFileName.def}
+%<class|ecnudoc|ecnulogo|definition>  {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
 %<*driver>
 \documentclass{ecnudoc}
 \EnableCrossrefs
@@ -34,641 +36,657 @@
 \RecordChanges
 \begin{document}
   \DocInput{ecnuthesis.dtx}
+  \IndexLayout
   \PrintIndex
 \end{document}
 %</driver>
 % \fi
 %
-% \title{\cls{ECNUThesis-Undergraduate}: 华东师范大学本科生毕业论文模板}
+% \title{\textcolor{color-ecnu-red}{\textbf{ecnuthesis: 华东师范大学学位论文 \LaTeX 模板}}}
 % \author{Koyamin}
-% \date{\today}
+% \date{v0.4\quad(2026-04-20)}
 % \maketitle
 % \tableofcontents
 % \clearpage
 %
 % \begin{documentation}
 %
-% \section{介绍}
+% \section{模板介绍}
 %
-% \cls{ECNUThesis-Undergraduate} （\textbf{E}ast \textbf{C}hina 
+% \cls{ecnuthesis} （\textbf{E}ast \textbf{C}hina 
 % \textbf{N}ormal \textbf{U}niversity \LaTeX{} \textbf{Thesis} 
-% Template of \textbf{Undergraduate}）是华东师范大学本科生毕业
-% 论文模板的一个 \LaTeX{} 实现。 \cls{ECNUThesis-Undergraduate} 旨在帮助
-% 华东师范大学的本科学生使用 \LaTeX{} 完成本科生毕业论文的排版工作。
+% Template）是华东师范大学学位论文模板的 \LaTeX 实现，
+% 旨在帮助华东师范大学的学生使用 \LaTeX{}
+% 完成博士、硕士学位论文与本科生毕业论文的排版工作。
 %
-% \subsection{开发背景}
+% 本模板根据华东师范大学研究生院发布的
+% 《\href{https://yjsy.ecnu.edu.cn/6e/bf/c42090a683711/page.htm}{华东师范大学博士、硕士学位论文基本格式要求}》
+% （发布于 2025 年 4 月 25 日）与
+% 《\href{https://bksy.ecnu.edu.cn/d4/be/c40573a513214/page.htm}{华东师范大学本科生毕业论文（设计）格式要求}》
+% （发布于 2021 年 11 月 10 日）制作而成，实现了包括
+% 内封面、声明页、目录、摘要、正文、参考文献、附录、致谢等要素。
+% 
 %
-% 在本模版诞生前，YijunYuan 编写的 ECNU-Undergraduate-LaTeX 是使用人数最多、
-% 流传范围最广的华东师范大学本科生毕业论文 \LaTeX{} 模版。该模版基本满足了
-% 本科生毕业论文的格式要求，填补了 \LaTeX{} 版华东师范大学毕业论文模版的空白。
+% \section{声明}
 %
-% 然而，该模版缺乏后期维护，且没有经过系统的设计，没有简明的用户接口。另一方面，
-% 越来越多的华东师范大学学生选择使用 \LaTeX{} 来完成本科生毕业论文，因此
-% 有必要开发一个格式规范、接口简明、易于维护的 \LaTeX{} 毕业论文模版。
-%
-% 本模板使用 \LaTeX3 重构了 YijunYuan 编写的 ECNU-Undergraduate-LaTeX 模板，
-% 并根据《华东师范大学本科生毕业论文（设计）格式要求》的有关要求对模板进行了开发。
-%
-% \subsection{功能}
-%
-% 本模板能够帮助用户使用 \LaTeX{} 排版并生成本科生毕业论文（设计）的主要内容，包括：
-% 内封面（包括学位论文诚信承诺书与使用授权说明书）、目录、中文摘要页（内含中文题名、
-% 摘要、关键词）、外文摘要页（内含外文题名、摘要、关键词）、正文、致谢、参考文献及附录。
-%
-% \subsection{声明}
-%
-% 本模版是华东师范大学本科生毕业论文（设计）模板的一个第三方 \LaTeX{} 开源实现。
-% 本模板的发布遵守 \LaTeX{} Project Public License (1.3.c) 协议。
+% 本模版是华东师范大学学位论文模板的一个第三方 \LaTeX{} 开源实现。
+% 本模板的发布遵守 \LaTeX{} Project Public License (1.3c) 协议。
 % 使用本模板前，请务必阅读并同意以下事项：
 %
 % \begin{enumerate}
-%   \item 使用本模板前，请认真阅读 \LaTeX{} Project Public License (1.3.c) 
-%     协议的内容。
 %   \item 本模版的开发行为未得到华东师范大学相关部门授权，本模版未经华东师范大学
 %     相关部门审核。任何因使用本模版而导致的论文格式审查问题与本模版作者无关。
-%   \item 任何个人或组织在修改、扩展本模板并生成新的专用模板时，请务必遵守 \LaTeX{}
-%     Project Public License 协议。因违反协议而导致的任何纠纷争端与本模板作者无关。
+%   \item 使用本模板即视为已阅读并同意 \LaTeX{} Project Public License (1.3c) 
+%     协议的全部内容。
+%   \item 任何个人或组织在修改、扩展本模板并生成新的专用模板时，需严格遵守
+%     \LaTeX{} Project Public License (1.3c) 协议。
+%     因违反协议而导致的任何纠纷争端与本模板作者无关。
 % \end{enumerate}
 %
 %
-% \section{简明使用教程}
-%
-% 本节将介绍如何使用 \cls{ECNUThesis-Undergraduate} 完成毕业论文的撰写和排版工作，
-% 包括如何获取本模板、如何使用本模板提供的文档类编写论文，以及如何编译生成文档。
-%
-% \subsection{模版的组成}
-%
-% \cls{ECNUThesis-Undergraduate} 的主要组成部分由表
-% \ref{table:ecnuthesis-undergraduate-components} 所示。
-%
-% \begin{table}[htb]
-%   \caption{\cls{ECNUThesis-Undergraduate} 的主要组成部分}
-%   \label{table:ecnuthesis-undergraduate-components}
-%   \centering
-%   \small
-% \begin{tabular}{lll}
-%   \hline
-%  类别     & 文档类                          & 说明            \\
-%   \hline
-% 文档类    & \file{ecnuthesis.cls}               & 模板文档类 \cls{ecnuthesis}         \\
-% 视觉形象系统 & \file{ecnu-vi-inner-cover-logo.pdf} & 内封面校徽图片       \\
-% 开发文件   & ecnuthesis.dtx               & DOCSTRIP 源文件  \\
-%       & ecnuthesis.ins               & DOCSTRIP 驱动文件   \\
-%   \hline
-% \end{tabular}
-% \end{table}
-%
-% 其中，\file{ecnuthesis.cls} 与 \file{ecnu-vi-inner-cover-logo.pdf} 是本模板中不可缺少的两部分。
-% 若缺少其中之一，则可能无法生成一份格式正确的论文。
-%
+% \section{模板的获取与使用}
 %
 % \subsection{获取模板}
 %
 % 本模板的源代码托管在 GitHub 仓库 
-% \href{https://github.com/koyamin/ECNUThesis-Undergraduate}{Koyamin/ECNUThesis-Undergraduate} 中。
-% 该仓库的 Release 中提供了开箱即用的模板，仅需从 Release 中下载 zip 文件即可。
-% 将下载至本地的 zip 文件解压缩后，打开解压缩得到的文件夹，使用该文件夹目录中的 \texttt{thesis.tex} 来编写论文。
+% \href{https://github.com/koyamin/ecnuthesis}{Koyamin/ecnuthesis} 中。
+% 用户可通过以下方式获得本模板：
+%
+% \begin{itemize}
+%   \item GitHub 仓库的 Release 中提供了开箱即用的模板，仅需从 Release 中下载 zip 文件即可。
+%   将下载至本地的 zip 文件解压缩后，打开解压缩得到的文件夹，
+%   使用该文件夹目录中的 \file{thesis.tex} 来编写论文。
+%
+%   \item 本模板提供了 \href{https://www.overleaf.com/latex/templates/ecnuthesis-latex-thesis-template-for-east-china-normal-university/szppdtkvgvpk}{Overleaf 版本}，
+%   打开链接并登录后即可直接编辑。
+%
+%   \item 可通过源代码 \file{ecnuthesis.dtx} 与 \file{ecnuthesis.ins} 生成
+%   模板文档类 \file{ecnuthesis.cls} 文件。需在项目目录下运行以下命令生成
+%   \file{ecnuthesis.cls} 文件：
+% \begin{shellcode}
+%   $ xetex ecnuthesis.ins
+% \end{shellcode}
+%   待 \file{ecnuthesis.cls} 文件生成完毕后，即可载入该文档类撰写论文。
+% \end{itemize}
+%
+%
+% \subsection{模版组成}
+%
+% \cls{ecnuthesis} 的主要组成部分由表
+% \ref{table:ecnuthesis-components} 所示。
+%
+% \begin{table}[htb]
+%   \caption{\cls{ecnuthesis} 的主要组成部分}
+%   \label{table:ecnuthesis-components}
+%   \centering \small
+% \begin{tabular}{lll}
+%   \toprule
+%   \textbf{类别} & \textbf{文件} & \textbf{说明} \\ \midrule
+%   开发文件 & \file{ecnuthesis.dtx} & DOCSTRIP 源文件  \\
+%           & \file{ecnuthesis.ins} & DOCSTRIP 驱动文件   \\ \midrule
+%   文档类 & \file{ecnuthesis.cls} & \cls{ecnuthesis} 文档类文件 \\
+%         & \file{ecnuthesis.def} & 文档类名称配置 \\ \midrule
+%   视觉形象系统 & \file{ecnu-vi-inner-cover-logo-ug.pdf} & 本科生毕业论文内封面校徽 \\
+%               & \file{ecnu-vi-inner-cover-logo-pg.pdf} & 博士、硕士学位论文内封面校徽 \\ \midrule
+%   用户手册 & \file{ecnuthesis.pdf} & 模板用户手册（本文档） \\
+%   \bottomrule
+% \end{tabular}
+% \end{table}
 % 
-% 本模板也提供了 \href{https://www.overleaf.com/latex/templates/ecnuthesis-latex-thesis-template-for-east-china-normal-university/szppdtkvgvpk}{Overleaf 版本}，
-% 打开链接并登录后即可直接编辑。
+% 其中，文档类与视觉形象系统是本模板中不可缺少的两部分。
+% 若缺少其中之一，则可能无法生成一份格式正确的论文。
 %
-% \subsection{使用模板编写文档}
+% \subsection{使用模板编写论文}
 %
-% 本小节将介绍使用本模板编写论文时的必要步骤。编写论文的步骤依次为：
-% 载入文档类、配置论文基本信息与格式，以及编写正文。
+% 以下内容需要用户具有处理一般的 \LaTeX 文档的能力。如果从未接触
+% 过 \TeX{} 和 \LaTeX{}，建议先学习相关的基础知识。
 %
-% 在使用模板编写文档前，请确保编写论文所用到的 \TeX 源文件与 \file{ecnuthesis.cls} 
-% 文件和 \file{ecnu-vi-inner-cover-logo.pdf} 处于同一目录下，且编写论文所涉及到的
-% 所有源文件使用 UTF-8 编码存储。
 %
-% \subsubsection{载入文档类}
+% 以下是一份 \TeX 源文件，该文件展示了 \cls{ecnuthesis} 文档类最基本的用法。
 %
-% \cls{ECNUThesis-Undergraduate} 中的 \file{ecnuthesis.cls} 文件提供了
-% 一个名为 \cls{ecnuthesis} 的文档类，该文档类负责对论文进行排版。
-% 在文档的第一行，我们需要使用命令 \cs{documentclass} 来载入文档类：
-% 
-% \begin{latexCode}
-%   \documentclass{ecnuthesis}
-% \end{latexCode}
-%
-% 在载入 \cls{ecnuthesis} 文档类时，我们还可以指定一些选项来调整论文的整体
-% 排版布局，这种选项被称为模版选项。具体的模板选项以及其使用方法
-% 请参阅 \ref{subsection:template-option} 节的相关内容。
-% 
-%
-% \subsubsection{配置论文基本信息与格式}
-%
-% 导入 \cls{ecnuthesis} 文档类后，我们需要录入个人信息来完成论文中信息的填写。
-% 此外，我们可能会需要根据具体的需要，对模版格式进行修改。我们需要在导言区使用
-% \cs{ecnuSetup} 命令来录入论文所需的相关信息，以及设置论文的相关格式：
-%
-% \begin{latexCode}
-%   \ecnuSetup {
-%     style = { font = times, fontCJK = fandol },
-%     info  = {
-%       title       = {计算机器与智能},
-%       titleEN     = {Computing Machinery and Intelligence},
-%       author      = {艾伦·麦席森·图灵},
-%       department  = {计算机科学与技术学院},
-%       major       = {计算机科学与技术}
-%     }
+% \begin{latexcode}[moretexcs={\ecnusetup,\tableofcontents,\chapter},
+%   moretexcs={[2]\frontmatter,\mainmatter},
+%   emph={[1]ecnuthesis,document},
+%   emph={[2]type,oneside,style,info},
+%   emph={[3]font,font-cjk,title,title-en,author,department,major}]
+%   % thesis.tex
+%   \documentclass[type=bachelor,oneside]{ecnuthesis}
+%   \ecnusetup{
+%     info/title = {计算机器与智能},
+%     info/author = {艾伦·麦席森·图灵},
+%     style/font-cjk = fandol,
 %   }
-% \end{latexCode}
-%
-% \cs{ecnuSetup} 命令的具体使用方法请参阅 \ref{subsection:template-config-command} 
-% 节的相关内容。
-%
-%
-% \subsubsection{导入所需宏包}
-%
-% 当填写完基本信息或者完成格式设置之后，如果仍需要在编写正文的时候使用宏包，请在
-% \cs{ecnuthesis} 命令之后、 \texttt{document} 环境前的导言区部分导入相应的宏包。
-% 例如，若需要导入 \pkg{enumitem} 宏包，应编写以下内容
-% \begin{latexCode}
-%   \usepackage{enumitem}
-% \end{latexCode}
-%
-%
-% \subsubsection{编写论文}
-%
-% 毕业论文的编写需在 \texttt{document} 环境内进行：
-% \begin{latexCode}
 %   \begin{document}
-%     你好，\LaTeX{}!
+%     \frontmatter
+%     \tableofcontents
+%     \mainmatter
+%     \chapter{欢迎}
+%     \section{欢迎使用 ECNUThesis!}
+%     你好, \LaTeX{}!
 %   \end{document}
-% \end{latexCode}
-%
-% 根据《华东师范大学本科生毕业论文（设计）格式要求》，毕业论文依次由以下部分构成：
-% 内封面（包括学位论文诚信承诺书与使用授权说明书）、目录、中文摘要页、外文摘要页、
-% 正文、致谢、参考文献及附录。接下来，将按照以上顺序简要介绍如何编写这些论文组成部分。
-% 以下所有内容需依次在 \texttt{document} 环境内编写。
+% \end{latexcode}
 %
 %
-% \paragraph{内封面}
-%
-% 在使用 \texttt{document} 环境时会自动生成内封面，无需手动添加内封面。
-%
-%
-% \paragraph{目录}
-%
-% 目录部分使用 \cs{tableofcontents} 命令生成。
-%
-%
-% \paragraph{中外文摘要页}
-%
-% 我们将论文中的中外文摘要页部分称为论文的前置部分。编写前置部分主要分为以下步骤：
-%
-% \begin{enumerate}
-%   \item 使用 \cs{frontmatter} 命令声明论文前置部分开始。该命令将页码调整为大写罗马字母。
-%   \item 使用 \texttt{abstract} 环境编写中文摘要。该环境将自动生成中文摘要页，
-%     包括中文题名、摘要、关键词。
-%   \item 使用 \texttt{abstractEN} 环境以编写外文摘要。该环境将自动生成外文摘要页，
-%     包括外文题名、摘要、关键词。
-% \end{enumerate}
-% 
-% 以下是完成前置部分的一个例子。
-% \begin{latexCode}
-%   \frontmatter
-%   \begin{abstract}
-%     这是摘要。
-%   \end{abstract}
-%   \begin{abstractEN}
-%     This is an abstract.
-%   \end{abstractEN}
-% \end{latexCode}
-%
-%
-% \paragraph{正文}
-%
-% 编写正文部分主要分为以下步骤：
-%
-% \begin{enumerate}
-%   \item 使用 \cs{mainmatter} 命令声明论文正文部分开始。该命令将页码调整为阿拉伯数字。
-%   \item 编写正文。
-%   \item 使用 \cs{backmatter} 命令声明论文正文部分结束，即后置部分开始。我们将致谢、
-%     参考文献以及附录统称为后置部分。
-% \end{enumerate}
-%
-% 以下是完成正文部分的一个例子。
-% \begin{latexCode}
-%   \mainmatter
-%   \chapter{欢迎}
-%   你好，\LaTeX{}!
-%   \backmatter
-% \end{latexCode}
-%
-% 值得注意的是，根据格式要求，正文中图表的题注应中外文对照。为此，需使用 \cs{bicaption}
-% 命令代替常用的题注命令 \cs{caption}。其用法为
-% \begin{latexCode}
-%   \bicaption{\oarg{中文标题名}}{\oarg{外文标题名}}
-% \end{latexCode}
-% 例如，要为图片添加中外文题注，应如此编写：
-% \begin{latexCode}
-%   \begin{figure}[htb] 
-%     \centering 
-%       \includegraphics[width=.5\textwidth]{example-image} 
-%     \bicaption{组件分布图}{Component Deploment}\label{fig-1} 
-%   \end{figure}
-% \end{latexCode}
-%
-%
-% \paragraph{致谢}
-%
-% 致谢部分使用 \texttt{acknowledgement} 环境编写。以下是完成致谢部分的一个例子。
-% \begin{latexCode}
-%   \begin{acknowledgement}
-%     这里是致谢。
-%   \end{acknowledgement}
-% \end{latexCode}
-%
-%
-% \paragraph{参考文献}
-%
-% 若正文部分引用了参考文献，则可以使用命令 \cs{PrintReference} 命令生成参考文献列表。
-% 以下是完成参考文献列表的一个例子。
-% \begin{latexCode}
-%   \PrintReference
-% \end{latexCode}
-%
-%
-% \paragraph{附录}
-%
-% 如有附录部分，需在参考文献后使用 \texttt{appendix} 环境编写附录。根据模板示例，
-% 附录中的每一项应使用编号列表。建议使用 \texttt{enumerate} 环境编写附录内容。若要设置
-% 编号列表的格式，建议使用 \pkg{enumitem} 宏包进行设置。
-% 
-% 以下是完成附录部分的一个例子。
-%
-% \begin{latexCode}
-%   \begin{appendix}
-%     \begin{enumerate}
-%       \item 部分函数代码
-%     \end{enumerate}
-%   \end{appendix}
-% \end{latexCode}
-%
-%
-% \subsection{编译文档}
+% \subsection{编译文档}\label{subsection:compile-doc}
 %
 % 本模板仅支持使用 \XeLaTeX 引擎编译。为了生成正确的目录、脚注以及交叉引用，
 % 您至少需要连续编译两次。
 %
 % 假设编写论文所使用的 \TeX 源文件名为 \file{thesis.tex}。若要编译论文，请
 % 在命令行中执行
-% \begin{shellCode}
-%   xelatex thesis
-%   biber thesis    # 若引用了参考文献, 请执行该行命令
-%   xelatex thesis
-% \end{shellCode}
+% \begin{shellcode}
+%   $ xelatex thesis
+%   $ biber thesis    # 若引用了参考文献, 请执行该命令
+%   $ xelatex thesis
+% \end{shellcode}
 % 或者使用 \pkg{latexmk}：
-% \begin{shellCode}
-%   latexmk -xelatex thesis
-% \end{shellCode}
+% \begin{shellcode}
+%   $ latexmk -xelatex thesis
+% \end{shellcode}
 %
+% \section{配置文档类}
 %
-% \section{模板命令与配置项}
+% 为了使用户更方便地使用本模板编写论文，\cls{ecnuthesis} 提供
+% 了若干易于使用的命令、环境和配置项，包括载入文档类时可配置的文档类选项、
+% 配置论文信息与格式的导言区命令，以及编写论文时可能会使用到的命令与环境。
 %
-% 为了使用户更方便地使用本模板编写论文， \cls{ECNUThesis-Undergraduate} 提供
-% 了一些易于使用的命令、环境和配置项，包括载入文档类时可以配置的模板选项、配置论文
-% 信息与格式的导言区命令，以及编写论文时可能会使用到的命令与环境。
+% 本模板所提供的命令、配置项或环境可以分为以下三类：
+% \begin{itemize}
+% \item 名字后带有 \rexptarget\rexpstar{} 标记的，表示只有在博士、硕士学位论文中方为有效；
+% \item 名字后带有 \exptarget\expstar{} 标记的，表示只有在本科生毕业论文中方为有效；
+% \item 名字后不带有特殊标记的，表示该选项在所有类型的论文中均为有效。
+% \end{itemize}
+% 后续文档将在使用说明中对某些特殊的选项加以说明。
 %
+% \subsection{文档类选项}\label{subsection:template-option}
 %
-% \subsection{模版选项}\label{subsection:template-option}
-%
-% 模版选项是指在载入文档类的时候指定的选项：
+% 文档类选项是指在载入文档类的时候需要指定的选项。载入文档类时，
+% 用户可通过指定文档类选项来设置论文最基本的要素，包括论文类型、单双面
+% 模式、是否生成封面以及声明页等。
 % 
-% \begin{latexCode}
-%   \documentclass(*\oarg{模版选项}*){ecnuthesis}
-% \end{latexCode}
+% \begin{latexcode}[emph={[1]ecnuthesis}]
+%   \documentclass(*\oarg{文档类选项}*){ecnuthesis}
+% \end{latexcode}
 % 
-% 一些模板选项为布尔型，它们只能在 \texttt{true} 和 \texttt{false}
-% 中取值。对于这些选项，\texttt{\meta{选项}=true} 中的 \texttt{=true}
+% 文档类选项的形式通常为 \kvopt{\meta{key}}{\meta{value}}，
+% 不同的文档类选项之间使用半角逗号（即“|,|”）分隔。
+% 一些文档类选项为布尔型，它们只能在 |true| 和 |false|
+% 中取值。对于这些选项，\kvopt{\meta{选项}}{true} 中的 |=true|
 % 可以被省略。
-% 
-% \begin{function}{printMode}
+%
+% \begin{function}{type}
 %   \begin{syntax}
-%     printMode = true{\textbar}false
+%     \OPTKEY{type} = bachelor|master|doctor
 %   \end{syntax}
-%   选择是否开启打印模式。若缺省则为关闭，反之则为开启。打印模式默认关闭。
-%   若开启打印模式，则将保证内封面、中文摘要、外文摘要、目录、参考文献、附录、
-%   致谢页面从奇数页开始，保证正文的最后一页为偶数页。
+%   选择论文学位类型。该选项有三个可选值，这三个可选值的含义分别为：
+%   \begin{optdesc}
+%     \item[bachelor] 表示本科生毕业论文。
+%     \item[master] 表示硕士学位论文。
+%     \item[doctor] 表示博士学位论文。
+%   \end{optdesc}
+% \end{function}
 % 
-%   开启打印模式适合双面打印纸质版论文；关闭打印模式适合提交电子版论文。
+% \begin{function}{oneside,twoside}
+%   指定论文的排版模式。该选项会影响每章的开始位置，
+%   还会影响页眉样式。模板默认的排版模式为双面模式（\opt{twoside}）。
+%
+%   在双面模式（\opt{twoside}）下，按照通常的排版惯例，每章应只从
+%   奇数页（在右）开始；而在单页模式（\opt{oneside}）下，则可以从
+%   任意页面开始。本模板中，目录、摘要等均视作章，也按相同方式排版。
+%   使用双面模式适合双面打印纸质版论文；使用单面模式适合提交电子版论文。
 % \end{function}
 %
-% \begin{function}{declarePage}
+% \begin{function}{cover}
 %   \begin{syntax}
-%     declarePage = true{\textbar}false
+%     \OPTKEY{cover} = (true)|false
 %   \end{syntax}
-%   选择是否生成声明页。声明页默认不生成。若缺省则不生成声明页，反之则生成声明页。
-%   声明页默认由模版自动生成，也可以使用 \texttt{style/declarePageResource} 选项，
+%   选择是否生成封面页。模板默认自动生成封面页。
+%   若设置 \opt{cover=true}，模版将自动生成封面页；反之则不生成封面页。
+% \end{function}
+%
+% \begin{function}{declaration}
+%   \begin{syntax}
+%     \OPTKEY{declaration} = true|(false)
+%   \end{syntax}
+%   选择是否生成声明页。模板默认不自动生成声明页。
+%   若缺省则不生成声明页，反之则生成声明页。
+%   声明页默认由模版自动生成，也可以使用
+%   \opt{style/declaration-src} 选项，
 %   将指定的 PDF 文件作为声明页插入到文档中。
 % 
-%   若选择不生成声明页，则 \texttt{style/declarePageResource} 选项将失效。
+%   若选择不生成声明页，则 \opt{style/declaration-src} 选项将失效。
 % \end{function}
 %
 %
-% \subsection{模板配置命令}\label{subsection:template-config-command}
+% \subsection{配置命令}\label{subsection:template-config-command}
 %
-% \cls{ECNUThesis-Undergraduate} 提供了一个用于导言区的命令 \cs{ecnuSetup}，用于
-% 录入论文所需的相关信息，以及一些格式设置。
+% \cls{ecnuthesis} 提供了一个用于导言区的配置命令 \cs{ecnusetup}，用于
+% 录入论文相关信息，并提供细粒度的格式设置。
 %
-% \begin{function}{\ecnuSetup}
+% \begin{function}{\ecnusetup}
 %   \begin{syntax}
-%     \cs{ecnuSetup} = \marg{键值对列表}
+%     \TNi{ecnusetup}\marg{键值对列表}
 %   \end{syntax}
-%   该命令用于配置相关自定义选项。载入文档类后，下列所有选项均可使用该命令配置。
-%   该命令需要写在导言区。
+%   \cs{ecnusetup} 命令用于配置相关自定义选项。
+%   载入 \cls{ecnuthesis} 文档类后，本小节中的所有选项均可使用
+%   \cs{ecnusetup} 命令配置。
+%   该命令须写在导言区中。
 % \end{function}
 %
-% \cs{ecnuSetup} 的参数是一组由英文逗号（即 \texttt{,}）分隔的选项列表，
-% 列表中的选项通常是 \texttt{\meta{key}=\meta{value}} 的形式，我们称这种
-% 形式为键值，由键值组成的选项列表称为键值列表。键值中的 \texttt{=} 周围的
+% \cs{ecnusetup} 的参数是一组由半角逗号（即“|,|”）分隔的选项列表，
+% 列表中的选项通常为 \kvopt{\meta{key}}{\meta{value}} 的形式，我们称这种
+% 形式为键值，由键值组成的选项列表称为键值列表。键值中的 |=| 周围的
 % 空格不影响设置，但是键值列表之间不可以出现多余的空行。对于同一个选项，后面的
 % 设置将会覆盖前一个设置。
 %
-% 有些选项包含子选项，比如 \texttt{style} 选项和 \texttt{info} 等选项。
-% 这时候，以下两种设置方式是等价的：
-% \begin{latexCode}
-%   \ecnuSetup{
-%     style = { font = times, fontCJK = fandol },
+% 一些选项包含若干子选项（例如 \opt{style} 选项和 \opt{info} 选项）。
+% 此时，可选择这两种等价的设置方式来配置论文：
+% \begin{latexcode}[moretexcs={\ecnusetup},
+%   emph={[2]type,oneside,style,info},
+%   emph={[3]font,font-cjk,title,title-en,author,department,major}]
+%   \ecnusetup{
+%     style = { font = times, font-cjk = fandol },
 %     info  = {
 %       title       = {计算机器与智能},
-%       titleEN     = {Computing Machinery and Intelligence},
+%       title-en    = {Computing Machinery and Intelligence},
 %       author      = {艾伦·麦席森·图灵},
 %       department  = {计算机科学与技术学院},
 %       major       = {计算机科学与技术}
 %     }
 %   }
-% \end{latexCode}
+% \end{latexcode}
 % 或者
-% \begin{latexCode}
-%   \ecnuSetup{
-%     style/font        = times,
-%     style/fontCJK     = fandol,
-%     info/title        = {计算机器与智能},
-%     info/titleEN      = {Computing Machinery and Intelligence},
-%     info/author       = {艾伦·麦席森·图灵},
-%     info/department   = {计算机科学与技术学院},
-%     info/major        = {计算机科学与技术}
+% \begin{latexcode}[moretexcs={\ecnusetup},
+%   emph={[2]type,oneside,style,info},
+%   emph={[3]font,font-cjk,title,title-en,author,department,major}]
+%   \ecnusetup{
+%     style/font      = times,
+%     style/font-cjk  = fandol,
+%     info/title      = {计算机器与智能},
+%     info/title-en   = {Computing Machinery and Intelligence},
+%     info/author     = {艾伦·麦席森·图灵},
+%     info/department = {计算机科学与技术学院},
+%     info/major      = {计算机科学与技术}
 %   }
-% \end{latexCode}
-%
-% 请注意， \texttt{/} 的前后均不可以出现空白字符。
-%
+% \end{latexcode}
+% 请注意，斜杠符号 |/| 的前后均不可以出现空白字符。
 %
 % \subsubsection{论文基本信息}
 %
-% 在 \cls{ECNUThesis-Undergraduate} 中，用户可以通过配置 \texttt{info} 选项
-% 的子选项来完成论文基本信息的填写。本章节将介绍 \texttt{info} 选项的所有可供
+% 在 \cls{ecnuthesis} 中，用户可以通过配置 \opt{info} 选项
+% 的子选项来完成论文基本信息的填写。本章节将介绍 \opt{info} 选项的所有可供
 % 配置的子选项。
 %
 % \begin{function}{info}
 %   \begin{syntax}
-%     info = \marg{键值对列表}
-%     info/\meta{key} = \meta{value}
+%     \CFG{info} = \marg{键值对列表}
+%     \CFG{info}/\meta{key} = \meta{value}
 %   \end{syntax}
 %   该选项用于录入论文信息。该选项拥有一些子选项，具体的设置子选项如下所示。
 % \end{function}
 %
-% \begin{function}{info/title, info/titleEN}
+% \begin{function}[rEXP]{info/degree}
 %   \begin{syntax}
-%     info/title = \marg{中文标题}
-%     info/titleEN = \marg{English Title}
+%     \CFGKEY{degree} = (academic)|professional
 %   \end{syntax}
-%   论文的中外文标题。该子选项用于填写内封面的中外文论文（设计）题目信息，以及中外文摘要页的标题。
+%   博士、硕士学位论文的学位类型。
+%   \begin{optdesc}
+%     \item[academic] 表示学术学位。
+%     \item[professional] 表示专业学位。
+%   \end{optdesc}
 % \end{function}
-%% 
+%
+% \begin{function}[rEXP]{info/clc}
+%   \begin{syntax}
+%     \CFGKEY{clc} = \marg{中图分类号}
+%   \end{syntax}
+%   中图分类号（CLC）。
+% \end{function}
+%
+% \begin{function}[rEXP]{info/secret-level}
+%   \begin{syntax}
+%     \CFGKEY{secret-level} = \marg{密级}
+%   \end{syntax}
+%   密级。
+% \end{function}
+%
+% \begin{function}{info/title,info/title-en}
+%   \begin{syntax}
+%     \CFGKEY{title} = \marg{中文标题}
+%     \CFGKEY{title-en} = \marg{外文标题}
+%   \end{syntax}
+%   论文的中外文标题。可以在标题内部使用换行命令 |\\|。
+% \end{function}
+%
 % \begin{function}{info/author}
 %   \begin{syntax}
-%     info/author = \marg{姓名}
+%     \CFGKEY{author} = \marg{中文姓名}
 %   \end{syntax}
-%   作者的姓名。该子选项用于填写内封面的“姓名”信息。
+%   作者的中文姓名。
+% \end{function}
+%
+% \begin{function}[rEXP]{info/author-en}
+%   \begin{syntax}
+%     \CFGKEY{author-en} = \marg{外文姓名}
+%   \end{syntax}
+%   作者的外文姓名。
 % \end{function}
 % 
-% \begin{function}{info/studentID}
+% \begin{function}{info/student-id}
 %   \begin{syntax}
-%     info/studentID = \marg{学号}
+%     \CFGKEY{student-id} = \marg{学号}
 %   \end{syntax}
-%   \indent
-%   作者的学号。该子选项用于填写内封面的“学号”信息。
+%   作者的学号。
 % \end{function}
 %
 % \begin{function}{info/department}
 %   \begin{syntax}
-%     info/department = \marg{名称}
+%     \CFGKEY{department} = \marg{院系中文名称}
 %   \end{syntax}
-%   作者所在学院名称。该子选项用于填写内封面的“学院”信息。
+%   作者所在院系的中文名称。
+% \end{function}
+%
+% \begin{function}[rEXP]{info/department-en}
+%   \begin{syntax}
+%     \CFGKEY{department-en} = \marg{院系外文名称}
+%   \end{syntax}
+%   作者所在院系的外文名称。
 % \end{function}
 %
 % \begin{function}{info/major}
 %   \begin{syntax}
-%     info/major = \marg{名称}
+%     \CFGKEY{major} = \marg{专业中文名称}
 %   \end{syntax}
-%   作者所在专业名称。该子选项用于填写内封面的“专业”信息。
+%   作者所在专业的中文名称。
+% \end{function}
+%
+% \begin{function}[rEXP]{info/major-en}
+%   \begin{syntax}
+%     \CFGKEY{major-en} = \marg{专业外文名称}
+%   \end{syntax}
+%   作者所在专业的外文名称。
+% \end{function}
+%
+% \begin{function}[rEXP]{info/field,info/field-en}
+%   \begin{syntax}
+%     \CFGKEY{field} = \marg{研究方向中文名称}
+%     \CFGKEY{field-en} = \marg{研究方向外文名称}
+%   \end{syntax}
+%   作者所在研究方向的中外文名称。用于填写博士、硕士毕业论文内封面
+%   中的“研究方向”信息（学术学位）或“专业学位领域”信息（专业学位）。
 % \end{function}
 %
 % \begin{function}{info/supervisor}
 %   \begin{syntax}
-%     info/supervisor = \marg{姓名}
+%     \CFGKEY{supervisor} = \marg{指导教师中文姓名}
 %   \end{syntax}
-%   论文指导教师姓名。该子选项用于填写内封面的“指导教师”信息。
+%   论文指导教师姓名。用于填写内封面的“指导教师”信息。
 % \end{function}
 %
-% \begin{function}{info/academicTitle}
+% \begin{function}[rEXP]{info/supervisor-en}
 %   \begin{syntax}
-%     info/academicTitle = \marg{职称}
+%     \CFGKEY{supervisor-en} = \marg{指导教师外文姓名}
 %   \end{syntax}
-%   论文指导教师职称。该子选项用于填写内封面的“职称”信息。
+%   论文指导教师姓名。用于填写内封面的“指导教师”信息。
+% \end{function}
+%
+% \begin{function}[EXP]{info/academic-title}
+%   \begin{syntax}
+%     \CFGKEY{academic-title} = \marg{职称}
+%   \end{syntax}
+%   论文指导教师职称。用于填写内封面的“职称”信息。
 % \end{function}
 %
 % \begin{function}{info/year}
 %   \begin{syntax}
-%     info/year = \meta{年份}
+%     \CFGKEY{year} = \meta{论文完成年份}
 %   \end{syntax}
-%   论文完成年份。该子选项用于填写内封面底部的年份信息。
+%   论文完成年份。用于填写内封面底部的年份信息。
 %   若该选项被省略，模版将调用当前年份。请注意，该选项没有花括号。
 % \end{function}
 %
 % \begin{function}{info/month}
 %   \begin{syntax}
-%     info/month = \meta{月份}
+%     \CFGKEY{month} = \meta{论文完成月份}
 %   \end{syntax}
-%   论文完成月份。该子选项用于填写内封面底部的月份信息。
+%   论文完成月份。用于填写内封面底部的月份信息。
 %   若该选项被省略，模版将调用当前月份。请注意，该选项没有花括号。
 % \end{function}
 %
-% \begin{function}{info/graduationYear}
+% \begin{function}[EXP]{info/graduation-year}
 %   \begin{syntax}
-%     info/graduationYear = \meta{年份}
+%     \CFGKEY{graduation-year} = \meta{毕业年份}
 %   \end{syntax}
-%   内封面毕业届别。该子选项用于填写内封面左上角的届别信息。
-%   若该选项被省略，模版将调用 \texttt{year} 字段的值；
-%   若 \texttt{year} 选项也被省略，模版将调用当前年份。
+%   内封面毕业届别。用于填写内封面左上角的届别信息。
+%   若该选项被省略，模版将调用 \opt{year} 字段的值；
+%   若 \opt{year} 选项也被省略，模版将调用当前年份。
 %   请注意，该选项没有花括号。
 % \end{function}
 %
-% \begin{function}{info/keywords, info/keywordsEN}
+% \begin{function}{info/keywords,info/keywords-en}
 %   \begin{syntax}
-%     info/keywords = \marg{关键词}
-%     info/keywordsEN = \marg{Keywords}
+%     \CFGKEY{keywords} = \marg{中文关键词}
+%     \CFGKEY{keywords-en} = \marg{外文关键词}
 %   \end{syntax}
-%   中外文关键词，请使用英文逗号 “\texttt{,}” 以分隔。该子选项用于填写中外文摘要页的关键词信息。
+%   中外文关键词列表，用于填写中外文摘要页的关键词信息。
+%   请使用半角逗号（即“|,|”）分隔关键词。
 % \end{function}
-%
 %
 % \subsubsection{论文格式设置}
 %
-% 在 \cls{ECNUThesis-Undergraduate} 中，用户可以通过配置 \texttt{style} 选项
-% 的子选项来完成论文格式方面的相关设置。本章节将介绍 \texttt{style} 选项的所有可供
+% 在 \cls{ecnuthesis} 中，用户可以通过配置 \opt{style} 选项
+% 的子选项来完成论文格式方面的相关设置。本章节将介绍 \opt{style} 选项的所有可供
 % 配置的子选项。
 %
 % \begin{function}{style}
 %   \begin{syntax}
-%     style = \marg{键值对列表}
-%     style/\meta{key} = \meta{value}
+%     \CFG{style} = \marg{键值对列表}
+%     \CFG{style}/\meta{key} = \meta{value}
 %   \end{syntax}
 %   该选项用于设置论文格式相关选项。其拥有一些子选项，具体的设置子选项如下所示。
 % \end{function}
 %
 % \begin{function}{style/numbering}
 %   \begin{syntax}
-%     style/numbering = alpha{\textbar}\textbf{arabic}{\textbar}chinese
+%     \CFGKEY{numbering} = (arabic)|chinese
 %   \end{syntax}
-%   设置论文的章节编号样式。 \texttt{alpha} 使用数字进行编号（即外文要求），
-%   \texttt{arabic} 使用数字进行编号（即理科要求），
-%   \texttt{chinese} 使用数字进行编号（即文科要求），
-%   默认选项为 \texttt{arabic}。
+%   设置论文的章节编号样式。
+%   \begin{optdesc}
+%     \item[arabic] 使用阿拉伯数字进行编号（即理科要求）。
+%     \item[chinese] 使用中文数字进行编号（即文科要求）。
+%   \end{optdesc}
 % \end{function}
 %
-% \begin{function}{style/fontCJK}
+% \begin{function}{style/font-cjk}
 %   \begin{syntax}
-%     style/fontCJK = \textbf{fandol}{\textbar}mac{\textbar}windows
+%     \CFGKEY{font-cjk} = (auto)|fandol|mac|windows
 %   \end{syntax}
-%   设置论文的中文字体。默认选项为 \texttt{fandol}。具体的各配置选项及其所对应的中文字体
-%   见表 \ref{table:fontCJK} 。
+%   设置论文的中文字体。具体的各配置选项及其所对应的中文字体
+%   见表 \ref{table:font-cjk}。默认选项为 \opt{auto}，
+%   此时会根据操作系统自动配置自动配置：Windows 系统默认使用 \opt{windows}，
+%   macOS 系统默认使用 \opt{mac}，Linux 系统默认使用 \opt{fandol}。
 % \end{function}
 %
 % \begin{table}[ht]
 %   \caption{各中文字体配置选项所对应的中文字体}
-%   \label{table:fontCJK}
-%   \centering
-%   \small
+%   \label{table:font-cjk}
+%   \centering \small
 %   \begin{tabular}{ccccc}
-%   \hline
-%           & 正文字体（宋体） & 无衬线字体（黑体） & 等宽字体（仿宋） & 楷体       \\
-%   \hline
-%   \texttt{windows} & 中易宋体     & 中易黑体      & 中易仿宋     & 中易楷体     \\
-%   \texttt{mac}     & 华文宋体-简   & 华文黑体-简    & 华文仿宋     & 华文楷体-简   \\
-%   \texttt{fandol}  & Fandol宋体 & Fandol黑体  & Fandol仿宋 & Fandol楷体  \\
-%   \hline
+%   \toprule
+%           & \textbf{正文字体（宋体）} & \textbf{无衬线字体（黑体）} 
+%           & \textbf{等宽字体（仿宋）} & \textbf{楷体}       \\
+%   \midrule
+%   \opt{windows} & 中易宋体     & 中易黑体      & 中易仿宋     & 中易楷体     \\
+%   \opt{mac}     & 华文宋体-简   & 华文黑体-简    & 华文仿宋     & 华文楷体-简   \\
+%   \opt{fandol}  & Fandol宋体 & Fandol黑体  & Fandol仿宋 & Fandol楷体  \\
+%   \bottomrule
 %   \end{tabular}
 % \end{table}
 %
 % \begin{function}{style/font}
 %   \begin{syntax}
-%     style/font = times{\textbar}\textbf{xits}{\textbar}lm
+%     \CFGKEY{font} = times|(xits)|lm
 %   \end{syntax}
-%   设置论文的西文字体。默认选项为 \texttt{xits}。具体的各配置选项及其所对应的西文字体
-%   见表 \ref{table:font} 。
+%   设置论文的西文和数学字体。默认选项为 \opt{xits}。具体的各配置选项及其所对应的西文字体
+%   与数学字体见表 \ref{table:font} 。
 % \end{function}
 %
 % \begin{table}[ht]
 %   \caption{各西文字体配置选项所对应的西文字体}
 %   \label{table:font}
-%   \centering
-%   \small
+%   \centering \small
 %   \begin{tabular}{ccccc}
-%   \hline
-%       & 衬线字体            & 无衬线字体    & 等宽字体        & 数学字体      \\
-%   \hline
-%   \texttt{times} & Times New Roman & Arial    & Courier New & XITS Math \\
-%   \texttt{xits}  & XITS            & TG Heros & TG Cursor   & XITS Math \\
-%   \texttt{lm}    & LM Roman        & LM Sans  & LM Mono     & LM Math  \\
-%   \hline
+%   \toprule
+%       & \textbf{衬线字体} & \textbf{无衬线字体} & \textbf{等宽字体} & \textbf{数学字体} \\
+%   \midrule
+%   \opt{times} & Times New Roman & Arial    & Courier New & XITS Math \\
+%   \opt{xits}  & XITS            & TG Heros & TG Cursor   & XITS Math \\
+%   \opt{lm}    & LM Roman        & LM Sans  & LM Mono     & LM Math  \\
+%   \bottomrule
 %   \end{tabular}
 % \end{table}
 %
-% \begin{function}{style/bibResource}
+% \begin{function}{style/bib-src}
 %   \begin{syntax}
-%     style/bibResource = \marg{文件}
+%     \CFGKEY{bib-src} = \marg{文件}
 %   \end{syntax}
 %   设置参考文献数据源文件。此处需填写数据源文件所在路径（可以是绝对路径或相对路径）。
 %   由于参考文献使用 biber 进行处理，故必须明确给出该数据源文件的
-%   \texttt{.bib} 后缀名。
+%   \file{.bib} 后缀名。
 % \end{function}
 %
-% \begin{function}{style/logoResource}
+% \begin{function}{style/logo-src}
 %   \begin{syntax}
-%     style/logoResource = \marg{文件}
+%     \CFGKEY{logo-src} = \marg{文件}
 %   \end{syntax}
 %   设置封面插图数据源。此处需填写数据源文件所在路径（可以是绝对路径或相对路径）。
-%   模版已自带封面插图数据源，位于 \texttt{./source/inner-cover(contains\_font).eps}。
+%   模版已自带封面插图数据源，位于 \file{./source/inner-cover(contains\_font).eps}。
 % \end{function}
 %
-% \begin{function}{style/declarePageResource}
+% \begin{function}{style/declaration-src}
 %   \begin{syntax}
-%     style/declarePageResource = \marg{文件}
+%     \CFGKEY{declaration-src} = \marg{PDF 文件}
 %   \end{syntax}
-%   设置待插入的扫描版声明页 PDF 文件。若该值为空则生成模版预定义的声明页；
+%   设置待插入的扫描版声明页 PDF 文件。若该值为空，则生成模版预定义的声明页；
 %   否则将指定路径所对应的 PDF 文件作为声明页插入。
 % \end{function}
 %
 %
-% \subsection{论文编写相关的命令与环境}
+% \section{编写论文内容}
 %
-% 为符合论文格式相关要求，\cls{ECNUThesis-Undergraduate} 提供了一系列命令与环境，
-% 便于用户完成论文的撰写。
+% 为符合论文的格式要求，\cls{ecnuthesis} 文档类提供了一系列命令与环境，
+% 方便用户完成学位论文内容的撰写工作。
 %
-% \subsubsection{命令}
-% 
-% \begin{function}{\tableofcontents}
-%   \cs{tableofcontents} 命令用于生成论文目录。
-% \end{function}
+% 一篇学位论文的内容通常由以下三个部分组成：
+% \begin{itemize}
+%   \item 前置部分：中外文摘要、目录（包括插图目录和表格目录）；
+%   \item 正文部分：各个章节；
+%   \item 后置部分：参考文献、附录、后记（致谢）。
+% \end{itemize}
+% 本节将根据以上三个部分，分别介绍 \cls{ecnuthesis} 文档类所提供的
+% 相关命令与环境。
+%
+% \subsection{前置部分}\label{subsubsection:frontmatter}
+%
+% 前置部分包括中外文摘要、目录（包括插图目录和表格目录）。
 %
 % \begin{function}{\frontmatter}
-%   \cs{frontmatter} 命令用于声明论文前置部分开始。前置部分包含中外文摘要页，
-%   即中文题名、摘要、关键词页以及外文题名、摘要、关键词页。
-%   前置部分的页码采用大写罗马字母，并且与正文分开计数。
+%   \begin{syntax}
+%     \TNii{frontmatter}
+%   \end{syntax}
+%   用于声明论文前置部分开始。
+%   使用 \cs{frontmatter} 命令后，前置部分的页码采用大写罗马字母，
+%   并且与正文分开计数。
 % \end{function}
+%
+% \begin{function}{\tableofcontents,\listoftables,\listoffigures}
+%   用于生成目录、插图目录以及表格目录。
+% \end{function}
+%
+% \begin{function}{abstract,abstractEN}
+%   \begin{syntax}
+%     \BEV{abstract}
+%     \  \meta{中文摘要}
+%     \EEV{abstract}
+%     \BEV{abstractEN}
+%     \  \meta{外文摘要}
+%     \EEV{abstractEN}
+%   \end{syntax}
+%   中外文摘要页环境。该环境会在摘要页的末尾自动添加关键词。
+% \end{function}
+%
+% \subsection{正文部分}\label{subsubsection:mainmatter}
 %
 % \begin{function}{\mainmatter}
-%   \cs{mainmatter} 命令用于声明论文正文部分开始。正文部分是论文的核心。
-%   正文部分可以分章节进行编写，也可以采用多文件编译。主体部分的页码采用阿拉伯数字。
+%   \begin{syntax}
+%     \TNii{mainmatter}
+%   \end{syntax}
+%   用于声明论文正文部分开始。使用 \cs{mainmatter} 命令后，
+%   正文部分的页码采用阿拉伯数字。
 % \end{function}
+%
+% \begin{function}[EXP]{\bicaption}
+%   \begin{syntax}
+%     \TNi{bicaption}\marg{中文题注}\marg{外文题注}
+%   \end{syntax}
+%   本科生毕业论文中插图和表格的中外文对照题注。
+%   与 \cs{caption} 命令类似，仅需在 \env{figure} 和 \env{table}
+%   环境中的合适位置编写该命令即可。
+%   以下是一个使用中外文对照题注的示例：
+% \begin{latexcode}[moretexcs={\includegraphics,\bicaption},emph={[1]figure}]
+%   \begin{figure}[htb]
+%     \centering
+%     \includegraphics[width=.5\textwidth]{component-deployment.png}
+%     \bicaption{组件分布图}{Component Deployment}
+%   \end{figure}
+% \end{latexcode}
+% \end{function}
+%
+%
+% \subsection{后置部分}\label{subsubsection:backmatter}
+%
+% 后置部分包括参考文献列表、附录以及致谢等。
 %
 % \begin{function}{\backmatter}
-%   \cs{backmatter} 命令用于声明论文后置部分开始。
-%   后置部分包括致谢、参考文献以及附录。后置部分的页码同样使用阿拉伯数字，且与
-%   正文部分相接。
+%   \begin{syntax}
+%     \TNii{backmatter}
+%   \end{syntax}
+%   用于声明论文后置部分开始。
 % \end{function}
 %
-% \begin{function}{\PrintReference}
-%   \cs{PrintReference} 命令用于生成参考文献列表。
+% \begin{function}{\printbibliography}
+%   \begin{syntax}
+%     \TNi{printbibliography}
+%   \end{syntax}
+%   用于生成参考文献列表。
 % \end{function}
-% 
-% \subsubsection{环境}
 %
-% \DescribeEnv{abstract}
-% \DescribeEnv{abstractEN}
-% \env{abstract} 环境用于编写中（外）文摘要。使用该环境后，模板会自动生成中（外）文摘要页，
-% 包括中（外）文论文标题、摘要内容以及关键词。
+% \begin{function}{appendix}
+%   \begin{syntax}
+%     \BEV{appendix}
+%     \  \meta{附录}
+%     \EEV{appendix}
+%   \end{syntax}
+%   附录环境。
+% \end{function}
 %
-% \DescribeEnv{appendix}
-% \env{appendix} 环境用于编写论文附录部分。
+% \begin{function}{acknowledgement}
+%   \begin{syntax}
+%     \BEV{acknowledgement}
+%     \  \meta{致谢}
+%     \EEV{acknowledgement}
+%   \end{syntax}
+%   致谢环境。
+% \end{function}
 %
-% \DescribeEnv{acknowledgement}
-% \env{acknowledgement} 环境用于编写论文致谢部分。
+% \section{宏包依赖情况}
 %
-%
-% \section{宏集依赖情况}
-%
-% \cls{ECNUThesis-Undergraduate} 显式调用了以下宏包或文档类：
+% \cls{ecnuthesis} 在任何情况下均会显式调用以下宏包或文档类：
 % \begin{itemize}
 %   \item \pkg{xparse} 宏包、\pkg{xtemplate} 宏包以及 \pkg{l3keys2e} 宏包，
-%     用于扩展 \LaTeX3 编程环境。属于 \pkg{l3packages} 宏集。
-%   \item \cls{ctexrep} 文档类，提供中文排版的通用框架。属于 \CTeX{} 宏集。
-%   \item \pkg{amsmath} 宏包，用于增强 \LaTeX 的数学排版功能。
+%     用于扩展 \LaTeX3 编程环境。属于 \pkg{l3packages} 宏包。
+%   \item \cls{ctexrep} 文档类，提供中文排版的通用框架。属于 \CTeX{} 宏包。
+%   \item \pkg{amsmath} 宏包，用于增强 \LaTeX{} 的数学排版功能。
 %   \item \pkg{unicode-math} 宏包，用于处理使用 Unicode 编码的 OpenType 数学字体。
 %   \item \pkg{geometry} 宏包，用于调整页面尺寸。
 %   \item \pkg{fancyhdr} 宏包，用于设置页眉和页脚。
@@ -677,19 +695,16 @@
 %   \item \pkg{bicaption} 宏包，用于支持中外文对照版题注。
 %   \item \pkg{xcolor} 宏包，用于提供彩色支持。
 %   \item \pkg{xeCJKfntef} 宏包，用于实现内封面页的中文下划线。
-%   \item \pkg{tocloft} 宏包，用于设置目录格式。
+%   \item \pkg{titletoc} 宏包，用于设置目录格式。
 %   \item \pkg{biblatex} 宏包，用于参考文献的格式设置，并依赖 biber 程序。
 %   \item \pkg{hyperref} 宏包，用于提供交叉引用、超链接以及电子书签等功能。
-%   \item 若 \texttt{style/declarePageResource} 选项指定了需要插入至论文的 PDF 声明页
-%     文件，则本模板还将调用 \pkg{pdfpages} 宏包。
 % \end{itemize}
 %
-
-%
-% \section{致谢}
-%
-%
-%
+% 此外，若指定不同的选项，模板可能会调用其他的宏包。具体而言：
+% \begin{itemize}
+%   \item 若 \cs{ecnusetup} 命令的 \opt{style/declaration-src} 选项指定了
+%   需要插入至论文的 PDF 声明页文件，则本模板还将调用 \pkg{pdfpages} 宏包。
+% \end{itemize}
 %
 %
 %
@@ -699,15 +714,15 @@
 %
 % \begin{implementation}
 %
-% \iffalse
+% 
 %
 % \section{实现细节}
 %
-% \cls{ECNUThesis-Undergraduate} 使用 \LaTeX3 语法编写，
+% \cls{ecnuthesis} 使用 \LaTeX3 语法编写，
 % 依赖 \pkg{expl3} 环境，并依赖 \pkg{l3packages} 中的相关宏包。
 %
 % 根据 \LaTeX3 的语法规则，代码中的空格、换行、回车与制表符将被完全忽略，
-% 而下划线 \texttt{\_} 和冒号 \texttt{:} 则可作为一般字母使用。
+% 而下划线 |\_| 和冒号 |:| 则可作为一般字母使用。
 %
 % \subsection{准备}
 %
@@ -723,7 +738,7 @@
 \RequirePackage { xparse, xtemplate, l3keys2e }
 %    \end{macrocode}
 %
-% 目前 \cls{ECNUThesis-Undergraduate} 仅支持 \XeTeX{}。
+% 目前 \cls{ecnuthesis} 仅支持 \XeTeX{}。
 %    \begin{macrocode}
 \msg_new:nnn { ecnuthesis } { engine-unsupportd } 
   { \\
@@ -739,16 +754,21 @@
 % \subsubsection{内部变量声明}
 %
 % \begin{variable}{\l_@@_tmpa_box,
+%   \l_@@_tmpb_box,
+%   \l_@@_tmpc_box,
 %   \l_@@_tmpa_clist,
 %   \l_@@_tmpb_clist,
 %   \l_@@_tmpa_skip,
+%   \l_@@_tmpa_tl,
+%   \l_@@_tmpb_tl,
 %   \l_@@_tmpa_dim,
 %   \l_@@_tmpb_dim,
-%   \l_@@_tmpa_tl,
-%   \l_@@_tmpb_tl}
+%   \l_@@_tmpc_dim}
 % 声明一些临时变量。
 %    \begin{macrocode}
 \box_new:N   \l_@@_tmpa_box
+\box_new:N   \l_@@_tmpb_box
+\box_new:N   \l_@@_tmpc_box
 \clist_new:N \l_@@_tmpa_clist
 \clist_new:N \l_@@_tmpb_clist
 \skip_new:N  \l_@@_tmpa_skip
@@ -756,6 +776,16 @@
 \tl_new:N    \l_@@_tmpb_tl
 \dim_new:N   \l_@@_tmpa_dim
 \dim_new:N   \l_@@_tmpb_dim
+\dim_new:N   \l_@@_tmpc_dim
+%    \end{macrocode}
+% \end{variable}
+%
+% \begin{variable}{\g_@@_thesis_type_tl, \g_@@_is_bachelor_bool}
+% 论文类型。用于判断论文是否为本科生毕业论文。
+%    \begin{macrocode}
+\tl_new:N \g_@@_thesis_type_tl
+\bool_new:N \g_@@_is_bachelor_bool
+\bool_set_false:N \g_@@_is_bachelor_bool
 %    \end{macrocode}
 % \end{variable}
 %
@@ -767,19 +797,27 @@
 %    \end{macrocode}
 % \end{variable}
 %
-% \begin{variable}{\g_@@_decl_page_bool}
-% 是否自动生成声明页（默认不自动生成）。
+% \begin{variable}{\g_@@_cover_page_bool}
+% 是否自动生成封面页（默认自动生成）。
 %    \begin{macrocode}
-\bool_new:N \g_@@_decl_page_bool
-\bool_set_false:N \g_@@_decl_page_bool
+\bool_new:N \g_@@_cover_page_bool
+\bool_set_true:N \g_@@_cover_page_bool
 %    \end{macrocode}
 % \end{variable}
 %
-% \begin{variable}{\g_@@_to_ctexart_clist}
-% 保存由 \cls{ECNUThesis-Undergraduate} 传入 \cls{ctexrep} 宏包
+% \begin{variable}{\g_@@_declaration_page_bool}
+% 是否自动生成声明页（默认不自动生成）。
+%    \begin{macrocode}
+\bool_new:N \g_@@_declaration_page_bool
+\bool_set_false:N \g_@@_declaration_page_bool
+%    \end{macrocode}
+% \end{variable}
+%
+% \begin{variable}{\g_@@_to_ctexrep_clist}
+% 保存由 \cls{ecnuthesis} 传入 \cls{ctexrep} 宏包
 % 的选项列表。
 %    \begin{macrocode}
-\clist_new:N \g_@@_to_ctexart_clist
+\clist_new:N \g_@@_to_ctexrep_clist
 %    \end{macrocode}
 % \end{variable}
 %
@@ -831,7 +869,7 @@
 %
 % \begin{macro}{\@@_gadd_ltxhook:nn}
 % 封装 \LaTeX{} 的钩子管理机制。本模板中的字体加载命令位于
-% \texttt{begindocument/\allowbreak before} 钩子中，需确保在 \pkg{xeCJK} 之前执行。
+% \opt{begindocument/\allowbreak before} 钩子中，需确保在 \pkg{xeCJK} 之前执行。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_gadd_ltxhook:nn #1#2
   { \hook_gput_code:nnn {#1} { . } {#2} }
@@ -881,46 +919,72 @@
 %
 % \subsection{选项处理}
 %
-% 定义 \texttt{ecnu/option} 键值类。
+% 定义 \opt{ecnu/option} 键值类。
 %    \begin{macrocode}
 \keys_define:nn { ecnu / option }
   {
 %    \end{macrocode}
 %
-% \begin{macro}{printMode}
-% 设置开启打印模式。若开启打印模式，则将输出适合双面打印的文档，否则将输出适合单面打印的
-% 文档。默认关闭打印模式。
+% \begin{macro}{type}
+% 设置论文类型。默认为硕士论文。
 %    \begin{macrocode}
-    printMode   .choice:,
-    printMode / true  .code:n = 
+    type        .choices:nn = 
+      { doctor, master, bachelor }
       {
-        \clist_gput_right:Nn \g_@@_to_ctexart_clist { twoside }
-        \bool_set_true:N     \g_@@_twoside_bool
+        \tl_set_eq:NN \g_@@_thesis_type_tl \l_keys_choice_tl
+        \tl_if_eq:NnTF \l_keys_choice_tl { bachelor }
+          { \bool_set_true:N \g_@@_is_bachelor_bool }
+          { \bool_set_false:N \g_@@_is_bachelor_bool }
       },
-    printMode / false .code:n = 
-      {
-        \clist_gput_right:Nn \g_@@_to_ctexart_clist { oneside }
-        \bool_set_false:N    \g_@@_twoside_bool
-      },
-    printMode   .default:n = { true },
-    printMode   .initial:n = { false },
+    type .value_required:n  = true,
+    type .initial:n         = master,
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{declarePage}
-% 设置开启声明页。若开启声明页，则模版将自动生成声明页。默认关闭声明页。
+% \begin{macro}{oneside,twoside}
+% 设置开启打印模式。若开启打印模式，则将输出适合双面打印的文档，否则将输出适合单面打印的
+% 文档。默认关闭打印模式。
 %    \begin{macrocode}
-    declarePage   .choice:,
-    declarePage / true  .code:n =
+    oneside .value_forbidden:n = true,
+    twoside .value_forbidden:n = true,
+    oneside .code:n =
       {
-        \bool_set_true:N    \g__ecnu_decl_page_bool
+        \clist_gput_right:Nn \g_@@_to_ctexrep_clist { oneside }
+        \bool_set_false:N    \g_@@_twoside_bool
       },
-    declarePage / false  .code:n =
+    twoside .code:n =
       {
-        \bool_set_false:N    \g__ecnu_decl_page_bool
+        \clist_gput_right:Nn \g_@@_to_ctexrep_clist { twoside }
+        \bool_set_true:N     \g_@@_twoside_bool
       },
-    declarePage   .default:n = { true },
-    declarePage   .initial:n = { false },
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{cover}
+% 设置开启封面页。若开启封面页，则模版将自动生成封面页；反之则不会自动生成封面页。
+% 模板默认开启封面页。
+%    \begin{macrocode}
+    cover         .choice:,
+    cover / true  .code:n =
+      { \bool_set_true:N \g_@@_cover_page_bool },
+    cover / false .code:n =
+      { \bool_set_false:N \g_@@_cover_page_bool },
+    cover         .default:n = { true },
+    cover         .initial:n = { true },
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{declaration}
+% 设置开启声明页。若开启声明页，则模版将自动生成声明页；反之则不会自动生成声明页。
+% 默认关闭声明页。
+%    \begin{macrocode}
+    declaration   .choice:,
+    declaration / true  .code:n =
+      { \bool_set_true:N \g_@@_declaration_page_bool },
+    declaration / false  .code:n =
+      { \bool_set_false:N \g_@@_declaration_page_bool },
+    declaration   .default:n = { true },
+    declaration   .initial:n = { false },
 %    \end{macrocode}
 % \end{macro}
 %
@@ -932,19 +996,59 @@
   { Class~ option~ "\l_keys_key_str"~ is~ unknown. }
 %    \end{macrocode}
 %
-% 将文档类选项传给 \texttt{ecnu/option}。
+% 将文档类选项传给 \opt{ecnu/option}。
 %    \begin{macrocode}
 \ProcessKeysOptions { ecnu / option }
 %    \end{macrocode}
 %
+% 载入预设文字
+%    \begin{macrocode}
+\file_input:n { ecnuthesis.def }
+%    \end{macrocode}
+%
+% \subsection{行距}
+%
+% 由于导入 \cls{ctexrep} 文档类时需要指定行距，故在此先设置正文行距。
+% 
+% 根据《华东师范大学本科生毕业论文（设计）格式要求》的
+% 相关要求，本科生毕业论文的正文字号应设置为小四（即 \qty{12}{bp}），
+% 正文行间距应设置为 1.5 倍行距。
+%
+% 在 Word 中，默认的文档网格的行距是 \qty{15.6}{bp}。
+% 当正文字号设置为小四时，若每一行对齐到该默认文档网格，则此时的行距
+% 应为 $\qty{15.6}{bp} \times 1.5 = \qty{23.4}{bp}$。
+% 在 \LaTeX{} 中，单倍行距的长度是字号长度的 1.2 倍。
+% 这意味着 Word 中的 1.5 倍行距相当于 \LaTeX{} 中的
+% $\qty{23.4}{bp} / \qty{12}{bp} / 1.2 = 1.625$ 倍行距。
+% 故将本科生毕业论文的行距设置为
+% \begin{macro}{\c_@@_ug_line_spread_fp}
+% 本科生毕业论文的行距。
+%    \begin{macrocode}
+\fp_const:Nn \c_@@_ug_line_spread_fp { 1.625 }
+%    \end{macrocode}
+% \end{macro}
+%
+% 根据《华东师范大学博士、硕士学位论文基本格式要求》的
+% 相关要求，博士、硕士学位论文的正文字号应设置为小四，
+% 正文行间距应设置为 \qty{25}{bp}。所以，在 \LaTeX{} 中的行距应为
+% $\qty{25}{bp} / (1.2\times\qty{12}{bp}) $。
+% \begin{macro}{\c_@@_pg_line_spread_fp}
+% 博士、硕士学位论文的行距。
+%    \begin{macrocode}
+\fp_const:Nn \c_@@_pg_line_spread_fp
+  { \dim_ratio:nn { 25 bp } { 12 bp } / 1.2 }
+%    \end{macrocode}
+% \end{macro}
+%
+% 为了方便，此处再定义一个标准的单倍行距。
+%    \begin{macrocode}
+\fp_const:Nn \c_@@_single_space_line_spread_fp
+  { \dim_ratio:nn { 15.6 bp } { 12 bp } / 1.2 }
+%    \end{macrocode}
+% 
 % \subsection{载入文档类与宏包}
 %
-% 将选项传入 \cls{ctexrep} 文档类。正文字号应设置为小四，
-% 正文行间距应设置为 1.5 倍行距。由于在 Word 中，中易宋体
-% 的单倍行距的长度约为字号长度的 1.3 倍，而在 \LaTeX 中
-% 单倍行距的长度是字号长度的 1.2 倍，这意味着 Word 中的
-% 1.5 倍行距相当于 \LaTeX 中的约 $1.3 \times 1.5 / 1.2 = 1.625$
-% 倍行距。
+% 将选项传入 \cls{ctexrep} 文档类。
 %    \begin{macrocode}
 \PassOptionsToClass
   {
@@ -952,8 +1056,10 @@
     heading     = true,
     zihao       = -4,
     fontset     = none,
-    linespread  = 1.625,
-    \g_@@_to_ctexart_clist,
+    linespread  = \bool_if:NTF \g_@@_is_bachelor_bool
+      { \c_@@_ug_line_spread_fp }
+      { \c_@@_pg_line_spread_fp },
+    \g_@@_to_ctexrep_clist,
   }
   { ctexrep }
 %    \end{macrocode}
@@ -995,16 +1101,54 @@
 %
 % 使用 \pkg{geometry} 宏包设置纸张大小、页面边距以及页眉高度。
 %
+% 根据《华东师范大学本科生毕业论文（设计）格式要求》的相关要求，
+% 学士学位论文的页边距应设置为：上边距 \qty{2.5}{cm}，
+% 下边距 \qty{2.0}{cm}，左边距 \qty{3.0}{cm}，右边距 
+% \qty{2.5}{cm}。
+%
+% 根据《华东师范大学博士、硕士学位论文基本格式要求》的相关要求，
+% 博士、硕士学位论文的页边距应按 Word 格式 A4 纸（“页面设置”按
+% Word 默认值）设置。在 Word 提供的默认的页面设置中，左、右
+% 边距均为 \qty{1.25}{in}；上、下边距均为 \qty{1}{in}。
+%
+% 在 Word 的默认设置中，页眉至顶端的距离设置为 \qty{15}{mm}，
+% 页眉文字的字号为小五（即 \qty{9}{bp}），边框与正文的间距默认为 \qty{1}{bp}，。
+% 在学士学位论文中，由于上边距为 \qty{25}{mm}，于是页眉与正文的间距应为
+% \[ \qty{25}{mm}-\qty{15}{mm}-\qty{1}{bp}-1.296875\times\qty{9}{bp} = \qty{10}{mm}-\qty{12.6713575}{bp} \]
+%
+% 在博士、硕士学位论文中，由于上边距为 \qty{1}{in}，于是页眉与正文的间距应为
+% \[ \qty{1}{in}-\qty{15}{mm}-\qty{1}{bp}-1.296875\times\qty{9}{bp} = \qty{1}{in}-\qty{15}{mm}-\qty{12.6713575}{bp} \]
+%
+% 在 Word 的默认设置中，页脚至底端的距离设置为 \qty{17.5}{mm}，
+% 在学士学位论文中，由于下边距为 \qty{20}{mm}，若页脚至底端的距离仍为 \qty{17.5}{mm}，
+% 则页脚高度仅为 \qty{2.5}{mm}，不足以容纳小五号字体。本模板将页脚与正文的间距设置
+% 为 \qty{6}{mm}，这样页脚与正文之间将会留有一定的空白，也较为美观。
+%
+% 在博士、硕士学位论文中，由于下边距为 \qty{1}{in}，于是页脚与正文的间距应为 $\qty{1}{in}-\qty{17.5}{mm} $。
+%
 %    \begin{macrocode}
-\geometry
+\bool_if:NTF \g_@@_is_bachelor_bool
   {
-    paper     = a4paper,
-    top       = 2.5 cm,
-    bottom    = 2.0 cm,
-    left      = 3.0 cm,
-    right     = 2.5 cm,
-    footskip  = 6 mm,
-    headsep   = \dimexpr(9.55mm-11.7pt)
+    \geometry
+      {
+        paper     = a4paper,
+        top       = 2.5 cm,
+        bottom    = 2.0 cm,
+        left      = 3.0 cm,
+        right     = 2.5 cm,
+        headsep   = \dim_eval:n { 10 mm - 12.6713575 bp },
+        footskip  = 6 mm
+      }
+  }
+  {
+    \geometry
+      {
+        paper     = a4paper,
+        hmargin   = 1.25 in,
+        vmargin   = 1 in,
+        headsep   = \dim_eval:n { 1 in - 15 mm - 12.6713575 bp },
+        footskip  = \dim_eval:n { 1 in - 17.5 mm }
+      }
   }
 %    \end{macrocode}
 %
@@ -1025,21 +1169,37 @@
 %    \begin{macrocode}
 \keys_define:nn { ecnu / style }
   {
-    font .choices:nn =
+    font  .choices:nn =
       { lm, times, xits }
-      { \tl_set_eq:NN \g_@@_fontset_tl \l_keys_choice_tl }
+      { \tl_set_eq:NN \g_@@_fontset_tl \l_keys_choice_tl },
+    font  .value_required:n = true,
+    font  .initial:n  = lm
   }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{style/fontCJK}
+% \begin{macro}{style/font-cjk}
 % 定义中文字体选项。
 %    \begin{macrocode}
 \keys_define:nn { ecnu / style }
   {
-    fontCJK .choices:nn =
-      { fandol, mac, windows }
-      { \tl_set_eq:NN \g_@@_cjk_fontset_tl \l_keys_choice_tl }
+    font-cjk  .choices:nn =
+      { auto, fandol, mac, windows }
+      {
+        \tl_gset_eq:NN \g_@@_cjk_fontset_tl \l_keys_choice_tl
+        \tl_if_eq:NnT \g_@@_cjk_fontset_tl { auto }
+          {
+            \sys_if_platform_windows:TF
+              { \tl_gset:Nn \g_@@_cjk_fontset_tl { windows } }
+              {
+                \ctex_if_platform_macos:TF
+                  { \tl_gset:Nn \g_@@_cjk_fontset_tl { mac    } }
+                  { \tl_gset:Nn \g_@@_cjk_fontset_tl { fandol } }
+              }
+          }
+      },
+    font-cjk  .value_required:n = true,
+    font-cjk  .initial:n  = auto
   }
 %    \end{macrocode}
 % \end{macro}
@@ -1199,7 +1359,7 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_load_font_xits:}
+% \begin{macro}{\@@_load_font_lm:}
 % Latin Modern 系列西文字体。由于已作为默认字体，所以仅需额外处理数学部分。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_load_font_lm:
@@ -1334,52 +1494,107 @@
 \setcounter{secnumdepth}{5}
 %    \end{macrocode}
 %
-% 设置章节的字体大小、缩进以及前后间距。毕业论文正文层次不
-% 超过 5 层次。由于文科模板与理科模板中四级标题与五级标题的
-% 缩进不同，我们稍后再进行处理。
+% 设置本科生毕业论文章节的字体大小、缩进以及前后间距。本科生
+% 毕业论文正文层次不超过 5 层次。由于文科模板与理科模板中
+% 四级标题与五级标题的缩进不同，我们稍后再进行处理。
 %    \begin{macrocode}
-\keys_set:nn { ctex }
+\bool_if:NTF \g_@@_is_bachelor_bool
   {
-    chapter = {
-      format        = \sffamily\normalsize,
-      pagestyle     = fancy,
-      beforeskip    = 1ex,
-      afterskip     = 2.5ex plus .2ex,
-      fixskip       = true,
-      tocline       = {\CTEXifname{\protect\numberline{\CTEXthechapter}}{}#2}
-    },
-    section = {
-      format        = \sffamily\normalsize,
-      beforeskip    = 2.5ex plus 1ex minus .2ex,
-      afterskip     = 2.5ex plus .2ex,
-      fixskip       = true,
-    },
-    subsection = {
-      format        = \sffamily\normalsize,
-      beforeskip    = 2.5ex plus 1ex minus .2ex,
-      afterskip     = 2.5ex plus .2ex,
-      indent        = 1 em,
-      fixskip       = true,
-    },
-    subsubsection   = {
-      format        = \sffamily\normalsize,
-      beforeskip    = 2.5ex plus 1ex minus .2ex,
-      afterskip     = 2.5ex plus .2ex,
-      indent        = 2 em,
-      fixskip       = true,
-    },
-    paragraph = {
-      format        = \sffamily\normalsize,
-      beforeskip    = 2.5ex plus 1ex minus .2ex,
-      afterskip     = 2.5ex plus .2ex,
-      runin         = false,
-      fixskip       = true,
-    },
+    \keys_set:nn { ctex }
+      {
+        chapter = {
+          format        = \sffamily\normalsize,
+          pagestyle     = fancy,
+          beforeskip    = 1ex,
+          afterskip     = 2.5ex plus .2ex,
+          fixskip       = true,
+          tocline       = {\CTEXifname{\protect\numberline{\CTEXthechapter}}{}#2}
+        },
+        section = {
+          format        = \sffamily\normalsize,
+          beforeskip    = 2.5ex plus 1ex minus .2ex,
+          afterskip     = 2.5ex plus .2ex,
+          fixskip       = true,
+        },
+        subsection = {
+          format        = \sffamily\normalsize,
+          beforeskip    = 2.5ex plus 1ex minus .2ex,
+          afterskip     = 2.5ex plus .2ex,
+          indent        = 1 em,
+          fixskip       = true,
+        },
+        subsubsection   = {
+          format        = \sffamily\normalsize,
+          beforeskip    = 2.5ex plus 1ex minus .2ex,
+          afterskip     = 2.5ex plus .2ex,
+          indent        = 2 em,
+          fixskip       = true,
+        },
+        paragraph = {
+          format        = \sffamily\normalsize,
+          beforeskip    = 2.5ex plus 1ex minus .2ex,
+          afterskip     = 2.5ex plus .2ex,
+          runin         = false,
+          fixskip       = true,
+        },
+      }
   }
 %    \end{macrocode}
 %
+% 设置博士、硕士学位论文章节的字体大小、缩进以及前后间距。
+%    \begin{macrocode}
+  {
+    \keys_set:nn { ctex }
+      {
+        chapter = {
+          format        = \zihao {3} \sffamily \bfseries \centering,
+          pagestyle     = fancy,
+          beforeskip    = 4ex,
+          afterskip     = 6ex,
+          fixskip       = true,
+          tocline       = { \CTEXifname{\protect\numberline{\CTEXthechapter}}{}#2 }
+        },
+        section = {
+          format        = \zihao {4} \bfseries \sffamily,
+          beforeskip    = 3.5ex plus 1ex minus .2ex,
+          afterskip     = 3.5ex plus .2ex,
+          fixskip       = true,
+          tocline       = { \CTEXnumberline {#1} #2 },
+        },
+        subsection = {
+          format        = \bfseries \sffamily \normalsize,
+          beforeskip    = 3.5ex plus 1ex minus .2ex,
+          afterskip     = 3.5ex plus .2ex,
+          fixskip       = true,
+        },
+        subsubsection   = {
+          format        = \sffamily \normalsize,
+          beforeskip    = 3.5ex plus 1ex minus .2ex,
+          afterskip     = 3ex plus .2ex,
+          indent        = 0em,
+          fixskip       = true,
+        },
+        paragraph = {
+          format        = \sffamily \normalsize,
+          beforeskip    = 3.5ex plus 1ex minus .2ex,
+          afterskip     = 3ex plus .2ex,
+          indent        = 2em,
+          runin         = false,
+          fixskip       = true,
+        },
+      }
+  }
+%    \end{macrocode}
+%
+% \begin{variable}{\g_@@_numbering_tl}
+% 论文章节编号样式类型。
+%    \begin{macrocode}
+\tl_new:N \g_@@_numbering_tl
+%    \end{macrocode}
+% \end{variable}
+%
 % \begin{macro}{style/numbering}
-% 定义 \texttt{style/numbering} 选项。
+% 定义 \opt{style/numbering} 选项。
 %    \begin{macrocode}
 \keys_define:nn { ecnu / style }
   {
@@ -1392,42 +1607,81 @@
 %    \begin{macrocode}
     numbering / arabic  .code:n = 
       {
-        \keys_set:nn { ctex }
+        \tl_set:Nn \g_@@_numbering_tl { arabic }
+        \bool_if:NTF \g_@@_is_bachelor_bool
           {
-            chapter = {
-              name          = {,、},
-              number        = {\arabic{chapter}},
-              numberformat  = \rmfamily,
-              aftername     = ,
-            },
-            section = {
-              name          = {,},
-              number        = {\arabic{chapter}.\arabic{section}},
-              numberformat  = \rmfamily,
-            },
-            subsection = {
-              name          = {,},
-              number        = 
-                {\arabic{chapter}.\arabic{section}.\arabic{subsection}},
-              numberformat  = \rmfamily,
-            }, 
-            subsubsection = {
-              name          = {,},
-              number        = 
-                {
-                  \arabic{chapter}.\arabic{section}.
-                  \arabic{subsection}.\arabic{subsubsection}
+            \keys_set:nn { ctex }
+              {
+                chapter = {
+                  name          = {,、},
+                  number        = {\arabic{chapter}},
+                  numberformat  = \rmfamily,
+                  aftername     = ,
                 },
-              numberformat  = \rmfamily,
-              indent        = 2 em,
-            }, 
-            paragraph = {
-              name          = {,）},
-              number        = {\arabic{paragraph}},
-              numberformat  = \rmfamily,
-              aftername     = ,
-              indent        = 3 em,
-            }
+                section = {
+                  name          = {,},
+                  number        = {\arabic{chapter}.\arabic{section}},
+                  numberformat  = \rmfamily,
+                },
+                subsection = {
+                  name          = {,},
+                  number        = 
+                    {\arabic{chapter}.\arabic{section}.\arabic{subsection}},
+                  numberformat  = \rmfamily,
+                }, 
+                subsubsection = {
+                  name          = {,},
+                  number        = 
+                    {
+                      \arabic{chapter}.\arabic{section}.
+                      \arabic{subsection}.\arabic{subsubsection}
+                    },
+                  numberformat  = \rmfamily,
+                  indent        = 2 em,
+                }, 
+                paragraph = {
+                  name          = {,）},
+                  number        = {\arabic{paragraph}},
+                  numberformat  = \rmfamily,
+                  aftername     = ,
+                  indent        = 3 em,
+                }
+              }
+          }
+          {
+            \keys_set:nn { ctex }
+              {
+                chapter = {
+                  name          = {第,章},
+                  number        = {\chinese{chapter}},
+                },
+                section = {
+                  name          = {,},
+                  number        = {\arabic{chapter}.\arabic{section}},
+                  numberformat  = \rmfamily,
+                },
+                subsection = {
+                  name          = {,},
+                  number        = 
+                    {\arabic{chapter}.\arabic{section}.\arabic{subsection}},
+                  numberformat  = \rmfamily,
+                }, 
+                subsubsection = {
+                  name          = {,},
+                  number        = 
+                    {
+                      \arabic{chapter}.\arabic{section}.
+                      \arabic{subsection}.\arabic{subsubsection}
+                    },
+                  numberformat  = \rmfamily,
+                }, 
+                paragraph = {
+                  name          = {,）},
+                  number        = {\arabic{paragraph}},
+                  numberformat  = \rmfamily,
+                  aftername     = ,
+                }
+              }
           }
       },
 %    \end{macrocode}
@@ -1437,81 +1691,82 @@
 %    \begin{macrocode}
     numbering / chinese .code:n = 
       {
-        \keys_set:nn { ctex }
+        \tl_set:Nn \g_@@_numbering_tl { chinese }
+        \bool_if:NTF \g_@@_is_bachelor_bool
           {
-            chapter = {
-              name          = {,、},
-              number        = {\chinese{chapter}},
-              numberformat  = \sffamily,
-            },
-            section = {
-              name          = {（,）},
-              number        = {\chinese{section}},
-              numberformat  = \sffamily,
-              aftername     = ,
-            }, 
-            subsection = {
-              name          = {,.},
-              number        = {\arabic{subsection}},
-              indent        = 2 em,
-
-            }, 
-            subsubsection = {
-              name          = {（,）},
-              number        = {\arabic{subsubsection}},
-              aftername     = {\ },
-              indent        = 2 em,
-            }, 
-            paragraph = {
-              name          = {,）},
-              number        = \arabic{paragraph},
-              aftername     = ,
-              indent        = 4 em,
-            }
+            \keys_set:nn { ctex }
+              {
+                chapter = {
+                  name          = {,、},
+                  number        = {\chinese{chapter}},
+                  numberformat  = \sffamily,
+                },
+                section = {
+                  name          = {（,）},
+                  number        = {\chinese{section}},
+                  numberformat  = \sffamily,
+                  aftername     = ,
+                }, 
+                subsection = {
+                  name          = {,.},
+                  number        = {\arabic{subsection}},
+                  indent        = 2 em,
+                }, 
+                subsubsection = {
+                  name          = {（,）},
+                  number        = {\arabic{subsubsection}},
+                  aftername     = {\ },
+                  indent        = 2 em,
+                }, 
+                paragraph = {
+                  name          = {,）},
+                  number        = {\arabic{paragraph}},
+                  aftername     = ,
+                  indent        = 4 em,
+                }
+              }
           }
-      },
-%    \end{macrocode}
-%
-% 设置外文章节标题。
-%    \begin{macrocode}
-    numbering / alpha   .code:n = 
-      {
-        \keys_set:nn { ctex }
           {
-            chapter = {
-              name          = {,.},
-              number        = \Alph{chapter},
-            },
-            section = {
-              name          = {(,)},
-              number        = \Alph{section},
-              aftername     = {\ },
-            },
-            subsection = {
-              name          = {,.},
-              number        = \alph{subsection},
-              aftername     = {\ },
-              numberformat  = \rmfamily,
-            }, 
-            subsubsection = {
-              name          = {(,)},
-              number        = \alph{subsubsection},
-              aftername     = {\ },
-              numberformat  = \rmfamily,
-            }, 
-            paragraph = {
-              name          = {,)},
-              number        = \alph{paragraph},
-              aftername     = {\ },
-              numberformat  = \rmfamily,
-            },
+            \keys_set:nn { ctex }
+              {
+                chapter = {
+                  name          = {第,章},
+                  number        = {\chinese{chapter}},
+                  numberformat  = \sffamily,
+                },
+                section = {
+                  name          = {第,节},
+                  number        = {\chinese{section}},
+                  numberformat  = \sffamily,
+                }, 
+                subsection = {
+                  name          = {,、},
+                  number        = {\chinese{subsection}},
+                  numberformat  = \sffamily,
+                  aftername     = ,
+                }, 
+                subsubsection = {
+                  name          = {（,）},
+                  number        = {\chinese{subsubsection}},
+                  numberformat  = \sffamily,
+                  aftername     = ,
+                }, 
+                paragraph = {
+                  name          = {,）},
+                  number        = {\arabic{paragraph}},
+                  numberformat  = \rmfamily,
+                  aftername     = ,
+                }
+              }
           }
-      },
+        },
 %    \end{macrocode}
 %
 % 处理未知选项。
 %    \begin{macrocode}
-    numbering / unknown   .code:n = { \@@_error:n { unknown-value } }
+    numbering / unknown   .code:n = { \@@_error:n { unknown-value } },
+    numbering .value_required:n = true,
+    numbering .initial:n = arabic
   }
 \@@_msg_new:nn { unknown-value }
   { The~ value~ "\l_keys_value_tl"~ is~ unknown. }
@@ -1527,9 +1782,11 @@
       \ctexset 
         { 
           chapter / numbering = false,
-          chapter / format    = \sffamily\bfseries\centering,
-          chapter / titleformat = \large,
-          chapter / afterskip = 3.5ex plus 0.5ex,
+          chapter / format    = 
+            {
+              \sffamily\bfseries\centering
+              \bool_if:NTF \g_@@_is_bachelor_bool { \large } { \zihao{3} }
+            },
         }
       \chapter {#1}
     \group_end:
@@ -1538,9 +1795,8 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_abs_title:n}
-% 手动生成中外文摘要页的标题。这些标题的字体大小
-% 为小三，行距为单倍行距。
+% \begin{macro}{\@@_abs_title:n,\@@_abs_title:V}
+% 手动生成摘要页的中文标题。这些标题的字体大小为小三。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_abs_title:n #1
   {
@@ -1548,50 +1804,30 @@
       \ctexset 
         { 
           chapter / numbering   = false,
-          chapter / format      = \sffamily\bfseries\centering,
-          chapter / titleformat = \large,
-          chapter / beforeskip  = 2.25 bp,
-          chapter / afterskip   = 2.25 bp,
+          chapter / format      = \sffamily\bfseries\centering\large,
         }
       \chapter* {#1}
     \group_end:
   }
 \cs_generate_variant:Nn \@@_abs_title:n { V }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_absEN_title:n,\@@_absEN_title:V}
+% 手动生成摘要页的英文标题。这些标题的字体大小为小三。
+%    \begin{macrocode}
 \cs_new_protected:Npn \@@_absEN_title:n #1
   {
     \group_begin:
       \ctexset
         {
           chapter / numbering   = false,
-          chapter / format      = \rmfamily\bfseries\centering,
-          chapter / titleformat = \large,
-          chapter / beforeskip  = 2.25 bp,
-          chapter / afterskip   = 2.25 bp,
+          chapter / format      = \rmfamily\bfseries\centering\large,
         }
       \chapter* {#1}
     \group_end:
   }
 \cs_generate_variant:Nn \@@_absEN_title:n { V }
-%    \end{macrocode}
-% \end{macro}
-%
-% \begin{macro}{\@@_toc_title:n}
-% 手动生成目录页的标题。该标题的字体大小为小四，行距为单倍行距。
-%    \begin{macrocode}
-\cs_new_protected:Npn \@@_toc_title:n #1
-  {
-    \group_begin:
-      \ctexset 
-        { 
-          chapter / numbering   = false,
-          chapter / pagestyle   = empty,
-          chapter / format      = \rmfamily\bfseries\centering,
-          chapter / titleformat = \normalsize,
-        }
-      \chapter* {#1}
-    \group_end:
-  }
-\cs_generate_variant:Nn \@@_toc_title:n { V }
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1602,17 +1838,60 @@
 \fancyhf { }
 %    \end{macrocode}
 %
-% 页眉样式。页眉居中表示，页眉内容为毕业论文（设计）的题目，
-% 字体为宋体，字号为小五。
+% \begin{macro}{\@@_pg_header_content:}
+% 博士、硕士学位论文的页眉内容。
+% 
+% 根据《华东师范大学博士、硕士学位论文基本格式要求》的相关要求，
+% 博士、硕士学位论文的页眉应写明“华东师范大学博（硕）士学位论文”字样；
+% 专业学位论文应写明“华东师范大学博（硕）士专业学位论文”字样。
 %    \begin{macrocode}
-\fancyhead[C]   { \footnotesize \l_@@_info_title_tl }
+\cs_new_protected:Npn \@@_pg_header_content:
+  {
+    \prop_get:NVN \c_@@_thesis_type_prop
+      \g_@@_thesis_type_tl \l_@@_tmpa_tl
+    \c_@@_university_name_tl \l_@@_tmpa_tl
+    \tl_if_eq:NnT \l_@@_info_degree_type_tl
+      { professional } { \c_@@_professional_tl }
+    \c_@@_degree_tl \c_@@_thesis_tl
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% 本科生毕业论文的页眉样式和页脚样式。
+% 
+% 根据《本科生毕业论文（设计）模板》的相关要求，
+% 页眉的内容为毕业论文（设计）题目，格式为黑体、小五号；
+% 页脚的内容为阿拉伯数字页码，格式为小五、居中。
+%    \begin{macrocode}
+\bool_if:NTF \g_@@_is_bachelor_bool
+  {
+    \fancyhead[C]
+      {
+        \footnotesize \sffamily
+        \l_@@_info_title_trim_tl
+      }
+    \fancyfoot[C] { \footnotesize \thepage }
+  }
 %    \end{macrocode}
 %
-% 页脚样式。页脚居中表示，页脚内容为阿拉伯数字页码，字号为小五。
+% 博士、硕士学位论文的页眉样式和页脚样式。
+% 
+% 页眉按照 Word 默认值排版。
+% 双面复印时页脚的页码分别按左右侧排列。
 %    \begin{macrocode}
-\fancyfoot[C]   { \footnotesize \thepage }
+  {
+    \fancyhead[C] { \footnotesize \@@_pg_header_content: }
+    \bool_if:NTF \g_@@_twoside_bool
+      { \fancyfoot[LE,RO] { \footnotesize \thepage } }
+      { \fancyfoot[C] { \footnotesize \thepage } }
+  }
 %    \end{macrocode}
 %
+%
+% 将页眉分隔线的宽度设置为 \qty{0.5}{bp} 。
+%    \begin{macrocode}
+\RenewDocumentCommand \headrulewidth { } { 0.5 bp }
+%    \end{macrocode}
 %
 % \begin{macro}{\cleardoublepage}
 % 重定义 \tn{cleardoublepage}，使得偶数页面在没有内容时也不显示页眉页脚，见
@@ -1629,19 +1908,127 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% 由于 \pkg{ctex} 宏包使用 \texttt{heading} 选项后，会将页面格式设置为 \texttt{headings}。
-% 因此需要在调用 \pkg{ctex} 后重新将 \cs{pagestyle} 设置为 \texttt{fancy}。
+% 由于 \pkg{ctex} 宏包使用 \opt{heading} 选项后，会将页面格式设置为 |headings|。
+% 因此需要在调用 \pkg{ctex} 后重新将 \opt{pagestyle} 设置为 |fancy|。
 %    \begin{macrocode}
 \pagestyle { fancy }
 %    \end{macrocode}
 %
 % \subsection{脚注}
 %
+% 各种脚注编号样式的名称。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_define_fn_style:nn #1#2
+  { \tl_const:cn { c_@@_fn_style_ #1 _tl } {#2} }
+\clist_map_inline:nn
+  {
+    { plain       } { plain       },
+    { xits        } { xits        },
+    { libertinus  } { libertinus  },
+  }
+  { \@@_define_fn_style:nn #1 }
+%    \end{macrocode}
+%
+% \begin{variable}{\l_@@_fn_style_tl}
+% 保存当前使用的脚注编号样式。
+%    \begin{macrocode}
+\tl_new:N \l_@@_fn_style_tl
+%    \end{macrocode}
+% \end{variable}
+%
+% 提供设置脚注选项的接口。
+%    \begin{macrocode}
+\keys_define:nn { ecnu / style }
+  {
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+    footnote  .choices:nn = { plain, xits, libertinus }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+      {
+        \tl_set_eq:NN \l_@@_fn_style_tl \l_keys_choice_tl
+      },
+    footnote  .value_required:n = true,
+    footnote  .initial:n = plain
+  }
+%    \end{macrocode}
+%
+% \begin{macro}{\@@_fn_symbol_libertinus:n}
+% 使用 libertinus 字体作为编号字体。在该字体下，1至 20 为数字，
+% 21 至 46 为小写英文字母，47 至 72 为大写英文字母。
+%    \begin{macrocode}
+\cs_new:Npn \@@_fn_symbol_libertinus:n #1
+  {
+    \int_compare:nTF { #1 >= 21 }
+      {
+        \int_compare:nTF { #1 >= 47 }
+          { \@@_symbol:n { \int_eval:n { "24B6 - 47 + #1 } } }
+          { \@@_symbol:n { \int_eval:n { "24D0 - 21 + #1 } } }
+      }
+      { \@@_symbol:n { \int_eval:n { "2460 - 1 + #1 } } }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_fn_symbol_xits:n}
+% 使用 xits 字体作为编号字体。在该字体下，1 至 9 为数字，10 至 35
+% 为小写英文字母，36 至 61 为大写英文字母。
+%    \begin{macrocode}
+\cs_new:Npn \@@_fn_symbol_xits:n #1
+  {
+    \int_compare:nTF { #1 >= 10 }
+      {
+        \int_compare:nTF { #1 >= 36 }
+          { \@@_symbol:n { \int_eval:n { "24B6 - 36 + #1 } } }
+          { \@@_symbol:n { \int_eval:n { "24D0 - 10 + #1 } } }
+      }
+      { \@@_symbol:n { \int_eval:n { "2460 - 1 + #1 } } }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\thefootnote}
+% 重定义脚注编号。
+%    \begin{macrocode}
+\cs_set:Npn \thefootnote { \@@_footnote_number:N \c@footnote }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_footnote_number:N}
+% 脚注编号样式。
+%    \begin{macrocode}
+\cs_new:Npn \@@_footnote_number:N #1
+  {
+    \tl_case:NnF \l_@@_fn_style_tl
+      {
+        \c_@@_fn_style_plain_tl
+          { \int_use:N #1 }
+        \c_@@_fn_style_xits_tl
+          {
+            \fontspec { XITS-Regular.otf }
+            \@@_fn_symbol_xits:n { #1 }
+          }
+        \c_@@_fn_style_libertinus_tl
+          {
+            \fontspec { LibertinusSerif-Regular.otf }
+            \@@_fn_symbol_libertinus:n { #1 }
+          }
+      }
+      { \int_use:N #1 }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
 % \begin{macro}{\@makefntext}
-% 重定义内部脚注文字命令，使生成的脚注无缩进。
+% 在本科生毕业论文中，脚注没有缩进。故重定义内部脚注文字命令，
+% 使生成的脚注无缩进。
 %    \begin{macrocode}
 \cs_set:Npn \@makefntext #1
   {
+    \dim_set:Nn \parindent
+      { \bool_if:NTF \g_@@_is_bachelor_bool { 0 em } { 2 em } }
     \mode_leave_vertical:
     \textsuperscript{\@thefnmark} #1
   }
@@ -1660,20 +2047,22 @@
   }
 %    \end{macrocode}
 %
-% 设置英语标题的名称。
+% 设置外文标题的名称。
 %    \begin{macrocode}
 \captionsetup [ figure ] [ bi-second ] { name=Figure }
 \captionsetup [ table  ] [ bi-second ] { name=Table  }
 %    \end{macrocode}
-%
 % 
 % \begin{macro}{\@makefntext}
-% 重定义图表编号。
+% 在本科生毕业论文中，图表的编号格式需要重新定义。
 %    \begin{macrocode}
-\cs_set:Npn \thefigure
-  {  \thechapter - \int_to_arabic:n { \c@figure } }
-\cs_set:Npn \thetable
-  {  \thechapter - \int_to_arabic:n { \c@table  } }
+\bool_if:NT \g_@@_is_bachelor_bool
+  {
+    \cs_set:Npn \thefigure
+      {  \thechapter - \int_to_arabic:n { \c@figure } }
+    \cs_set:Npn \thetable
+      {  \thechapter - \int_to_arabic:n { \c@table  } }
+  }
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1682,33 +2071,64 @@
 % \subsubsection{信息录入}
 %
 % \begin{variable}{\l_@@_info_title_tl,
-%   \l_@@_info_titleEN_tl,
+%   \l_@@_info_title_en_tl,
 %   \l_@@_info_author_tl,
-%   \l_@@_info_studentID_tl,
+%   \l_@@_info_author_en_tl,
+%   \l_@@_info_student_id_tl,
 %   \l_@@_info_department_tl,
+%   \l_@@_info_department_en_tl,
 %   \l_@@_info_major_tl,
+%   \l_@@_info_major_en_tl,
 %   \l_@@_info_supervisor_tl,
-%   \l_@@_info_academicTitle_tl,
+%   \l_@@_info_supervisor_en_tl,
+%   \l_@@_info_academic_title_tl,
 %   \l_@@_info_keywords_clist,
-%   \l_@@_info_keywordsEN_clist}
+%   \l_@@_info_keywords_en_clist}
 % 封面所需的一些字段（中外文标题、作者姓名、学号、院系、专业、
 % 导师姓名、导师职称、中外文关键词）。
 %    \begin{macrocode}
 \clist_map_inline:nn
   {
-    title, titleEN, author, studentID, department, major, supervisor
-    academicTitle
+    title, title_en,
+    author, author_en,
+    student_id,
+    department, department_en,
+    major, major_en,
+    supervisor, supervisor_en,
+    field, field_en,
+    academic_title
   }
   { \tl_new:c { l_@@_info_ #1 _tl } }
 \clist_new:N \l_@@_info_keywords_clist
-\clist_new:N \l_@@_info_keywordsEN_clist
+\clist_new:N \l_@@_info_keywords_en_clist
+%    \end{macrocode}
+% \end{variable}
+%
+% \begin{variable}{\l_@@_info_degree_type_tl}
+% 博士、硕士学位论文中的学位类型。
+%    \begin{macrocode}
+\tl_new:N \l_@@_info_degree_type_tl
+%    \end{macrocode}
+% \end{variable}
+%
+% \begin{variable}{\l_@@_info_cic_index_tl}
+% 博士、硕士学位论文中的中图分类号。
+%    \begin{macrocode}
+\tl_new:N \l_@@_info_cic_index_tl
+%    \end{macrocode}
+% \end{variable}
+%
+% \begin{variable}{\l_@@_info_secret_level_tl}
+% 博士、硕士学位论文中的密级。
+%    \begin{macrocode}
+\tl_new:N \l_@@_info_secret_level_tl
 %    \end{macrocode}
 % \end{variable}
 %
 % \begin{variable}{\l_@@_info_year_int,
 %   \l_@@_info_month_int,
 %   \l_@@_info_graduation_year_int}
-% 论文完成年份、月份与毕业年份。
+% 论文完成年份、月份与毕业年份，以及博士、硕士学位论文中的论文完成日期。
 %    \begin{macrocode}
 \int_new:N   \l_@@_info_year_int
 \int_new:N   \l_@@_info_month_int
@@ -1716,68 +2136,131 @@
 %    \end{macrocode}
 % \end{variable}
 %
+% \begin{variable}{\l_@@_info_title_trim_tl,\l_@@_info_title_en_trim_tl}
+% 去除空格和换行后的论文标题。
+%    \begin{macrocode}
+\tl_new:N \l_@@_info_title_trim_tl
+\tl_new:N \l_@@_info_title_en_trim_tl
+%    \end{macrocode}
+% \end{variable}
 %
-% 定义 \texttt{ecnu/info} 键值类。
+% \begin{macro}{\@@_set_title:nn}
+% 设置论文标题，并删除其中的换行和汉字间的空格。
+%    \begin{macrocode}
+\cs_generate_variant:Nn \regex_replace_all:nnN { nnc }
+\cs_new_protected:Npn \@@_set_title:nn #1#2
+  {
+    \tl_set:cn { l_@@_info_ #1 _tl      } {#2}
+    \tl_set:cn { l_@@_info_ #1 _trim_tl } {#2}
+    \tl_replace_all:cnn { l_@@_info_ #1 _trim_tl } { \\ } { ~ }
+    \regex_replace_all:nnc
+      { \s+ } { \ }
+      { l_@@_info_ #1 _trim_tl }
+    \regex_replace_all:nnc
+      { ([\x{4e00}-\x{9fff}]) \s+ ([\x{4e00}-\x{9fff}]) } { \1 \2 }
+      { l_@@_info_ #1 _trim_tl }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% 定义 \opt{ecnu/info} 键值类。
 %    \begin{macrocode}
 \keys_define:nn { ecnu / info }
   {
 %    \end{macrocode}
 %
-% \begin{macro}{info/title,info/titleEN}
-% 论文中外文标题。
+% \begin{macro}{info/degree}
+% 博士、硕士学位论文的学位类型。
 %    \begin{macrocode}
-    title           .tl_set:N     = \l_@@_info_title_tl,
-    titleEN         .tl_set:N     = \l_@@_info_titleEN_tl,
+    degree          .choices:nn   =
+      { academic, professional }
+      { \tl_set_eq:NN \l_@@_info_degree_type_tl \l_keys_choice_tl },
+    degree          .value_required:n = true,
+    degree          .initial:n = academic,
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{info/author}
+% \begin{macro}{info/clc}
+% 博士、硕士学位论文的中图分类号。
+%    \begin{macrocode}
+    clc             .tl_set:N     = \l_@@_info_cic_index_tl,
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{info/secret-level}
+% 博士、硕士学位论文的密级。
+%    \begin{macrocode}
+    secret-level    .tl_set:N     = \l_@@_info_secret_level_tl,
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{info/title,info/title-en}
+% 论文的中外文标题。
+%    \begin{macrocode}
+    title           .code:n       = { \@@_set_title:nn { title    } {#1} },
+    title-en        .code:n       = { \@@_set_title:nn { title_en } {#1} },
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{info/author,info/author-en}
 % 论文作者姓名。
 %    \begin{macrocode}
     author          .tl_set:N     = \l_@@_info_author_tl,
+    author-en       .tl_set:N     = \l_@@_info_author_en_tl,
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{info/studentID}
+% \begin{macro}{info/student-id}
 % 论文作者学号。
 %    \begin{macrocode}
-    studentID       .tl_set:N     = \l_@@_info_studentID_tl,
+    student-id      .tl_set:N     = \l_@@_info_student_id_tl,
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{info/department}
+% \begin{macro}{info/department,info/department-en}
 % 论文作者所在院系。
 %    \begin{macrocode}
     department      .tl_set:N     = \l_@@_info_department_tl,
+    department-en   .tl_set:N     = \l_@@_info_department_en_tl,
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{info/major}
+% \begin{macro}{info/major,info/major-en}
 % 论文作者就读专业。
 %    \begin{macrocode}
     major           .tl_set:N     = \l_@@_info_major_tl,
+    major-en        .tl_set:N     = \l_@@_info_major_en_tl,
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{info/supervisor}
+% \begin{macro}{info/field,info/field-en}
+% 博士、硕士学位论文的研究方向或专业学位领域。
+%    \begin{macrocode}
+    field           .tl_set:N     = \l_@@_info_field_tl,
+    field-en        .tl_set:N     = \l_@@_info_field_en_tl,
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{info/supervisor,info/supervisor-en}
 % 论文指导教师姓名。
 %    \begin{macrocode}
     supervisor      .tl_set:N     = \l_@@_info_supervisor_tl,
+    supervisor-en   .tl_set:N     = \l_@@_info_supervisor_en_tl,
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{info/academicTitle}
-% 论文指导教师职称。
+% \begin{macro}{info/academic-title}
+% 本科生毕业论文的指导教师职称。
 %    \begin{macrocode}
-    academicTitle   .tl_set:N     = \l_@@_info_academicTitle_tl,
+    academic-title   .tl_set:N     = \l_@@_info_academic_title_tl,
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{info/keywords,info/keywordsEN}
+% \begin{macro}{info/keywords,info/keywords-en}
 % 论文中外文关键词。
 %    \begin{macrocode}
     keywords        .clist_set:N  = \l_@@_info_keywords_clist,
-    keywordsEN      .clist_set:N  = \l_@@_info_keywordsEN_clist,
+    keywords-en     .clist_set:N  = \l_@@_info_keywords_en_clist,
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1789,10 +2272,10 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{info/graduationYear}
-% 论文作者毕业年份。
+% \begin{macro}{info/graduation-year}
+% 本科生毕业论文的作者毕业年份。
 %    \begin{macrocode}
-    graduationYear  .int_set:N    = \l_@@_info_graduation_year_int,
+    graduation-year .int_set:N    = \l_@@_info_graduation_year_int,
   }
 %    \end{macrocode}
 % \end{macro}
@@ -1802,10 +2285,10 @@
 %    \begin{macrocode}
 \NewDocumentCommand \theyear { } 
   {
-    \int_compare:nNnTF { \l__ecnu_info_year_int } = { \c_zero_int } 
-      { \int_set_eq:NN \l__ecnu_info_year_int \c_sys_year_int } 
+    \int_compare:nNnTF { \l_@@_info_year_int } = { \c_zero_int } 
+      { \int_set_eq:NN \l_@@_info_year_int \c_sys_year_int } 
       { }
-    \int_use:N \l__ecnu_info_year_int
+    \int_use:N \l_@@_info_year_int
   }
 %    \end{macrocode}
 % \end{macro}
@@ -1815,35 +2298,35 @@
 %    \begin{macrocode}
 \NewDocumentCommand \themonth { } 
   {
-    \int_compare:nNnTF { \l__ecnu_info_month_int } = { \c_zero_int } 
-      { \int_set_eq:NN \l__ecnu_info_month_int \c_sys_month_int }
+    \int_compare:nNnTF { \l_@@_info_month_int } = { \c_zero_int } 
+      { \int_set_eq:NN \l_@@_info_month_int \c_sys_month_int }
       { }
-    \int_use:N \l__ecnu_info_month_int
+    \int_use:N \l_@@_info_month_int
   }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\graduationYear}
-% 记录论文作者毕业届数。若 \texttt{info/graduationYear} 未设置，则使用
-% \texttt{info/year} 的值；若\texttt{info/year} 的值亦未设置，则使用
+% \begin{macro}{\graduationyear}
+% 记录论文作者毕业届数。若 \opt{info/graduation-year} 未设置，则使用
+% \opt{info/year} 的值；若\opt{info/year} 的值亦未设置，则使用
 % 当前年份。
 %    \begin{macrocode}
-\NewDocumentCommand \graduationYear { } 
+\NewDocumentCommand \graduationyear { } 
   {
-    \int_compare:nNnTF { \l__ecnu_info_graduation_year_int } = { \c_zero_int } 
+    \int_compare:nNnTF { \l_@@_info_graduation_year_int } = { \c_zero_int } 
       {
-        \int_compare:nNnTF { \l__ecnu_info_year_int } = { \c_zero_int } 
+        \int_compare:nNnTF { \l_@@_info_year_int } = { \c_zero_int } 
           {
-            \int_set_eq:NN  \l__ecnu_info_graduation_year_int 
+            \int_set_eq:NN  \l_@@_info_graduation_year_int 
                             \c_sys_year_int
           } 
           {
-            \int_set_eq:NN  \l__ecnu_info_graduation_year_int 
-                            \l__ecnu_info_year_int
+            \int_set_eq:NN  \l_@@_info_graduation_year_int 
+                            \l_@@_info_year_int
           }
       }
       { }
-    \int_use:N  \l__ecnu_info_graduation_year_int
+    \int_use:N  \l_@@_info_graduation_year_int
   }
 %    \end{macrocode}
 % \end{macro}
@@ -1856,8 +2339,8 @@
 %   \item 宽度
 %   \item 内容
 % \end{arguments}
-% 利用 \cs{tl_map_inline:nn} 在字符间插入 \texttt{hfil}；紧随其后的 \tn{unskip}
-% 将会去掉最后一个 \texttt{hfil}。
+% 利用 \cs{tl_map_inline:nn} 在字符间插入 |hfil|；紧随其后的 \tn{unskip}
+% 将会去掉最后一个 |hfil|。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_spread_box:nn #1#2
   {
@@ -1880,11 +2363,31 @@
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{\@@_right_box:nn,\@@_right_box:no}
+% 右对齐的水平盒子。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_right_box:nn #1#2
+  {
+    \mode_leave_vertical:
+    \hbox_to_wd:nn {#1} { \hfil #2 }
+  }
+\cs_generate_variant:Nn \@@_right_box:nn { no }
+%    \end{macrocode}
+% \end{macro}
+%
 % \begin{macro}{\@@_fixed_width_box:nn}
 % 限宽盒子（允许换行）。
 %    \begin{macrocode}
 \cs_new:Npn \@@_fixed_width_box:nn #1#2
   { \parbox {#1} {#2} }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_fixed_width_top_align_box:nn}
+% 顶端对齐的限宽盒子（允许换行）。
+%    \begin{macrocode}
+\cs_new:Npn \@@_fixed_width_align_top_box:nn #1#2
+  { \parbox [t] {#1} {#2} }
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1897,9 +2400,9 @@
 % \end{macro}
 %
 % \begin{macro}{\@@_get_text_width:Nn,\@@_get_text_width:NV}
-% 获取文本宽度，并存入 \texttt{dim} 型变量。
+% 获取文本宽度，并存入 |dim| 型变量。
 % \begin{arguments}
-%   \item \texttt{dim} 型变量
+%   \item |dim| 型变量
 %   \item 内容
 % \end{arguments}
 %    \begin{macrocode}
@@ -1922,79 +2425,505 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \subsubsection{预设文字}
-% 
-% 模板中的一些预设文字，用于封面、声明页等部分。
-%    \begin{macrocode}
-\tl_const:Nn \c_@@_info_name_tl          { 姓名      }
-\tl_const:Nn \c_@@_info_studentID_tl     { 学号      }
-\tl_const:Nn \c_@@_info_department_tl    { 学院      }
-\tl_const:Nn \c_@@_info_major_tl         { 专业      }
-\tl_const:Nn \c_@@_info_supervisor_tl    { 指导教师   }
-\tl_const:Nn \c_@@_info_academicTitle_tl { 职称      }
-\tl_const:Nn \c_@@_schoolNum_tl          { 学校代码   }
-\tl_const:Nn \c_@@_year_tl               { 年 }
-\tl_const:Nn \c_@@_month_tl              { 月 }
-\tl_const:Nn \c_@@_day_tl                { 日 }
-\tl_const:Nn \c_@@_thesisInfo_tl         { 届本科生学士学位论文 }
-\tl_const:Nn \c_@@_date_tl               { 日期 }
-\tl_const:Nn \c_@@_orig_sign_tl          { 承诺人签名 }
-\tl_const:Nn \c_@@_author_sign_tl        { 作者签名 }
-\tl_const:Nn \c_@@_supervisor_sign_tl    { 导师签名 }
-\tl_const:Nn \c_@@_name_orig_tl  { 华东师范大学学位论文诚信承诺 }
-\tl_const:Nn \c_@@_name_auth_tl  { 华东师范大学学位论文使用授权说明 }
-\tl_const:Nn \c_@@_orig_text_tl
-  {
-    \par
-    本毕业论文是本人在导师指导下独立完成的，内容真实、可靠。本人在撰写
-    毕业论文过程中不存在请人代写、抄袭或者剽窃他人作品、伪造或者篡改数据
-    以及其他学位论文作假行为。\par
-    本人清楚知道学位论文作假行为将会导致行为人受到不授予/撤销学位、开除
-    学籍等处理（处分）决定。本人如果被查证在撰写本毕业论文过程中存在学位
-    论文作假行为，愿意接受学校依法作出的处理（处分）决定。
-  }
-\tl_const:Nn \c_@@_auth_text_tl
-  {
-    \par
-    本论文的研究成果归华东师范大学所有，本论文的研究内容不得以其它单位的
-    名义发表。本学位论文作者和指导教师完全了解华东师范大学有关保留、使用
-    学位论文的规定，即：学校有权保留并向国家有关部门或机构送交论文的复印
-    件和电子版，允许论文被查阅和借阅；本人授权华东师范大学可以将论文的全部
-    或部分内容编入有关数据库进行检索、交流，可以采用影印、缩印或其他复制
-    手段保存论文和汇编本学位论文。\par
-    保密的毕业论文（设计）在解密后应遵守此规定。
-  }
-\tl_const:Nn \c_@@_name_toc_tl          { 目录 }
-\tl_const:Nn \c_@@_name_abstract_tl     { 摘要 }
-\tl_const:Nn \c_@@_name_abstractEN_tl   { Abstract }
-\tl_const:Nn \c_@@_name_keywords_tl     { 关键词 }
-\tl_const:Nn \c_@@_name_keywordsEN_tl   { Keywords }
-\tl_const:Nn \c_@@_colon_tl             { ： }
-\tl_const:Nn \c_@@_name_appendix_tl  { 附录 }
-\tl_const:Nn \c_@@_name_acknowledgement_tl  { 致谢 }
-%    \end{macrocode}
-%
 % \subsubsection{封面各部件}
 %
-% \begin{macro}{\@@_cover_id:}
-% 封面首行信息部件，包括毕业届别以及学校代码。
+% \begin{macro}{\ULthickness}
+% 设置 \pkg{xeCJKfntef} 宏包所依赖的 \pkg{ulem} 宏包的下划线宽度。
+% 在本科生毕业论文中，下划线宽度一般为 \qty{1}{pt}；在博士、硕士学位
+% 论文中，下划线宽度一般为 \qty{0.5}{pt} 。
 %    \begin{macrocode}
-\cs_new_protected:Npn \@@_cover_id:
+\bool_if:NF \g_@@_is_bachelor_bool
+  { \RenewDocumentCommand \ULthickness { } { 0.5 pt } }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_cover_ug_thesis_info:,\@@_cover_pg_thesis_info:,\@@_cover_pg_thesis_info_en:}
+% 封面左上角首行的论文类型信息。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_cover_ug_thesis_info:
+  {
+    \prop_get:NVN \c_@@_thesis_type_prop
+      \g_@@_thesis_type_tl \l_@@_tmpa_tl
+    \graduationyear \c_@@_graduation_year_tl
+    \c_@@_undergraduate_tl \l_@@_tmpa_tl
+    \c_@@_degree_tl \c_@@_thesis_tl
+  }
+\cs_new_protected:Npn \@@_cover_pg_thesis_info:
+  {
+    \prop_get:NVN \c_@@_thesis_type_prop
+      \g_@@_thesis_type_tl \l_@@_tmpa_tl
+    \graduationyear \c_@@_graduation_year_tl
+    \tl_if_eq:NnTF \l_@@_info_degree_type_tl { professional }
+      {
+        \l_@@_tmpa_tl \c_@@_professional_tl \c_@@_degree_tl
+        \c_@@_postgraduate_tl 
+      }
+      { \c_@@_postgraduate_tl \l_@@_tmpa_tl }
+    \c_@@_degree_tl \c_@@_thesis_tl
+  }
+\cs_new_protected:Npn \@@_cover_pg_thesis_info_en:
+  {
+    \tl_if_eq:NnT \g_@@_thesis_type_tl { master }
+      {
+        \tl_if_eq:NnTF \l_@@_info_degree_type_tl { professional }
+          { \c_@@_thesis_en_tl } { \c_@@_dissertation_en_tl }
+        \c_space_token \c_@@_for_en_tl \c_space_token
+        \c_@@_masters_en_tl \c_space_token \c_@@_degree_en_tl
+        \tl_if_eq:NnT \l_@@_info_degree_type_tl { professional }
+          { \c_space_token ( \c_@@_professional_en_tl ) }
+      }
+    \tl_if_eq:NnT \g_@@_thesis_type_tl { doctor }
+      {
+        \c_@@_dissertation_en_tl \c_space_token
+        \c_@@_for_en_tl \c_space_token
+        \c_@@_doctoral_en_tl \c_space_token \c_@@_degree_en_tl
+        \tl_if_eq:NnT \l_@@_info_degree_type_tl { professional }
+          { \c_space_token ( \c_@@_professional_en_tl ) }
+      }
+    \c_space_token in \c_space_token \graduationyear
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_cover_ug_school_num:,\@@_cover_pg_school_num:,\@@_cover_pg_school_num_en:}
+% 封面顶部的学校代码信息。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_cover_ug_school_num:
+  {
+    \c_@@_university_code_tl \c_@@_colon_tl
+    \underline{\c_@@_university_code_val_tl}
+  }
+\cs_new_protected:Npn \@@_cover_pg_school_num:
+  {
+    \@@_spread_box:no { 4 em } { \c_@@_university_code_tl }
+    \c_@@_colon_tl
+    \uline{\@@_center_box:nn { 3 cm } { \c_@@_university_code_val_tl }}
+  }
+\cs_new_protected:Npn \@@_cover_pg_school_num_en:
+  {
+    \@@_get_text_width:Nn \l_@@_tmpa_dim
+      {
+        \zihao {5}
+        \c_@@_university_code_en_tl \c_@@_colon_en_tl \c_space_token
+      }
+    \@@_fixed_width_box:nn { \l_@@_tmpa_dim }
+      { \c_@@_university_code_en_tl \c_@@_colon_en_tl \c_space_token }
+    \uline{\@@_center_box:nn { 3 cm } { \c_@@_university_code_val_tl }}
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_cover_pg_student_id:,\@@_cover_pg_student_id_en:}
+% 博士、硕士学位论文中封面顶部的学号信息。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_cover_pg_student_id:
+  {
+    \@@_spread_box:no { 4 em } { \c_@@_info_student_id_tl }
+    \c_@@_colon_tl
+    \uline{ \@@_center_box:nn { 3 cm } { \l_@@_info_student_id_tl } }
+  }
+\cs_new_protected:Npn \@@_cover_pg_student_id_en:
+  {
+    \@@_get_text_width:Nn \l_@@_tmpa_dim
+      {
+        \zihao {5} \c_@@_university_code_en_tl
+        \c_@@_colon_en_tl \c_space_token
+      }
+    \@@_fixed_width_box:nn { \l_@@_tmpa_dim }
+      { \c_@@_info_student_id_en_tl \c_@@_colon_en_tl \c_space_token }
+    \uline{ \@@_center_box:nn { 3 cm } { \l_@@_info_student_id_tl } }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_cover_pg_cic_index:}
+% 博士、硕士学位论文中封面顶部的中图分类号信息。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_cover_pg_cic_index:
+  {
+    \@@_spread_box:no { 4 em } { \c_@@_cic_index_tl } \c_@@_colon_tl
+    \uline{ \@@_center_box:nn { 3 cm } { \l_@@_info_cic_index_tl } }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_cover_pg_secret_level:}
+% 博士、硕士学位论文中封面顶部的密级信息。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_cover_pg_secret_level:
+  {
+    \@@_spread_box:no { 4 em } { \c_@@_secret_level_tl  } \c_@@_colon_tl
+    \uline{ \@@_center_box:nn { 3 cm } { \l_@@_info_secret_level_tl } }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_cover_ug_top:,\@@_cover_pg_top:,\@@_cover_pg_top_en:}
+% 封面顶部信息部件。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_cover_ug_top:
   {
     \@@_fixed_width_box:nn { \textwidth }
       {
-        \bfseries\zihao { 4 }
-        \graduationYear \c_@@_thesisInfo_tl \hfill
-        \c_@@_schoolNum_tl \c_@@_colon_tl \underline{10269}
+        \bfseries \zihao { 4 }
+        \@@_cover_ug_thesis_info: \hfill \@@_cover_ug_school_num:
+      }
+  }
+\cs_new_protected:Npn \@@_cover_pg_top:
+  {
+    \@@_fixed_width_box:nn { \textwidth }
+      {
+        \@@_cover_pg_thesis_info:
+        \skip_vertical:n { 0 em }
+        \@@_cover_pg_cic_index: \hfill \@@_cover_pg_school_num:
+        \skip_vertical:n { 0 em }
+        \@@_cover_pg_secret_level: \hfill \@@_cover_pg_student_id:
+      }
+  }
+\cs_new_protected:Npn \@@_cover_pg_top_en:
+  {
+    \@@_fixed_width_box:nn { \textwidth }
+      {
+        \@@_cover_pg_thesis_info_en:
+        \skip_vertical:n { 0 em }
+        \hbox:n {} \mode_leave_vertical:
+        \hfill \@@_cover_pg_school_num_en:
+        \skip_vertical:n { 0 em }
+        \hfill \@@_cover_pg_student_id_en:
       }
   }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_orig_sign_area:}
-% 原创性声明。
+% \begin{macro}{\@@_pg_title_fixed_ht_box:nnn}
+% 博士、硕士学位论文封面中外文标题盒子（带下划线）。
+%
+% 由于 \LaTeXe{} 没有提供一个对长文本进行自动换行后为每一行加上下划线且居中的实现，故
+% 此处尝试使用 \TeX{} 提供的 \cs{vsplit} 原语，通过手动换行来实现这一效果。
 %    \begin{macrocode}
-\cs_new_protected:Npn \@@_orig_sign_area:
+\cs_new_protected:Npn \@@_pg_title_fixed_ht_box:nnn #1#2#3
+  {
+    \vbox_top:n
+      {
+%    \end{macrocode}
+%
+% 先将标题内容放入一个竖直盒子中进行预排版。值得注意的是，此处需设置
+% \cs{splittopskip} 使 \TeX{} 在 \cs{vsplit} 产生的盒子的头部插入一个粘连，
+% 从而使竖直盒子的顶部不会触发 Underfull 警告。
+%    \begin{macrocode}
+        \tex_splittopskip:D 0pt plus 1fil
+        \vbox_set:Nn \l_@@_tmpa_box
+          {
+            \tex_vskip:D 0pt plus 1fil
+            \tex_hsize:D #1 \centering #3
+          }
+%    \end{macrocode}
+%
+% 随后，使用 \cs{vsplit} 命令从先前用于预排版的竖直盒子中竖直切割出每一行，
+% 并将其存入一个新的竖直盒子。
+%    \begin{macrocode}
+        \bool_until_do:nn { \box_if_empty_p:N \l_@@_tmpa_box }
+          {
+            \vbox_set_split_to_ht:NNn \l_@@_tmpb_box \l_@@_tmpa_box
+              { \baselineskip }
+%    \end{macrocode}
+%
+% 对于切割所得到的每个竖直盒子，我们将该盒子的内容重新封装至一个新的给定高度的、
+% 基线在盒子顶部的竖直盒子中。需注意的是，为了实现与普通文字相同的效果，我们需
+% 在该盒子顶部填充一个垂直间距 \cs{vfil} 以将文字置于盒子底部。另一方面，我们
+% 还需要设置盒子的深度（基线到线或点的顶部的距离）。参考 \pkg{xeCJKfntef} 宏包
+% 对深度的设置，我们将每个盒子的深度设置为 \qty{0.2}{em}。
+%    \begin{macrocode}
+            \vbox_set_to_ht:Nnn \l_@@_tmpc_box { #2 }
+              { \tex_vfil:D \vbox_unpack:N \l_@@_tmpb_box }
+            \box_set_dp:Nn \l_@@_tmpc_box { 0.2 em }
+            \box_use:N \l_@@_tmpc_box
+%    \end{macrocode}
+%
+% 最后，在每一行的底部加上一条长度给定、宽度为 \qty{0.5}{pt} 的线段作为下划线。
+%    \begin{macrocode}
+            \tex_hrule:D width #1 height 0.5pt
+          }
+      }
+  }
+%    \end{macrocode}
+%
+%    \begin{macrocode}
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_cover_pg_title:,\@@_cover_pg_title_en:}
+% 博士、硕士学位论文封面中外文标题部件。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_cover_pg_title:
+  {
+    \@@_get_text_width:Nn \l_@@_tmpa_dim 
+      { \bfseries \zihao {1} \c_@@_thesis_title_tl \c_@@_colon_tl }
+    \group_begin:
+      \bfseries \c_@@_thesis_title_tl \c_@@_colon_tl
+    \group_end:
+    \@@_pg_title_fixed_ht_box:nnn { 9.8 cm } { 1.8 cm }
+      { \l_@@_info_title_tl }
+  }
+\cs_new_protected:Npn \@@_cover_pg_title_en:
+  {
+    \@@_get_text_width:Nn \l_@@_tmpa_dim 
+      {
+        \bfseries \zihao {3} \c_@@_thesis_title_en_tl
+        \c_@@_colon_en_tl \c_space_token
+      }
+    \group_begin:
+      \c_@@_thesis_title_en_tl \c_@@_colon_en_tl \c_space_token
+    \group_end:
+    \@@_pg_title_fixed_ht_box:nnn { 12 cm } { 1.2 cm }
+      { \l_@@_info_title_en_tl }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_cover_ug_info:}
+% 本科生毕业论文封面中的个人信息（姓名、学号、院系、专业、导师及其职称）。
+% 在模板中，个人信息的行距被设置为四号字体、 1.5 倍行距。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_cover_ug_info:
+  {
+    \begin{minipage} [ c ] { \textwidth }
+      \centering \zihao { 4 }
+      \clist_set:Nx \l_@@_tmpa_clist
+        {
+          \c_@@_info_name_tl,
+          \c_@@_info_student_id_tl,
+          \c_@@_info_department_tl,
+          \c_@@_info_major_tl,
+          \c_@@_info_supervisor_tl,
+          \c_@@_info_academic_title_tl
+        }
+      \clist_set:Nx \l_@@_tmpb_clist
+        {
+          { \l_@@_info_author_tl        },
+          { \l_@@_info_student_id_tl     },
+          { \l_@@_info_department_tl    },
+          { \l_@@_info_major_tl         },
+          { \l_@@_info_supervisor_tl    },
+          { \l_@@_info_academic_title_tl }
+        }
+      \dim_set:Nn \l_@@_tmpb_dim { 6 cm }
+      \clist_map_inline:Nn \l_@@_tmpb_clist
+        {
+          \@@_get_text_width:Nn \l_@@_tmpa_dim { \bfseries ##1 }
+          \dim_set:Nn \l_@@_tmpb_dim
+            { \dim_max:nn { \l_@@_tmpb_dim } { \l_@@_tmpa_dim } }
+        }
+      \bool_until_do:nn
+        { \clist_if_empty_p:N \l_@@_tmpa_clist }
+        {
+          \bfseries
+          \clist_pop:NN \l_@@_tmpa_clist \l_@@_tmpa_tl
+          \clist_pop:NN \l_@@_tmpb_clist \l_@@_tmpb_tl
+          \@@_spread_box:no { 4 em } { \l_@@_tmpa_tl }
+          \c_@@_colon_tl
+          \underline{
+            \@@_center_box:nn { \l_@@_tmpb_dim } { \l_@@_tmpb_tl }
+          }
+          \skip_vertical:n { 0 ex }
+        }
+    \end{minipage}
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_cover_pg_info:,\@@_cover_pg_info_en:}
+% 博士、硕士学位论文封面中的个人信息（姓名、学号、院系、专业、导师）。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_cover_pg_info:
+  {
+    \begin{minipage} [ c ] { \textwidth }
+      \centering \zihao { 4 }
+      \tl_if_eq:NnTF \l_@@_info_degree_type_tl { professional }
+        {
+          \clist_set:Nx \l_@@_tmpa_clist
+            {
+              \c_@@_info_school_tl,
+              \c_@@_info_major_professional_tl,
+              \c_@@_info_field_professional_tl,
+              \c_@@_info_candidate_tl,
+              \c_@@_info_supervisor_tl,
+            }
+        }
+        {
+          \clist_set:Nx \l_@@_tmpa_clist
+            {
+              \c_@@_info_school_tl,
+              \c_@@_info_major_tl,
+              \c_@@_info_field_tl,
+              \c_@@_info_candidate_tl,
+              \c_@@_info_supervisor_tl,
+            }
+        }
+      \clist_set:Nx \l_@@_tmpb_clist
+        {
+          { \l_@@_info_department_tl    },
+          { \l_@@_info_major_tl         },
+          { \l_@@_info_field_tl         },
+          { \l_@@_info_author_tl        },
+          { \l_@@_info_supervisor_tl    },
+        }
+      \dim_set:Nn \l_@@_tmpb_dim { 10 em }
+      \clist_map_inline:Nn \l_@@_tmpb_clist
+        {
+          \@@_get_text_width:Nn \l_@@_tmpa_dim { \bfseries ##1 }
+          \dim_set:Nn \l_@@_tmpb_dim
+            { \dim_max:nn { \l_@@_tmpb_dim } { \l_@@_tmpa_dim } }
+        }
+      \bool_until_do:nn
+        { \clist_if_empty_p:N \l_@@_tmpa_clist }
+        {
+          \bfseries
+          \clist_pop:NN \l_@@_tmpa_clist \l_@@_tmpa_tl
+          \clist_pop:NN \l_@@_tmpb_clist \l_@@_tmpb_tl
+          \tl_if_eq:NnTF \l_@@_info_degree_type_tl { professional }
+            { \@@_spread_box:no { 6 em } { \l_@@_tmpa_tl } }
+            { \@@_spread_box:no { 5 em } { \l_@@_tmpa_tl } }
+          \c_@@_colon_tl
+          \uline{\@@_center_box:nn { \l_@@_tmpb_dim } { \l_@@_tmpb_tl }}
+          \skip_vertical:n { 0 ex }
+        }
+    \end{minipage}
+  }
+\cs_new_protected:Npn \@@_cover_pg_info_en:
+  {
+    \begin{minipage} [ c ] { \textwidth }
+      \centering \zihao { -4 }
+      \tl_if_eq:NnTF \l_@@_info_degree_type_tl { professional }
+        {
+          \clist_set:Nx \l_@@_tmpa_clist
+            {
+              \c_@@_info_school_en_tl,
+              \c_@@_info_major_pro_en_tl,
+              \c_@@_info_field_pro_en_tl,
+              \c_@@_info_candidate_en_tl,
+              \c_@@_info_supervisor_en_tl,
+            }
+        }
+        {
+          \clist_set:Nx \l_@@_tmpa_clist
+            {
+              \c_@@_info_school_en_tl,
+              \c_@@_info_major_en_tl,
+              \c_@@_info_field_en_tl,
+              \c_@@_info_candidate_en_tl,
+              \c_@@_info_supervisor_en_tl,
+            }
+        }
+      \clist_set:Nx \l_@@_tmpb_clist
+        {
+          { \l_@@_info_department_en_tl    },
+          { \l_@@_info_major_en_tl         },
+          { \l_@@_info_field_en_tl         },
+          { \l_@@_info_author_en_tl        },
+          { \l_@@_info_supervisor_en_tl    },
+        }
+      \dim_set:Nn \l_@@_tmpb_dim { 10 em }
+      \dim_set:Nn \l_@@_tmpc_dim { 1 em }
+      \clist_map_inline:Nn \l_@@_tmpb_clist
+        {
+          \@@_get_text_width:Nn \l_@@_tmpa_dim { \bfseries \zihao{-4} ##1 }
+          \dim_set:Nn \l_@@_tmpb_dim
+            { \dim_max:nn { \l_@@_tmpb_dim } { \l_@@_tmpa_dim } }
+        }
+      \clist_map_inline:Nn \l_@@_tmpa_clist
+        {
+          \@@_get_text_width:Nn \l_@@_tmpa_dim
+            { \bfseries \zihao{-4} ##1 \c_@@_colon_en_tl \c_space_token }
+          \dim_set:Nn \l_@@_tmpc_dim
+            { \dim_max:nn { \l_@@_tmpc_dim } { \l_@@_tmpa_dim } }
+        }
+      \bool_until_do:nn
+        { \clist_if_empty_p:N \l_@@_tmpa_clist }
+        {
+          \bfseries
+          \clist_pop:NN \l_@@_tmpa_clist \l_@@_tmpa_tl
+          \clist_pop:NN \l_@@_tmpb_clist \l_@@_tmpb_tl
+          \mode_leave_vertical:
+          \hbox_to_wd:nn { \l_@@_tmpc_dim }
+            { \l_@@_tmpa_tl \c_@@_colon_en_tl \c_space_token \tex_hfil:D }
+          \uline{\@@_center_box:nn { \l_@@_tmpb_dim } { \l_@@_tmpb_tl }}
+          \skip_vertical:n { 0 ex }
+        }
+    \end{minipage}
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_cover_ug_date:,\@@_cover_pg_date:,\@@_cover_pg_date_en:}
+% 封面底部的论文完成时间信息。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_cover_ug_date:
+  {
+    \@@_fixed_width_center_box:nn { \textwidth }
+      {
+        \bfseries \zihao { 4 } 
+        \theyear \c_@@_year_tl \themonth \c_@@_month_tl
+      }
+  }
+\cs_new_protected:Npn \@@_cover_pg_date:
+  {
+    \@@_fixed_width_center_box:nn { \textwidth }
+      {
+        \bfseries
+        \theyear \c_@@_year_tl \themonth \c_@@_month_tl
+      }
+  }
+\cs_new_protected:Npn \@@_cover_pg_date_en:
+  {
+    \@@_fixed_width_center_box:nn { \textwidth }
+      {
+        \bfseries
+        \clist_item:Nn \c_@@_month_en_clist { \themonth }
+        , \c_space_token \theyear
+      }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_orig_text_pg:}
+% 原创性声明内容。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_orig_text_pg:
+  {
+    \indent \c_@@_orig_text_pg_part_one_tl
+    \c_@@_left_guillemet_tl
+    \l_@@_info_title_trim_tl
+    \c_@@_right_guillemet_tl
+    \c_@@_orig_text_pg_part_two_tl
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_auth_text_pg:}
+% 论文使用授权内容。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_auth_text_pg:
+  {
+    \indent
+    \c_@@_left_guillemet_tl \l_@@_info_title_trim_tl
+    \c_@@_right_guillemet_tl
+    \c_@@_auth_text_pg_part_one_tl \par
+    \c_@@_auth_text_pg_part_two_tl \par
+    \c_@@_left_round_bracket_tl
+    \hbox_to_wd:nn { 2.5 em } { } \c_@@_right_round_bracket_tl
+    \c_@@_auth_text_pg_option_one_tl \par
+    \c_@@_left_round_bracket_tl
+    \hbox_to_wd:nn { 2.5 em } { } \c_@@_right_round_bracket_tl
+    \c_@@_auth_text_pg_option_two_tl \par
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_orig_sign_area_ug:,\@@_orig_sign_area_pg:}
+% 原创性声明签名。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_orig_sign_area_ug:
   {
     \c_@@_orig_sign_tl \c_@@_colon_tl
     \hbox_to_wd:nn { 15 em } { }
@@ -2003,13 +2932,22 @@
     \hbox_to_wd:nn { 1.5 em } { } \c_@@_month_tl
     \hbox_to_wd:nn { 1.5 em } { } \c_@@_day_tl
   }
+\cs_new_protected:Npn \@@_orig_sign_area_pg:
+  {
+    \indent
+    { \bfseries \c_@@_author_sign_tl } \hbox_to_wd:nn { 15.5 em } { }
+    { \bfseries \c_@@_date_tl }
+    \hbox_to_wd:nn { 4 em } { } \c_@@_year_tl
+    \hbox_to_wd:nn { 2 em } { } \c_@@_month_tl
+    \hbox_to_wd:nn { 2 em } { } \c_@@_day_tl
+  }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_auth_sign_area:}
+% \begin{macro}{\@@_auth_sign_area_ug:,\@@_auth_sign_area_pg:}
 % 论文使用授权声明。
 %    \begin{macrocode}
-\cs_new_protected:Npn \@@_auth_sign_area:
+\cs_new_protected:Npn \@@_auth_sign_area_ug:
   {
     \c_@@_author_sign_tl \c_@@_colon_tl
     \hbox_to_wd:nn { 5.5 em } { }
@@ -2020,70 +2958,81 @@
     \hbox_to_wd:nn { 1.5 em } { } \c_@@_month_tl
     \hbox_to_wd:nn { 1.5 em } { } \c_@@_day_tl
   }
-%    \end{macrocode}
-% \end{macro}
-%
-%
-% \begin{macro}{\@@_cover_info:}
-% 论文封面中的个人信息（姓名、学号、院系、专业、导师及其职称）和论文完成年月。
-%    \begin{macrocode}
-\cs_new_protected:Npn \@@_cover_info:
+\cs_new_protected:Npn \@@_auth_sign_area_pg:
   {
-    \begin{minipage} [ c ] { \textwidth }
-      \centering \zihao { 4 }
-      \clist_set:Nx \l_@@_tmpa_clist
-        {
-          \c_@@_info_name_tl,
-          \c_@@_info_studentID_tl,
-          \c_@@_info_department_tl,
-          \c_@@_info_major_tl,
-          \c_@@_info_supervisor_tl,
-          \c_@@_info_academicTitle_tl
-        }
-      \clist_set:Nx \l_@@_tmpb_clist
-        {
-          { \l_@@_info_author_tl        },
-          { \l_@@_info_studentID_tl     },
-          { \l_@@_info_department_tl    },
-          { \l_@@_info_major_tl         },
-          { \l_@@_info_supervisor_tl    },
-          { \l_@@_info_academicTitle_tl }
-        }
-      \bool_until_do:nn
-        { \clist_if_empty_p:N \l_@@_tmpa_clist }
-        {
-          \bfseries
-          \clist_pop:NN \l_@@_tmpa_clist \l_@@_tmpa_tl
-          \clist_pop:NN \l_@@_tmpb_clist \l_@@_tmpb_tl
-          \@@_spread_box:no { 4 em } { \l_@@_tmpa_tl }
-          \c_@@_colon_tl
-          \underline{\@@_center_box:nn { 6 cm } { \l_@@_tmpb_tl }}
-          \skip_vertical:n { 1 ex }
-        }
-      \skip_vertical:n { 1 em }
-      \theyear  \c_@@_year_tl
-      \themonth \c_@@_month_tl
-      \skip_vertical:n { 1 ex }
-    \end{minipage}
+    \indent
+    { \bfseries \c_@@_supervisor_sign_tl } \hfill
+    { \bfseries \c_@@_author_sign_tl } \hbox_to_wd:nn { 14 em } { } \par
+    \hfill
+    { \bfseries \c_@@_date_tl }
+    \hbox_to_wd:nn { 4 em } { } \c_@@_year_tl
+    \hbox_to_wd:nn { 2 em } { } \c_@@_month_tl
+    \hbox_to_wd:nn { 2 em } { } \c_@@_day_tl
+    \hbox_to_wd:nn { 5 em } { }
   }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{style/logoResource}
+% \begin{macro}{style/logo-src}
 % 定义封面 logo 接口。
 %    \begin{macrocode}
 \tl_new:N \l_@@_logo_resource_tl
 \keys_define:nn { ecnu / style }
   {
-    logoResource .tl_set:N = \l_@@_logo_resource_tl
+    logo-src  .tl_set:N   = \l_@@_logo_resource_tl,
+    logo-src  .initial:n  =
+      {
+        \bool_if:NTF \g_@@_is_bachelor_bool
+          { ecnu-vi-inner-cover-logo-ug.pdf }
+          { ecnu-vi-inner-cover-logo-pg.pdf }
+      }
   }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_cover_logo:}
-% 封面 logo 部件
+% \begin{macro}{\@@_cover_pg_logo_title:,\@@_cover_pg_logo_title_en:}
+% 博士、硕士学位论文中封面 logo 部分的中外文标题。
 %    \begin{macrocode}
-\cs_new_protected:Npn \@@_cover_logo:
+\cs_new_protected:Npn \@@_cover_pg_logo_title:
+  { 
+    \prop_get:NVN \c_@@_thesis_type_prop
+      \g_@@_thesis_type_tl \l_@@_tmpa_tl
+    \l_@@_tmpa_tl
+    \tl_if_eq:NnT \l_@@_info_degree_type_tl { professional }
+      { \c_@@_professional_tl }
+    \c_@@_degree_tl \c_@@_thesis_tl
+  }
+\cs_new_protected:Npn \@@_cover_pg_logo_title_en:
+  { 
+    \tl_if_eq:NnTF \l_@@_info_degree_type_tl { professional }
+      {
+        \tl_if_eq:NnTF \g_@@_thesis_type_tl { master }
+          {
+            \c_@@_masters_en_tl \c_space_token \c_@@_degree_en_tl
+            \c_space_token \c_@@_thesis_en_tl
+            \c_space_token (\c_@@_professional_en_tl)
+          }
+          {
+            \text_uppercase:n { \c_@@_doctoral_en_tl }
+            \c_space_token
+            \text_uppercase:n { \c_@@_dissertation_en_tl }
+          }
+      }
+      {
+        \tl_if_eq:NnTF \g_@@_thesis_type_tl { master }
+          { \text_uppercase:n { \c_@@_masters_en_tl } }
+          { \text_uppercase:n { \c_@@_doctoral_en_tl } }
+        \c_space_token
+        \text_uppercase:n { \c_@@_dissertation_en_tl }
+      }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_cover_ug_logo:,\@@_cover_pg_logo:,\@@_cover_pg_logo_en:}
+% 封面 logo 部件。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_cover_ug_logo:
   { 
     \tl_if_empty:NF \l_@@_logo_resource_tl
       {
@@ -2092,6 +3041,34 @@
           \includegraphics{\l_@@_logo_resource_tl}
         \end{minipage}
       }
+  }
+\cs_new_protected:Npn \@@_cover_pg_logo:
+  { 
+    \begin{minipage} [ c ] { \textwidth }
+      \@@_line_spread:N \c_@@_single_space_line_spread_fp
+      \centering \zihao { 5 } 
+      \tl_if_empty:NF \l_@@_logo_resource_tl
+        {
+          \includegraphics[width=8cm]{\l_@@_logo_resource_tl}
+          \skip_vertical:n { 0 em }
+        }
+      \c_@@_university_name_en_tl
+      \skip_vertical:n { 5 bp }
+      \group_begin:
+        \bfseries
+        \@@_cover_pg_logo_title:
+        \skip_vertical:n { 1.12 bp }
+        \@@_cover_pg_logo_title_en:
+      \group_end:
+    \end{minipage}
+  }
+\cs_new_protected:Npn \@@_cover_pg_logo_en:
+  { 
+    \begin{minipage} [ c ] { \textwidth }
+      \@@_line_spread:N \c_@@_single_space_line_spread_fp
+      \centering \zihao { 5 } \bfseries
+      \c_@@_university_name_en_tl
+    \end{minipage}
   }
 %    \end{macrocode}
 % \end{macro}
@@ -2135,7 +3112,7 @@
               \exp_not:n
                 {
                   \group_begin:
-                    \flushleft ##1 \endflushleft
+                    \raggedright ##1
                   \group_end:
                 }
             },
@@ -2147,7 +3124,7 @@
               \exp_not:n
                 {
                   \group_begin:
-                    \flushright ##1 \endflushright
+                    \raggedleft ##1
                   \group_end:
                 }
             },
@@ -2159,7 +3136,7 @@
               \exp_not:n
                 {
                   \group_begin:
-                    \center ##1 \endcenter
+                    \centering ##1
                   \group_end:
                 }
             },
@@ -2217,133 +3194,180 @@
 \NewDocumentCommand \DeclareCoverTemplate { m m }
   { \@@_cover_declare_template:nn {#1} {#2} }
 \DeclareCoverTemplate { cover-i   }
-  { id, logo, title, titleEN, info }
+  { top, logo, title, title-en, info, date }
 \DeclareCoverTemplate { cover-ii  }
   {
-    title-space,
-    originality-name,
+    originality-title,
     originality-text,
     originality-sign,
-    authorization-name,
+    authorization-title,
     authorization-text,
-    authorization-sign
+    authorization-sign,
+    others,
   }
-\renewcommand{\ULthickness}{1pt}
-\DeclareInstance { ecnu / cover } { cover-i-default } { cover-i }
+\DeclareInstance { ecnu / cover } { cover-i-ug } { cover-i }
   {
     bottom-skip            = 0 pt plus 0.5 fill,
-    id       / content     = \@@_cover_id:,
-    logo     / content     = \@@_cover_logo:,
+    top      / content     = \@@_cover_ug_top:,
+    logo     / content     = \@@_cover_ug_logo:,
     title    / content     =
-      \@@_fixed_width_center_box:nn
-        { 0.9 \textwidth } 
-        { \expandafter\uline\expandafter{\l_@@_info_title_tl} },
-    titleEN  / content     = 
-      \@@_fixed_width_center_box:nn
-        { 0.9 \textwidth } 
-        { \expandafter\uline\expandafter{\l_@@_info_titleEN_tl} },
-    info     / content     = \@@_cover_info:,
-    title    / format      = \@@_line_spread:n { 1.1 } \zihao { 1 } \bfseries,
-    titleEN  / format      = \@@_line_spread:n { 1.1 } \zihao { 1 } \bfseries,
-    id       / bottom-skip = 0 pt plus 0.5 fill,
+      \expandafter\uline\expandafter{\l_@@_info_title_tl},
+    title-en / content     =
+      \expandafter\uline\expandafter{\l_@@_info_title_en_tl},
+    info     / content     = \@@_cover_ug_info:,
+    date     / content     = \@@_cover_ug_date:,
+    title    / format      =
+      \@@_line_spread:n { 1.1 } \zihao { 1 } \bfseries,
+    title-en / format      =
+      \@@_line_spread:n { 1.1 } \zihao { 1 } \bfseries,
+    top      / bottom-skip = 0 pt plus 0.5 fill,
     logo     / bottom-skip = 0 pt plus 0.3 fill,
-    titleEN  / bottom-skip = 0 pt plus 2.5 fill,
-    id       / align       = right,
+    title-en / bottom-skip = 0 pt plus 1 fill,
+    info     / bottom-skip = 31.2 bp,
+    top      / align       = right,
     logo     / align       = center,
     title    / align       = center,
-    titleEN  / align       = center,
+    title-en / align       = center,
     info     / align       = center,
+    date     / align       = center,
   }
-\DeclareInstance { ecnu / cover } { cover-ii-default } { cover-ii }
+\DeclareInstance { ecnu / cover } { cover-i-pg } { cover-i }
   {
-    format                            = \@@_line_spread:n { 1.625 },
-    top-skip                          = 0 pt plus 0.2 fill,
-    bottom-skip                       = 0 pt plus 2.5 fill,
-    originality-name    / content     = \c_@@_name_orig_tl,
-    originality-text    / content     = \c_@@_orig_text_tl,
-    originality-sign    / content     = \@@_orig_sign_area:,
-    authorization-name  / content     = \c_@@_name_auth_tl,
-    authorization-text  / content     = \c_@@_auth_text_tl,
-    authorization-sign  / content     = \@@_auth_sign_area:,
-    originality-name    / format      =
-      \@@_line_spread:n { 1.2 } \zihao { 4 } \bfseries,
-    authorization-name  / format      =
-      \@@_line_spread:n { 1.2 } \zihao { 4 } \bfseries,
-    title-space         / bottom-skip = 1 em plus 0.2 fill,
-    originality-text    / bottom-skip = -0.5 em,
-    originality-sign    / bottom-skip = 0 pt plus 0.75 fill,
-    authorization-name  / bottom-skip = 0 pt,
-    authorization-text  / bottom-skip = 1 em,
-    originality-name    / align       = center,
+    bottom-skip            = 0 pt,
+    top      / content     = \@@_cover_pg_top:,
+    logo     / content     = \@@_cover_pg_logo:,
+    title    / content     = \@@_cover_pg_title:,
+    info     / content     = \@@_cover_pg_info:,
+    date     / content     = \@@_cover_pg_date:,
+    title    / format      = \zihao { 1 } \bfseries,
+    top      / format      = \zihao { 5 },
+    top      / bottom-skip = 25.272 bp,
+    logo     / bottom-skip = 1 em plus .5 fill,
+    title    / bottom-skip = 1 em plus 1 fill,
+    info     / bottom-skip = 2 em plus .5 fill,
+    top      / align       = center,
+    logo     / align       = center,
+    title    / align       = center,
+    info     / align       = center,
+    date     / align       = center,
+  }
+  \DeclareInstance { ecnu / cover } { cover-i-pg-en } { cover-i }
+  {
+    bottom-skip            = 0 pt,
+    top      / content     = \@@_cover_pg_top_en:,
+    logo     / content     = \@@_cover_pg_logo_en:,
+    title    / content     = \@@_cover_pg_title_en:,
+    info     / content     = \@@_cover_pg_info_en:,
+    date     / content     = \@@_cover_pg_date_en:,
+    title    / format      = \zihao { 3 } \bfseries,
+    top      / format      = \zihao { 5 },
+    top      / bottom-skip = 49.696 bp,
+    logo     / bottom-skip = 1 em plus .5 fill,
+    title    / bottom-skip = 1 em plus 1 fill,
+    info     / bottom-skip = 2 em plus .5 fill,
+    top      / align       = center,
+    logo     / align       = center,
+    title    / align       = center,
+    info     / align       = center,
+    date     / align       = center,
+  }
+\DeclareInstance { ecnu / cover } { cover-ii-ug } { cover-ii }
+  {
+    originality-title   / content     = \c_@@_orig_title_ug_tl,
+    originality-text    / content     = \c_@@_orig_text_ug_tl,
+    originality-sign    / content     = \@@_orig_sign_area_ug:,
+    authorization-title / content     = \c_@@_auth_title_ug_tl,
+    authorization-text  / content     = \c_@@_auth_text_ug_tl,
+    authorization-sign  / content     = \@@_auth_sign_area_ug:,
+    originality-title   / format      =
+      \@@_line_spread:n { 1.85714286 } \zihao { 4 } \bfseries,
+    originality-text    / format      = \@@_line_spread:n { 1.625 },
+    authorization-title / format      =
+      \@@_line_spread:n { 1.85714286 } \zihao { 4 } \bfseries,
+    authorization-text  / format      = \@@_line_spread:n { 1.625 },
+    originality-sign    / bottom-skip = 70.2 bp,
+    authorization-text  / bottom-skip = 23.4 bp,
+    originality-title   / align       = center,
     originality-sign    / align       = right,
-    authorization-name  / align       = center,
+    authorization-title / align       = center,
     authorization-sign  / align       = right,
+  }
+\DeclareInstance { ecnu / cover } { cover-ii-pg } { cover-ii }
+  {
+    format                            = 
+      \@@_line_spread:n { 1.85714286 } \zihao { 5 },
+    originality-title   / content     = \c_@@_orig_title_pg_tl,
+    originality-text    / content     = \@@_orig_text_pg:,
+    originality-sign    / content     = \@@_orig_sign_area_pg:,
+    authorization-title / content     = \c_@@_auth_title_pg_tl,
+    authorization-text  / content     = \@@_auth_text_pg:,
+    authorization-sign  / content     = \@@_auth_sign_area_pg:,
+    others              / content     = 
+      \indent \c_@@_auth_others_text_pg_tl,
+    originality-title   / format      = \zihao { 4 } \bfseries,
+    originality-text    / format      = \zihao { 5 },
+    others              / format      = 
+      \@@_line_spread:n { 2.1388889 } \zihao { -5 },
+    authorization-title / format      = \zihao { 4 } \bfseries,
+    authorization-text  / format      = \zihao { 5 },
+    originality-title   / bottom-skip = 6 bp,
+    originality-text    / bottom-skip = 3 bp,
+    originality-sign    / bottom-skip = 55.8 bp,
+    authorization-title / bottom-skip = 6 bp,
+    authorization-text  / bottom-skip = 3 bp,
+    authorization-sign  / bottom-skip = 29.4 bp,
+    originality-title   / align       = center,
+    authorization-title / align       = center,
   }
 \tl_new:N \l_@@_declaration_page_tl
 \keys_define:nn { ecnu / style }
   {
-    declarePageResource .code:n =
+    declaration-src   .code:n =
       {
         \tl_set_eq:NN \l_@@_declaration_page_tl \l_keys_value_tl
         \RequirePackage { pdfpages }
       },
   }
-\NewDocumentCommand \makecoveri { }
+%    \end{macrocode}
+%
+% \begin{macro}{\innercover,\innercoverEN}
+% 中外文内封面命令。
+%    \begin{macrocode}
+\NewDocumentCommand \innercover { }
   {
     \thispagestyle { empty }
-    \UseInstance { ecnu / cover } { cover-i-default }
+    \tl_set:Nn \thepage { A }
+    \bool_if:NTF \g_@@_is_bachelor_bool
+      { \UseInstance { ecnu / cover } { cover-i-ug } }
+      { \UseInstance { ecnu / cover } { cover-i-pg } }
   }
-\NewDocumentCommand \makecoverii { }
+\NewDocumentCommand \innercoverEN { }
+  {
+    \thispagestyle { empty }
+    \tl_set:Nn \thepage { A-EN }
+    \UseInstance { ecnu / cover } { cover-i-pg-en }
+  }
+%    \end{macrocode}
+% \end{macro}
+%    
+% \begin{macro}{\declarationpage}
+% 声明页命令。
+%    \begin{macrocode}
+\NewDocumentCommand \declarationpage { }
   {
     \cleardoublepage
     \thispagestyle { empty }
-    \tl_set:Nn \thepage { C }
-    \bool_if:NTF \g_@@_decl_page_bool
+    \tl_set:Nn \thepage { B }
+    \tl_if_empty:NTF \l_@@_declaration_page_tl
       {
-        \tl_if_empty:NTF \l__ecnu_declaration_page_tl
-          { \UseInstance { ecnu / cover } { cover-ii-default } }
-          { \includepdf { \l__ecnu_declaration_page_tl } }
+        \bool_if:NTF \g_@@_is_bachelor_bool
+          { \UseInstance { ecnu / cover } { cover-ii-ug } }
+          { \UseInstance { ecnu / cover } { cover-ii-pg } }
       }
-      {}
+      { \includepdf [pages=-] { \l_@@_declaration_page_tl } }
   }
 %    \end{macrocode}
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
-%
+% \end{macro}
 %
 % \subsection{目录}
 %
@@ -2351,91 +3375,137 @@
 %    \begin{macrocode}
 \keys_set:nn { ctex }
   {
-    contentsname  = \c_@@_name_toc_tl,
-    tocdepth      = 1,
+    contentsname    = \c_@@_name_toc_tl,
+    listfigurename  = \c_@@_name_lof_tl,
+    listtablename   = \c_@@_name_lot_tl,
+    tocdepth        = \bool_if:NTF \g_@@_is_bachelor_bool { 1 } { 2 },
   }
 %    \end{macrocode}
 %
-% 使用 \pkg{tocloft} 设置目录格式。
+% 使用 \pkg{titletoc} 设置目录格式。
 %    \begin{macrocode}
-\PassOptionsToPackage { titles } { tocloft }
-\RequirePackage { tocloft }
+\RequirePackage { titletoc }
 %    \end{macrocode}
-%
-% \begin{macro}{\cftchapleader}
-% 设置章节标题与对应页码之间的引导点格式。
+% 
+% \begin{macro}{\tocchapterformat,\tocsectionformat}
+% 单独定义命令配置目录中章节标题、节标题的具体内容。其中，\cs{contentsmargin} 
+% 用于设置右边距。我们将其设置为 \qty{0}{pt}，以去除点线与页码之间的间距。
+% 
+% 在本科生毕业论文中，章标题的字体为宋体加粗，字号为小四；节标题的字体
+% 为宋体，字号为小四。章标题上方有 \qty{6}{pt} 的垂直间隙。
+% 
+% 在博士、硕士学位论文中，章标题的字体为黑体，字号为四号；节标题的字体
+% 为黑体，字号为小四。
 %    \begin{macrocode}
-\RenewDocumentCommand \cftchapleader { }
-  {\bfseries\cftdotfill{1.0}}
-%    \end{macrocode}
-% \end{macro}
-%
-% \begin{macro}{\cftsecleader}
-% 设置小节标题与对应页码之间的引导点格式。
-%    \begin{macrocode}
-\RenewDocumentCommand \cftsecleader { }
-  {\cftdotfill{1.0}}
-%    \end{macrocode}
-% \end{macro}
-%
-% 设置章节标题与小节标题相关的间距。
-%    \begin{macrocode}
-\setlength{\cftbeforechapskip}{6pt}
-\setlength{\cftchapnumwidth}{0pt}
-\setlength{\cftsecnumwidth}{0pt}
-\RenewDocumentCommand \@tocrmarg { } { 0pt }
-%    \end{macrocode}
-%
-% \begin{macro}{\cftchapfillnum}
-% 去除目录中章节标题所对应的页码前的空白。
-%    \begin{macrocode}
-\RenewDocumentCommand \cftchapfillnum { m } 
+\NewDocumentCommand \tocchapterformat { }
   {
-    {\cftchapleader}\nobreak
-    {\cftchappagefont #1}\cftchapafterpnum\par
+    \addvspace{6pt} \contentsmargin{0pt}
+    \bool_if:NTF \g_@@_is_bachelor_bool
+      { \rmfamily \bfseries }
+      { \sffamily \zihao{ 4 } }
+  }
+\NewDocumentCommand \tocsectionformat {}
+  {
+    \contentsmargin{0pt}
+    \bool_if:NF \g_@@_is_bachelor_bool { \sffamily }
   }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\cftsecfillnum}
-% 去除目录中小节标题所对应的页码前的空白。
+% \begin{macro}{\tocchaptercontents,\tocsectioncontents,\tocsubsectioncontents}
+% 设置目录数字编号格式。
 %    \begin{macrocode}
-\RenewDocumentCommand \cftsecfillnum { m }
+\NewDocumentCommand \tocchaptercontents { }
   {
-    {\cftsecleader}\nobreak
-    {\cftsecpagefont #1}\cftsecafterpnum\par
+    \thecontentslabel
+    \bool_if:NF \g_@@_is_bachelor_bool { \hspace*{2ex} }
+  }
+\NewDocumentCommand \tocsectioncontents { }
+  {
+    \thecontentslabel
+    \bool_if:NTF \g_@@_is_bachelor_bool
+      { \tl_if_eq:NnT \g_@@_numbering_tl { arabic } { \hspace*{1ex} } }
+      { \hspace*{2ex} }
+  }
+\NewDocumentCommand \tocsubsectioncontents { }
+  {
+    \thecontentslabel
+    \tl_if_eq:NnT \g_@@_numbering_tl { arabic } { \hspace*{2ex} }
   }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\tableofcontents}
-% 修改 \cs{tableofcontents}。来自于 \LaTeXe{} 标准文档类
-% \file{book.cls}
+% 调整目录各层级项目格式。
 %    \begin{macrocode}
-\RenewDocumentCommand \tableofcontents { }
+\titlecontents{chapter}[0em]
+              {\tocchapterformat}{\tocchaptercontents}{}
+              {\titlerule*[.25pc]{.}{\rmfamily\thecontentspage}}
+              [\addvspace{3pt}]
+\titlecontents{section}[1em]
+              {\tocsectionformat}{\tocsectioncontents}{}
+              {\titlerule*[.25pc]{.}{\rmfamily\thecontentspage}}
+              [\addvspace{3pt}]
+\titlecontents{subsection}[2em]
+              {\contentsmargin{0pt}}{\tocsubsectioncontents}{}
+              {\titlerule*[.25pc]{.}{\rmfamily\thecontentspage}}
+%    \end{macrocode}
+%
+% 调整插图目录和随表目录的项目格式。
+%    \begin{macrocode}
+\titlecontents{figure}[0em]{\contentsmargin{0pt}}
+              {\figurename\thecontentslabel\hspace*{2ex}}{}
+              {\titlerule*[.25pc]{.}\thecontentspage}
+\titlecontents{table}[0em]{\contentsmargin{0pt}}
+              {\tablename\thecontentslabel\hspace*{2ex}}{}
+              {\titlerule*[.25pc]{.}\thecontentspage}
+%    \end{macrocode}
+%
+% \begin{macro}{\@@_toc_page:Nn}
+% 自定义标题页格式。来自于 \LaTeXe{} 标准文档类 \file{book.cls}。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_toc_page:Nn #1#2
   {
-    \pagestyle{ empty }
-    \@@_toc_title:V \contentsname
     \group_begin:
-      \@@_line_spread:n {1.2}
-      \@starttoc{toc}
+%    \end{macrocode}
+%
+% 在本科生毕业论文中，目录标题的大小为小四、字体为宋体加粗。
+%    \begin{macrocode}
+      \bool_if:NT \g_@@_is_bachelor_bool
+        {
+          \pagestyle{ empty }
+          \ctexset
+            {
+              chapter / pagestyle   = empty,
+              chapter / numbering   = false,
+              chapter / format      = \rmfamily\bfseries\centering,
+            }
+        }
+%    \end{macrocode}
+% 
+%    \begin{macrocode}
+      \chapter* { #1 }
+      \bool_if:NTF \g_@@_is_bachelor_bool
+        { \@@_line_spread:N \c_@@_single_space_line_spread_fp }
+        { \@@_line_spread:n { 1.3 } }
+      \@starttoc{#2}
     \group_end:
     \cleardoublepage
     \pagestyle{ fancy }
   }
 %    \end{macrocode}
 % \end{macro}
-%
-% 在目录中，若某章节下有一个或多个小节，则目录中该章节与该小节之间应有 6 pt 的
-% 竖直间距。
+% 
+% \begin{macro}{\tableofcontents,\listoffigures,\listoftables}
+% 修改 \cs{tableofcontents}、\cs{listoffigures}、\cs{listoftables}。
 %    \begin{macrocode}
-\@@_preto_cmd:Nn \section
-  {
-    \int_compare:nNnTF { \c@section } = { \c_zero_int }
-      { \addtocontents{toc}{\protect\vspace{6pt}} }
-      { }
-  }
+\RenewDocumentCommand \tableofcontents { }
+  { \@@_toc_page:Nn \contentsname {toc} }
+\RenewDocumentCommand \listoffigures { }
+  { \@@_toc_page:Nn \listfigurename {lof} }
+\RenewDocumentCommand \listoftables { }
+    { \@@_toc_page:Nn \listtablename {lot} }
 %    \end{macrocode}
+% \end{macro}
 %
 % \subsection{摘要}
 %
@@ -2444,76 +3514,100 @@
 % 定义中外文摘要环境。
 %    \begin{macrocode}
 \RenewDocumentEnvironment { abstract  } { }
-  { \@@_abstract_begin:    } { \@@_abstract_end:      }
+  { \@@_abstract_begin: } { \@@_abstract_end: }
 \NewDocumentEnvironment { abstractEN } { }
-  { \@@_abstractEN_begin: } { \@@_abstractEN_end:   }
+  { \@@_abstract_en_begin: } { \@@_abstract_en_end: }
 %    \end{macrocode}
 % \end{environment}
 % \end{environment}
 %
-% \begin{macro}{\@@_abstract_begin:,\@@_abstractEN_begin:}
-% 中外文摘要页环境起始部分。在环境起始部分手动添加中外文标题，并将该
-% “摘要”（“Abstract”）添加至目录；将摘要部分字体大小设置为五号。
+% \begin{macro}{\@@_abstract_begin:,\@@_abstract_en_begin:}
+% 中外文摘要页环境起始部分。在环境起始部分手动添加中外文标题。
+%
+% 在本科生毕业论文中，需将“摘要”（“Abstract”）添加至目录；摘要部分字体大小为五号。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_abstract_begin:
   {
-    \addcontentsline{toc}{chapter}{\c_@@_name_abstract_tl}
-    \@@_abs_title:V \l_@@_info_title_tl
-    \small
-    \hbox:n {} \mode_leave_vertical: \par \noindent
-    \group_begin:
-      \rmfamily\bfseries \c_@@_name_abstract_tl \c_@@_colon_tl
-    \group_end:
-    \par
+    \bool_if:NTF \g_@@_is_bachelor_bool
+      {
+        \@@_abs_title:V \l_@@_info_title_trim_tl
+        \addcontentsline{toc}{chapter}{\c_@@_name_abstract_tl}
+        \small
+        \group_begin:
+          \skip_vertical:n { 17.6 bp }
+          \noindent \rmfamily \bfseries
+          \c_@@_name_abstract_tl \c_@@_colon_tl
+          \skip_vertical:n { 3 bp }
+        \group_end:
+        \par
+      }
+      { \@@_abs_title:V \c_@@_name_chinese_abstract_tl }
   }
-\cs_new_protected:Npn \@@_abstractEN_begin:
+\cs_new_protected:Npn \@@_abstract_en_begin:
   {
-    \addcontentsline{toc}{chapter}{ABSTRACT}
-    \@@_absEN_title:V \l_@@_info_titleEN_tl
-    \small
-    \hbox:n {} \mode_leave_vertical: \par \noindent
-    \group_begin:
-      \rmfamily\bfseries \c_@@_name_abstractEN_tl \c_@@_colon_tl
-    \group_end:
-    \par
+    \bool_if:NTF \g_@@_is_bachelor_bool
+      {
+        \@@_absEN_title:V \l_@@_info_title_en_trim_tl
+        \addcontentsline{toc}{chapter}{ABSTRACT}
+        \small
+        \group_begin:
+          \skip_vertical:n { 17.6 bp }
+          \noindent \rmfamily \bfseries
+          \c_@@_name_abstract_en_tl \c_@@_colon_en_tl
+          \skip_vertical:n { 3 bp }
+        \group_end:
+        \par
+      }
+      {
+        \@@_absEN_title:n
+          { \text_uppercase:n { \c_@@_name_abstract_en_tl } }
+      }
   }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_abstract_end:,\@@_abstractEN_end:}
+% \begin{macro}{\@@_abstract_end:,\@@_abstract_en_end:}
 % 摘要页标题环境结束部分。在摘要部分正文末尾附上关键词。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_abstract_end:
   {
-    \@@_keywords:nNn
-      { \rmfamily\bfseries \c_@@_name_keywords_tl \c_@@_colon_tl }
-      \l_@@_info_keywords_clist { ， }
+    \@@_keywords:nNnn
+      {
+        \bool_if:NTF \g_@@_is_bachelor_bool
+          { \rmfamily\bfseries }
+          { \zihao{4}\sffamily\bfseries }
+        \c_@@_name_keywords_tl \c_@@_colon_tl
+      }
+      \l_@@_info_keywords_clist { ， } { }
     \cleardoublepage
   }
-\cs_new_protected:Npn \@@_abstractEN_end:
+\cs_new_protected:Npn \@@_abstract_en_end:
   {
-    \@@_keywords:nNn
-      { \rmfamily\bfseries \c_@@_name_keywordsEN_tl \c_@@_colon_tl }
-      \l_@@_info_keywordsEN_clist { ,~ }
+    \@@_keywords:nNnn
+      {
+        \bool_if:NTF \g_@@_is_bachelor_bool
+          { \rmfamily\bfseries } { \zihao{4}\bfseries }
+        \c_@@_name_keywords_en_tl \c_@@_colon_en_tl \c_space_token
+      }
+      \l_@@_info_keywords_en_clist { ,\c_space_token }
+      { \bool_if:NF \g_@@_is_bachelor_bool { \itshape } }
     \cleardoublepage
   }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_keywords:nNn}
+% \begin{macro}{\@@_keywords:nNnn}
 % 中外文摘要页关键词。
 %    \begin{macrocode}
-\cs_new_protected:Npn \@@_keywords:nNn #1#2#3
+\cs_new_protected:Npn \@@_keywords:nNnn #1#2#3#4
   {
-    \par \mode_leave_vertical: \par \noindent
-    \@@_get_text_width:Nn \l_@@_tmpa_dim {#1}
+    \par \@@_vspace:n { \skip_use:N \baselineskip minus 1 em }
+    \par \noindent
     \group_begin: #1 \group_end:
-    \parbox [t] { \dim_eval:n { \textwidth - \l_@@_tmpa_dim } }
-      {
-        \clist_use:Nn #2 {#3} \par
-        \cs_gset:Npx \@@_keywords_prevdepth:
-          { \dim_use:N \tex_prevdepth:D }
-      }
+    \group_begin:
+      #4
+      \clist_use:Nn #2 {#3}
+    \group_end:
   }
 %    \end{macrocode}
 % \end{macro}
@@ -2536,9 +3630,8 @@
   { 
     \cleardoublepage
     \@@_title:V \c_@@_name_appendix_tl
-    \setcounter{chapter}{0}
     \setcounter{section}{0}
-    \small
+    \bool_if:NT \g_@@_is_bachelor_bool { \small }
   }
 %    \end{macrocode}
 % \end{macro}
@@ -2547,9 +3640,7 @@
 % 在打印模式下，保证附录部分为偶数页。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_appendix_end:
-  {
-    \cleardoublepage
-  }
+  { \cleardoublepage }
 %    \end{macrocode}
 % \end{macro}
 %
@@ -2565,25 +3656,24 @@
 %    \end{macrocode}
 % \end{environment}
 %
-% \begin{macro}{\@@_acknowledgements_begin:}
-% 致谢页标题。将致谢页环境内正文的字号调整为五号。
+% \begin{macro}{\@@_acknowledgement_begin:}
+% 致谢页环境。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_acknowledgement_begin:
   {
     \cleardoublepage
-    \@@_title:V \c_@@_name_acknowledgement_tl
-    \small
+    \bool_if:NTF \g_@@_is_bachelor_bool
+      { \@@_title:V \c_@@_name_acknowledgement_tl }
+      { \@@_title:V \c_@@_name_epilogue_tl }
   }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_acknowledgement_begin:}
+% \begin{macro}{\@@_acknowledgement_end:}
 % 在打印模式下，保证致谢页为偶数页。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_acknowledgement_end:
-  {
-    \cleardoublepage
-  }
+  { \cleardoublepage }
 %    \end{macrocode}
 % \end{macro}
 %
@@ -2598,18 +3688,19 @@
 %    \end{macrocode}
 % \end{variable}
 %
-% \begin{macro}{style/fontCJK}
+% \begin{macro}{style/bib-src}
 % 定义参考文献数据库路径。
 %    \begin{macrocode}
 \keys_define:nn { ecnu / style }
   {
-    bibResource .tl_set:N = \l_@@_bib_resource_tl
+    bib-src .tl_set:N = \l_@@_bib_resource_tl
   }
 %    \end{macrocode}
 % \end{macro}
 %
-% \pkg{biblatex} 会写入 begindocument/before 钩子。因此需在其之前通过
-% \texttt{env/document/begin} 钩子载入 \pkg{biblatex} 宏包。
+% 由于 \pkg{biblatex} 会写入 begindocument/before 钩子，
+% 因此需要在其之前通过写入 env/document/begin
+% 钩子载入 \pkg{biblatex} 宏包。
 %    \begin{macrocode}
 \@@_gadd_ltxhook:nn { env/document/begin }
 {
@@ -2620,32 +3711,40 @@
 %    \end{macrocode}
 %
 % \begin{macro}{\@@_biblatex_pre_setup:, \@@_biblatex_post_setup:}
-% biblatex 宏包相关设置。参考文献处理后端为 biber，样式遵循
-% GB/T 7714-2015 标准。
+% \pkg{biblatex} 宏包相关设置。将参考文献处理后端设置为 biber，
+% 参考文献样式遵循 GB/T 7714-2015 标准。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_biblatex_pre_setup:
   {
     \PassOptionsToPackage 
-    {
-      backend   = biber,
-      style     = gb7714-2015,
-      seconds   = true,
-      hyperref  = true,
-      gbpub     = false,
-      gbpunctin = false,
-    } 
-    { biblatex }
+      {
+        backend       = biber,
+        style         = gb7714-2015,
+        seconds       = true,
+        hyperref      = true,
+        gbpub         = false,
+        gbpunctin     = true,
+      } 
+      { biblatex }
   }
 %    \end{macrocode}
 % 
-% 设置参考文献相关格式。参考文献字体为五号，参考文献间
-% 没有额外间距。
+% 设置参考文献相关格式。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_biblatex_post_setup:
   {
     \exp_args:NV \addbibresource \l_@@_bib_resource_tl
     \@@_biblatex_allow_url_break:
-    \RenewDocumentCommand \bibfont { } { \small }
+%    \end{macrocode}
+%
+% 在本科生毕业论文中，参考文献的字体大小为五号。
+%    \begin{macrocode}
+    \bool_if:NT \g_@@_is_bachelor_bool
+      { \RenewDocumentCommand \bibfont { } { \small } }
+%    \end{macrocode}
+%
+% 参考文献间没有额外间距。
+%    \begin{macrocode}
     \setlength{\bibitemsep}{0pt}
     \defbibheading { bibliography } [ \bibname ] 
       { \@@_title:n {##1} }
@@ -2665,41 +3764,72 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\PrintReference}
-% 用于生成参考文献的命令。
-%    \begin{macrocode}
-\NewDocumentCommand \PrintReference {} 
-  {
-    \printbibliography
-    \cleardoublepage
-  }
-%    \end{macrocode}
-% \end{macro}
+% \subsection{\pkg{hyperref} 配置}
 %
 % 在导言区末尾引入 \pkg{hyperref} 宏包，以尽可能减少与其他宏包
 % 间的冲突。
 %    \begin{macrocode}
-\PassOptionsToPackage { hidelinks, hypertexnames=false } { hyperref }
-\RequirePackage { hyperref }
+\ctex_at_end_preamble:n
+  {
+    \RequirePackage { hyperref }
+    \hypersetup
+      {
+        hidelinks,
+        unicode         = true,
+%    \end{macrocode}
+% 
+% 填写 PDF 元信息。
+%    \begin{macrocode}
+        pdftitle        = \l_@@_info_title_trim_tl,
+        pdfauthor       = \l_@@_info_author_tl,
+        pdfkeywords     = \l_@@_info_keywords_clist,
+        pdfcreator      = \c_@@_name_pdf_creator_tl
+      }
+  }
 %    \end{macrocode}
 %
 % \subsection{前导页}
 %
-% 设置前导页。前导页的页边距与正文有不同。
+% 当设置开启生成封面页或声明页时，模板会在文档前导部分插入前导页（包括封面页和声明页）。
 %    \begin{macrocode}
-\AtBeginDocument
+\bool_lazy_or:nnT
+  { \g_@@_cover_page_bool } { \g_@@_declaration_page_bool }
   {
-    \newgeometry
+    \AtBeginDocument
       {
-        top     = 2.0 cm, 
-        bottom  = 2.0 cm,
-        left    = 3.0 cm, 
-        right   = 3.0 cm
+%    \end{macrocode}
+%
+% 在本科生毕业论文中，前导页的页边距与正文有不同。
+%    \begin{macrocode}
+        \bool_if:NT \g_@@_is_bachelor_bool
+          {
+            \newgeometry
+              {
+                top     = 2.0 cm, 
+                bottom  = 2.0 cm,
+                left    = 3.0 cm, 
+                right   = 3.0 cm
+              }
+          }
+%    \end{macrocode}
+%
+% 设置前导页内容。
+%    \begin{macrocode}
+        \begin{titlepage}
+          \bool_if:NT \g_@@_cover_page_bool
+            {
+              \innercover
+              \bool_if:NF \g_@@_is_bachelor_bool { \newpage \innercoverEN }
+            }
+          \bool_if:NT \g_@@_declaration_page_bool
+            { \declarationpage }
+        \end{titlepage}
+%    \end{macrocode}
+%
+% 在本科生毕业论文中，前导页设置完成后需要将页面恢复到初始设置。
+%    \begin{macrocode}
+        \bool_if:NT \g_@@_is_bachelor_bool { \restoregeometry }
       }
-    \begin{titlepage}
-      \makecoveri \newpage \makecoverii
-    \end{titlepage}
-    \restoregeometry
   }
 %    \end{macrocode}
 %
@@ -2716,10 +3846,10 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\ecnuSetup}
+% \begin{macro}{\ecnusetup}
 % 用户设置接口。
 %    \begin{macrocode}
-\NewDocumentCommand \ecnuSetup { m }
+\NewDocumentCommand \ecnusetup { m }
   { \keys_set:nn { ecnu } {#1} }
 %    \end{macrocode}
 % \end{macro}
@@ -2744,30 +3874,52 @@
 % 论文后置部分开始命令。
 %    \begin{macrocode}
 \NewDocumentCommand \backmatter { }
-  { \clearpage{\thispagestyle{empty}\cleardoublepage} }
+  {
+%    \end{macrocode}
+% 
+% 当双面模式时，确保后置部分内容在奇数页开始。
+%    \begin{macrocode}
+    \cleardoublepage
+%    \end{macrocode}
+% 
+% 设置章节编号样式。在每一章开始时，节的计数器需要手动设置为 0。
+%    \begin{macrocode}
+    \setcounter{section}{0}
+    \ctexset
+      {
+        secnumdepth             = 1,
+        chapter / numbering     = false,
+        chapter / format        += \setcounter{section}{0},
+        section / name          = {,.},
+        section / number        = {\arabic{section}},
+      }
+    \bool_if:NF \g_@@_is_bachelor_bool
+      { \addtocontents{toc}{\protect\vspace{25bp}} }
+  }
 %    \end{macrocode}
 % \end{macro}
 %
 % 文档类初始设置。
 %    \begin{macrocode}
-\keys_set:nn { ecnu / style }
-  {
-    font      = xits,
-    fontCJK   = fandol,
-    numbering = arabic,
-  }
 \keys_set:nn { ecnu / info }
   {
+    degree          = academic,
+    clc             = {(分类号)},
+    secret-level    = {},
     title           = {(中文标题)},
-    titleEN         = {(English Title)},
+    title-en        = {(English~Title)},
     author          = {(作者姓名)},
-    studentID       = {(学号)},
+    author-en       = {(Author~Name)},
+    student-id      = {(学号)},
     department      = {(学院)},
+    department-en   = {(Department)},
     major           = {(专业)},
+    major-en        = {(Major)},
     supervisor      = {(导师姓名)},
-    academicTitle   = {(导师职称)},
+    supervisor-en   = {(Supervisor)},
+    academic-title  = {(导师职称)},
     keywords        = {关键词1, 关键词2, 关键词3},
-    keywordsEN      = {keyword1, keyword2, keyword3}
+    keywords-en     = {keyword1, keyword2, keyword3}
   }
 %    \end{macrocode}
 %
@@ -2776,119 +3928,161 @@
 %</class>
 %    \end{macrocode}
 %
-% ^^A \iffalse
+% \iffalse
 %
-% \subsection{ecnudoc类}
-% 
+% \subsubsection{预设文字}
+%
 %    \begin{macrocode}
-%<*ecnudoc>
-%<@@=>
-\ExplSyntaxOff
-\LoadClass[a4paper, full]{l3doc}
-\RequirePackage{xparse}
-\RequirePackage[UTF8, heading, scheme=chinese]{ctex}
-\RequirePackage{
-  caption,
-  graphicx,
-  listings,
-  unicode-math,
-  xcolor,
-  enumitem,
-  metalogo
-}
-\RequirePackage[
-  top     = 2.5cm,
-  bottom  = 2.5cm,
-  left    = 4.5cm,
-  right   = 2cm,
-  headsep = 3mm
-]{geometry}
-
-\ctexset {
-  section = {
-    name        = {第,节},
-    format+     = \raggedright,
-  },
-  paragraph = {
-    runin         = false,
+%<*definition>
+%    \end{macrocode}
+% 
+% 模板中的一些预设文字，用于封面、声明页、页眉等部分。
+%    \begin{macrocode}
+\tl_const:Nn \c_@@_info_name_tl               { 姓名 }
+\tl_const:Nn \c_@@_info_student_id_tl         { 学号 }
+\tl_const:Nn \c_@@_info_student_id_en_tl      { Student ~ ID }
+\tl_const:Nn \c_@@_info_department_tl         { 学院 }
+\tl_const:Nn \c_@@_info_school_tl             { 院系 }
+\tl_const:Nn \c_@@_info_major_tl              { 专业 }
+\tl_const:Nn \c_@@_info_major_professional_tl { 专业学位类别 }
+\tl_const:Nn \c_@@_info_field_tl              { 研究方向 }
+\tl_const:Nn \c_@@_info_field_professional_tl { 专业学位领域 }
+\tl_const:Nn \c_@@_info_candidate_tl          { 学位申请人 }
+\tl_const:Nn \c_@@_info_supervisor_tl         { 指导教师 }
+\tl_const:Nn \c_@@_info_academic_title_tl     { 职称 }
+\tl_const:Nn \c_@@_university_code_tl         { 学校代码 }
+\tl_const:Nn \c_@@_university_code_en_tl      { University ~ Code }
+\tl_const:Nn \c_@@_university_code_val_tl     { 10269 }
+\tl_const:Nn \c_@@_year_tl                    { 年 }
+\tl_const:Nn \c_@@_month_tl                   { 月 }
+\tl_const:Nn \c_@@_day_tl                     { 日 }
+\tl_const:Nn \c_@@_date_tl                    { 日期 }
+\tl_const:Nn \c_@@_orig_sign_tl               { 承诺人签名 }
+\tl_const:Nn \c_@@_author_sign_tl             { 作者签名 }
+\tl_const:Nn \c_@@_supervisor_sign_tl         { 导师签名 }
+\tl_const:Nn \c_@@_orig_title_ug_tl           { 华东师范大学学位论文诚信承诺 }
+\tl_const:Nn \c_@@_auth_title_ug_tl           { 华东师范大学学位论文使用授权说明 }
+\tl_const:Nn \c_@@_orig_title_pg_tl           { 华东师范大学学位论文原创性声明 }
+\tl_const:Nn \c_@@_auth_title_pg_tl           { 华东师范大学学位论文著作权使用声明 }
+\tl_const:Nn \c_@@_orig_text_ug_tl
+  {
+    \indent 本毕业论文是本人在导师指导下独立完成的，内容真实、可靠。本人
+    在撰写毕业论文过程中不存在请人代写、抄袭或者剽窃他人作品、伪造或者
+    篡改数据以及其他学位论文作假行为。
+    \par
+    本人清楚知道学位论文作假行为将会导致行为人受到不授予/撤销学位、开除
+    学籍等处理（处分）决定。本人如果被查证在撰写本毕业论文过程中存在学位
+    论文作假行为，愿意接受学校依法作出的处理（处分）决定。
   }
-}
-
-\setlist[enumerate]{
-  topsep=0pt,
-  parsep=0pt,
-  itemsep=0pt
-}
-\setlist[itemize]{
-  topsep=0pt,
-  parsep=0pt,
-  itemsep=0pt
-}
-
-\newlist{optdesc}{description}{3}
-\setlist[optdesc]{%
-  font          = \mdseries\small\ttfamily,
-  align         = right,
-  listparindent = \parindent,
-  labelsep      = \marginparsep,
-  labelindent   = -\marginparsep,
-  leftmargin    = 0pt
-}
-\definecolor{colorRule}{RGB}{164,31,53}
-\lstdefinestyle{style@base}{
-  basicstyle        = \small\ttfamily,
-  lineskip          = 0 pt,
-  framerule         = 1 pt,
-  framesep          = 3 pt,
-  xleftmargin       = 4 pt,
-  breaklines        = true,
-  showspaces        = false,
-  showstringspaces  = false,
-  gobble            = 4,
-  escapeinside    = {(*}{*)},
-  backgroundcolor   = \color{gray!5},
-  commentstyle      = \slshape\color{black!60}
-}
-\lstdefinestyle{style@shell}{
-  style     = style@base,
-  frame     = l,
-  rulecolor = \color{colorRule},
-  language  = bash,
-}
-\lstdefinestyle{style@latex}{
-  style     = style@base,
-  frame     = l,
-  rulecolor = \color{colorRule},
-  language  = [LaTeX]TeX,
-}
-\lstnewenvironment{latexCode}{\lstset{style=style@latex}}{}
-\lstnewenvironment{shellCode}{\lstset{style=style@shell}}{}
-\def\breakablethinspace{\hskip 0.16667em\relax}
-\DeclareDocumentCommand \kvopt { mm }
-  {\texttt{#1\breakablethinspace=\breakablethinspace#2}}
-\DeclareDocumentEnvironment{arguments}{}
-  {\enumerate[label={\texttt{\#\arabic*:~}}, labelsep=0pt, nolistsep]}
-  {\endenumerate}
-
-\PassOptionsToPackage { hidelinks, hypertexnames=false } { hyperref }
-\RequirePackage { hyperref }
-\def\UrlAlphabet{%
-      \do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j%
-      \do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t%
-      \do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D%
-      \do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N%
-      \do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X%
-      \do\Y\do\Z}
-\def\UrlDigits{\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9\do\0}
-\g@addto@macro{\UrlBreaks}{\UrlOrds}
-\g@addto@macro{\UrlBreaks}{\UrlAlphabet}
-\g@addto@macro{\UrlBreaks}{\UrlDigits}
-%</ecnudoc>
+\tl_const:Nn \c_@@_auth_text_ug_tl
+  {
+    \indent 本论文的研究成果归华东师范大学所有，本论文的研究内容不得以其
+    它单位的名义发表。本学位论文作者和指导教师完全了解华东师范大学有关
+    保留、使用学位论文的规定，即：学校有权保留并向国家有关部门或机构送交
+    论文的复印件和电子版，允许论文被查阅和借阅；本人授权华东师范大学可以
+    将论文的全部或部分内容编入有关数据库进行检索、交流，可以采用影印、缩印
+    或其他复制手段保存论文和汇编本学位论文。
+    \par
+    保密的毕业论文（设计）在解密后应遵守此规定。
+  }
+\tl_const:Nn \c_@@_orig_text_pg_part_one_tl
+  { 郑重声明：本人呈交的学位论文 }
+\tl_const:Nn \c_@@_orig_text_pg_part_two_tl
+  {
+    是在华东师范大学攻读硕士/博士（请勾选）学位期间，
+    在导师的指导下进行的研究工作及取得的研究成果。除文中已经注明引用的内容外，
+    本论文不包含其他个人已经发表或撰写过的研究成果。
+    对本文的研究做出重要贡献的个人和集体，
+    均已在文中作了明确说明并表示谢意。
+  }
+\tl_const:Nn \c_@@_auth_text_pg_part_one_tl
+  {
+    系本人在华东师范大学攻读学位期间在导师指导下完成的硕士/博士（请勾选）
+    学位论文，本论文的著作权归本人所有。本人同意华东师范大学根据相关规定
+    保留和使用此学位论文，并向主管部门和学校指定的相关机构送交学位论文的
+    印刷版和电子版；允许学位论文进入华东师范大学图书馆及数据库被查阅、借阅；
+    同意学校将学位论文加入全国博士、硕士学位论文共建单位数据库进行检索，
+    将学位论文的标题和摘要汇编出版，采用影印、缩印或者其它方式合理复制
+    学位论文。
+  }
+\tl_const:Nn \c_@@_auth_text_pg_part_two_tl
+  { 本学位论文属于（请勾选） }
+\tl_const:Nn \c_@@_auth_text_pg_option_one_tl
+  {
+    1. ~ 经华东师范大学相关部门审查核定的“内部”或“涉密”学位论文*，\\
+    于 \quad \quad \quad \quad 年 \quad \quad 月 \quad \quad 日
+    解密，解密后适用上述授权。
+  }
+\tl_const:Nn \c_@@_auth_text_pg_option_two_tl
+  { 2. ~ 不保密，适用上述授权。 }
+\tl_const:Nn \c_@@_auth_others_text_pg_tl
+  {
+    * “涉密”学位论文应是已经华东师范大学学位管理办公室或
+    保密委员会审定过的学位论文（需附获批的《华东师范大学
+    研究生申请学位论文“涉密”审批表》方为有效），未经上述
+    部门审定的学位论文均为公开学位论文。此声明栏不填写的，
+    默认为公开学位论文，均适用上述授权）。
+  }
+\prop_const_from_keyval:Nn \c_@@_thesis_type_prop
+  {
+    doctor    = 博士,
+    master    = 硕士,
+    bachelor  = 学士,
+  }
+\tl_const:Nn \c_@@_graduation_year_tl         { 届 }
+\tl_const:Nn \c_@@_undergraduate_tl           { 本科生 }
+\tl_const:Nn \c_@@_postgraduate_tl            { 研究生 }
+\tl_const:Nn \c_@@_professional_tl            { 专业 }
+\tl_const:Nn \c_@@_degree_tl                  { 学位 }
+\tl_const:Nn \c_@@_thesis_tl                  { 论文 }
+\tl_const:Nn \c_@@_cic_index_tl               { 分类号 }
+\tl_const:Nn \c_@@_secret_level_tl            { 密级 }
+\tl_const:Nn \c_@@_thesis_title_tl            { 论文题目 }
+\tl_const:Nn \c_@@_university_name_tl         { 华东师范大学 }
+\tl_const:Nn \c_@@_university_name_en_tl      { East ~ China ~ Normal ~ University }
+\tl_const:Nn \c_@@_professional_en_tl         { Professional }
+\tl_const:Nn \c_@@_degree_en_tl               { Degree }
+\tl_const:Nn \c_@@_thesis_en_tl               { Thesis }
+\tl_const:Nn \c_@@_dissertation_en_tl         { Dissertation }
+\tl_const:Nn \c_@@_for_en_tl                  { for }
+\tl_const:Nn \c_@@_masters_en_tl              { Master's }
+\tl_const:Nn \c_@@_doctoral_en_tl             { Doctoral }
+\tl_const:Nn \c_@@_thesis_title_en_tl         { Title }
+\tl_const:Nn \c_@@_info_school_en_tl          { Department / School }
+\tl_const:Nn \c_@@_info_major_en_tl           { Major }
+\tl_const:Nn \c_@@_info_major_pro_en_tl       { Category }
+\tl_const:Nn \c_@@_info_field_en_tl           { Research ~ Direction }
+\tl_const:Nn \c_@@_info_field_pro_en_tl       { Field }
+\tl_const:Nn \c_@@_info_candidate_en_tl       { Candidate }
+\tl_const:Nn \c_@@_info_supervisor_en_tl      { Supervisor }
+\clist_const:Nn \c_@@_month_en_clist
+  {
+    January, February, March, April, May, June, July,
+    August, September, October, November, December
+  }
+\tl_const:Nn \c_@@_name_toc_tl                { 目录 }
+\tl_const:Nn \c_@@_name_lot_tl                { 表格目录 }
+\tl_const:Nn \c_@@_name_lof_tl                { 插图目录 }
+\tl_const:Nn \c_@@_name_chinese_abstract_tl   { 中文摘要 }
+\tl_const:Nn \c_@@_name_abstract_tl           { 摘要 }
+\tl_const:Nn \c_@@_name_abstract_en_tl        { Abstract }
+\tl_const:Nn \c_@@_name_keywords_tl           { 关键词 }
+\tl_const:Nn \c_@@_name_keywords_en_tl        { Keywords }
+\tl_const:Nn \c_@@_colon_tl                   { ： }
+\tl_const:Nn \c_@@_colon_en_tl                { : }
+\tl_const:Nn \c_@@_left_guillemet_tl          { 《 } 
+\tl_const:Nn \c_@@_right_guillemet_tl         { 》 } 
+\tl_const:Nn \c_@@_left_round_bracket_tl      { （ } 
+\tl_const:Nn \c_@@_right_round_bracket_tl     { ） } 
+\tl_const:Nn \c_@@_name_appendix_tl           { 附录 }
+\tl_const:Nn \c_@@_name_acknowledgement_tl    { 致谢 }
+\tl_const:Nn \c_@@_name_epilogue_tl           { 后记 }
+\tl_const:Nn \c_@@_name_pdf_creator_tl        { LaTeX~ with~ ecnuthesis~ class }
 %    \end{macrocode}
 %
+%    \begin{macrocode}
+%</definition>
+%    \end{macrocode}
 %
-%
-%<*ecnulogo>
-%</ecnulogo>
 % \fi
 % \end{implementation}

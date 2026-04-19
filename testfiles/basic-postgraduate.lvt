@@ -1,0 +1,62 @@
+% Copyright (C) 2021-2026 by Koyamin <contact@koyamin.com>
+
+\input{ecnuthesis-regression-test.tex}
+
+\documentclass[type=master,declaration=false]{ecnuthesis}
+
+\DEFAULTSETUP
+
+\ecnusetup{
+  info = {
+    degree = academic
+  }
+}
+
+\begin{document}
+
+\START
+
+\loggingoutput
+
+\frontmatter
+
+\begin{abstract}
+  这是中文摘要。
+\end{abstract}
+
+\begin{abstractEN}
+  This is English abstract.
+\end{abstractEN}
+
+\mainmatter
+
+\chapter{第一章}
+
+这是第一章。
+
+\section{第一节}
+
+这是第一章的第一节。
+
+\section{第二节}
+
+这是第一章的第二节。
+
+\section{第三节}
+
+这是第一章的第三节。
+
+
+\chapter{第二章}
+
+这是第二章。
+
+\backmatter
+
+\begin{acknowledgement}
+  致谢
+\end{acknowledgement}
+
+\END
+
+\end{document}

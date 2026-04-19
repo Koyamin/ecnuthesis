@@ -1,29 +1,26 @@
-# ECNUThesis-Undergraduate
+# ecnuthesis：华东师范大学学位论文 LaTeX 模版
 
 [![](https://img.shields.io/badge/Overleaf-ECNUthesis-brightgreen.svg)](https://www.overleaf.com/latex/templates/ecnuthesis-latex-thesis-template-for-east-china-normal-university/szppdtkvgvpk)
 
-## 华东师范大学本科生学士学位论文模版
+ecnuthesis（East China Normal University LaTeX Thesis Template）是华东师范大学学位论文模板的 LaTeX 实现，旨在帮助华东师范大学的学生使用 LaTeX 成博士、硕士学位论文与本科生毕业论文的排版工作。
 
-本模版使用 LaTeX3 重构了 [YijunYuan](https://github.com/YijunYuan) 的 [ECNU-Undergraduate-LaTeX](https://github.com/YijunYuan/ECNU-Undergraduate-LaTeX)，
-并将个人信息的填写、个性化设置、命令、环境等进行了一定的封装，让使用者可以更加方便地利用 LaTeX 进行创作。
-
-## 使用本模版
+## 使用 ecnuthesis
 
 ### 使用环境
 
-请安装最新的 TeX Live ，并使用 XeLaTeX 进行编译。
+请安装最新的 TeX Live，并使用 XeLaTeX 进行编译。
 
 若您的个人计算机中仍安装了老旧的 CTeX 套装，请毫不犹豫地卸载它，并安装最新版的 TeX Live。
 
 ### 使用方法
 
-请移步 [Wiki](https://github.com/Koyamin/ECNUThesis-Undergraduate/wiki) 阅读相关文档。
+请移步 [Wiki](https://github.com/Koyamin/ecnuthesis/wiki) 阅读相关文档。
 
-**注意**：为了保证正确的参考文献显示，请使用 `latexmk` 命令编译。具体方法详见 [编译](https://github.com/Koyamin/ECNUThesis-Undergraduate/wiki/使用模版编写论文#编译)。
+**注意**：为了保证正确的参考文献显示，请使用 `latexmk` 命令编译。具体方法详见 [编译](https://github.com/Koyamin/ecnuthesis/wiki/使用模版编写论文#编译)。
 
 ### 帮助
 
-若您在使用本模版的过程中有疑问，请先参考 [Wiki](https://github.com/Koyamin/ECNUThesis-Undergraduate/wiki) 中的 [常见问题](https://github.com/Koyamin/ECNUThesis-Undergraduate/wiki/常见问题)。若仍未能解决您的疑问，请移步 [Discussions](https://github.com/Koyamin/ECNUThesis-Undergraduate/discussions) 进行讨论。
+若您在使用本模版的过程中有疑问，请先参考 [Wiki](https://github.com/Koyamin/ecnuthesis/wiki) 中的 [常见问题](https://github.com/Koyamin/ecnuthesis/wiki/常见问题)。若仍未能解决您的疑问，请移步 [Discussions](https://github.com/Koyamin/ecnuthesis/discussions) 进行讨论。
 
 ## 重要提醒
 
@@ -32,11 +29,11 @@
 
 ## 更新日志
 
-每个版本的详细更新日志见 [CHANGELOG.md](https://github.com/Koyamin/ECNUThesis-Undergraduate/blob/main/CHANGELOG.md)。
+每个版本的详细更新日志见 [CHANGELOG.md](https://github.com/Koyamin/ecnuthesis/blob/main/CHANGELOG.md)。
 
 ## 贡献
 
-若您对本模版有改进意见或建议，欢迎您提交 [Issues](https://github.com/Koyamin/ECNUThesis-Undergraduate/issues) 以及 [Pull requests](https://github.com/Koyamin/ECNUThesis-Undergraduate/pulls)。
+若您在使用模板时遇到bug，或是发现本模版与学校的论文格式要求不符，抑或是对本模板有改进意见或建议，欢迎您提交 [Issues](https://github.com/Koyamin/ecnuthesis/issues) 以及 [Pull requests](https://github.com/Koyamin/ecnuthesis/pulls)。
 
 ## 参考
 

@@ -1,0 +1,93 @@
+name: Automated Testing
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+
+env:
+  TL_PACKAGES: |
+    l3build
+    biber
+    biblatex
+    biblatex-gb7714-2015
+    bigfoot
+    caption
+    ctex
+    fancyhdr
+    footmisc
+    kantlipsum
+    latexmk
+    libertinus-fonts
+    lm-math
+    natbib
+    ntheorem
+    siunitx
+    standalone
+    symbol
+    unicode-math
+    xits
+    xstring
+    zhlipsum
+    hyperref
+    amsmath
+    geometry
+    xcolor
+    pdfpages
+    titlesec
+
+jobs:
+  test-ecnuthesis:
+    strategy:
+      matrix:
+        include:
+        - runs-on: ubuntu-latest
+          shell: bash
+          tl-pkgs: ""
+        - runs-on: macos-latest
+          shell: bash
+          tl-pkgs: ""
+        # - runs-on: windows
+        #   shell: C:\msys64\use\bin\bash.exe -e {0}
+        #   tl-pkgs: wintools.windows
+          
+    name: on ${{ matrix.runs-on }}
+
+    runs-on: ${{ matrix.runs-on }}
+
+    defaults:
+      run:
+        shell: ${{ matrix.shell }}
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v6
+
+    - name: Install Tex Live
+      uses: TeX-Live/setup-texlive-action@v4
+      with:
+        packages: |
+          ${{ env.TL_PACKAGES }}
+          ${{ matrix.tl-pkgs }}
+
+    - name: Check ecnuthesis
+      id: test
+      run: |
+        l3build check -q -H
+      env:
+        diffext: .diff
+        diffexe: git diff --no-index --text --
+
+    - name: Get short commit SHA
+      if: ${{ !cancelled() && steps.test.outcome == 'failure' }}
+      run: |
+        echo "SHA_SHORT=$(git rev-parse --short=8 HEAD)" >> $GITHUB_ENV
+
+    - name: Upload test diffs
+      if: ${{ !cancelled() && steps.test.outcome == 'failure' }}
+      uses: actions/upload-artifact@v6
+      with:
+        name: ecnuthesis-diff-${{ env.SHA_SHORT }}-${{ runner.os }}
+        path: |
+          build/**/*.diff
