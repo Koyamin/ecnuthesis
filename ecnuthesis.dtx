@@ -3314,7 +3314,12 @@
         \RequirePackage { pdfpages }
       },
   }
-\NewDocumentCommand \makecoveri { }
+%    \end{macrocode}
+%
+% \begin{macro}{\innercover,\innercoverEN}
+% 中外文内封面命令。
+%    \begin{macrocode}
+\NewDocumentCommand \innercover { }
   {
     \thispagestyle { empty }
     \tl_set:Nn \thepage { A }
@@ -3322,13 +3327,19 @@
       { \UseInstance { ecnu / cover } { cover-i-ug } }
       { \UseInstance { ecnu / cover } { cover-i-pg } }
   }
-\NewDocumentCommand \makecoveriEN { }
+\NewDocumentCommand \innercoverEN { }
   {
     \thispagestyle { empty }
     \tl_set:Nn \thepage { A-EN }
     \UseInstance { ecnu / cover } { cover-i-pg-en }
   }
-\NewDocumentCommand \makecoverii { }
+%    \end{macrocode}
+% \end{macro}
+%    
+% \begin{macro}{\declarationpage}
+% 声明页命令。
+%    \begin{macrocode}
+\NewDocumentCommand \declarationpage { }
   {
     \cleardoublepage
     \thispagestyle { empty }
@@ -3792,11 +3803,11 @@
         \begin{titlepage}
           \bool_if:NT \g_@@_cover_page_bool
             {
-              \makecoveri
-              \bool_if:NF \g_@@_is_bachelor_bool { \newpage \makecoveriEN }
+              \innercover
+              \bool_if:NF \g_@@_is_bachelor_bool { \newpage \innercoverEN }
             }
           \bool_if:NT \g_@@_declaration_page_bool
-            { \makecoverii }
+            { \declarationpage }
         \end{titlepage}
 %    \end{macrocode}
 %
