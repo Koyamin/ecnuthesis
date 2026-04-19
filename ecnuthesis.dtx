@@ -3488,9 +3488,9 @@
 % 定义中外文摘要环境。
 %    \begin{macrocode}
 \RenewDocumentEnvironment { abstract  } { }
-  { \@@_abstract_begin:    } { \@@_abstract_end:      }
+  { \@@_abstract_begin: } { \@@_abstract_end: }
 \NewDocumentEnvironment { abstractEN } { }
-  { \@@_abstract_en_begin: } { \@@_abstract_en_end:   }
+  { \@@_abstract_en_begin: } { \@@_abstract_en_end: }
 %    \end{macrocode}
 % \end{environment}
 % \end{environment}
@@ -3570,22 +3570,18 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_keywords:nNn}
+% \begin{macro}{\@@_keywords:nNnn}
 % 中外文摘要页关键词。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_keywords:nNnn #1#2#3#4
   {
-    \par \mode_leave_vertical: \par \noindent
-    \@@_get_text_width:Nn \l_@@_tmpa_dim {#1}
+    \par \@@_vspace:n { \skip_use:N \baselineskip minus 1 em }
+    \par \noindent
     \group_begin: #1 \group_end:
-    \@@_fixed_width_align_top_box:nn
-      { \dim_eval:n { \textwidth - \l_@@_tmpa_dim } }
-      {
-        #4
-        \clist_use:Nn #2 {#3} \par
-        \cs_gset:Npx \@@_keywords_prevdepth:
-          { \dim_use:N \tex_prevdepth:D }
-      }
+    \group_begin:
+      #4
+      \clist_use:Nn #2 {#3}
+    \group_end:
   }
 %    \end{macrocode}
 % \end{macro}
