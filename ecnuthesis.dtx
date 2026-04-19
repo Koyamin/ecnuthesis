@@ -1787,7 +1787,6 @@
 \cs_new_protected:Npn \@@_abs_title:n #1
   {
     \group_begin:
-      \@@_line_spread:N \c_@@_single_space_line_spread_fp
       \ctexset 
         { 
           chapter / numbering   = false,
@@ -1806,7 +1805,6 @@
 \cs_new_protected:Npn \@@_absEN_title:n #1
   {
     \group_begin:
-      \@@_line_spread:N \c_@@_single_space_line_spread_fp
       \ctexset
         {
           chapter / numbering   = false,
@@ -3620,9 +3618,7 @@
 % 在打印模式下，保证附录部分为偶数页。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_appendix_end:
-  {
-    \cleardoublepage
-  }
+  { \cleardoublepage }
 %    \end{macrocode}
 % \end{macro}
 %
