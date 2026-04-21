@@ -48,9 +48,9 @@ jobs:
         - runs-on: macos-latest
           shell: bash
           tl-pkgs: ""
-        # - runs-on: windows
-        #   shell: C:\msys64\use\bin\bash.exe -e {0}
-        #   tl-pkgs: wintools.windows
+        - runs-on: windows-latest
+          shell: C:\msys64\use\bin\bash.exe -e {0}
+          tl-pkgs: wintools.windows
           
     name: on ${{ matrix.runs-on }}
 
