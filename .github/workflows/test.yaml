@@ -49,7 +49,7 @@ jobs:
           shell: bash
           tl-pkgs: ""
         - runs-on: windows-latest
-          shell: C:\msys64\use\bin\bash.exe -e {0}
+          shell: pwsh
           tl-pkgs: wintools.windows
           
     name: on ${{ matrix.runs-on }}
