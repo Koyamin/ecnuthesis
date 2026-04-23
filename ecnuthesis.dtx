@@ -1772,9 +1772,10 @@
   { The~ value~ "\l_keys_value_tl"~ is~ unknown. }
 %    \end{macrocode}
 %
-% \begin{macro}{\@@_title:n}
-% 手动生成章的标题，用于摘要、参考文献等。这些标题的字体大小
-% 为小三，行距为 1.5 倍行距。
+% \begin{macro}{\@@_title:n,\@@_title:V}
+% 手动生成章的标题，用于摘要、参考文献等。
+% 在本科生毕业论文中，这些标题的字体为黑体加粗、字号为小三、对齐方式为居中；
+% 在硕士、博士学位论文中，这些标题的字体为黑体加粗、字号为三号、对齐方式为居中。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_title:n #1
   {
@@ -1785,7 +1786,8 @@
           chapter / format    = 
             {
               \sffamily\bfseries\centering
-              \bool_if:NTF \g_@@_is_bachelor_bool { \large } { \zihao{3} }
+              \bool_if:NTF \g_@@_is_bachelor_bool
+                { \zihao {-3} } { \zihao {3} }
             },
         }
       \chapter {#1}
@@ -1804,7 +1806,7 @@
       \ctexset 
         { 
           chapter / numbering   = false,
-          chapter / format      = \sffamily\bfseries\centering\large,
+          chapter / format      = \sffamily\bfseries\centering\zihao{-3},
         }
       \chapter* {#1}
     \group_end:
@@ -1822,7 +1824,7 @@
       \ctexset
         {
           chapter / numbering   = false,
-          chapter / format      = \rmfamily\bfseries\centering\large,
+          chapter / format      = \rmfamily\bfseries\centering\zihao{-3},
         }
       \chapter* {#1}
     \group_end:
