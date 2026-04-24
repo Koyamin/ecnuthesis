@@ -964,11 +964,7 @@
 % 设置开启封面页。若开启封面页，则模版将自动生成封面页；反之则不会自动生成封面页。
 % 模板默认开启封面页。
 %    \begin{macrocode}
-    cover         .choice:,
-    cover / true  .code:n =
-      { \bool_set_true:N \g_@@_cover_page_bool },
-    cover / false .code:n =
-      { \bool_set_false:N \g_@@_cover_page_bool },
+    cover         .bool_gset:N = \g_@@_cover_page_bool,
     cover         .default:n = { true },
     cover         .initial:n = { true },
 %    \end{macrocode}
@@ -978,11 +974,7 @@
 % 设置开启声明页。若开启声明页，则模版将自动生成声明页；反之则不会自动生成声明页。
 % 默认关闭声明页。
 %    \begin{macrocode}
-    declaration   .choice:,
-    declaration / true  .code:n =
-      { \bool_set_true:N \g_@@_declaration_page_bool },
-    declaration / false  .code:n =
-      { \bool_set_false:N \g_@@_declaration_page_bool },
+    declaration   .bool_gset:N = \g_@@_declaration_page_bool,
     declaration   .default:n = { true },
     declaration   .initial:n = { false },
 %    \end{macrocode}
