@@ -931,7 +931,7 @@
     type        .choices:nn = 
       { doctor, master, bachelor }
       {
-        \tl_set_eq:NN \g_@@_thesis_type_tl \l_keys_choice_tl
+        \tl_gset_eq:NN \g_@@_thesis_type_tl \l_keys_choice_tl
         \tl_if_eq:NnTF \l_keys_choice_tl { bachelor }
           { \bool_set_true:N \g_@@_is_bachelor_bool }
           { \bool_set_false:N \g_@@_is_bachelor_bool }
@@ -950,12 +950,12 @@
     oneside .code:n =
       {
         \clist_gput_right:Nn \g_@@_to_ctexrep_clist { oneside }
-        \bool_set_false:N    \g_@@_twoside_bool
+        \bool_gset_false:N   \g_@@_twoside_bool
       },
     twoside .code:n =
       {
         \clist_gput_right:Nn \g_@@_to_ctexrep_clist { twoside }
-        \bool_set_true:N     \g_@@_twoside_bool
+        \bool_gset_true:N    \g_@@_twoside_bool
       },
 %    \end{macrocode}
 % \end{macro}
@@ -1163,7 +1163,7 @@
   {
     font  .choices:nn =
       { lm, times, xits }
-      { \tl_set_eq:NN \g_@@_fontset_tl \l_keys_choice_tl },
+      { \tl_gset_eq:NN \g_@@_fontset_tl \l_keys_choice_tl },
     font  .value_required:n = true,
     font  .initial:n  = lm
   }
@@ -1599,7 +1599,7 @@
 %    \begin{macrocode}
     numbering / arabic  .code:n = 
       {
-        \tl_set:Nn \g_@@_numbering_tl { arabic }
+        \tl_gset:Nn \g_@@_numbering_tl { arabic }
         \bool_if:NTF \g_@@_is_bachelor_bool
           {
             \keys_set:nn { ctex }
@@ -1683,7 +1683,7 @@
 %    \begin{macrocode}
     numbering / chinese .code:n = 
       {
-        \tl_set:Nn \g_@@_numbering_tl { chinese }
+        \tl_gset:Nn \g_@@_numbering_tl { chinese }
         \bool_if:NTF \g_@@_is_bachelor_bool
           {
             \keys_set:nn { ctex }
