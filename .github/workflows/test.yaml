@@ -3,39 +3,7 @@ name: Automated Testing
 on:
   push:
     branches:
-      - "**"
-  pull_request:
-
-env:
-  TL_PACKAGES: |
-    l3build
-    biber
-    biblatex
-    biblatex-gb7714-2015
-    bigfoot
-    caption
-    ctex
-    fancyhdr
-    footmisc
-    kantlipsum
-    latexmk
-    libertinus-fonts
-    lm-math
-    natbib
-    ntheorem
-    siunitx
-    standalone
-    symbol
-    unicode-math
-    xits
-    xstring
-    zhlipsum
-    hyperref
-    amsmath
-    geometry
-    xcolor
-    pdfpages
-    titlesec
+      - "dev"
 
 jobs:
   test-ecnuthesis:
@@ -64,12 +32,11 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v6
 
-    - name: Install Tex Live
-      uses: TeX-Live/setup-texlive-action@v4
+    - name: Install TeX Live
+      uses: zauguin/install-texlive@v4
       with:
-        packages: |
-          ${{ env.TL_PACKAGES }}
-          ${{ matrix.tl-pkgs }}
+        package_file: .github/tl_packages
+        packages: ${{ matrix.tl-pkgs }}
 
     - name: Check ecnuthesis
       id: test

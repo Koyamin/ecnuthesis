@@ -19,7 +19,7 @@
 % \iffalse
 %<class|ecnudoc|ecnulogo>\NeedsTeXFormat{LaTeX2e}
 %<class|ecnudoc|ecnulogo>\RequirePackage{expl3}
-%<class|ecnudoc|ecnulogo|definition>\GetIdInfo $Id: ecnuthesis.dtx 0.4 2026-04-20 15:00:00Z Koyamin <contact@koyamin.com>$
+%<class|ecnudoc|ecnulogo|definition>\GetIdInfo $Id: ecnuthesis.dtx 1.0 2026-04-20 15:00:00Z Koyamin <contact@koyamin.com>$
 %<class>  {LaTeX Thesis Template for East China Normal University (ECNU)}
 %<ecnudoc>  {Documentation class for ecnuthesis}
 %<ecnulogo>  {logo for ecnuthesis}
@@ -931,7 +931,7 @@
     type        .choices:nn = 
       { doctor, master, bachelor }
       {
-        \tl_set_eq:NN \g_@@_thesis_type_tl \l_keys_choice_tl
+        \tl_gset_eq:NN \g_@@_thesis_type_tl \l_keys_choice_tl
         \tl_if_eq:NnTF \l_keys_choice_tl { bachelor }
           { \bool_set_true:N \g_@@_is_bachelor_bool }
           { \bool_set_false:N \g_@@_is_bachelor_bool }
@@ -950,12 +950,12 @@
     oneside .code:n =
       {
         \clist_gput_right:Nn \g_@@_to_ctexrep_clist { oneside }
-        \bool_set_false:N    \g_@@_twoside_bool
+        \bool_gset_false:N   \g_@@_twoside_bool
       },
     twoside .code:n =
       {
         \clist_gput_right:Nn \g_@@_to_ctexrep_clist { twoside }
-        \bool_set_true:N     \g_@@_twoside_bool
+        \bool_gset_true:N    \g_@@_twoside_bool
       },
 %    \end{macrocode}
 % \end{macro}
@@ -964,11 +964,7 @@
 % 设置开启封面页。若开启封面页，则模版将自动生成封面页；反之则不会自动生成封面页。
 % 模板默认开启封面页。
 %    \begin{macrocode}
-    cover         .choice:,
-    cover / true  .code:n =
-      { \bool_set_true:N \g_@@_cover_page_bool },
-    cover / false .code:n =
-      { \bool_set_false:N \g_@@_cover_page_bool },
+    cover         .bool_gset:N = \g_@@_cover_page_bool,
     cover         .default:n = { true },
     cover         .initial:n = { true },
 %    \end{macrocode}
@@ -978,11 +974,7 @@
 % 设置开启声明页。若开启声明页，则模版将自动生成声明页；反之则不会自动生成声明页。
 % 默认关闭声明页。
 %    \begin{macrocode}
-    declaration   .choice:,
-    declaration / true  .code:n =
-      { \bool_set_true:N \g_@@_declaration_page_bool },
-    declaration / false  .code:n =
-      { \bool_set_false:N \g_@@_declaration_page_bool },
+    declaration   .bool_gset:N = \g_@@_declaration_page_bool,
     declaration   .default:n = { true },
     declaration   .initial:n = { false },
 %    \end{macrocode}
@@ -1171,7 +1163,7 @@
   {
     font  .choices:nn =
       { lm, times, xits }
-      { \tl_set_eq:NN \g_@@_fontset_tl \l_keys_choice_tl },
+      { \tl_gset_eq:NN \g_@@_fontset_tl \l_keys_choice_tl },
     font  .value_required:n = true,
     font  .initial:n  = lm
   }
@@ -1607,7 +1599,7 @@
 %    \begin{macrocode}
     numbering / arabic  .code:n = 
       {
-        \tl_set:Nn \g_@@_numbering_tl { arabic }
+        \tl_gset:Nn \g_@@_numbering_tl { arabic }
         \bool_if:NTF \g_@@_is_bachelor_bool
           {
             \keys_set:nn { ctex }
@@ -1691,7 +1683,7 @@
 %    \begin{macrocode}
     numbering / chinese .code:n = 
       {
-        \tl_set:Nn \g_@@_numbering_tl { chinese }
+        \tl_gset:Nn \g_@@_numbering_tl { chinese }
         \bool_if:NTF \g_@@_is_bachelor_bool
           {
             \keys_set:nn { ctex }
@@ -1772,9 +1764,10 @@
   { The~ value~ "\l_keys_value_tl"~ is~ unknown. }
 %    \end{macrocode}
 %
-% \begin{macro}{\@@_title:n}
-% 手动生成章的标题，用于摘要、参考文献等。这些标题的字体大小
-% 为小三，行距为 1.5 倍行距。
+% \begin{macro}{\@@_title:n,\@@_title:V}
+% 手动生成章的标题，用于摘要、参考文献等。
+% 在本科生毕业论文中，这些标题的字体为黑体加粗、字号为小三、对齐方式为居中；
+% 在硕士、博士学位论文中，这些标题的字体为黑体加粗、字号为三号、对齐方式为居中。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_title:n #1
   {
@@ -1785,7 +1778,8 @@
           chapter / format    = 
             {
               \sffamily\bfseries\centering
-              \bool_if:NTF \g_@@_is_bachelor_bool { \large } { \zihao{3} }
+              \bool_if:NTF \g_@@_is_bachelor_bool
+                { \zihao {-3} } { \zihao {3} }
             },
         }
       \chapter {#1}
@@ -1804,7 +1798,7 @@
       \ctexset 
         { 
           chapter / numbering   = false,
-          chapter / format      = \sffamily\bfseries\centering\large,
+          chapter / format      = \sffamily\bfseries\centering\zihao{-3},
         }
       \chapter* {#1}
     \group_end:
@@ -1822,7 +1816,7 @@
       \ctexset
         {
           chapter / numbering   = false,
-          chapter / format      = \rmfamily\bfseries\centering\large,
+          chapter / format      = \rmfamily\bfseries\centering\zihao{-3},
         }
       \chapter* {#1}
     \group_end:

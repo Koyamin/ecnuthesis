@@ -1,0 +1,33 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v6
+    - name: Install TeX Live
+      uses: zauguin/install-texlive@v4
+      with:
+        package_file: .github/tl_packages
+    - name: Build
+      id: build
+      run: |
+        l3build ctan
+    - name: Release
+      uses: softprops/action-gh-release@v2
+      with:
+        body: ${{ github.event.head_commit.message }}
+        draft: true
+        files: |
+          ecnuthesis.pdf
+          ecnuthesis-ctan.zip
+          ecnuthesis.tds.zip
