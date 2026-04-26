@@ -4,6 +4,28 @@
 
 记载格式参照 [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)。
 
+## [Unreleased]
+
+## [1.0] - 2026-04-20
+
+### Added
+
+- 实现博士、硕士学位论文模板功能
+- 文档类选项新增 `cover` 字段，可自由控制是否生成内封面
+- 增加 `style/footnote` 字段，用于设置脚注编号
+
+### Changed
+
+- 将 `info/*` 接口 与 `style/*` 接口的名称进行调整
+- 关键词与摘要正文间距设置为胶水距离
+- `style/font-cjk` 新增 `auto` 选项，自动选择中文字体
+- `info/title` 字段支持使用换行符 `\\`
+
+### Fixed
+
+- 摘要页标题与正文的间距
+- 本科生毕业论文页眉横线宽度为 0.5 pt
+
 ## [0.3] - 2024-04-16
 
 ### Changed
@@ -79,5 +101,6 @@
 
 在 `style` 设置中增加了 `fontMath` 的设置接口，以便使用者更加方便地更换数学公式字体。
 
+[1.0]: https://github.com/Koyamin/ECNUThesis/releases/tag/v1.0
 [0.3]: https://github.com/Koyamin/ECNUThesis/releases/tag/v0.3
 [0.1.5]: https://github.com/Koyamin/ECNUThesis/releases/tag/v0.1.5
