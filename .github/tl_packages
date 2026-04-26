@@ -12,7 +12,7 @@ bookmark
 booktabs
 caption
 catchfile
-cm-super
+cm-unicode
 colortbl
 csquotes
 ctex
@@ -52,6 +52,7 @@ standalone
 symbol
 times
 titlesec
+tex-gyre-heros
 underscore
 unicode-math
 units
