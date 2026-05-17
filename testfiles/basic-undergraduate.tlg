@@ -125,6 +125,12 @@ Completed box being shipped out [1]
 ....\write-{}
 ....\write-{}
 ....\special{pdf:dest (chapter*.1) [@thispage /XYZ @xpos @ypos null]}
+....\write4{\protect \BOOKMARK [0][-]{chapter*.1}{\376\377\144\130\211\201}{}% 1}
+....\write1{\@writefile{toc}{\protect \contentsline {chapter}{摘要}{\thepage }{chapter*.1}\protected@file@percent }}
+....\marks1{\__mark_value:nn {1}{\MakeUppercase    []{摘要}}}
+....\marks2{\__mark_value:nn {2}{}}
+....\write1{\@writefile{lof}{\protect \addvspace {10.0pt}}}
+....\write1{\@writefile{lot}{\protect \addvspace {10.0pt}}}
 ....\glue(\topskip) 12.0
 ....\rule(0.0+0.0)x*
 ....\penalty 10000
@@ -184,10 +190,6 @@ Completed box being shipped out [1]
 .....\glue(\rightskip) 0.0 plus 1.0fil
 ....\penalty 10000
 ....\glue 12.97847 plus 0.03825
-....\write4{\protect \BOOKMARK [0][-]{chapter*.1}{\376\377\144\130\211\201}{}% 1}
-....\penalty 10000
-....\write1{\@writefile{toc}{\protect \contentsline {chapter}{摘要}{\thepage }{chapter*.1}\protected@file@percent }}
-....\penalty 10000
 ....\glue 17.666
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\parskip) 0.0
@@ -443,6 +445,12 @@ Completed box being shipped out [2]
 ....\write-{}
 ....\write-{}
 ....\special{pdf:dest (chapter*.2) [@thispage /XYZ @xpos @ypos null]}
+....\write4{\protect \BOOKMARK [0][-]{chapter*.2}{\376\377\000A\000B\000S\000T\000R\000A\000C\000T}{}% 2}
+....\write1{\@writefile{toc}{\protect \contentsline {chapter}{ABSTRACT}{\thepage }{chapter*.2}\protected@file@percent }}
+....\marks1{\__mark_value:nn {3}{\MakeUppercase    []{ABSTRACT}}}
+....\marks2{\__mark_value:nn {4}{}}
+....\write1{\@writefile{lof}{\protect \addvspace {10.0pt}}}
+....\write1{\@writefile{lot}{\protect \addvspace {10.0pt}}}
 ....\glue(\topskip) 12.0
 ....\rule(0.0+0.0)x*
 ....\penalty 10000
@@ -488,10 +496,6 @@ Completed box being shipped out [2]
 .....\glue(\rightskip) 0.0 plus 1.0fil
 ....\penalty 10000
 ....\glue 12.97847 plus 0.03825
-....\write4{\protect \BOOKMARK [0][-]{chapter*.2}{\376\377\000A\000B\000S\000T\000R\000A\000C\000T}{}% 2}
-....\penalty 10000
-....\write1{\@writefile{toc}{\protect \contentsline {chapter}{ABSTRACT}{\thepage }{chapter*.2}\protected@file@percent }}
-....\penalty 10000
 ....\glue 17.666
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\parskip) 0.0
@@ -708,8 +712,8 @@ Completed box being shipped out [1]
 ....\special{pdf:dest (chapter.1) [@thispage /XYZ @xpos @ypos null]}
 ....\write4{\protect \BOOKMARK [0][-]{chapter.1}{\376\377\173\054\116\000\172\340}{}% 3}
 ....\write1{\@writefile{toc}{\protect \contentsline {chapter}{\protect \numberline {1、}第一章}{\thepage }{chapter.1}\protected@file@percent }}
-....\marks1{\__mark_value:nn {1}{\MakeUppercase    []{1、\hskip 1em\relax 第一章}}}
-....\marks2{\__mark_value:nn {2}{}}
+....\marks1{\__mark_value:nn {5}{\MakeUppercase    []{1、\hskip 1em\relax 第一章}}}
+....\marks2{\__mark_value:nn {6}{}}
 ....\write1{\@writefile{lof}{\protect \addvspace {10.0pt}}}
 ....\write1{\@writefile{lot}{\protect \addvspace {10.0pt}}}
 ....\glue(\topskip) 12.0
@@ -787,8 +791,8 @@ Completed box being shipped out [1]
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
-....\marks2{\__mark_value:nn {3}{\MakeUppercase    []{1.1\hskip 1em\relax 第一节}}}
-....\marks3{\__mark_value:nn {4}{\MakeUppercase    []{1.1\hskip 1em\relax 第一节}}}
+....\marks2{\__mark_value:nn {7}{\MakeUppercase    []{1.1\hskip 1em\relax 第一节}}}
+....\marks3{\__mark_value:nn {8}{\MakeUppercase    []{1.1\hskip 1em\relax 第一节}}}
 ....\write4{\protect \BOOKMARK [1][-]{section.1.1}{\376\377\173\054\116\000\202\202}{chapter.1}% 4}
 ....\write1{\@writefile{toc}{\protect \contentsline {section}{\protect \numberline {1.1}第一节}{\thepage }{section.1.1}\protected@file@percent }}
 ....\penalty 10000
@@ -848,8 +852,8 @@ Completed box being shipped out [1]
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
-....\marks2{\__mark_value:nn {5}{\MakeUppercase    []{1.2\hskip 1em\relax 第二节}}}
-....\marks3{\__mark_value:nn {6}{\MakeUppercase    []{1.2\hskip 1em\relax 第二节}}}
+....\marks2{\__mark_value:nn {9}{\MakeUppercase    []{1.2\hskip 1em\relax 第二节}}}
+....\marks3{\__mark_value:nn {10}{\MakeUppercase    []{1.2\hskip 1em\relax 第二节}}}
 ....\write4{\protect \BOOKMARK [1][-]{section.1.2}{\376\377\173\054\116\214\202\202}{chapter.1}% 5}
 ....\write1{\@writefile{toc}{\protect \contentsline {section}{\protect \numberline {1.2}第二节}{\thepage }{section.1.2}\protected@file@percent }}
 ....\penalty 10000
@@ -909,8 +913,8 @@ Completed box being shipped out [1]
 .....\penalty 10000
 .....\glue(\parfillskip) 0.0 plus 1.0fil
 .....\glue(\rightskip) 0.0
-....\marks2{\__mark_value:nn {7}{\MakeUppercase    []{1.3\hskip 1em\relax 第三节}}}
-....\marks3{\__mark_value:nn {8}{\MakeUppercase    []{1.3\hskip 1em\relax 第三节}}}
+....\marks2{\__mark_value:nn {11}{\MakeUppercase    []{1.3\hskip 1em\relax 第三节}}}
+....\marks3{\__mark_value:nn {12}{\MakeUppercase    []{1.3\hskip 1em\relax 第三节}}}
 ....\write4{\protect \BOOKMARK [1][-]{section.1.3}{\376\377\173\054\116\011\202\202}{chapter.1}% 6}
 ....\write1{\@writefile{toc}{\protect \contentsline {section}{\protect \numberline {1.3}第三节}{\thepage }{section.1.3}\protected@file@percent }}
 ....\penalty 10000
@@ -1102,8 +1106,8 @@ Completed box being shipped out [2]
 ....\special{pdf:dest (chapter.2) [@thispage /XYZ @xpos @ypos null]}
 ....\write4{\protect \BOOKMARK [0][-]{chapter.2}{\376\377\173\054\116\214\172\340}{}% 7}
 ....\write1{\@writefile{toc}{\protect \contentsline {chapter}{\protect \numberline {2、}第二章}{\thepage }{chapter.2}\protected@file@percent }}
-....\marks1{\__mark_value:nn {9}{\MakeUppercase    []{2、\hskip 1em\relax 第二章}}}
-....\marks2{\__mark_value:nn {10}{}}
+....\marks1{\__mark_value:nn {13}{\MakeUppercase    []{2、\hskip 1em\relax 第二章}}}
+....\marks2{\__mark_value:nn {14}{}}
 ....\write1{\@writefile{lof}{\protect \addvspace {10.0pt}}}
 ....\write1{\@writefile{lot}{\protect \addvspace {10.0pt}}}
 ....\glue(\topskip) 12.0
@@ -1313,8 +1317,8 @@ Completed box being shipped out [3]
 ....\special{pdf:dest (chapter*.3) [@thispage /XYZ @xpos @ypos null]}
 ....\write4{\protect \BOOKMARK [0][-]{chapter*.3}{\376\377\201\364\214\042}{}% 8}
 ....\write1{\@writefile{toc}{\protect \contentsline {chapter}{致谢}{\thepage }{chapter*.3}\protected@file@percent }}
-....\marks1{\__mark_value:nn {11}{\MakeUppercase    []{致谢}}}
-....\marks2{\__mark_value:nn {12}{}}
+....\marks1{\__mark_value:nn {15}{\MakeUppercase    []{致谢}}}
+....\marks2{\__mark_value:nn {16}{}}
 ....\write1{\@writefile{lof}{\protect \addvspace {10.0pt}}}
 ....\write1{\@writefile{lot}{\protect \addvspace {10.0pt}}}
 ....\glue(\topskip) 12.0

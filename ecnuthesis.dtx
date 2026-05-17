@@ -17,18 +17,18 @@
 % \fi
 %
 % \iffalse
-%<class|ecnudoc|ecnulogo>\NeedsTeXFormat{LaTeX2e}
-%<class|ecnudoc|ecnulogo>\RequirePackage{expl3}
-%<class|ecnudoc|ecnulogo|definition>\GetIdInfo $Id: ecnuthesis.dtx 1.0 2026-04-20 15:00:00Z Koyamin <contact@koyamin.com>$
+%<class|ecnudoc|ecnuvi>\NeedsTeXFormat{LaTeX2e}
+%<class|ecnudoc|ecnuvi>\RequirePackage{expl3}
+%<class|ecnudoc|ecnuvi|definition>\GetIdInfo $Id: ecnuthesis.dtx 1.0 2026-04-20 15:00:00Z Koyamin <contact@koyamin.com>$
 %<class>  {LaTeX Thesis Template for East China Normal University (ECNU)}
 %<ecnudoc>  {Documentation class for ecnuthesis}
-%<ecnulogo>  {logo for ecnuthesis}
+%<ecnuvi>  {Visual Identity System (VI) for ecnuthesis}
 %<class>\ProvidesExplClass{\ExplFileName}
 %<ecnudoc>\ProvidesExplClass{ecnudoc}
-%<ecnulogo>\ProvidesExplPackage{ecnulogo}
+%<ecnuvi>\ProvidesExplPackage{ecnuvi}
 %<definition>  {Definition file for ecnuthesis}
 %<definition>\ProvidesExplFile{\ExplFileName.def}
-%<class|ecnudoc|ecnulogo|definition>  {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
+%<class|ecnudoc|ecnuvi|definition>  {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
 %<*driver>
 \documentclass{ecnudoc}
 \EnableCrossrefs
@@ -44,7 +44,7 @@
 %
 % \title{\textcolor{color-ecnu-red}{\textbf{ecnuthesis: 华东师范大学学位论文 \LaTeX 模板}}}
 % \author{Koyamin}
-% \date{v0.4\quad(2026-04-20)}
+% \date{v1.0\quad(2026-04-20)}
 % \maketitle
 % \tableofcontents
 % \clearpage
@@ -1763,65 +1763,11 @@
 \@@_msg_new:nn { unknown-value }
   { The~ value~ "\l_keys_value_tl"~ is~ unknown. }
 %    \end{macrocode}
-%
-% \begin{macro}{\@@_title:n,\@@_title:V}
-% 手动生成章的标题，用于摘要、参考文献等。
-% 在本科生毕业论文中，这些标题的字体为黑体加粗、字号为小三、对齐方式为居中；
-% 在硕士、博士学位论文中，这些标题的字体为黑体加粗、字号为三号、对齐方式为居中。
+% 
+% \begin{macro}{\@@_pdf_bookmark:nn}
+% 手动插入章节 PDF 书签。该命令在 \pkg{hyperref} 载入后才有意义。
 %    \begin{macrocode}
-\cs_new_protected:Npn \@@_title:n #1
-  {
-    \group_begin:
-      \ctexset 
-        { 
-          chapter / numbering = false,
-          chapter / format    = 
-            {
-              \sffamily\bfseries\centering
-              \bool_if:NTF \g_@@_is_bachelor_bool
-                { \zihao {-3} } { \zihao {3} }
-            },
-        }
-      \chapter {#1}
-    \group_end:
-  }
-\cs_generate_variant:Nn \@@_title:n { V }
-%    \end{macrocode}
-% \end{macro}
-%
-% \begin{macro}{\@@_abs_title:n,\@@_abs_title:V}
-% 手动生成摘要页的中文标题。这些标题的字体大小为小三。
-%    \begin{macrocode}
-\cs_new_protected:Npn \@@_abs_title:n #1
-  {
-    \group_begin:
-      \ctexset 
-        { 
-          chapter / numbering   = false,
-          chapter / format      = \sffamily\bfseries\centering\zihao{-3},
-        }
-      \chapter* {#1}
-    \group_end:
-  }
-\cs_generate_variant:Nn \@@_abs_title:n { V }
-%    \end{macrocode}
-% \end{macro}
-%
-% \begin{macro}{\@@_absEN_title:n,\@@_absEN_title:V}
-% 手动生成摘要页的英文标题。这些标题的字体大小为小三。
-%    \begin{macrocode}
-\cs_new_protected:Npn \@@_absEN_title:n #1
-  {
-    \group_begin:
-      \ctexset
-        {
-          chapter / numbering   = false,
-          chapter / format      = \rmfamily\bfseries\centering\zihao{-3},
-        }
-      \chapter* {#1}
-    \group_end:
-  }
-\cs_generate_variant:Nn \@@_absEN_title:n { V }
+\cs_new_eq:NN \@@_pdf_bookmark:nn \use_none:nn
 %    \end{macrocode}
 % \end{macro}
 %
@@ -3363,6 +3309,137 @@
 %    \end{macrocode}
 % \end{macro}
 %
+% \subsection{自定义标题}
+%
+% \begin{macro}{\l_@@_heading_in_toc_bool,\l_@@_heading_contents_tl,
+% \l_@@_env_lang_tl}
+% 自定义环境标题接口相关字段所涉及的变量。
+%    \begin{macrocode}
+\bool_new:N \l_@@_heading_in_toc_bool
+\tl_new:N \l_@@_heading_contents_tl
+\tl_new:N \l_@@_env_lang_tl
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{toc,title}
+% 为自定义环境提供键值对接口。
+% \opt{toc} 表示是否将该环境的标题添加至目录；
+% \opt{title} 用来自定义环境的标题。
+%    \begin{macrocode}
+\keys_define:nn { ecnu / customize }
+  {
+    toc     .bool_set:N   = \l_@@_heading_in_toc_bool,
+    toc     .default:n    = true,
+    toc     .initial:n    = true,
+    toc     .groups:n     = { heading },
+    title   .tl_set:N     = \l_@@_heading_contents_tl,
+    title   .groups:n     = { heading },
+  }
+%    \end{macrocode}
+% \end{macro}
+%
+% 实现键值对 \opt{lang}，方便设置环境或命令的语言。
+%    \begin{macrocode}
+\keys_define:nn { ecnu / customize }
+  {
+    lang    .choices:nn       = 
+      { zh, en }
+      { \tl_set_eq:NN \l_@@_env_lang_tl \l_keys_choice_tl },
+    lang    .value_required:n = true,
+    lang    .initial:n        = zh,
+    lang    .groups:n         = { lang },
+  }
+%    \end{macrocode}
+%
+% \begin{macro}{\@@_select_language:n}
+% 选择环境的局部语言。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_select_language:n #1
+  { \keys_set_groups:nnn { ecnu / customize } { lang } { #1 } }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_heading:nnn,\@@_heading:nVV}
+% 手动生成章标题。
+% \begin{arguments}
+%   \item 格式命令
+%   \item 标题在目录中的展示内容（当 \opt{toc=false} 时该参数无效）
+%   \item 标题内容
+% \end{arguments}
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_heading:nnn #1#2#3
+  {
+    \group_begin:
+      \ctexset 
+        { 
+          chapter / numbering = false,
+          chapter / format    = { #1 }
+        }
+      \bool_if:NTF \l_@@_heading_in_toc_bool
+        { \tl_if_empty:nTF { #2 } { \chapter{#3} } { \chapter[#2]{#3} } }
+        {
+          \@@_pdf_bookmark:nn { 0 } 
+            { \tl_if_empty:nTF { #2 } { #3 } { #2 } }
+          \chapter*{#3}
+        }
+    \group_end:
+  }
+\cs_generate_variant:Nn \@@_heading:nnn { nVV }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_make_heading:n}
+% 手动生成自定义环境中的标题，用于参考文献、附录、致谢（后记）等。
+% 在本科生毕业论文中，这些标题的字体为黑体加粗、字号为小三、对齐方式为居中；
+% 在硕士、博士学位论文中，这些标题的字体为黑体加粗、字号为三号、对齐方式为居中。
+% \begin{arguments}
+%   \item 键值对列表
+% \end{arguments}
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_make_heading:n #1
+  {
+    \keys_set_groups:nnn { ecnu / customize } { heading } { #1 }
+    \@@_heading:nnn
+      {
+        \sffamily \bfseries \centering
+        \bool_if:NTF \g_@@_is_bachelor_bool
+          { \zihao {-3} } { \zihao {3} }
+      }
+      { } { \l_@@_heading_contents_tl }
+  }
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\@@_make_abs_heading:n}
+% 手动生成摘要环境中的标题。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_make_abs_heading:n #1
+  {
+    \keys_set_groups:nnn { ecnu / customize } { heading } { #1 }
+    \bool_if:NTF \g_@@_is_bachelor_bool
+%    \end{macrocode}
+% 
+% 设置本科生毕业论文的摘要在目录中的展示内容。
+%    \begin{macrocode}
+      {
+        \tl_if_eq:NnTF \l_@@_env_lang_tl { zh }
+          { \tl_set:Nn \l_@@_tmpa_tl { \c_@@_name_abstract_tl } }
+          {
+            \tl_set:Nn \l_@@_tmpa_tl
+              { \text_uppercase:n { \c_@@_name_abstract_en_tl } }
+          }
+      }
+      { \tl_set_eq:NN \l_@@_tmpa_tl \l_@@_heading_contents_tl }
+    \@@_heading:nVV
+      {
+        \tl_if_eq:NnTF \l_@@_env_lang_tl { zh }
+          { \sffamily } { \rmfamily }
+        \bfseries \centering \zihao {-3}
+      }
+      \l_@@_tmpa_tl \l_@@_heading_contents_tl
+  }
+%    \end{macrocode}
+%
 % \subsection{目录}
 %
 % 设置目录标题以及目录层级。目录层级仅显示一级和二级标题。
@@ -3477,6 +3554,7 @@
 %    \end{macrocode}
 % 
 %    \begin{macrocode}
+      \@@_pdf_bookmark:nn { 0 } { #1 }
       \chapter* { #1 }
       \bool_if:NTF \g_@@_is_bachelor_bool
         { \@@_line_spread:N \c_@@_single_space_line_spread_fp }
@@ -3497,8 +3575,10 @@
 \RenewDocumentCommand \listoffigures { }
   { \@@_toc_page:Nn \listfigurename {lof} }
 \RenewDocumentCommand \listoftables { }
-    { \@@_toc_page:Nn \listtablename {lot} }
+  { \@@_toc_page:Nn \listtablename {lot} }
 %    \end{macrocode}
+% \end{macro}
+%
 % \end{macro}
 %
 % \subsection{摘要}
@@ -3507,25 +3587,26 @@
 % \begin{environment}{abstractEN}
 % 定义中外文摘要环境。
 %    \begin{macrocode}
-\RenewDocumentEnvironment { abstract  } { }
-  { \@@_abstract_begin: } { \@@_abstract_end: }
-\NewDocumentEnvironment { abstractEN } { }
-  { \@@_abstract_en_begin: } { \@@_abstract_en_end: }
+\RenewDocumentEnvironment { abstract } { O { } }
+  { \@@_abstract_begin:n { #1 } } { \@@_abstract_end: }
+\NewDocumentEnvironment { abstractEN } { O { } }
+  { \@@_abstract_en_begin:n { #1 } } { \@@_abstract_en_end: }
 %    \end{macrocode}
 % \end{environment}
 % \end{environment}
 %
-% \begin{macro}{\@@_abstract_begin:,\@@_abstract_en_begin:}
+% \begin{macro}{\@@_abstract_begin:n,\@@_abstract_en_begin:n}
 % 中外文摘要页环境起始部分。在环境起始部分手动添加中外文标题。
 %
 % 在本科生毕业论文中，需将“摘要”（“Abstract”）添加至目录；摘要部分字体大小为五号。
 %    \begin{macrocode}
-\cs_new_protected:Npn \@@_abstract_begin:
+\cs_new_protected:Npn \@@_abstract_begin:n #1
   {
+    \@@_select_language:n { lang = zh }
     \bool_if:NTF \g_@@_is_bachelor_bool
       {
-        \@@_abs_title:V \l_@@_info_title_trim_tl
-        \addcontentsline{toc}{chapter}{\c_@@_name_abstract_tl}
+        \@@_make_abs_heading:n
+          { title = { \l_@@_info_title_trim_tl }, #1 }
         \small
         \group_begin:
           \skip_vertical:n { 17.6 bp }
@@ -3535,14 +3616,22 @@
         \group_end:
         \par
       }
-      { \@@_abs_title:V \c_@@_name_chinese_abstract_tl }
+      {
+        \@@_make_abs_heading:n
+          {
+            title = { \c_@@_name_chinese_abstract_tl },
+            toc = false,
+            #1
+          }
+      }
   }
-\cs_new_protected:Npn \@@_abstract_en_begin:
+\cs_new_protected:Npn \@@_abstract_en_begin:n #1
   {
+    \@@_select_language:n { lang = en }
     \bool_if:NTF \g_@@_is_bachelor_bool
       {
-        \@@_absEN_title:V \l_@@_info_title_en_trim_tl
-        \addcontentsline{toc}{chapter}{ABSTRACT}
+        \@@_make_abs_heading:n
+          { title = { \l_@@_info_title_en_trim_tl }, #1 }
         \small
         \group_begin:
           \skip_vertical:n { 17.6 bp }
@@ -3553,8 +3642,13 @@
         \par
       }
       {
-        \@@_absEN_title:n
-          { \text_uppercase:n { \c_@@_name_abstract_en_tl } }
+        \@@_make_abs_heading:n
+          {
+            title =
+              { \text_uppercase:n { \c_@@_name_abstract_en_tl } },
+            toc = false,
+            #1
+          }
       }
   }
 %    \end{macrocode}
@@ -3612,20 +3706,24 @@
 % \begin{environment}{appendix}
 % 定义附录环境。
 %    \begin{macrocode}
-\RenewDocumentEnvironment { appendix } { }
-  { \@@_appendix_begin: } { \@@_appendix_end: }
+\RenewDocumentEnvironment { appendix } { O { } }
+  { \@@_appendix_begin:n { #1 } }
+  { \@@_appendix_end: }
 %    \end{macrocode}
 % \end{environment}
 %
-% \begin{macro}{\@@_appendix_begin:}
-% 添加附录标题，将附录环境内正文的字号调整为五号。
+% \begin{macro}{\@@_appendix_begin:n}
+% 附录环境起始命令。本科生毕业论文中，附录环境的正文字号为五号。
+% \begin{arguments}
+%   \item 键值对列表
+% \end{arguments}
 %    \begin{macrocode}
-\cs_new_protected:Npn \@@_appendix_begin:
+\cs_new_protected:Npn \@@_appendix_begin:n #1
   { 
     \cleardoublepage
-    \@@_title:V \c_@@_name_appendix_tl
+    \@@_make_heading:n { title = \c_@@_name_appendix_tl, #1 }
     \setcounter{section}{0}
-    \bool_if:NT \g_@@_is_bachelor_bool { \small }
+    \bool_if:NT \g_@@_is_bachelor_bool { \zihao { 5 } }
   }
 %    \end{macrocode}
 % \end{macro}
@@ -3644,21 +3742,31 @@
 % \begin{environment}{acknowledgement}
 % 致谢环境。
 %    \begin{macrocode}
-\NewDocumentEnvironment { acknowledgement } { }
-  { \@@_acknowledgement_begin: }
+\NewDocumentEnvironment { acknowledgement } { O{ } }
+  { \@@_acknowledgement_begin:n { #1 } }
   { \@@_acknowledgement_end: }
 %    \end{macrocode}
 % \end{environment}
 %
-% \begin{macro}{\@@_acknowledgement_begin:}
-% 致谢页环境。
+% \begin{macro}{\@@_acknowledgement_begin:n}
+% 致谢环境起始命令。
+% \begin{arguments}
+%   \item 键值对列表
+% \end{arguments}
 %    \begin{macrocode}
-\cs_new_protected:Npn \@@_acknowledgement_begin:
+\cs_new_protected:Npn \@@_acknowledgement_begin:n #1
   {
     \cleardoublepage
-    \bool_if:NTF \g_@@_is_bachelor_bool
-      { \@@_title:V \c_@@_name_acknowledgement_tl }
-      { \@@_title:V \c_@@_name_epilogue_tl }
+    \@@_make_heading:n
+      {
+        title = 
+          {
+            \bool_if:NTF \g_@@_is_bachelor_bool
+              { \c_@@_name_acknowledgement_tl }
+              { \c_@@_name_epilogue_tl }
+          },
+        #1
+      }
   }
 %    \end{macrocode}
 % \end{macro}
@@ -3741,7 +3849,7 @@
 %    \begin{macrocode}
     \setlength{\bibitemsep}{0pt}
     \defbibheading { bibliography } [ \bibname ] 
-      { \@@_title:n {##1} }
+      { \@@_make_heading:n { title = ##1 } }
   }
 %    \end{macrocode}
 % \end{macro}
@@ -3778,6 +3886,14 @@
         pdfauthor       = \l_@@_info_author_tl,
         pdfkeywords     = \l_@@_info_keywords_clist,
         pdfcreator      = \c_@@_name_pdf_creator_tl
+      }
+    \int_new:N \g_@@_bookmark_int
+    \cs_set_protected:Npn \@@_pdf_bookmark:nn #1#2
+      {
+        \phantomsection
+        \int_gincr:N \g_@@_bookmark_int
+        \pdfbookmark [#1] {#2}
+          { ecnu. bookmark. \int_use:N \g_@@_bookmark_int }
       }
   }
 %    \end{macrocode}
