@@ -585,6 +585,25 @@
 % \end{itemize}
 % 本节将根据以上三个部分，分别介绍 \cls{ecnuthesis} 文档类所提供的
 % 相关命令与环境。
+% 
+% \subsection{标题配置项}
+% 
+% 本节所提供的部分环境提供\oarg{标题配置项}，用于进行局部的、与标题相关的设置。
+% 用户可使用逗号分隔的键值对列表作为可选参数传入该环境。
+% 
+% \begin{function}[added = 2026-05-28]{title}
+%   \begin{syntax}
+%     \CFG{title} = \marg{自定义标题}
+%   \end{syntax}
+%   设置该环境的标题。
+% \end{function}
+% 
+% \begin{function}[added=2026-05-28]{toc}
+%   \begin{syntax}
+%     \CFG{toc} = (true)|false
+%   \end{syntax}
+%   设置该环境的标题是否在目录中出现。默认在目录中出现。
+% \end{function}
 %
 % \subsection{前置部分}\label{subsubsection:frontmatter}
 %
@@ -603,12 +622,12 @@
 %   用于生成目录、插图目录以及表格目录。
 % \end{function}
 %
-% \begin{function}{abstract,abstractEN}
+% \begin{function}[updated=2026-05-28]{abstract,abstractEN}
 %   \begin{syntax}
-%     \BEV{abstract}
+%     \BEV{abstract}\oarg{标题配置项}
 %     \  \meta{中文摘要}
 %     \EEV{abstract}
-%     \BEV{abstractEN}
+%     \BEV{abstractEN}\oarg{标题配置项}
 %     \  \meta{外文摘要}
 %     \EEV{abstractEN}
 %   \end{syntax}
@@ -661,18 +680,18 @@
 %   用于生成参考文献列表。
 % \end{function}
 %
-% \begin{function}{appendix}
+% \begin{function}[updated=2026-05-28]{appendix}
 %   \begin{syntax}
-%     \BEV{appendix}
+%     \BEV{appendix}\oarg{标题配置项}
 %     \  \meta{附录}
 %     \EEV{appendix}
 %   \end{syntax}
 %   附录环境。
 % \end{function}
 %
-% \begin{function}{acknowledgement}
+% \begin{function}[updated=2026-05-28]{acknowledgement}
 %   \begin{syntax}
-%     \BEV{acknowledgement}
+%     \BEV{acknowledgement}\oarg{标题配置项}
 %     \  \meta{致谢}
 %     \EEV{acknowledgement}
 %   \end{syntax}
