@@ -6,12 +6,6 @@
 
 \DEFAULTSETUP
 
-\ecnusetup{
-  style =  {
-    logo-src = {ecnu-vi-inner-cover-logo-ug.pdf}
-  }
-}
-
 \begin{document}
 
 \START
