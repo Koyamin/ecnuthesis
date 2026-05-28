@@ -1,0 +1,53 @@
+% Copyright (C) 2021-2026 by Koyamin <contact@koyamin.com>
+
+\input{ecnuthesis-regression-test.tex}
+
+\documentclass[type=master,cover=false,declaration=false]{ecnuthesis}
+
+\DEFAULTSETUP
+
+\ecnusetup{
+  info = {
+    degree = academic
+  }
+}
+
+\begin{document}
+
+\START
+
+\OMIT
+\EMPTYPAGE
+\TIMO
+
+\loggingoutput
+
+\begin{abstractEN}
+  This paper concerns with design and achievement of a software
+  development pro-ject for Japanese company, experence the whole
+  process of software development including system analysis,
+  general design, detail design, coding, testing to develop a
+  B2B E-business system for some Medicine Manufacture Enterprise.
+  In this system, the Medicine Manufacture Enterprise as the buyers
+  publish products list.The suppliers use this system as plat to
+  bit products.Then the buyers select suppliers they need and
+  send order to buy products.This system also has some batches
+  to realize huge data importing and exporting.This system's
+  webs use XML and XSL technologies to realize reloading of
+  web templates. During the development of the system, my duty
+  is to develop six webs and one batch.
+
+  Using this system, Medicine Manufacture Enterprise can select
+  the best and the cheapest products in several suppliers to
+  descreat cost. At the same time, suppliers will bit each other
+  to inprove production and reach \emph{Win-Win}.
+  
+  At the end of this paper, also explain the deference between
+  Janpanese software development processing and Chinese, and
+  give the deep expectance.
+\end{abstractEN}
+
+\clearpage
+\END
+
+\end{document}
