@@ -1,0 +1,617 @@
+This is a generated file for the l3build validation system.
+Don't change this file in any respect.
+Package fontspec Info: 
+(fontspec)             Script 'CJK' not explicitly supported within font 'FandolKai-Regular'. Check the typeset output, and if it is okay then ignore this warning. Otherwise a different font should be chosen.
+Package fontspec Info: 
+(fontspec)             Font family 'FandolKai(0)' created for font 'FandolKai' with options [Script={CJK},Extension={.otf},UprightFont={*-Regular},BoldItalicFont={*-Regular},BoldFont={*-Regular},ItalicFont={*-Regular}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->"[FandolKai-Regular.otf]/OT:script=hani;language=dflt;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->"[FandolKai-Regular.otf]/OT:script=hani;language=dflt;"
+(fontspec)             - 'italic' (m/it) with NFSS spec.: <->"[FandolKai-Regular.otf]/OT:script=hani;language=dflt;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"[FandolKai-Regular.otf]/OT:script=hani;language=dflt;"
+Completed box being shipped out [2]
+\vbox(722.98454+3.25217)x434.90039
+.\hbox(0.0+0.0)x0.0
+..\kern -72.26999
+..\vbox(0.0+0.0)x0.0, glue set 72.26999fil
+...\kern -72.26999
+...\hbox(0.0+0.0)x0.0
+....\hbox(0.0+0.0)x0.0, glue set 72.26999fil, shifted 72.26999
+.....\kern -72.26999
+.....\special{pdf:put @resources << /ColorSpace @pgfcolorspaces >>}
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+....\glue 0.0 plus 1.0fil minus 1.0fil
+...\glue 0.0 plus 1.0fil minus 1.0fil
+.\vbox(0.0+0.0)x0.0, glue set 29.87573fil
+..\kern 0.0
+..\kern -28.872
+..\kern -1.00374
+..\hbox(0.0+0.0)x0.0, glue set - 17.06377fil
+...\kern 0.0
+...\kern 18.0675
+...\kern -1.00374
+...\special{pdf:dest (page.2) [@thispage /XYZ @xpos @ypos null]}
+...\penalty 10000
+...\glue 0.0 plus 1.0fil minus 1.0fil
+..\glue 0.0 plus 1.0fil minus 1.0fil
+.\glue(\lineskip) 0.0
+.\vbox(722.98454+3.25217)x434.90039
+..\glue -28.872
+..\vbox(751.85654+3.25217)x416.83289, shifted 18.0675
+...\vbox(12.0+0.0)x416.83289, glue set 1.15953fil
+....\glue 0.0 plus 1.0fil
+....\hbox(10.84047+0.0)x416.83289
+.....\special{color push gray 0}
+.....\hbox(10.84047+0.0)x416.83289
+......\hbox(10.84047+0.0)x416.83289
+.......\vbox(10.84047+0.0)x416.83289
+........\hbox(7.5883+3.25217)x416.83289
+.........\hbox(0.0+0.0)x0.0, glue set - 416.83289fil
+..........\vbox(0.0+0.0)x416.83289
+...........\hbox(0.0+0.0)x416.83289, glue set 208.41644fil
+............\hbox(0.0+0.0)x0.0
+............\penalty 10000
+............\glue(\parfillskip) 0.0 plus 1.0fil
+............\glue(\rightskip) 0.0 plus 1.0fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+.........\glue 0.0 plus 1.0fill
+.........\vbox(7.5883+3.25217)x416.83289
+..........\hbox(7.5883+3.25217)x416.83289, glue set 154.21402fil
+...........\glue(\leftskip) 0.0 plus 1.0fil
+...........\hbox(0.0+0.0)x0.0
+...........\TU/FandolSong(0)/m/n/9.03374 华
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 东
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 师
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 范
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 大
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 学
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 硕
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 士
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 学
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 位
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 论
+...........\glue 0.0 plus 0.23442
+...........\TU/FandolSong(0)/m/n/9.03374 文
+...........\kern -0.00017
+...........\kern 0.00017
+...........\rule(7.5883+3.25217)x0.0
+...........\penalty 10000
+...........\glue(\parfillskip) 0.0
+...........\glue(\rightskip) 0.0 plus 1.0fil
+.........\glue 0.0 plus 1.0fill
+.........\hbox(0.0+0.0)x0.0, glue set - 416.83289fil
+..........\glue 0.0 plus 1.0fil minus 1.0fil
+..........\vbox(0.0+0.0)x416.83289
+...........\hbox(0.0+0.0)x416.83289, glue set 416.83289fil
+............\glue(\leftskip) 0.0 plus 1.0fil
+............\hbox(0.0+0.0)x0.0
+............\penalty 10000
+............\glue(\parfillskip) 0.0
+............\glue(\rightskip) 0.0
+........\glue 0.0
+........\rule(0.50186+0.0)x416.83289
+........\glue -0.50186
+......\glue 0.0 plus 1.0fil minus 1.0fil
+.....\special{color pop}
+...\glue 16.872
+...\glue(\lineskip) 0.0
+...\vbox(700.50687+0.0)x416.83289, glue set 225.05824fil
+....\special{pdf:dest (section*.1) [@thispage /XYZ @xpos @ypos null]}
+....\write5{\protect \BOOKMARK [0][-]{ecnu.bookmark.1.0}{\376\377\000A\000B\000S\000T\000R\000A\000C\000T}{}% 1}
+....\special{pdf:dest (ecnu.bookmark.1.0) [@thispage /XYZ @xpos @ypos null]}
+....\write-{}
+....\special{pdf:dest (chapter*.2) [@thispage /XYZ @xpos @ypos null]}
+....\glue(\topskip) 12.0
+....\rule(0.0+0.0)x*
+....\penalty 10000
+....\glue 8.76556 plus -1.0
+....\glue 0.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\hbox(10.53937+0.18066)x416.83289, glue set 160.914fil
+.....\glue(\leftskip) 0.0 plus 1.0fil
+.....\TU/lmr/bx/n/15.05624 ABSTRACT
+.....\kern -0.0002
+.....\kern 0.0002
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0
+.....\glue(\rightskip) 0.0 plus 1.0fil
+....\penalty 10000
+....\glue 31.14835 plus -1.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\hbox(8.47968+2.46921)x416.83289, glue set - 0.14972
+.....\hbox(0.0+0.0)x24.09
+.....\TU/lmr/m/n/12.045 This
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 paper
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 concerns
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 with
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 design
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 and
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 achievement
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 of
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 a
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 software
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 development
+.....\glue(\rightskip) 0.0
+....\penalty 150
+....\glue(\baselineskip) 14.1449
+....\hbox(8.47968+2.45717)x416.83289, glue set 0.08337
+.....\TU/lmr/m/n/12.045 pro-ject
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 for
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 Japanese
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 company,
+.....\glue 3.92667 plus 2.45416 minus 1.0471
+.....\TU/lmr/m/n/12.045 experence
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 the
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 whole
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 process
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 of
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 software
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 develop-
+.....\glue(\rightskip) 0.0
+....\penalty 100
+....\glue(\baselineskip) 14.27739
+....\hbox(8.35922+2.46921)x416.83289, glue set 0.31752
+.....\TU/lmr/m/n/12.045 ment
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 including
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 system
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 analysis,
+.....\glue 3.92667 plus 2.45416 minus 1.0471
+.....\TU/lmr/m/n/12.045 general
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 design,
+.....\glue 3.92667 plus 2.45416 minus 1.0471
+.....\TU/lmr/m/n/12.045 detail
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 design,
+.....\glue 3.92667 plus 2.45416 minus 1.0471
+.....\TU/lmr/m/n/12.045 coding,
+.....\glue 3.92667 plus 2.45416 minus 1.0471
+.....\TU/lmr/m/n/12.045 testing
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 to
+.....\glue(\rightskip) 0.0
+....\glue(\baselineskip) 14.1449
+....\hbox(8.47968+2.45717)x416.83289, glue set 0.07191
+.....\TU/lmr/m/n/12.045 develop
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 a
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 B2B
+.....\glue 3.92667 plus 1.96136 minus 1.31018
+.....\TU/lmr/m/n/12.045 E-business
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 system
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 for
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 some
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 Medicine
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 Manufacture
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 Enterprise.
+.....\glue 5.23555 plus 5.89 minus 0.4363
+.....\TU/lmr/m/n/12.045 In
+.....\glue(\rightskip) 0.0
+....\glue(\baselineskip) 14.15694
+....\hbox(8.47968+2.45717)x416.83289, glue set 0.67712
+.....\TU/lmr/m/n/12.045 this
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 system,
+.....\glue 3.92667 plus 2.45416 minus 1.0471
+.....\TU/lmr/m/n/12.045 the
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 Medicine
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 Manufacture
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 Enterprise
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 as
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 the
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 buyers
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 publish
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 prod-
+.....\glue(\rightskip) 0.0
+....\penalty 100
+....\glue(\baselineskip) 14.27739
+....\hbox(8.35922+2.45717)x416.83289, glue set 0.53236
+.....\TU/lmr/m/n/12.045 ucts
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 list.The
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 suppliers
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 use
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 this
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 system
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 as
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 plat
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 to
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 bit
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 products.Then
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 the
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 buyers
+.....\glue(\rightskip) 0.0
+....\glue(\baselineskip) 14.27739
+....\hbox(8.35922+2.45717)x416.83289, glue set 0.34013
+.....\TU/lmr/m/n/12.045 select
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 suppliers
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 they
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 need
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 and
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 send
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 order
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 to
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 buy
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 products.This
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 system
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 also
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 has
+.....\glue(\rightskip) 0.0
+....\glue(\baselineskip) 14.27739
+....\hbox(8.35922+2.46921)x416.83289, glue set 0.5327
+.....\TU/lmr/m/n/12.045 some
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 batches
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 to
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 realize
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 huge
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 data
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 importing
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 and
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 exporting.This
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 system’s
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 webs
+.....\glue(\rightskip) 0.0
+....\glue(\baselineskip) 14.1449
+....\hbox(8.47968+2.46921)x416.83289, glue set - 0.28038
+.....\TU/lmr/m/n/12.045 use
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 XML
+.....\glue 3.92667 plus 1.96136 minus 1.31018
+.....\TU/lmr/m/n/12.045 and
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 XSL
+.....\glue 3.92667 plus 1.96136 minus 1.31018
+.....\TU/lmr/m/n/12.045 technologies
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 to
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 realize
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 reloading
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 of
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 web
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 templates.
+.....\glue 5.23555 plus 5.89 minus 0.4363
+.....\TU/lmr/m/n/12.045 During
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 the
+.....\glue(\rightskip) 0.0
+....\penalty 150
+....\glue(\baselineskip) 14.1449
+....\hbox(8.47968+2.45717)x416.83289, glue set 33.21173fil
+.....\TU/lmr/m/n/12.045 development
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 of
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 the
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 system,
+.....\glue 3.92667 plus 2.45416 minus 1.0471
+.....\TU/lmr/m/n/12.045 my
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 duty
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 is
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 to
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 develop
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 six
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 webs
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 and
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 one
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 batch.
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\glue(\baselineskip) 14.15694
+....\hbox(8.47968+2.46921)x416.83289, glue set - 0.0232
+.....\hbox(0.0+0.0)x24.09
+.....\TU/lmr/m/n/12.045 Using
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 this
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 system,
+.....\glue 3.92667 plus 2.45416 minus 1.0471
+.....\TU/lmr/m/n/12.045 Medicine
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 Manufacture
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 Enterprise
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 can
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 select
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 the
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 best
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 and
+.....\glue(\rightskip) 0.0
+....\penalty 150
+....\glue(\baselineskip) 14.02444
+....\hbox(8.60013+2.33672)x416.83289, glue set 0.57039
+.....\TU/lmr/m/n/12.045 the
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 cheapest
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 products
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 in
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 several
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 suppliers
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 to
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 descreat
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 cost.
+.....\glue 5.23555 plus 5.89 minus 0.4363
+.....\TU/lmr/m/n/12.045 At
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 the
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 same
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 time,
+.....\glue(\rightskip) 0.0
+....\penalty 150
+....\glue(\baselineskip) 14.39784
+....\hbox(8.35922+2.33672)x416.83289, glue set 48.06325fil
+.....\TU/lmr/m/n/12.045 suppliers
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 will
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 bit
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 each
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 other
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 to
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 inprove
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 production
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 and
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 reach
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/it/12.045 Win-Win
+.....\kern -0.0002
+.....\kern 0.0002
+.....\TU/lmr/m/n/12.045 .
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\glue(\baselineskip) 14.15694
+....\hbox(8.60013+2.33672)x416.83289, glue set - 0.04967
+.....\hbox(0.0+0.0)x24.09
+.....\TU/lmr/m/n/12.045 At
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 the
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 end
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 of
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 this
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 paper,
+.....\glue 3.92667 plus 2.45416 minus 1.0471
+.....\TU/lmr/m/n/12.045 also
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 explain
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 the
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 deference
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 between
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 Janpanese
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 soft-
+.....\glue(\rightskip) 0.0
+....\penalty 400
+....\glue(\baselineskip) 14.27739
+....\hbox(8.47968+2.46921)x416.83289, glue set 38.92108fil
+.....\TU/lmr/m/n/12.045 ware
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 development
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 processing
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 and
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 Chinese,
+.....\glue 3.92667 plus 2.45416 minus 1.0471
+.....\TU/lmr/m/n/12.045 and
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 give
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 the
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 deep
+.....\glue 3.92667 plus 1.96333 minus 1.30888
+.....\TU/lmr/m/n/12.045 expectance.
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\rule(0.0+0.0)x*
+....\penalty 10000
+....\glue 25.09378 minus 12.045
+....\glue 0.0
+....\glue(\parskip) 0.0 plus 1.0
+....\glue(\parskip) 0.0
+....\glue(\baselineskip) 12.87215
+....\hbox(9.75243+2.81049)x416.83289, glue set 173.92345fil
+.....\TU/lmr/bx/n/14.05249 Keywords:
+.....\glue 7.02625 plus 5.26968 minus 0.87828
+.....\TU/lmr/m/it/12.045 XML,
+.....\glue 4.21574 plus 2.10786 minus 1.40524
+.....\TU/lmr/m/it/12.045 XSL,
+.....\glue 4.21574 plus 2.10786 minus 1.40524
+.....\TU/lmr/m/it/12.045 batch,
+.....\glue 4.21574 plus 2.63483 minus 1.12419
+.....\glue 8.31105 minus 6.0225
+.....\rule(0.0+0.0)x-8.31105
+.....\TU/FandolSong(0)/m/it/12.045 ‘
+.....\penalty 10000
+.....\glue 0.0
+.....\TU/lmr/m/it/12.045 Win-Win
+.....\penalty 10000
+.....\TU/FandolSong(0)/m/it/12.045 ’
+.....\rule(0.0+0.0)x-8.31105
+.....\kern 0.0005
+.....\kern -0.0005
+.....\kern -0.12538
+.....\kern 0.12538
+.....\penalty 10000
+.....\glue(\parfillskip) 0.0 plus 1.0fil
+.....\glue(\rightskip) 0.0
+....\glue 0.0 plus 1.0fil
+....\glue 0.0
+....\glue 0.0 plus 0.0001fil
+...\glue(\baselineskip) 10.55315
+...\hbox(11.92453+3.25217)x416.83289
+....\special{color push gray 0}
+....\hbox(11.92453+3.25217)x416.83289
+.....\hbox(11.92453+3.25217)x416.83289
+......\vbox(11.92453+3.25217)x416.83289
+.......\rule(0.0+0.0)x416.83289
+.......\glue 4.33623
+.......\hbox(7.5883+3.25217)x416.83289
+........\hbox(0.0+0.0)x0.0, glue set - 416.83289fil
+.........\vbox(0.0+0.0)x416.83289
+..........\hbox(0.0+0.0)x416.83289, glue set 208.41644fil
+...........\hbox(0.0+0.0)x0.0
+...........\penalty 10000
+...........\glue(\parfillskip) 0.0 plus 1.0fil
+...........\glue(\rightskip) 0.0 plus 1.0fil
+.........\glue 0.0 plus 1.0fil minus 1.0fil
+........\glue 0.0 plus 1.0fill
+........\vbox(7.5883+3.25217)x416.83289
+.........\hbox(7.5883+3.25217)x416.83289, glue set 206.09477fil
+..........\glue(\leftskip) 0.0 plus 1.0fil
+..........\hbox(0.0+0.0)x0.0
+..........\TU/lmr/m/n/9.03374 2
+..........\kern -0.0002
+..........\kern 0.0002
+..........\rule(7.5883+3.25217)x0.0
+..........\penalty 10000
+..........\glue(\parfillskip) 0.0
+..........\glue(\rightskip) 0.0 plus 1.0fil
+........\glue 0.0 plus 1.0fill
+........\hbox(0.0+0.0)x0.0, glue set - 416.83289fil
+.........\glue 0.0 plus 1.0fil minus 1.0fil
+.........\vbox(0.0+0.0)x416.83289
+..........\hbox(0.0+0.0)x416.83289, glue set 416.83289fil
+...........\glue(\leftskip) 0.0 plus 1.0fil
+...........\hbox(0.0+0.0)x0.0
+...........\penalty 10000
+...........\glue(\parfillskip) 0.0
+...........\glue(\rightskip) 0.0
+.....\glue 0.0 plus 1.0fil minus 1.0fil
+....\special{color pop}
+.\kern 0.0
