@@ -1,7 +1,8 @@
 module = "ecnuthesis"
 
-sourcefiles = {"*.dtx", "*.ins", "support/vi/ecnu-vi-*.pdf"}
-installfiles = {"*.cls", "*.sty", "*.def", "ecnu-vi-*.pdf"}
+sourcefiledir = "source"
+sourcefiles = {"*.dtx", "*.ins"}
+installfiles = {"*.cls", "*.sty", "*.def"}
 
 typesetfiles = {"ecnuthesis.dtx"}
 typesetexe = "xelatex"
@@ -17,7 +18,3 @@ stdengine = "xetex"
 checkopts = "-interaction=batchmode"
 
 packtdszip = true
-
-tdslocations = {
-  "tex/latex/ecnuthesis/ecnu-vi-*.pdf",
-}
