@@ -125,8 +125,7 @@
 %           & \file{ecnuthesis.ins} & DOCSTRIP 驱动文件   \\ \midrule
 %   文档类 & \file{ecnuthesis.cls} & \cls{ecnuthesis} 文档类文件 \\
 %         & \file{ecnuthesis.def} & 文档类名称配置 \\ \midrule
-%   视觉形象系统 & \file{ecnu-vi-inner-cover-logo-ug.pdf} & 本科生毕业论文内封面校徽 \\
-%               & \file{ecnu-vi-inner-cover-logo-pg.pdf} & 博士、硕士学位论文内封面校徽 \\ \midrule
+%   视觉形象系统 & \file{ecnuvi.sty} & 校徽绘制宏包 \\ \midrule
 %   用户手册 & \file{ecnuthesis.pdf} & 模板用户手册（本文档） \\
 %   \bottomrule
 % \end{tabular}
@@ -549,7 +548,7 @@
 %   \begin{syntax}
 %     \CFGKEY{bib-src} = \marg{文件}
 %   \end{syntax}
-%   设置参考文献数据源文件。此处需填写数据源文件所在路径（可以是绝对路径或相对路径）。
+%   设置参考文献文件路径，可以是绝对路径或相对路径。
 %   由于参考文献使用 biber 进行处理，故必须明确给出该数据源文件的
 %   \file{.bib} 后缀名。
 % \end{function}
@@ -558,16 +557,18 @@
 %   \begin{syntax}
 %     \CFGKEY{logo-src} = \marg{文件}
 %   \end{syntax}
-%   设置封面插图数据源。此处需填写数据源文件所在路径（可以是绝对路径或相对路径）。
-%   模版已自带封面插图数据源，位于 \file{./source/inner-cover(contains\_font).eps}。
+%   设置内封面校徽图案文件路径，可以是绝对路径或相对路径。
+%   若该值为空，则模板会调用模板附带的 \pkg{ecnuvi} 宏包绘制校徽图案；
+%   否则将使用指定路径所对应的图片文件作为内封面校徽图案插入。
 % \end{function}
 %
 % \begin{function}{style/declaration-src}
 %   \begin{syntax}
 %     \CFGKEY{declaration-src} = \marg{PDF 文件}
 %   \end{syntax}
-%   设置待插入的扫描版声明页 PDF 文件。若该值为空，则生成模版预定义的声明页；
-%   否则将指定路径所对应的 PDF 文件作为声明页插入。
+%   设置待插入的扫描版声明页 PDF 文件路径，可以是绝对路径或相对路径。
+%   若该值为空，则生成模版预定义的声明页；
+%   否则将使用指定路径所对应的 PDF 文件作为声明页插入。
 % \end{function}
 %
 %
