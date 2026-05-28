@@ -1,0 +1,49 @@
+% Copyright (C) 2021-2026 by Koyamin <contact@koyamin.com>
+
+\input{ecnuthesis-regression-test.tex}
+
+\documentclass[type=master,cover=false,declaration=false]{ecnuthesis}
+
+\DEFAULTSETUP
+
+\ecnusetup{
+  info = {
+    degree = academic
+  }
+}
+
+\begin{document}
+
+\START
+
+\OMIT
+\EMPTYPAGE
+\TIMO
+
+\loggingoutput
+
+\begin{abstract}
+  本文通过一个实际的对日软件外包案件的设计和实现，经历了整个
+  软件开发的过程，包括系统分析、概要设计、详细设计、编码、测试，
+  为某制药企业开发了一个 B2B 的电子商务系统。本系统主要是以
+  该制药企业为购买方，发布企业所需要的货物清单，以本系统为平台，
+  各个供应商进行竞标，由购买方选择购买供应商的货物并下订单发货。
+  由于购买方发布货物需要对大量数据进行操作，因此制作了数据
+  批处理程序，来实现大量数据的导入和导出。系统的在线部分运用了
+  XML 和 XSL 技术，体现了画面实现模版化的优势，使得更有效方便
+  的实现画面重载。该系统的开发过程中，本人主要负责制造在线部分的
+  登陆、Home、估价请求履历检索、取消订单一览、用户信息作成、通知
+  信息作成 6 个模块以及数据批处理部分的供应商 Master 导入程序。
+
+  使用该系统，制药企业可以在众多供应商中选择最价廉物美的原材料，
+  这样大大降低其成本，提高了企业利润。同时，供应商之间也有了
+  相互竞争，可以促进生产，达到“双赢”的效果。
+
+  本文最后说明了对日软件开发过程与当今我国软件开发过程的区别，并
+  对我国今后软件事业做了期望和展望。
+\end{abstract}
+
+\clearpage
+\END
+
+\end{document}
