@@ -3259,11 +3259,12 @@
 \tl_new:N \l_@@_declaration_page_tl
 \keys_define:nn { ecnu / style }
   {
-    declaration-src   .code:n =
-      {
-        \tl_set_eq:NN \l_@@_declaration_page_tl \l_keys_value_tl
-        \RequirePackage { pdfpages }
-      },
+    declaration-src   .tl_set:N = \l_@@_declaration_page_tl
+  }
+\AtBeginDocument
+  {
+    \tl_if_empty:NF \l_@@_declaration_page_tl
+      { \RequirePackage { pdfpages } }
   }
 %    \end{macrocode}
 %
