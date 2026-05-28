@@ -17,18 +17,16 @@
 % \fi
 %
 % \iffalse
-%<class|ecnudoc|ecnuvi>\NeedsTeXFormat{LaTeX2e}
-%<class|ecnudoc|ecnuvi>\RequirePackage{expl3}
-%<class|ecnudoc|ecnuvi|definition>\GetIdInfo $Id: ecnuthesis.dtx 1.0 2026-04-20 15:00:00Z Koyamin <contact@koyamin.com>$
+%<class|ecnudoc>\NeedsTeXFormat{LaTeX2e}
+%<class|ecnudoc>\RequirePackage{expl3}
+%<class|ecnudoc|definition>\GetIdInfo $Id: ecnuthesis.dtx 1.0 2026-04-20 15:00:00Z Koyamin <contact@koyamin.com>$
 %<class>  {LaTeX Thesis Template for East China Normal University (ECNU)}
 %<ecnudoc>  {Documentation class for ecnuthesis}
-%<ecnuvi>  {Visual Identity System (VI) for ecnuthesis}
 %<class>\ProvidesExplClass{\ExplFileName}
 %<ecnudoc>\ProvidesExplClass{ecnudoc}
-%<ecnuvi>\ProvidesExplPackage{ecnuvi}
 %<definition>  {Definition file for ecnuthesis}
 %<definition>\ProvidesExplFile{\ExplFileName.def}
-%<class|ecnudoc|ecnuvi|definition>  {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
+%<class|ecnudoc|definition>  {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
 %<*driver>
 \documentclass{ecnudoc}
 \EnableCrossrefs
@@ -2921,12 +2919,11 @@
 \keys_define:nn { ecnu / style }
   {
     logo-src  .tl_set:N   = \l_@@_logo_resource_tl,
-    logo-src  .initial:n  =
-      {
-        \bool_if:NTF \g_@@_is_bachelor_bool
-          { ecnu-vi-inner-cover-logo-ug.pdf }
-          { ecnu-vi-inner-cover-logo-pg.pdf }
-      }
+  }
+\AtBeginDocument
+  {
+    \tl_if_empty:NT \l_@@_logo_resource_tl
+      { \RequirePackage { ecnuvi } }
   }
 %    \end{macrocode}
 % \end{macro}
@@ -2975,26 +2972,25 @@
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_cover_ug_logo:
   { 
-    \tl_if_empty:NF \l_@@_logo_resource_tl
-      {
-        \begin{minipage} [ c ] { \textwidth }
-          \centering
-          \includegraphics{\l_@@_logo_resource_tl}
-        \end{minipage}
-      }
+    \begin{minipage} [ c ] { \textwidth }
+      \centering
+      \tl_if_empty:NTF \l_@@_logo_resource_tl
+        { \resizebox {9.54 cm} {!} { \ecnulogoug } }
+        { \includegraphics { \l_@@_logo_resource_tl } }
+    \end{minipage}
   }
 \cs_new_protected:Npn \@@_cover_pg_logo:
   { 
     \begin{minipage} [ c ] { \textwidth }
       \@@_line_spread:N \c_@@_single_space_line_spread_fp
       \centering \zihao { 5 } 
-      \tl_if_empty:NF \l_@@_logo_resource_tl
+      \tl_if_empty:NTF \l_@@_logo_resource_tl
+        { \resizebox {8cm} {!} { \ecnulogopg } }
         {
-          \includegraphics[width=8cm]{\l_@@_logo_resource_tl}
-          \skip_vertical:n { 0 em }
+          \includegraphics [width=8cm] { \l_@@_logo_resource_tl }
         }
-      \c_@@_university_name_en_tl
-      \skip_vertical:n { 5 bp }
+      \skip_vertical:n { 0 em }
+      \c_@@_university_name_en_tl \skip_vertical:n { 5 bp }
       \group_begin:
         \bfseries
         \@@_cover_pg_logo_title:
