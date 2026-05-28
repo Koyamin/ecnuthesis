@@ -6,6 +6,15 @@
 
 ## [Unreleased]
 
+### Added
+
+- 为自定义环境增加标题相关配置项
+- 新增 ecnuvi 宏包，使用 TikZ 绘制内封面校徽图案
+
+### Fixed
+
+- 使用 `declaration-src` 接口插入扫描的声明页文件后显示空白页的问题
+
 ## [1.0] - 2026-04-20
 
 ### Added
