@@ -6,6 +6,8 @@
 
 ## [Unreleased]
 
+## [1.1] - 2026-05-28
+
 ### Added
 
 - 为自定义环境增加标题相关配置项
@@ -110,6 +112,7 @@
 
 在 `style` 设置中增加了 `fontMath` 的设置接口，以便使用者更加方便地更换数学公式字体。
 
+[1.1]: https://github.com/Koyamin/ECNUThesis/releases/tag/v1.1
 [1.0]: https://github.com/Koyamin/ECNUThesis/releases/tag/v1.0
 [0.3]: https://github.com/Koyamin/ECNUThesis/releases/tag/v0.3
 [0.1.5]: https://github.com/Koyamin/ECNUThesis/releases/tag/v0.1.5

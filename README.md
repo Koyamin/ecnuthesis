@@ -34,6 +34,7 @@ ecnuthesis（East China Normal University LaTeX Thesis Template）是华东师�
 1. 本模版的开发行为**未得到**华东师范大学相关部门授权，本模版**未经**华东师范大学相关部门审核。任何因使用本模版而导致的**论文格式审查问题**与本模版作者无关。
 2. 使用本模板即视为已阅读并同意 LaTeX Project Public License (1.3c) 协议的全部内容。
 3. 任何个人或组织在修改、扩展本模板并生成新的专用模板时，需严格遵守 LaTeX Project Public License (1.3c) 协议。因违反协议而导致的任何纠纷争端与本模板作者无关。
+4. 若您使用的分发版中存在华东师范大学的校徽图案，请注意：该图案的版权归华东师范大学所有。关于校徽图案的具体使用规定，请参阅[《华东师范大学视觉形象识别系统(ECNU VI)管理暂行规定》](https://gzc.ecnu.edu.cn/d8/5a/c10632a120922/page.htm)。
 
 ## 更新日志
 
@@ -45,8 +46,7 @@ ecnuthesis（East China Normal University LaTeX Thesis Template）是华东师�
 
 ## 软件许可证
 
-- 华东师范大学校徽图案版权归华东师范大学所有。关于校徽图案的具体使用规定，请参阅[《华东师范大学视觉形象识别系统(ECNU VI)管理暂行规定》](https://gzc.ecnu.edu.cn/d8/5a/c10632a120922/page.htm)。
-- 其他部分使用 [LPPL 授权](http://www.latex-project.org/lppl.txt)。
+本项目使用 [LPPL 授权](http://www.latex-project.org/lppl.txt)。
 
 # ecnuthesis
 
@@ -79,6 +79,7 @@ If you have any questions while using this template, please visit the [Discussio
 1. The development of this template **has not been authorized** by the relevant departments of East China Normal University, **nor has it been reviewed** by them. Any issues regarding **thesis format review** arising from the use of this template are not the responsibility of the template author.
 2. Using this template is deemed as having read and agreed to all terms of the LaTeX Project Public License (1.3c).
 3. Any individual or organization that modifies or extends this template to create a new specialized template must strictly comply with the LaTeX Project Public License (1.3c). Any disputes arising from violation of the license are not the responsibility of the template author.
+4. If the distribution you are using contains the East China University Logo, please note that the copyright of this logo belongs to East China Normal University. For specific rules regarding the use of the emblem of East China Normal University, please refer to [Provisional Regulations on the Management of the Visual Identity System of East China Normal University (ECNU VI)](https://gzc.ecnu.edu.cn/d8/5a/c10632a120922/page.htm).
 
 ## Changelog
 
@@ -90,5 +91,8 @@ If you encounter a bug while using the template, find that it does not conform t
 
 ## License
 
-* The copyright of the East China Normal University logo belongs to East China Normal University. For specific rules regarding the use of the emblem of East China Normal University, please refer to [Provisional Regulations on the Management of the Visual Identity System of East China Normal University (ECNU VI)](https://gzc.ecnu.edu.cn/d8/5a/c10632a120922/page.htm).
-* Other parts are licensed under [LaTeX Project Public License](http://www.latex-project.org/lppl.txt).
+This project is licensed under [LaTeX Project Public License](http://www.latex-project.org/lppl.txt).
+
+---
+
+Copyright (C) 2021&ndash;2026 by Koyamin <contact@koyamin.com>.
