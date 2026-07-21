@@ -200,7 +200,7 @@
 %
 % 文档类选项是指在载入文档类的时候需要指定的选项。载入文档类时，
 % 用户可通过指定文档类选项来设置论文最基本的要素，包括论文类型、单双面
-% 模式、是否生成封面以及声明页等。
+% 模式、每一章的起始位置、是否生成封面以及声明页等。
 % 
 % \begin{latexcode}[emph={[1]ecnuthesis}]
 %   \documentclass(*\oarg{文档类选项}*){ecnuthesis}
@@ -225,13 +225,28 @@
 % \end{function}
 % 
 % \begin{function}{oneside,twoside}
-%   指定论文的排版模式。该选项会影响每章的开始位置，
-%   还会影响页眉样式。模板默认的排版模式为双面模式（\opt{twoside}）。
+%   指定论文的排版模式。该选项会影响页码样式，还会影响某些部分的开始位置。
+%   模板默认的排版模式为双面模式（\opt{twoside}）。
 %
-%   在双面模式（\opt{twoside}）下，按照通常的排版惯例，每章应只从
-%   奇数页（在右）开始；而在单页模式（\opt{oneside}）下，则可以从
-%   任意页面开始。本模板中，目录、摘要等均视作章，也按相同方式排版。
+%   具体而言，在双面模式（\opt{twoside}）下，
+%   摘要、内封面、目录、参考文献、附录、致谢等部分均会强制从奇数页（右侧）开始，
+%   这意味着若这些部分结束在奇数页结束时，模板会自动插入一个空白偶数页；
+%   而在单页模式（\opt{oneside}）下，则这些部分可以从任意页面开始。
+%   此外，在双面模式下，博士、硕士学位论文的页码将分别按照左右侧排列。
+% 
 %   使用双面模式适合双面打印纸质版论文；使用单面模式适合提交电子版论文。
+% \end{function}
+%
+% \begin{function}{openany,openright}
+%   指定正文章标题的开始位置。模板默认使用 \opt{openany}，即新的章标题
+%   从任意位置（下一页）开始。
+%
+%   具体而言，若设置 \opt{openright}，则正文中每一章（即使用 \cs{chapter} 命令时）
+%   将会强制从奇数页（右侧）开始，这意味着若上一章在奇数页结束时，
+%   模板会自动插入一个空白偶数页；而若设置 \opt{openany}，则每一章可从任意页面开始。
+% 
+%   \opt{openright} 选项只有在双面模式（\opt{twoside}）下才会生效；
+%   在单面模式（\opt{oneside}）下，\opt{openright} 选项将不起作用。
 % \end{function}
 %
 % \begin{function}{cover}
@@ -815,6 +830,14 @@
 \bool_set_false:N \g_@@_twoside_bool
 %    \end{macrocode}
 % \end{variable}
+% 
+% \begin{variable}{\g_@@_openright_bool}
+% 是否使章标题自动从奇数页开始（默认关闭）。
+%    \begin{macrocode}
+\bool_new:N \g_@@_openright_bool
+\bool_set_false:N \g_@@_openright_bool
+%    \end{macrocode}
+% \end{variable}
 %
 % \begin{variable}{\g_@@_cover_page_bool}
 % 是否自动生成封面页（默认自动生成）。
@@ -975,6 +998,24 @@
       {
         \clist_gput_right:Nn \g_@@_to_ctexrep_clist { twoside }
         \bool_gset_true:N    \g_@@_twoside_bool
+      },
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{openany,openright}
+% 设置正文的每一章是否自动从奇数页开始。
+%    \begin{macrocode}
+    openany   .value_forbidden:n = true,
+    openright .value_forbidden:n = true,
+    openany   .code:n =
+      {
+        \clist_gput_right:Nn \g_@@_to_ctexrep_clist { openany }
+        \bool_gset_false:N   \g_@@_openright_bool
+      },
+    openright .code:n =
+      {
+        \clist_gput_right:Nn \g_@@_to_ctexrep_clist { openright }
+        \bool_gset_true:N    \g_@@_openright_bool
       },
 %    \end{macrocode}
 % \end{macro}
