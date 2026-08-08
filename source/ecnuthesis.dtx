@@ -167,19 +167,29 @@
 %
 % \subsection{编译文档}\label{subsection:compile-doc}
 %
-% 本模板仅支持使用 \XeLaTeX 引擎编译。为了生成正确的目录、脚注以及交叉引用，
-% 您至少需要连续编译两次。
+% \cls{ecnuthesis} 支持使用 \XeLaTeX 和 \LuaLaTeX 编译。
+% 为了生成正确的目录、脚注以及交叉引用，您至少需要连续编译两次。
 %
-% 假设编写论文所使用的 \TeX 源文件名为 \file{thesis.tex}。若要编译论文，请
-% 在命令行中执行
+% 假设编写论文所使用的 \TeX 源文件名为 \file{thesis.tex}。
+% 若使用 \XeLaTeX 编译论文，请在命令行中执行
 % \begin{shellcode}
 %   $ xelatex thesis
 %   $ biber thesis    # 若引用了参考文献, 请执行该命令
 %   $ xelatex thesis
 % \end{shellcode}
-% 或者使用 \pkg{latexmk}：
+% 或者这样使用 \pkg{latexmk}：
 % \begin{shellcode}
 %   $ latexmk -xelatex thesis
+% \end{shellcode}
+% 若使用 \LuaLaTeX 编译论文，请在命令行中执行
+% \begin{shellcode}
+%   $ lualatex thesis
+%   $ biber thesis    # 若引用了参考文献, 请执行该命令
+%   $ lualatex thesis
+% \end{shellcode}
+% 或者这样使用 \pkg{latexmk}：
+% \begin{shellcode}
+%   $ latexmk -lualatex thesis
 % \end{shellcode}
 %
 % \section{配置文档类}
@@ -772,16 +782,20 @@
 \RequirePackage { xparse, xtemplate, l3keys2e }
 %    \end{macrocode}
 %
-% 目前 \cls{ecnuthesis} 仅支持 \XeTeX{}。
+% 目前 \cls{ecnuthesis} 支持 \XeTeX{} 和 \LuaTeX{}。
 %    \begin{macrocode}
-\msg_new:nnn { ecnuthesis } { engine-unsupportd } 
+\msg_new:nnn { ecnuthesis } { engine-unsupported } 
   { \\
-    This~ class~ requires~ XeTeX~ to~ compile. \\
+    This~ class~ requires~ XeTeX~ or~ LuaTeX~ to~ compile. \\
     The~ engine~ "#1"~ is~ not~ supported. 
   }
 \sys_if_engine_xetex:F
   {
-    \msg_fatal:nnx { ecnuthesis } { engine-unsupportd } { \c_sys_engine_str }
+    \sys_if_engine_luatex:F
+      {
+        \msg_fatal:nnx { ecnuthesis } { engine-unsupported }
+          { \c_sys_engine_str }
+      }
   }
 %    \end{macrocode}
 %
@@ -1145,8 +1159,11 @@
     caption,
     bicaption,
     xcolor,
-    xeCJKfntef
   }
+\sys_if_engine_xetex:T
+  { \RequirePackage { xeCJKfntef } }
+\sys_if_engine_luatex:T
+  { \RequirePackage [ normalem ] { ulem } }
 %    \end{macrocode}
 %
 % \subsection{页面布局}
@@ -1281,8 +1298,15 @@
 % \begin{macro}{\@@_set_family:nnn,\@@_set_family:xnn,\@@_switch_family:n}
 % 封装 CJK 字体族的设定和切换命令。
 %    \begin{macrocode}
-\cs_new_eq:NN \@@_set_family:nnn  \xeCJK_set_family:nnn
-\cs_new_eq:NN \@@_switch_family:n \xeCJK_switch_family:n
+\sys_if_engine_xetex:TF
+  {
+    \cs_new_eq:NN \@@_set_family:nnn  \xeCJK_set_family:nnn
+    \cs_new_eq:NN \@@_switch_family:n \xeCJK_switch_family:n
+  }
+  {
+    \cs_new_eq:NN \@@_set_family:nnn  \ctex_ltj_set_family:nnn
+    \cs_new_eq:NN \@@_switch_family:n \ctex_ltj_switch_family:n
+  }
 \cs_generate_variant:Nn \@@_set_family:nnn { x }
 %    \end{macrocode}
 % \end{macro}
