@@ -31,7 +31,6 @@ hologo
 hypdoc
 hyperref
 kantlipsum
-l3experimental
 latexmk
 libertinus-fonts
 lipsum
@@ -58,6 +57,7 @@ underscore
 unicode-math
 units
 xcolor
+xecjk
 xits
 xstring
 zhlipsum
