@@ -289,7 +289,7 @@ Completed box being shipped out [2]
 .....\TU/FandolSong(0)/m/it/12.045 一
 .....\glue 0.0 plus 0.60463
 .....\TU/FandolSong(0)/m/it/12.045 个
-.....\glue 3.92667 plus 1.96136 minus 1.31018
+.....\glue 3.92667 plus 1.96333 minus 1.30888
 .....\TU/lmr/m/n/12.045 B2B
 .....\glue 3.92667 plus 1.96136 minus 1.31018
 .....\TU/FandolSong(0)/m/it/12.045 的
@@ -582,15 +582,15 @@ Completed box being shipped out [2]
 .....\TU/FandolSong(0)/m/it/12.045 运
 .....\glue(\rightskip) 0.0
 ....\glue(\baselineskip) 13.2656
-....\hbox(9.50351+2.32468)x416.83289, glue set 0.09122
+....\hbox(9.50351+2.32468)x416.83289, glue set 0.0912
 .....\TU/FandolSong(0)/m/it/12.045 用
 .....\glue 0.0 plus 0.60463
 .....\TU/FandolSong(0)/m/it/12.045 了
-.....\glue 3.92667 plus 1.96136 minus 1.31018
+.....\glue 3.92667 plus 1.96333 minus 1.30888
 .....\TU/lmr/m/n/12.045 XML
 .....\glue 3.92667 plus 1.96136 minus 1.31018
 .....\TU/FandolSong(0)/m/it/12.045 和
-.....\glue 3.92667 plus 1.96136 minus 1.31018
+.....\glue 3.92667 plus 1.96333 minus 1.30888
 .....\TU/lmr/m/n/12.045 XSL
 .....\glue 3.92667 plus 1.96136 minus 1.31018
 .....\TU/FandolSong(0)/m/it/12.045 技
@@ -827,7 +827,7 @@ Completed box being shipped out [2]
 .....\TU/FandolSong(0)/m/it/12.045 应
 .....\glue 0.0 plus 0.60463
 .....\TU/FandolSong(0)/m/it/12.045 商
-.....\glue 3.92667 plus 1.96136 minus 1.31018
+.....\glue 3.92667 plus 1.96333 minus 1.30888
 .....\TU/lmr/m/n/12.045 Master
 .....\glue 3.92667 plus 1.96333 minus 1.30888
 .....\TU/FandolSong(0)/m/it/12.045 导
