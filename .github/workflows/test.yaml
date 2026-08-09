@@ -58,3 +58,4 @@ jobs:
         name: ecnuthesis-diff-${{ env.SHA_SHORT }}-${{ runner.os }}
         path: |
           build/**/*.diff
+          build/**/*.log
