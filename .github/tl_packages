@@ -22,7 +22,6 @@ enumitem
 epstopdf
 epstopdf-pkg
 everysel
-fandol
 fancyhdr
 fancyvrb
 footmisc
@@ -32,6 +31,7 @@ hologo
 hypdoc
 hyperref
 kantlipsum
+l3draw
 latexmk
 libertinus-fonts
 lipsum
