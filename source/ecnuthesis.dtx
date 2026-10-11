@@ -602,13 +602,15 @@
 % 为符合论文的格式要求，\cls{ecnuthesis} 文档类提供了一系列命令与环境，
 % 方便用户完成学位论文内容的撰写工作。
 %
-% 一篇学位论文的内容通常由以下三个部分组成：
+% 一篇学位论文的内容通常由若干部分组成：
 % \begin{itemize}
+%   \item 内封面；
+%   \item 论文原创性声明与论文使用授权声明页；
 %   \item 前置部分：中外文摘要、目录（包括插图目录和表格目录）；
 %   \item 正文部分：各个章节；
 %   \item 后置部分：参考文献、附录、后记（致谢）。
 % \end{itemize}
-% 本节将根据以上三个部分，分别介绍 \cls{ecnuthesis} 文档类所提供的
+% 本节将根据以上若干部分，分别介绍 \cls{ecnuthesis} 文档类所提供的
 % 相关命令与环境。
 % 
 % \subsection{标题配置项}
@@ -628,6 +630,69 @@
 %     \CFG{toc} = (true)|false
 %   \end{syntax}
 %   设置该环境的标题是否在目录中出现。默认在目录中出现。
+% \end{function}
+% 
+% \subsection{自定义内封面}
+%
+% 模板默认根据论文类型自动生成内封面。然而，有些院系可能对内封面的信息栏内容
+% 的排列顺序和预设标签文字有特殊的要求，或要求在内封面的信息栏中增加一些新的信息。
+% 为此，模板提供了 \cs{innercover} 命令，支持用户使用命令手动生成内封面，
+% 并支持用户自定义内封面的信息、排列顺序或字段的预设标签。
+% 若需调整内封面信息栏的字段、排列顺序或预设标签，可设置文档类选项
+% \opt{cover=false}，并在文档正文中、\cs{frontmatter} 之前
+% 使用 \cs{innercover} 命令手动生成内封面。
+%
+% \begin{function}{\innercover}
+%   \begin{syntax}
+%     \TNi{innercover}\oarg{lang=<(zh)|en>}\marg{信息栏内容}
+%   \end{syntax}
+%   生成内封面。可设置可选参数，指定内封面的语言，默认值为 \opt{lang=zh}。其中，
+%   当 \opt{type=master} 或 \opt{type=doctor} 时 \opt{lang=en} 方为有效。
+%
+%   \cs{innercover} 命令的最后一个参数表示内封面的信息栏内容，
+%   由若干 \cs{field} 和 \cs{addfield} 命令组成，用来指定
+%   内封面信息栏中需要出现的各项信息以及这些信息的排列顺序。
+%   未列出的字段不会自动补入信息栏。
+% \end{function}
+%
+% \begin{function}[added = 2026-10-06]{\field}
+%   \begin{syntax}
+%     \TNi{field}\oarg{自定义预设文字}\marg{信息字段名}
+%   \end{syntax}
+%   该命令用于 \cs{innercover} 的 \meta{信息栏内容} 参数，
+%   其作用是在信息栏中插入一个已有的内封面信息字段。
+%   \meta{字段名} 所支持的字段受 \opt{type} 的值影响，详情
+%   见表 \ref{table:innercover-fields}，“-”表示不支持
+%   该字段。通过设置自定义预设文字参数，可以将该字段的预设文字
+%   修改为用户自定义的字段标签文字，字段值保持不变。
+% \end{function}
+%
+% \begin{table}[htbp]
+%   \caption{内封面信息栏字段}
+%   \label{table:innercover-fields}
+%   \centering \small
+%   \begin{tabular}{@{}cccc@{}}
+%     \toprule
+%     \multirow{2}{*}{\textbf{字段名}} & \multirow{2}{*}{\textbf{\opt{type=bachelor}}} 
+%           & \multicolumn{2}{c}{\textbf{\opt{type=master}或\opt{type=doctor}}} \\
+%           &  & \opt{degree=academic}    & \opt{degree=professional}    \\ \midrule
+%     \opt{author}          & 姓名 & 学位申请人 & 学位申请人 \\
+%     \opt{student-id}      & 学号 & - & - \\
+%     \opt{department}      & 学院 & 院系 & 院系 \\
+%     \opt{major}           & 专业 & 专业 & 专业学位类别 \\
+%     \opt{field}           & - & 研究方向 & 专业学位领域 \\
+%     \opt{supervisor}      & 指导教师 & 指导教师 &指导教师 \\
+%     \opt{academic-title}  & 职称 & - & - \\ \bottomrule
+%   \end{tabular}
+% \end{table}
+%
+% \begin{function}[added = 2026-10-06]{\addfield}
+%   \begin{syntax}
+%     \TNi{addfield}\marg{信息标签}\marg{信息值}
+%   \end{syntax}
+%   该命令用于 \cs{innercover} 的 \meta{信息栏内容} 参数，其作用是
+%   在信息栏中插入一项自定义信息。标签和值均由用户直接指定，
+%   不受已有字段名的限制。
 % \end{function}
 %
 % \subsection{前置部分}\label{subsubsection:frontmatter}
@@ -809,6 +874,7 @@
 %   \l_@@_tmpa_skip,
 %   \l_@@_tmpa_tl,
 %   \l_@@_tmpb_tl,
+%   \l_@@_tmpc_tl,
 %   \l_@@_tmpa_dim,
 %   \l_@@_tmpb_dim,
 %   \l_@@_tmpc_dim}
@@ -822,6 +888,7 @@
 \skip_new:N  \l_@@_tmpa_skip
 \tl_new:N    \l_@@_tmpa_tl
 \tl_new:N    \l_@@_tmpb_tl
+\tl_new:N    \l_@@_tmpc_tl
 \dim_new:N   \l_@@_tmpa_dim
 \dim_new:N   \l_@@_tmpb_dim
 \dim_new:N   \l_@@_tmpc_dim
@@ -874,6 +941,13 @@
 % 的选项列表。
 %    \begin{macrocode}
 \clist_new:N \g_@@_to_ctexrep_clist
+%    \end{macrocode}
+% \end{variable}
+% 
+% \begin{variable}{\g_@@_cover_info_seq}
+% 保存内封面中若干信息所组成的序列。
+%    \begin{macrocode}
+\seq_new:N \g_@@_cover_info_seq
 %    \end{macrocode}
 % \end{variable}
 %
@@ -1892,7 +1966,7 @@
     \fancyhead[C]
       {
         \footnotesize \sffamily
-        \l_@@_info_title_trim_tl
+        \l_@@_info_title_zh_trim_tl
       }
     \fancyfoot[C] { \footnotesize \thepage }
   }
@@ -2094,36 +2168,33 @@
 %
 % \subsubsection{信息录入}
 %
-% \begin{variable}{\l_@@_info_title_tl,
+% \begin{variable}{\l_@@_info_title_zh_tl,
 %   \l_@@_info_title_en_tl,
-%   \l_@@_info_author_tl,
+%   \l_@@_info_author_zh_tl,
 %   \l_@@_info_author_en_tl,
-%   \l_@@_info_student_id_tl,
-%   \l_@@_info_department_tl,
+%   \l_@@_info_studentid_zh_tl,
+%   \l_@@_info_department_zh_tl,
 %   \l_@@_info_department_en_tl,
-%   \l_@@_info_major_tl,
+%   \l_@@_info_major_zh_tl,
 %   \l_@@_info_major_en_tl,
-%   \l_@@_info_supervisor_tl,
+%   \l_@@_info_supervisor_zh_tl,
 %   \l_@@_info_supervisor_en_tl,
-%   \l_@@_info_academic_title_tl,
-%   \l_@@_info_keywords_clist,
+%   \l_@@_info_academictitle_zh_tl,
+%   \l_@@_info_keywords_zh_clist,
 %   \l_@@_info_keywords_en_clist}
 % 封面所需的一些字段（中外文标题、作者姓名、学号、院系、专业、
 % 导师姓名、导师职称、中外文关键词）。
 %    \begin{macrocode}
 \clist_map_inline:nn
   {
-    title, title_en,
-    author, author_en,
-    student_id,
-    department, department_en,
-    major, major_en,
-    supervisor, supervisor_en,
-    field, field_en,
-    academic_title
+    title, author, studentid, department, major, supervisor,
+    field, academictitle
   }
-  { \tl_new:c { l_@@_info_ #1 _tl } }
-\clist_new:N \l_@@_info_keywords_clist
+  {
+    \clist_map_inline:nn { zh, en }
+      { \tl_new:c { l_@@_info_ #1 _ ##1 _tl } }
+  }
+\clist_new:N \l_@@_info_keywords_zh_clist
 \clist_new:N \l_@@_info_keywords_en_clist
 %    \end{macrocode}
 % \end{variable}
@@ -2160,10 +2231,10 @@
 %    \end{macrocode}
 % \end{variable}
 %
-% \begin{variable}{\l_@@_info_title_trim_tl,\l_@@_info_title_en_trim_tl}
+% \begin{variable}{\l_@@_info_title_zh_trim_tl,\l_@@_info_title_en_trim_tl}
 % 去除空格和换行后的论文标题。
 %    \begin{macrocode}
-\tl_new:N \l_@@_info_title_trim_tl
+\tl_new:N \l_@@_info_title_zh_trim_tl
 \tl_new:N \l_@@_info_title_en_trim_tl
 %    \end{macrocode}
 % \end{variable}
@@ -2221,7 +2292,7 @@
 % \begin{macro}{info/title,info/title-en}
 % 论文的中外文标题。
 %    \begin{macrocode}
-    title           .code:n       = { \@@_set_title:nn { title    } {#1} },
+    title           .code:n       = { \@@_set_title:nn { title_zh } {#1} },
     title-en        .code:n       = { \@@_set_title:nn { title_en } {#1} },
 %    \end{macrocode}
 % \end{macro}
@@ -2229,7 +2300,7 @@
 % \begin{macro}{info/author,info/author-en}
 % 论文作者姓名。
 %    \begin{macrocode}
-    author          .tl_set:N     = \l_@@_info_author_tl,
+    author          .tl_set:N     = \l_@@_info_author_zh_tl,
     author-en       .tl_set:N     = \l_@@_info_author_en_tl,
 %    \end{macrocode}
 % \end{macro}
@@ -2237,14 +2308,14 @@
 % \begin{macro}{info/student-id}
 % 论文作者学号。
 %    \begin{macrocode}
-    student-id      .tl_set:N     = \l_@@_info_student_id_tl,
+    student-id      .tl_set:N     = \l_@@_info_studentid_zh_tl,
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{info/department,info/department-en}
 % 论文作者所在院系。
 %    \begin{macrocode}
-    department      .tl_set:N     = \l_@@_info_department_tl,
+    department      .tl_set:N     = \l_@@_info_department_zh_tl,
     department-en   .tl_set:N     = \l_@@_info_department_en_tl,
 %    \end{macrocode}
 % \end{macro}
@@ -2252,7 +2323,7 @@
 % \begin{macro}{info/major,info/major-en}
 % 论文作者就读专业。
 %    \begin{macrocode}
-    major           .tl_set:N     = \l_@@_info_major_tl,
+    major           .tl_set:N     = \l_@@_info_major_zh_tl,
     major-en        .tl_set:N     = \l_@@_info_major_en_tl,
 %    \end{macrocode}
 % \end{macro}
@@ -2260,7 +2331,7 @@
 % \begin{macro}{info/field,info/field-en}
 % 博士、硕士学位论文的研究方向或专业学位领域。
 %    \begin{macrocode}
-    field           .tl_set:N     = \l_@@_info_field_tl,
+    field           .tl_set:N     = \l_@@_info_field_zh_tl,
     field-en        .tl_set:N     = \l_@@_info_field_en_tl,
 %    \end{macrocode}
 % \end{macro}
@@ -2268,7 +2339,7 @@
 % \begin{macro}{info/supervisor,info/supervisor-en}
 % 论文指导教师姓名。
 %    \begin{macrocode}
-    supervisor      .tl_set:N     = \l_@@_info_supervisor_tl,
+    supervisor      .tl_set:N     = \l_@@_info_supervisor_zh_tl,
     supervisor-en   .tl_set:N     = \l_@@_info_supervisor_en_tl,
 %    \end{macrocode}
 % \end{macro}
@@ -2276,14 +2347,14 @@
 % \begin{macro}{info/academic-title}
 % 本科生毕业论文的指导教师职称。
 %    \begin{macrocode}
-    academic-title   .tl_set:N     = \l_@@_info_academic_title_tl,
+    academic-title   .tl_set:N     = \l_@@_info_academictitle_zh_tl,
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{info/keywords,info/keywords-en}
 % 论文中外文关键词。
 %    \begin{macrocode}
-    keywords        .clist_set:N  = \l_@@_info_keywords_clist,
+    keywords        .clist_set:N  = \l_@@_info_keywords_zh_clist,
     keywords-en     .clist_set:N  = \l_@@_info_keywords_en_clist,
 %    \end{macrocode}
 % \end{macro}
@@ -2357,7 +2428,7 @@
 %
 % \subsubsection{定义内部函数}
 %
-% \begin{macro}{\@@_spread_box:nn,\@@_spread_box:no}
+% \begin{macro}{\@@_spread_box:nn,\@@_spread_box:no,\@@_spread_box:Vo}
 % 分散对齐的水平盒子。
 % \begin{arguments}
 %   \item 宽度
@@ -2372,6 +2443,7 @@
     \hbox_to_wd:nn {#1} { \tl_map_inline:nn {#2} { ##1 \hfil } \unskip }
   }
 \cs_generate_variant:Nn \@@_spread_box:nn { no }
+\cs_generate_variant:Nn \@@_spread_box:nn { Vo }
 %    \end{macrocode}
 % \end{macro}
 %
@@ -2514,12 +2586,12 @@
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_cover_ug_school_num:
   {
-    \c_@@_university_code_tl \c_@@_colon_tl
+    \c_@@_university_code_zh_tl \c_@@_colon_tl
     \underline{\c_@@_university_code_val_tl}
   }
 \cs_new_protected:Npn \@@_cover_pg_school_num:
   {
-    \@@_spread_box:no { 4 em } { \c_@@_university_code_tl }
+    \@@_spread_box:no { 4 em } { \c_@@_university_code_zh_tl }
     \c_@@_colon_tl
     \uline{\@@_center_box:nn { 3 cm } { \c_@@_university_code_val_tl }}
   }
@@ -2537,16 +2609,16 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_cover_pg_student_id:,\@@_cover_pg_student_id_en:}
+% \begin{macro}{\@@_cover_pg_studentid:,\@@_cover_pg_studentid_en:}
 % 博士、硕士学位论文中封面顶部的学号信息。
 %    \begin{macrocode}
-\cs_new_protected:Npn \@@_cover_pg_student_id:
+\cs_new_protected:Npn \@@_cover_pg_studentid:
   {
-    \@@_spread_box:no { 4 em } { \c_@@_info_student_id_tl }
+    \@@_spread_box:no { 4 em } { \c_@@_info_studentid_pg_zh_tl }
     \c_@@_colon_tl
-    \uline{ \@@_center_box:nn { 3 cm } { \l_@@_info_student_id_tl } }
+    \uline{ \@@_center_box:nn { 3 cm } { \l_@@_info_studentid_zh_tl } }
   }
-\cs_new_protected:Npn \@@_cover_pg_student_id_en:
+\cs_new_protected:Npn \@@_cover_pg_studentid_en:
   {
     \@@_get_text_width:Nn \l_@@_tmpa_dim
       {
@@ -2554,8 +2626,8 @@
         \c_@@_colon_en_tl \c_space_token
       }
     \@@_fixed_width_box:nn { \l_@@_tmpa_dim }
-      { \c_@@_info_student_id_en_tl \c_@@_colon_en_tl \c_space_token }
-    \uline{ \@@_center_box:nn { 3 cm } { \l_@@_info_student_id_tl } }
+      { \c_@@_info_studentid_pg_en_tl \c_@@_colon_en_tl \c_space_token }
+    \uline{ \@@_center_box:nn { 3 cm } { \l_@@_info_studentid_zh_tl } }
   }
 %    \end{macrocode}
 % \end{macro}
@@ -2601,7 +2673,7 @@
         \skip_vertical:n { 0 em }
         \@@_cover_pg_cic_index: \hfill \@@_cover_pg_school_num:
         \skip_vertical:n { 0 em }
-        \@@_cover_pg_secret_level: \hfill \@@_cover_pg_student_id:
+        \@@_cover_pg_secret_level: \hfill \@@_cover_pg_studentid:
       }
   }
 \cs_new_protected:Npn \@@_cover_pg_top_en:
@@ -2613,7 +2685,7 @@
         \hbox:n {} \mode_leave_vertical:
         \hfill \@@_cover_pg_school_num_en:
         \skip_vertical:n { 0 em }
-        \hfill \@@_cover_pg_student_id_en:
+        \hfill \@@_cover_pg_studentid_en:
       }
   }
 %    \end{macrocode}
@@ -2687,7 +2759,7 @@
       \bfseries \c_@@_thesis_title_tl \c_@@_colon_tl
     \group_end:
     \@@_pg_title_fixed_ht_box:nnn { 9.8 cm } { 1.8 cm }
-      { \l_@@_info_title_tl }
+      { \l_@@_info_title_zh_tl }
   }
 \cs_new_protected:Npn \@@_cover_pg_title_en:
   {
@@ -2707,48 +2779,33 @@
 %
 % \begin{macro}{\@@_cover_ug_info:}
 % 本科生毕业论文封面中的个人信息（姓名、学号、院系、专业、导师及其职称）。
-% 在模板中，个人信息的行距被设置为四号字体、 1.5 倍行距。
+% 在模板中，个人信息的行距被设置为四号字体、1.5 倍行距。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_cover_ug_info:
   {
     \begin{minipage} [ c ] { \textwidth }
       \centering \zihao { 4 }
-      \clist_set:Nx \l_@@_tmpa_clist
-        {
-          \c_@@_info_name_tl,
-          \c_@@_info_student_id_tl,
-          \c_@@_info_department_tl,
-          \c_@@_info_major_tl,
-          \c_@@_info_supervisor_tl,
-          \c_@@_info_academic_title_tl
-        }
-      \clist_set:Nx \l_@@_tmpb_clist
-        {
-          { \l_@@_info_author_tl        },
-          { \l_@@_info_student_id_tl     },
-          { \l_@@_info_department_tl    },
-          { \l_@@_info_major_tl         },
-          { \l_@@_info_supervisor_tl    },
-          { \l_@@_info_academic_title_tl }
-        }
       \dim_set:Nn \l_@@_tmpb_dim { 6 cm }
-      \clist_map_inline:Nn \l_@@_tmpb_clist
+      \dim_set:Nn \l_@@_tmpc_dim { 1 em }
+      \seq_map_inline:Nn \g_@@_cover_info_seq
         {
-          \@@_get_text_width:Nn \l_@@_tmpa_dim { \bfseries ##1 }
+          \@@_get_text_width:Nn \l_@@_tmpa_dim
+            { \bfseries \use_ii:nn ##1 }
           \dim_set:Nn \l_@@_tmpb_dim
             { \dim_max:nn { \l_@@_tmpb_dim } { \l_@@_tmpa_dim } }
+          \@@_get_text_width:Nn \l_@@_tmpa_dim
+            { \bfseries \use_i:nn ##1 }
+          \dim_set:Nn \l_@@_tmpc_dim
+            { \dim_max:nn { \l_@@_tmpc_dim } { \l_@@_tmpa_dim } }
         }
-      \bool_until_do:nn
-        { \clist_if_empty_p:N \l_@@_tmpa_clist }
+      \seq_map_inline:Nn \g_@@_cover_info_seq
         {
           \bfseries
-          \clist_pop:NN \l_@@_tmpa_clist \l_@@_tmpa_tl
-          \clist_pop:NN \l_@@_tmpb_clist \l_@@_tmpb_tl
-          \@@_spread_box:no { 4 em } { \l_@@_tmpa_tl }
+          \tl_set:Ne \l_@@_tmpa_tl { \use_i:nn ##1 }
+          \tl_set:Ne \l_@@_tmpb_tl { \use_ii:nn ##1 }
+          \@@_spread_box:Vo \l_@@_tmpc_dim { \l_@@_tmpa_tl }
           \c_@@_colon_tl
-          \underline{
-            \@@_center_box:nn { \l_@@_tmpb_dim } { \l_@@_tmpb_tl }
-          }
+          \underline { \@@_center_box:nn { \l_@@_tmpb_dim } { \l_@@_tmpb_tl } }
           \skip_vertical:n { 0 ex }
         }
     \end{minipage}
@@ -2756,118 +2813,66 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_cover_pg_info:,\@@_cover_pg_info_en:}
-% 博士、硕士学位论文封面中的个人信息（姓名、学号、院系、专业、导师）。
+% \begin{macro}{\@@_cover_pg_info_zh:}
+% 博士、硕士学位中文内论文封面中的个人信息。
 %    \begin{macrocode}
-\cs_new_protected:Npn \@@_cover_pg_info:
+\cs_new_protected:Npn \@@_cover_pg_info_zh:
   {
     \begin{minipage} [ c ] { \textwidth }
       \centering \zihao { 4 }
-      \tl_if_eq:NnTF \l_@@_info_degree_type_tl { professional }
-        {
-          \clist_set:Nx \l_@@_tmpa_clist
-            {
-              \c_@@_info_school_tl,
-              \c_@@_info_major_professional_tl,
-              \c_@@_info_field_professional_tl,
-              \c_@@_info_candidate_tl,
-              \c_@@_info_supervisor_tl,
-            }
-        }
-        {
-          \clist_set:Nx \l_@@_tmpa_clist
-            {
-              \c_@@_info_school_tl,
-              \c_@@_info_major_tl,
-              \c_@@_info_field_tl,
-              \c_@@_info_candidate_tl,
-              \c_@@_info_supervisor_tl,
-            }
-        }
-      \clist_set:Nx \l_@@_tmpb_clist
-        {
-          { \l_@@_info_department_tl    },
-          { \l_@@_info_major_tl         },
-          { \l_@@_info_field_tl         },
-          { \l_@@_info_author_tl        },
-          { \l_@@_info_supervisor_tl    },
-        }
       \dim_set:Nn \l_@@_tmpb_dim { 10 em }
-      \clist_map_inline:Nn \l_@@_tmpb_clist
+      \dim_set:Nn \l_@@_tmpc_dim { 1 em }
+      \seq_map_inline:Nn \g_@@_cover_info_seq
         {
-          \@@_get_text_width:Nn \l_@@_tmpa_dim { \bfseries ##1 }
+          \@@_get_text_width:Nn \l_@@_tmpa_dim
+            { \bfseries \zihao { 4 } \use_ii:nn ##1 }
           \dim_set:Nn \l_@@_tmpb_dim
             { \dim_max:nn { \l_@@_tmpb_dim } { \l_@@_tmpa_dim } }
+          \@@_get_text_width:Nn \l_@@_tmpa_dim
+            { \bfseries \zihao { 4 } \use_i:nn ##1 }
+          \dim_set:Nn \l_@@_tmpc_dim
+            { \dim_max:nn { \l_@@_tmpc_dim } { \l_@@_tmpa_dim } }
         }
-      \bool_until_do:nn
-        { \clist_if_empty_p:N \l_@@_tmpa_clist }
+      \seq_map_inline:Nn \g_@@_cover_info_seq
         {
           \bfseries
-          \clist_pop:NN \l_@@_tmpa_clist \l_@@_tmpa_tl
-          \clist_pop:NN \l_@@_tmpb_clist \l_@@_tmpb_tl
-          \tl_if_eq:NnTF \l_@@_info_degree_type_tl { professional }
-            { \@@_spread_box:no { 6 em } { \l_@@_tmpa_tl } }
-            { \@@_spread_box:no { 5 em } { \l_@@_tmpa_tl } }
+          \tl_set:Ne \l_@@_tmpa_tl { \use_i:nn ##1 }
+          \tl_set:Ne \l_@@_tmpb_tl { \use_ii:nn ##1 }
+          \@@_spread_box:Vo \l_@@_tmpc_dim { \l_@@_tmpa_tl }
           \c_@@_colon_tl
           \uline{\@@_center_box:nn { \l_@@_tmpb_dim } { \l_@@_tmpb_tl }}
           \skip_vertical:n { 0 ex }
         }
     \end{minipage}
   }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_cover_pg_info_en:}
+% 博士、硕士学位英文内论文封面中的个人信息。
+%    \begin{macrocode}
 \cs_new_protected:Npn \@@_cover_pg_info_en:
   {
     \begin{minipage} [ c ] { \textwidth }
       \centering \zihao { -4 }
-      \tl_if_eq:NnTF \l_@@_info_degree_type_tl { professional }
-        {
-          \clist_set:Nx \l_@@_tmpa_clist
-            {
-              \c_@@_info_school_en_tl,
-              \c_@@_info_major_pro_en_tl,
-              \c_@@_info_field_pro_en_tl,
-              \c_@@_info_candidate_en_tl,
-              \c_@@_info_supervisor_en_tl,
-            }
-        }
-        {
-          \clist_set:Nx \l_@@_tmpa_clist
-            {
-              \c_@@_info_school_en_tl,
-              \c_@@_info_major_en_tl,
-              \c_@@_info_field_en_tl,
-              \c_@@_info_candidate_en_tl,
-              \c_@@_info_supervisor_en_tl,
-            }
-        }
-      \clist_set:Nx \l_@@_tmpb_clist
-        {
-          { \l_@@_info_department_en_tl    },
-          { \l_@@_info_major_en_tl         },
-          { \l_@@_info_field_en_tl         },
-          { \l_@@_info_author_en_tl        },
-          { \l_@@_info_supervisor_en_tl    },
-        }
       \dim_set:Nn \l_@@_tmpb_dim { 10 em }
       \dim_set:Nn \l_@@_tmpc_dim { 1 em }
-      \clist_map_inline:Nn \l_@@_tmpb_clist
-        {
-          \@@_get_text_width:Nn \l_@@_tmpa_dim { \bfseries \zihao{-4} ##1 }
-          \dim_set:Nn \l_@@_tmpb_dim
-            { \dim_max:nn { \l_@@_tmpb_dim } { \l_@@_tmpa_dim } }
-        }
-      \clist_map_inline:Nn \l_@@_tmpa_clist
+      \seq_map_inline:Nn \g_@@_cover_info_seq
         {
           \@@_get_text_width:Nn \l_@@_tmpa_dim
-            { \bfseries \zihao{-4} ##1 \c_@@_colon_en_tl \c_space_token }
+            { \bfseries \zihao { -4 } \use_ii:nn ##1 }
+          \dim_set:Nn \l_@@_tmpb_dim
+            { \dim_max:nn { \l_@@_tmpb_dim } { \l_@@_tmpa_dim } }
+          \@@_get_text_width:Nn \l_@@_tmpa_dim
+            { \bfseries \zihao { -4 } \use_i:nn ##1 \c_@@_colon_en_tl \c_space_token }
           \dim_set:Nn \l_@@_tmpc_dim
             { \dim_max:nn { \l_@@_tmpc_dim } { \l_@@_tmpa_dim } }
         }
-      \bool_until_do:nn
-        { \clist_if_empty_p:N \l_@@_tmpa_clist }
+      \seq_map_inline:Nn \g_@@_cover_info_seq
         {
           \bfseries
-          \clist_pop:NN \l_@@_tmpa_clist \l_@@_tmpa_tl
-          \clist_pop:NN \l_@@_tmpb_clist \l_@@_tmpb_tl
+          \tl_set:Ne \l_@@_tmpa_tl { \use_i:nn ##1 }
+          \tl_set:Ne \l_@@_tmpb_tl { \use_ii:nn ##1 }
           \mode_leave_vertical:
           \hbox_to_wd:nn { \l_@@_tmpc_dim }
             { \l_@@_tmpa_tl \c_@@_colon_en_tl \c_space_token \tex_hfil:D }
@@ -2917,7 +2922,7 @@
   {
     \indent \c_@@_orig_text_pg_part_one_tl
     \c_@@_left_guillemet_tl
-    \l_@@_info_title_trim_tl
+    \l_@@_info_title_zh_trim_tl
     \c_@@_right_guillemet_tl
     \c_@@_orig_text_pg_part_two_tl
   }
@@ -2930,7 +2935,7 @@
 \cs_new_protected:Npn \@@_auth_text_pg:
   {
     \indent
-    \c_@@_left_guillemet_tl \l_@@_info_title_trim_tl
+    \c_@@_left_guillemet_tl \l_@@_info_title_zh_trim_tl
     \c_@@_right_guillemet_tl
     \c_@@_auth_text_pg_part_one_tl \par
     \c_@@_auth_text_pg_part_two_tl \par
@@ -3210,7 +3215,7 @@
             \@@_vspace:c { l_@@_cover / #1 / ####1 / bottom_skip }
           }
         \@@_vspace:c { l_@@_cover / #1 / bottom_skip }
-        \clearpage{\thispagestyle{empty}\cleardoublepage}
+        \cleardoublepage
       }
   }
 \NewDocumentCommand \DeclareCoverTemplate { m m }
@@ -3233,7 +3238,7 @@
     top      / content     = \@@_cover_ug_top:,
     logo     / content     = \@@_cover_ug_logo:,
     title    / content     =
-      \expandafter\uline\expandafter{\l_@@_info_title_tl},
+      \expandafter\uline\expandafter{\l_@@_info_title_zh_tl},
     title-en / content     =
       \expandafter\uline\expandafter{\l_@@_info_title_en_tl},
     info     / content     = \@@_cover_ug_info:,
@@ -3259,7 +3264,7 @@
     top      / content     = \@@_cover_pg_top:,
     logo     / content     = \@@_cover_pg_logo:,
     title    / content     = \@@_cover_pg_title:,
-    info     / content     = \@@_cover_pg_info:,
+    info     / content     = \@@_cover_pg_info_zh:,
     date     / content     = \@@_cover_pg_date:,
     title    / format      = \zihao { 1 } \bfseries,
     top      / format      = \zihao { 5 },
@@ -3273,7 +3278,7 @@
     info     / align       = center,
     date     / align       = center,
   }
-  \DeclareInstance { ecnu / cover } { cover-i-pg-en } { cover-i }
+\DeclareInstance { ecnu / cover } { cover-i-pg-en } { cover-i }
   {
     bottom-skip            = 0 pt,
     top      / content     = \@@_cover_pg_top_en:,
@@ -3352,27 +3357,143 @@
       { \RequirePackage { pdfpages } }
   }
 %    \end{macrocode}
-%
-% \begin{macro}{\innercover,\innercoverEN}
-% 中外文内封面命令。
+% 
+% \begin{macro}{\l_@@_cover_info_label_ug_prop}
+% 本科生毕业论文内封面信息栏预设标签属性列表。
 %    \begin{macrocode}
-\NewDocumentCommand \innercover { }
+\prop_new:N \l_@@_cover_info_label_ug_prop
+\clist_map_inline:nn
+  { author, student-id, department, major, supervisor, academic-title }
   {
-    \thispagestyle { empty }
-    \tl_set:Nn \thepage { A }
-    \bool_if:NTF \g_@@_is_bachelor_bool
-      { \UseInstance { ecnu / cover } { cover-i-ug } }
-      { \UseInstance { ecnu / cover } { cover-i-pg } }
-  }
-\NewDocumentCommand \innercoverEN { }
-  {
-    \thispagestyle { empty }
-    \tl_set:Nn \thepage { A-EN }
-    \UseInstance { ecnu / cover } { cover-i-pg-en }
+    \tl_set:Nn \l_@@_tmpa_tl {#1}
+    \tl_remove_all:Nn \l_@@_tmpa_tl { - }
+    \prop_put:Nne \l_@@_cover_info_label_ug_prop { zh / #1 }
+      { \exp_not:c { c_@@_info_ \l_@@_tmpa_tl _ug_zh_tl } }
   }
 %    \end{macrocode}
 % \end{macro}
+% 
+% \begin{macro}{\l_@@_cover_info_label_pg_academic_prop}
+% 博士、硕士学位论文（学术学位）内封面信息栏预设标签属性列表。
+%    \begin{macrocode}
+\prop_new:N \l_@@_cover_info_label_pg_academic_prop
+\clist_map_inline:nn { department, major, field, author, supervisor }
+  {
+    \clist_map_inline:nn { zh, en }
+      {
+        \prop_put:Nne \l_@@_cover_info_label_pg_academic_prop { ##1 / #1 }
+          { \exp_not:c { c_@@_info_ #1 _pg_ ##1 _tl } }
+      }
+  }
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\l_@@_cover_info_label_pg_professional_prop}
+% 博士、硕士学位论文（专业学位）内封面信息栏预设标签属性列表。
+%    \begin{macrocode}
+\prop_new:N \l_@@_cover_info_label_pg_professional_prop
+\prop_set_eq:NN \l_@@_cover_info_label_pg_professional_prop
+  \l_@@_cover_info_label_pg_academic_prop
+\clist_map_inline:nn { major, field }
+  {
+    \clist_map_inline:nn { zh, en }
+      {
+        \prop_put:Nne \l_@@_cover_info_label_pg_professional_prop { ##1 / #1 }
+          { \exp_not:c { c_@@_info_ #1 _pg_professional_ ##1 _tl } }
+      }
+  }
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\c_@@_cover_info_value_prop}
+% 内封面信息栏值属性列表。
+%    \begin{macrocode}
+\prop_new:N \c_@@_cover_info_value_prop
+\clist_map_inline:nn { author, department, major, field, supervisor }
+  {
+    \clist_map_inline:nn { zh, en }
+      {
+        \prop_gput:Nne \c_@@_cover_info_value_prop { ##1 / #1 }
+          { \exp_not:c { l_@@_info_#1 _ ##1 _tl } }
+      }
+  }
+\prop_gput:Nnn \c_@@_cover_info_value_prop { zh / student-id }
+  { \l_@@_info_studentid_zh_tl }
+\prop_gput:Nnn \c_@@_cover_info_value_prop { zh / academic-title }
+  { \l_@@_info_academictitle_zh_tl }
+\@@_msg_new:nn { unknown-cover-info-field }
+  { Cover~ info~ field~ "#1"~ is~ unknown. }
+%    \end{macrocode}
+% \end{macro}
 %    
+% \begin{macro}{\@@_cover_field:nn}
+% \cs{field} 命令的功能实现宏。
+% \begin{arguments}
+%   \item 字段标签，可缺省
+%   \item 字段名
+% \end{arguments}
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_cover_field:nn #1#2
+  {
+    \tl_set:Ne \l_@@_tmpc_tl
+      { \bool_if:NTF \g_@@_is_bachelor_bool { zh } { \l_@@_env_lang_tl } / #2 }
+    \IfNoValueTF { #1 }
+      {
+        \prop_get:cVNF 
+          {
+            l_@@_cover_info_label_
+            \bool_if:NTF \g_@@_is_bachelor_bool { ug }
+              { pg_ \tl_use:N \l_@@_info_degree_type_tl }
+            _prop
+          }
+          { \l_@@_tmpc_tl } \l_@@_tmpa_tl
+          { \@@_error:nn { unknown-cover-info-field } { #2 } }
+      }
+      { \tl_set:Nn \l_@@_tmpa_tl { #1 } }
+    \prop_get:NVN \c_@@_cover_info_value_prop
+      \l_@@_tmpc_tl \l_@@_tmpb_tl
+    \seq_gput_right:Ne \g_@@_cover_info_seq
+      { { \exp_not:V \l_@@_tmpa_tl } { \exp_not:V \l_@@_tmpb_tl } }
+  }
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\innercover}
+% 自定义内封面命令。
+%    \begin{macrocode}
+\NewDocumentCommand \innercover { O{} +m }
+  {
+    \group_begin:
+      \seq_gclear:N \g_@@_cover_info_seq
+      \@@_select_language:n { lang = zh, #1 }
+      \NewDocumentCommand \field { o m }
+        { \@@_cover_field:nn { ##1 } { ##2 } }
+      \NewDocumentCommand \addfield { m m }
+        { \seq_gput_right:Nn \g_@@_cover_info_seq { { ##1 } { ##2 } } }
+      #2
+      \cleardoublepage
+      \thispagestyle { empty }
+      \bool_if:NTF \g_@@_is_bachelor_bool
+        {
+          \tl_set:Nn \thepage { A }
+          \UseInstance { ecnu / cover } { cover-i-ug }
+        }
+        {
+          \tl_if_eq:NnTF \l_@@_env_lang_tl { en }
+            {
+              \tl_set:Nn \thepage { A-EN }
+              \UseInstance { ecnu / cover } { cover-i-pg-en }
+            }
+            {
+              \tl_set:Nn \thepage { A }
+              \UseInstance { ecnu / cover } { cover-i-pg }
+            }
+        }
+    \group_end:
+  }
+%    \end{macrocode}
+% \end{macro}
+% 
 % \begin{macro}{\declarationpage}
 % 声明页命令。
 %    \begin{macrocode}
@@ -3506,7 +3627,7 @@
 %    \begin{macrocode}
       {
         \tl_if_eq:NnTF \l_@@_env_lang_tl { zh }
-          { \tl_set:Nn \l_@@_tmpa_tl { \c_@@_name_abstract_tl } }
+          { \tl_set:Nn \l_@@_tmpa_tl { \c_@@_name_abstract_zh_tl } }
           {
             \tl_set:Nn \l_@@_tmpa_tl
               { \text_uppercase:n { \c_@@_name_abstract_en_tl } }
@@ -3689,12 +3810,12 @@
     \bool_if:NTF \g_@@_is_bachelor_bool
       {
         \@@_make_abs_heading:n
-          { title = { \l_@@_info_title_trim_tl }, #1 }
+          { title = { \l_@@_info_title_zh_trim_tl }, #1 }
         \small
         \group_begin:
           \skip_vertical:n { 17.6 bp }
           \noindent \rmfamily \bfseries
-          \c_@@_name_abstract_tl \c_@@_colon_tl
+          \c_@@_name_abstract_zh_tl \c_@@_colon_tl
           \skip_vertical:n { 3 bp }
         \group_end:
         \par
@@ -3747,9 +3868,9 @@
         \bool_if:NTF \g_@@_is_bachelor_bool
           { \rmfamily\bfseries }
           { \zihao{4}\sffamily\bfseries }
-        \c_@@_name_keywords_tl \c_@@_colon_tl
+        \c_@@_name_keywords_zh_tl \c_@@_colon_tl
       }
-      \l_@@_info_keywords_clist { ， } { }
+      \l_@@_info_keywords_zh_clist { ， } { }
     \cleardoublepage
   }
 \cs_new_protected:Npn \@@_abstract_en_end:
@@ -3965,9 +4086,9 @@
 % 
 % 填写 PDF 元信息。
 %    \begin{macrocode}
-        pdftitle        = \l_@@_info_title_trim_tl,
-        pdfauthor       = \l_@@_info_author_tl,
-        pdfkeywords     = \l_@@_info_keywords_clist,
+        pdftitle        = \l_@@_info_title_zh_trim_tl,
+        pdfauthor       = \l_@@_info_author_zh_tl,
+        pdfkeywords     = \l_@@_info_keywords_zh_clist,
         pdfcreator      = \c_@@_name_pdf_creator_tl
       }
     \int_new:N \g_@@_bookmark_int
@@ -4011,8 +4132,33 @@
         \begin{titlepage}
           \bool_if:NT \g_@@_cover_page_bool
             {
-              \innercover
-              \bool_if:NF \g_@@_is_bachelor_bool { \newpage \innercoverEN }
+              \bool_if:NTF \g_@@_is_bachelor_bool
+                {
+                  \innercover{
+                    \field{author}
+                    \field{student-id}
+                    \field{department}
+                    \field{major}
+                    \field{supervisor}
+                    \field{academic-title}
+                  }
+                }
+                {
+                  \innercover{
+                    \field{department}
+                    \field{major}
+                    \field{field}
+                    \field{author}
+                    \field{supervisor}
+                  }
+                  \innercover[lang=en]{
+                    \field{department}
+                    \field{major}
+                    \field{field}
+                    \field{author}
+                    \field{supervisor}
+                  }
+                }
             }
           \bool_if:NT \g_@@_declaration_page_bool
             { \declarationpage }
@@ -4096,7 +4242,6 @@
 %    \begin{macrocode}
 \keys_set:nn { ecnu / info }
   {
-    degree          = academic,
     clc             = {(分类号)},
     secret-level    = {},
     title           = {(中文标题)},
@@ -4131,21 +4276,31 @@
 % 
 % 模板中的一些预设文字，用于封面、声明页、页眉等部分。
 %    \begin{macrocode}
-\tl_const:Nn \c_@@_info_name_tl               { 姓名 }
-\tl_const:Nn \c_@@_info_student_id_tl         { 学号 }
-\tl_const:Nn \c_@@_info_student_id_en_tl      { Student ~ ID }
-\tl_const:Nn \c_@@_info_department_tl         { 学院 }
-\tl_const:Nn \c_@@_info_school_tl             { 院系 }
-\tl_const:Nn \c_@@_info_major_tl              { 专业 }
-\tl_const:Nn \c_@@_info_major_professional_tl { 专业学位类别 }
-\tl_const:Nn \c_@@_info_field_tl              { 研究方向 }
-\tl_const:Nn \c_@@_info_field_professional_tl { 专业学位领域 }
-\tl_const:Nn \c_@@_info_candidate_tl          { 学位申请人 }
-\tl_const:Nn \c_@@_info_supervisor_tl         { 指导教师 }
-\tl_const:Nn \c_@@_info_academic_title_tl     { 职称 }
-\tl_const:Nn \c_@@_university_code_tl         { 学校代码 }
-\tl_const:Nn \c_@@_university_code_en_tl      { University ~ Code }
-\tl_const:Nn \c_@@_university_code_val_tl     { 10269 }
+\tl_const:Nn \c_@@_info_author_ug_zh_tl               { 姓名 }
+\tl_const:Nn \c_@@_info_author_pg_zh_tl               { 学位申请人 }
+\tl_const:Nn \c_@@_info_author_pg_en_tl               { Candidate }
+\tl_const:Nn \c_@@_info_studentid_ug_zh_tl            { 学号 }
+\tl_const:Nn \c_@@_info_studentid_pg_zh_tl            { 学号 }
+\tl_const:Nn \c_@@_info_studentid_pg_en_tl            { Student ~ ID }
+\tl_const:Nn \c_@@_info_department_ug_zh_tl           { 学院 }
+\tl_const:Nn \c_@@_info_department_pg_zh_tl           { 院系 }
+\tl_const:Nn \c_@@_info_department_pg_en_tl           { Department / School }
+\tl_const:Nn \c_@@_info_major_ug_zh_tl                { 专业 }
+\tl_const:Nn \c_@@_info_major_pg_zh_tl                { 专业 }
+\tl_const:Nn \c_@@_info_major_pg_en_tl                { Major }
+\tl_const:Nn \c_@@_info_major_pg_professional_zh_tl   { 专业学位类别 }
+\tl_const:Nn \c_@@_info_major_pg_professional_en_tl   { Category }
+\tl_const:Nn \c_@@_info_field_pg_zh_tl                { 研究方向 }
+\tl_const:Nn \c_@@_info_field_pg_en_tl                { Research ~ Direction }
+\tl_const:Nn \c_@@_info_field_pg_professional_zh_tl   { 专业学位领域 }
+\tl_const:Nn \c_@@_info_field_pg_professional_en_tl   { Field }
+\tl_const:Nn \c_@@_info_supervisor_ug_zh_tl           { 指导教师 }
+\tl_const:Nn \c_@@_info_supervisor_pg_zh_tl           { 指导教师 }
+\tl_const:Nn \c_@@_info_supervisor_pg_en_tl           { Supervisor }
+\tl_const:Nn \c_@@_info_academictitle_ug_zh_tl       { 职称 }
+\tl_const:Nn \c_@@_university_code_zh_tl              { 学校代码 }
+\tl_const:Nn \c_@@_university_code_en_tl              { University ~ Code }
+\tl_const:Nn \c_@@_university_code_val_tl             { 10269 }
 \tl_const:Nn \c_@@_year_tl                    { 年 }
 \tl_const:Nn \c_@@_month_tl                   { 月 }
 \tl_const:Nn \c_@@_day_tl                     { 日 }
@@ -4241,13 +4396,6 @@
 \tl_const:Nn \c_@@_masters_en_tl              { Master's }
 \tl_const:Nn \c_@@_doctoral_en_tl             { Doctoral }
 \tl_const:Nn \c_@@_thesis_title_en_tl         { Title }
-\tl_const:Nn \c_@@_info_school_en_tl          { Department / School }
-\tl_const:Nn \c_@@_info_major_en_tl           { Major }
-\tl_const:Nn \c_@@_info_major_pro_en_tl       { Category }
-\tl_const:Nn \c_@@_info_field_en_tl           { Research ~ Direction }
-\tl_const:Nn \c_@@_info_field_pro_en_tl       { Field }
-\tl_const:Nn \c_@@_info_candidate_en_tl       { Candidate }
-\tl_const:Nn \c_@@_info_supervisor_en_tl      { Supervisor }
 \clist_const:Nn \c_@@_month_en_clist
   {
     January, February, March, April, May, June, July,
@@ -4257,9 +4405,9 @@
 \tl_const:Nn \c_@@_name_lot_tl                { 表格目录 }
 \tl_const:Nn \c_@@_name_lof_tl                { 插图目录 }
 \tl_const:Nn \c_@@_name_chinese_abstract_tl   { 中文摘要 }
-\tl_const:Nn \c_@@_name_abstract_tl           { 摘要 }
+\tl_const:Nn \c_@@_name_abstract_zh_tl        { 摘要 }
 \tl_const:Nn \c_@@_name_abstract_en_tl        { Abstract }
-\tl_const:Nn \c_@@_name_keywords_tl           { 关键词 }
+\tl_const:Nn \c_@@_name_keywords_zh_tl        { 关键词 }
 \tl_const:Nn \c_@@_name_keywords_en_tl        { Keywords }
 \tl_const:Nn \c_@@_colon_tl                   { ： }
 \tl_const:Nn \c_@@_colon_en_tl                { : }

@@ -23,9 +23,21 @@
 \loggingoutput
 
 \begin{titlepage}
-  \innercover
-  \newpage
-  \innercoverEN
+  \innercover{%
+    \field{department}
+    \field{major}
+    \field{field}
+    \field{author}
+    \field{supervisor}
+  }
+
+  \innercover[lang=en]{%
+    \field{department}
+    \field{major}
+    \field{field}
+    \field{author}
+    \field{supervisor}
+  }
 \end{titlepage}
 
 \END

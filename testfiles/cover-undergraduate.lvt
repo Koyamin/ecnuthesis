@@ -17,7 +17,14 @@
 \loggingoutput
 
 \begin{titlepage}
-  \innercover
+  \innercover{%
+    \field{author}
+    \field{student-id}
+    \field{department}
+    \field{major}
+    \field{supervisor}
+    \field{academic-title}
+  }
 \end{titlepage}
 
 \END

@@ -109,7 +109,6 @@ Completed box being shipped out [1]
 ...\glue(\lineskip) 0.0
 ...\vbox(700.50687+0.0)x416.83289, glue set 571.97083fil
 ....\write-{}
-....\write-{}
 ....\special{pdf:docview<</OpenAction[@page1/Fit]/PageMode/UseOutlines>>}
 ....\special{pdf:dest (Doc-Start) [@thispage /XYZ @xpos @ypos null]}
 ....\write-{}

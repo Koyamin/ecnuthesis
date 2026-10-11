@@ -34,6 +34,7 @@
   siunitx,
   metalogo,
   booktabs,
+  multirow,
 }
 \geometry{
   left   = 1.85 in,

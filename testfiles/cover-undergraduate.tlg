@@ -44,6 +44,7 @@ Completed box being shipped out [1]
 ...\glue 15.73387
 ...\glue(\lineskip) 0.0
 ...\vbox(717.00946+0.0)x441.01773, glue set 45.67873fill
+....\write-{}
 ....\glue(\topskip) 2.13832
 ....\hbox(9.86168+3.83919)x441.01773
 .....\glue(\leftskip) 0.0 plus 1.0fil
