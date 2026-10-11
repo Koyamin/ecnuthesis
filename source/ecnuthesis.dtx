@@ -234,6 +234,18 @@
 %   \end{optdesc}
 % \end{function}
 % 
+% \begin{function}[rEXP]{degree}
+%   \begin{syntax}
+%     \CFGKEY{degree} = (academic)|professional
+%   \end{syntax}
+%   博士、硕士学位论文的学位类型。该文档类选项仅在博士、硕士学位论文中方为有效。
+%   \begin{optdesc}
+%     \item[academic] 表示学术学位。
+%     \item[professional] 表示专业学位。
+%   \end{optdesc}
+%   
+% \end{function}
+% 
 % \begin{function}{oneside,twoside}
 %   指定论文的排版模式。该选项会影响页码样式，还会影响某些部分的开始位置。
 %   模板默认的排版模式为双面模式（\opt{twoside}）。
@@ -346,17 +358,6 @@
 %     \CFG{info}/\meta{key} = \meta{value}
 %   \end{syntax}
 %   该选项用于录入论文信息。该选项拥有一些子选项，具体的设置子选项如下所示。
-% \end{function}
-%
-% \begin{function}[rEXP]{info/degree}
-%   \begin{syntax}
-%     \CFGKEY{degree} = (academic)|professional
-%   \end{syntax}
-%   博士、硕士学位论文的学位类型。
-%   \begin{optdesc}
-%     \item[academic] 表示学术学位。
-%     \item[professional] 表示专业学位。
-%   \end{optdesc}
 % \end{function}
 %
 % \begin{function}[rEXP]{info/clc}
@@ -903,6 +904,13 @@
 \bool_set_false:N \g_@@_is_bachelor_bool
 %    \end{macrocode}
 % \end{variable}
+% 
+% \begin{variable}{\l_@@_degree_type_tl}
+% 博士、硕士学位论文中的学位类型。
+%    \begin{macrocode}
+\tl_new:N \l_@@_degree_type_tl
+%    \end{macrocode}
+% \end{variable}
 %
 % \begin{variable}{\g_@@_twoside_bool}
 % 是否开启双面打印模式（默认关闭）。
@@ -1068,6 +1076,17 @@
       },
     type .value_required:n  = true,
     type .initial:n         = master,
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{degree}
+% 博士、硕士学位论文的学位类型。
+%    \begin{macrocode}
+    degree          .choices:nn   =
+      { academic, professional }
+      { \tl_set_eq:NN \l_@@_degree_type_tl \l_keys_choice_tl },
+    degree          .value_required:n = true,
+    degree          .initial:n = academic,
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1948,7 +1967,7 @@
     \prop_get:NVN \c_@@_thesis_type_prop
       \g_@@_thesis_type_tl \l_@@_tmpa_tl
     \c_@@_university_name_tl \l_@@_tmpa_tl
-    \tl_if_eq:NnT \l_@@_info_degree_type_tl
+    \tl_if_eq:NnT \l_@@_degree_type_tl
       { professional } { \c_@@_professional_tl }
     \c_@@_degree_tl \c_@@_thesis_tl
   }
@@ -2199,13 +2218,6 @@
 %    \end{macrocode}
 % \end{variable}
 %
-% \begin{variable}{\l_@@_info_degree_type_tl}
-% 博士、硕士学位论文中的学位类型。
-%    \begin{macrocode}
-\tl_new:N \l_@@_info_degree_type_tl
-%    \end{macrocode}
-% \end{variable}
-%
 % \begin{variable}{\l_@@_info_cic_index_tl}
 % 博士、硕士学位论文中的中图分类号。
 %    \begin{macrocode}
@@ -2263,17 +2275,6 @@
 \keys_define:nn { ecnu / info }
   {
 %    \end{macrocode}
-%
-% \begin{macro}{info/degree}
-% 博士、硕士学位论文的学位类型。
-%    \begin{macrocode}
-    degree          .choices:nn   =
-      { academic, professional }
-      { \tl_set_eq:NN \l_@@_info_degree_type_tl \l_keys_choice_tl },
-    degree          .value_required:n = true,
-    degree          .initial:n = academic,
-%    \end{macrocode}
-% \end{macro}
 %
 % \begin{macro}{info/clc}
 % 博士、硕士学位论文的中图分类号。
@@ -2549,7 +2550,7 @@
     \prop_get:NVN \c_@@_thesis_type_prop
       \g_@@_thesis_type_tl \l_@@_tmpa_tl
     \graduationyear \c_@@_graduation_year_tl
-    \tl_if_eq:NnTF \l_@@_info_degree_type_tl { professional }
+    \tl_if_eq:NnTF \l_@@_degree_type_tl { professional }
       {
         \l_@@_tmpa_tl \c_@@_professional_tl \c_@@_degree_tl
         \c_@@_postgraduate_tl 
@@ -2561,11 +2562,11 @@
   {
     \tl_if_eq:NnT \g_@@_thesis_type_tl { master }
       {
-        \tl_if_eq:NnTF \l_@@_info_degree_type_tl { professional }
+        \tl_if_eq:NnTF \l_@@_degree_type_tl { professional }
           { \c_@@_thesis_en_tl } { \c_@@_dissertation_en_tl }
         \c_space_token \c_@@_for_en_tl \c_space_token
         \c_@@_masters_en_tl \c_space_token \c_@@_degree_en_tl
-        \tl_if_eq:NnT \l_@@_info_degree_type_tl { professional }
+        \tl_if_eq:NnT \l_@@_degree_type_tl { professional }
           { \c_space_token ( \c_@@_professional_en_tl ) }
       }
     \tl_if_eq:NnT \g_@@_thesis_type_tl { doctor }
@@ -2573,7 +2574,7 @@
         \c_@@_dissertation_en_tl \c_space_token
         \c_@@_for_en_tl \c_space_token
         \c_@@_doctoral_en_tl \c_space_token \c_@@_degree_en_tl
-        \tl_if_eq:NnT \l_@@_info_degree_type_tl { professional }
+        \tl_if_eq:NnT \l_@@_degree_type_tl { professional }
           { \c_space_token ( \c_@@_professional_en_tl ) }
       }
     \c_space_token in \c_space_token \graduationyear
@@ -3026,13 +3027,13 @@
     \prop_get:NVN \c_@@_thesis_type_prop
       \g_@@_thesis_type_tl \l_@@_tmpa_tl
     \l_@@_tmpa_tl
-    \tl_if_eq:NnT \l_@@_info_degree_type_tl { professional }
+    \tl_if_eq:NnT \l_@@_degree_type_tl { professional }
       { \c_@@_professional_tl }
     \c_@@_degree_tl \c_@@_thesis_tl
   }
 \cs_new_protected:Npn \@@_cover_pg_logo_title_en:
   { 
-    \tl_if_eq:NnTF \l_@@_info_degree_type_tl { professional }
+    \tl_if_eq:NnTF \l_@@_degree_type_tl { professional }
       {
         \tl_if_eq:NnTF \g_@@_thesis_type_tl { master }
           {
@@ -3443,7 +3444,7 @@
           {
             l_@@_cover_info_label_
             \bool_if:NTF \g_@@_is_bachelor_bool { ug }
-              { pg_ \tl_use:N \l_@@_info_degree_type_tl }
+              { pg_ \tl_use:N \l_@@_degree_type_tl }
             _prop
           }
           { \l_@@_tmpc_tl } \l_@@_tmpa_tl

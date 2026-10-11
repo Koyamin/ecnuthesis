@@ -11,6 +11,10 @@
 - 新增 `openany` 和 `openright` 文档类选项，以支持正文中每一章从奇数页（在右）开始
 - 增加对 LuaTeX 的支持
 
+### Changed
+
+- 将 `\ecnusetup` 命令中的 `info/degree` 接口移至文档类选项
+
 ## [1.1] - 2026-05-28
 
 ### Added
