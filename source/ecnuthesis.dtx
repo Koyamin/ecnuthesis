@@ -3220,16 +3220,6 @@
   { \@@_cover_declare_template:nn {#1} {#2} }
 \DeclareCoverTemplate { cover-i   }
   { top, logo, title, title-en, info, date }
-\DeclareCoverTemplate { cover-ii  }
-  {
-    originality-title,
-    originality-text,
-    originality-sign,
-    authorization-title,
-    authorization-text,
-    authorization-sign,
-    others,
-  }
 \DeclareInstance { ecnu / cover } { cover-i-ug } { cover-i }
   {
     bottom-skip            = 0 pt plus 0.5 fill,
@@ -3295,27 +3285,6 @@
     title    / align       = center,
     info     / align       = center,
     date     / align       = center,
-  }
-\DeclareInstance { ecnu / cover } { cover-ii-ug } { cover-ii }
-  {
-    originality-title   / content     = \c_@@_orig_title_ug_tl,
-    originality-text    / content     = \c_@@_orig_text_ug_tl,
-    originality-sign    / content     = \@@_orig_sign_area_ug:,
-    authorization-title / content     = \c_@@_auth_title_ug_tl,
-    authorization-text  / content     = \c_@@_auth_text_ug_tl,
-    authorization-sign  / content     = \@@_auth_sign_area_ug:,
-    originality-title   / format      =
-      \@@_line_spread:n { 1.85714286 } \zihao { 4 } \bfseries,
-    originality-text    / format      = \@@_line_spread:n { 1.625 },
-    authorization-title / format      =
-      \@@_line_spread:n { 1.85714286 } \zihao { 4 } \bfseries,
-    authorization-text  / format      = \@@_line_spread:n { 1.625 },
-    originality-sign    / bottom-skip = 70.2 bp,
-    authorization-text  / bottom-skip = 23.4 bp,
-    originality-title   / align       = center,
-    originality-sign    / align       = right,
-    authorization-title / align       = center,
-    authorization-sign  / align       = right,
   }
 \tl_new:N \l_@@_declaration_page_tl
 \keys_define:nn { ecnu / style }
@@ -3474,6 +3443,66 @@
 %    \end{macrocode}
 % \end{macro}
 % 
+% 本科生毕业论文版权声明页。
+%    \begin{macrocode}
+\@@_declare_element:nn { declaration-ug-orig-title }
+  {
+    content     = \c_@@_orig_title_ug_tl,
+    format      = \@@_line_spread:n { 1.85714286 } \zihao { 4 } \bfseries,
+    align       = center,
+  }
+\@@_declare_element:nn { declaration-ug-orig-text }
+  {
+    content     = 
+      {
+        \indent \c_@@_orig_text_ug_part_one_tl \par
+        \c_@@_orig_text_ug_part_two_tl
+      },
+    format      = \@@_line_spread:n { 1.625 },
+  }
+\@@_declare_element:nn { declaration-ug-orig-sign }
+  {
+    content     = \@@_orig_sign_area_ug:,
+    bottom-skip = 70.2 bp,
+    align       = right,
+  }
+\@@_declare_element:nn { declaration-ug-auth-title }
+  {
+    content     = \c_@@_auth_title_ug_tl,
+    format      = \@@_line_spread:n { 1.85714286 } \zihao { 4 } \bfseries,
+    align       = center,
+  }
+\@@_declare_element:nn { declaration-ug-auth-text }
+  {
+    content     = 
+      {
+        \indent \c_@@_auth_text_ug_part_one_tl \par
+        \c_@@_auth_text_ug_part_two_tl
+      },
+    format      = \@@_line_spread:n { 1.625 },
+    bottom-skip = 23.4 bp,
+  }
+\@@_declare_element:nn { declaration-ug-auth-sign }
+  {
+    content     = \@@_auth_sign_area_ug:,
+    align       = right,
+  }
+\@@_declare_element:nn { declaration-ug-others } { }
+\@@_declare_page:nn { declaration-ug }
+  {
+    element =
+      {
+        declaration-ug-orig-title,
+        declaration-ug-orig-text,
+        declaration-ug-orig-sign,
+        declaration-ug-auth-title,
+        declaration-ug-auth-text,
+        declaration-ug-auth-sign,
+        declaration-ug-others,
+      },
+  }
+%    \end{macrocode}
+%
 % 博士、硕士学位论文版权声明页。
 %    \begin{macrocode}
 \@@_declare_element:nn { declaration-pg-orig-title }
@@ -3679,10 +3708,7 @@
     \tl_if_empty:NTF \l_@@_declaration_page_tl
       {
         \bool_if:NTF \g_@@_is_bachelor_bool
-          {
-            \cleardoublepage
-            \UseInstance { ecnu / cover } { cover-ii-ug }
-          }
+          { \UseInstance { ecnu } { declaration-ug } }
           { \UseInstance { ecnu } { declaration-pg } }
       }
       { \includepdf [pages=-] { \l_@@_declaration_page_tl } }
@@ -4488,27 +4514,29 @@
 \tl_const:Nn \c_@@_auth_title_ug_tl           { 华东师范大学学位论文使用授权说明 }
 \tl_const:Nn \c_@@_orig_title_pg_tl           { 华东师范大学学位论文原创性声明 }
 \tl_const:Nn \c_@@_auth_title_pg_tl           { 华东师范大学学位论文著作权使用声明 }
-\tl_const:Nn \c_@@_orig_text_ug_tl
+\tl_const:Nn \c_@@_orig_text_ug_part_one_tl
   {
-    \indent 本毕业论文是本人在导师指导下独立完成的，内容真实、可靠。本人
+    本毕业论文是本人在导师指导下独立完成的，内容真实、可靠。本人
     在撰写毕业论文过程中不存在请人代写、抄袭或者剽窃他人作品、伪造或者
     篡改数据以及其他学位论文作假行为。
-    \par
+  }
+\tl_const:Nn \c_@@_orig_text_ug_part_two_tl
+  {
     本人清楚知道学位论文作假行为将会导致行为人受到不授予/撤销学位、开除
     学籍等处理（处分）决定。本人如果被查证在撰写本毕业论文过程中存在学位
     论文作假行为，愿意接受学校依法作出的处理（处分）决定。
   }
-\tl_const:Nn \c_@@_auth_text_ug_tl
+\tl_const:Nn \c_@@_auth_text_ug_part_one_tl
   {
-    \indent 本论文的研究成果归华东师范大学所有，本论文的研究内容不得以其
+    本论文的研究成果归华东师范大学所有，本论文的研究内容不得以其
     它单位的名义发表。本学位论文作者和指导教师完全了解华东师范大学有关
     保留、使用学位论文的规定，即：学校有权保留并向国家有关部门或机构送交
     论文的复印件和电子版，允许论文被查阅和借阅；本人授权华东师范大学可以
     将论文的全部或部分内容编入有关数据库进行检索、交流，可以采用影印、缩印
     或其他复制手段保存论文和汇编本学位论文。
-    \par
-    保密的毕业论文（设计）在解密后应遵守此规定。
   }
+\tl_const:Nn \c_@@_auth_text_ug_part_two_tl
+  { 保密的毕业论文（设计）在解密后应遵守此规定。 }
 \tl_const:Nn \c_@@_orig_text_pg_part_one_tl
   { 郑重声明：本人呈交的学位论文 }
 \tl_const:Nn \c_@@_orig_text_pg_part_two_tl
