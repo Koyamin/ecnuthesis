@@ -2182,8 +2182,156 @@
   }
 %    \end{macrocode}
 % \end{macro}
+% 
+% \subsection{自定义模板接口}
+% 
+% \subsubsection{元素模板接口}
+% 
+% 定义元素模板接口。
+% 元素是一个页面的基本组成单位，包括文段、图片等等。
+% 一个抽象的元素具备以下属性：
+% \begin{description}
+%   \item[\opt{content}] 内容，即剥离样式的元素本身；
+%   \item[\opt{format}] 格式，例如字号、字体；
+%   \item[\opt{bottom-skip}] 下间距，即与下一个元素的距离；
+%   \item[\opt{align}] 对齐方式，包括左对齐、右对齐、居中、正常段落。
+% \end{description}
+%    \begin{macrocode}
+\DeclareObjectType { ecnu } { \c_zero_int }
+\DeclareTemplateInterface { ecnu } { element } { \c_zero_int }
+  {
+    content     : tokenlist = \c_empty_tl,
+    format      : tokenlist = \c_empty_tl,
+    bottom-skip : skip      = \c_zero_skip,
+    align       : choice { left, right, center, normal } = normal
+  }
+%    \end{macrocode}
+% 
+% \begin{macro}{
+%   \l_@@_elem_tmpl_content_tl,
+%   \l_@@_elem_tmpl_format_tl,
+%   \l_@@_elem_tmpl_bottom_skip,
+%   \@@_elem_tmpl_align:
+% }
+% 实现元素模板接口所需的变量，用于记录内容、格式、下间距、对齐方式。
+%    \begin{macrocode}
+\tl_new:N \l_@@_elem_tmpl_content_tl
+\tl_new:N \l_@@_elem_tmpl_format_tl
+\skip_new:N \l_@@_elem_tmpl_bottom_skip
+\cs_new_eq:NN \@@_elem_tmpl_align: \prg_do_nothing:
+%    \end{macrocode}
+% \end{macro}
+% 
+% 元素模板接口的具体实现代码。
+%    \begin{macrocode}
+\DeclareTemplateCode { ecnu } { element } { \c_zero_int }
+  {
+    content     = \l_@@_elem_tmpl_content_tl,
+    format      = \l_@@_elem_tmpl_format_tl,
+    bottom-skip = \l_@@_elem_tmpl_bottom_skip,
+    align =
+      {
+        left    = { \cs_set_eq:NN \@@_elem_tmpl_align: \raggedright },
+        right   = { \cs_set_eq:NN \@@_elem_tmpl_align: \raggedleft },
+        center  = { \cs_set_eq:NN \@@_elem_tmpl_align: \centering },
+        normal  = { \cs_set_eq:NN \@@_elem_tmpl_align: \prg_do_nothing: }
+      }
+  }
+  {
+    \AssignTemplateKeys
+    \noindent
+    \group_begin:
+      \@@_elem_tmpl_align:
+      \tl_use:N \l_@@_elem_tmpl_format_tl
+      \tl_use:N \l_@@_elem_tmpl_content_tl
+      \par
+    \group_end:
+    \@@_vspace:N \l_@@_elem_tmpl_bottom_skip
+  }
+%    \end{macrocode}
+% 
+% \subsubsection{页面模板接口}
+% 
+% 定义页面模板接口。
+% 一个页面是若干元素的集合。一个抽象的页面具备以下属性：
+% \begin{description}
+%   \item[\opt{element}] 包含的元素，这里使用的是名称列表；
+%   \item[\opt{format}] 格式，例如行距；
+%   \item[\opt{top-skip}] 上间距，即与页面顶部的距离；
+%   \item[\opt{bottom-skip}] 下间距，即与页面底部的距离；
+%   \item[\opt{bookmark}] PDF 书签锚点名。
+% \end{description}
+%    \begin{macrocode}
+\DeclareTemplateInterface { ecnu } { page } { \c_zero_int }
+  {
+    element     : commalist = \c_empty_clist,
+    format      : tokenlist = \c_empty_tl,
+    top-skip    : skip      = \c_zero_skip,
+    bottom-skip : skip      = \c_zero_skip,
+    bookmark    : tokenlist
+  }
+%    \end{macrocode}
+%    
+% \begin{macro}{
+%   \l_@@_page_tmpl_elem_clist,
+%   \l_@@_page_tmpl_format_tl,
+%   \l_@@_page_tmpl_top_skip,
+%   \l_@@_page_tmpl_bottom_skip
+% }
+% 实现页面模板接口所需的变量，用于记录元素列表、格式、下间距。
+%    \begin{macrocode}
+\clist_new:N \l_@@_page_tmpl_elem_clist
+\tl_new:N    \l_@@_page_tmpl_format_tl
+\skip_new:N  \l_@@_page_tmpl_top_skip
+\skip_new:N  \l_@@_page_tmpl_bottom_skip
+\tl_new:N    \l_@@_page_tmpl_bookmark_tl
+%    \end{macrocode}
+% \end{macro}
+%    
+% 页面模板接口的具体实现代码。
+%    \begin{macrocode}
+\DeclareTemplateCode { ecnu } { page } { \c_zero_int }
+  {
+    element     = \l_@@_page_tmpl_elem_clist,
+    format      = \l_@@_page_tmpl_format_tl,
+    top-skip    = \l_@@_page_tmpl_top_skip,
+    bottom-skip = \l_@@_page_tmpl_bottom_skip,
+    bookmark    = \l_@@_page_tmpl_bookmark_tl
+  }
+  {
+    \tl_set_eq:NN \l_@@_page_tmpl_bookmark_tl \c_novalue_tl
+    \AssignTemplateKeys
+    \cleardoublepage
+    \thispagestyle { empty }
+    \skip_if_eq:nnF { \l_@@_page_tmpl_top_skip } { \c_zero_skip }
+      { \@@_vspace:N \l_@@_page_tmpl_top_skip }
+    \group_begin:
+      \exp_args:No \tl_if_novalue:nF { \l_@@_page_tmpl_bookmark_tl }
+        { \@@_pdf_bookmark:nn { 0 } { \l_@@_page_tmpl_bookmark_tl } }
+      \l_@@_page_tmpl_format_tl
+      \clist_map_inline:Nn \l_@@_page_tmpl_elem_clist
+        { \UseInstance { ecnu } { ##1 } }
+    \group_end:
+    \@@_vspace:N \l_@@_page_tmpl_bottom_skip
+  }
+%    \end{macrocode}
+%    
+% \begin{macro}{\@@_declare_element:nn,\@@_declare_page:nn}
+% 封装 \pkg{xtemplate} 提供的函数，简化创建实例的过程。
+% \begin{arguments}
+%   \item 实例名称
+%   \item 参数列表
+% \end{arguments}
+%    \begin{macrocode}
+\cs_new:Npn \@@_declare_element:nn #1#2
+  { \DeclareInstance { ecnu } { #1 } { element } { #2 } }
+\cs_new:Npn \@@_declare_page:nn    #1#2
+  { \DeclareInstance { ecnu } { #1 } { page    } { #2 } }
+%    \end{macrocode}
+% \end{macro}
+% 
 %
-% \subsection{封面}
+% \subsection{内封面}
 %
 % \subsubsection{信息录入}
 %
@@ -2522,7 +2670,7 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \subsubsection{封面各部件}
+% \subsubsection{内封面各部件}
 %
 % \begin{macro}{\ULthickness}
 % 设置 \pkg{xeCJKfntef} 宏包所依赖的 \pkg{ulem} 宏包的下划线宽度。
@@ -3098,167 +3246,10 @@
 %    \end{macrocode}
 % \end{macro}
 %
-% \subsubsection{封面实现接口}
-%
-%    \begin{macrocode}
-\tl_new:N \l_@@_declaration_page_tl
-\keys_define:nn { ecnu / style }
-  {
-    declaration-src   .tl_set:N = \l_@@_declaration_page_tl
-  }
-\AtBeginDocument
-  {
-    \tl_if_empty:NF \l_@@_declaration_page_tl
-      { \RequirePackage { pdfpages } }
-  }
-%    \end{macrocode}
 % 
-% \subsubsection{元素模板}
+% \subsubsection{本科生毕业论文内封面}
 % 
-% 定义元素模板接口。
-% 元素是一个页面的基本组成单位，包括文段、图片等等。
-% 一个抽象的元素具备以下属性：
-% \begin{description}
-%   \item[\opt{content}] 内容，即剥离样式的元素本身；
-%   \item[\opt{format}] 格式，例如字号、字体；
-%   \item[\opt{bottom-skip}] 下间距，即与下一个元素的距离；
-%   \item[\opt{align}] 对齐方式，包括左对齐、右对齐、居中、正常段落。
-% \end{description}
-%    \begin{macrocode}
-\DeclareObjectType { ecnu } { \c_zero_int }
-\DeclareTemplateInterface { ecnu } { element } { \c_zero_int }
-  {
-    content     : tokenlist = \c_empty_tl,
-    format      : tokenlist = \c_empty_tl,
-    bottom-skip : skip      = \c_zero_skip,
-    align       : choice { left, right, center, normal } = normal
-  }
-%    \end{macrocode}
-% 
-% \begin{macro}{
-%   \l_@@_elem_tmpl_content_tl,
-%   \l_@@_elem_tmpl_format_tl,
-%   \l_@@_elem_tmpl_bottom_skip,
-%   \@@_elem_tmpl_align:
-% }
-% 实现元素模板接口所需的变量，用于记录内容、格式、下间距、对齐方式。
-%    \begin{macrocode}
-\tl_new:N \l_@@_elem_tmpl_content_tl
-\tl_new:N \l_@@_elem_tmpl_format_tl
-\skip_new:N \l_@@_elem_tmpl_bottom_skip
-\cs_new_eq:NN \@@_elem_tmpl_align: \prg_do_nothing:
-%    \end{macrocode}
-% \end{macro}
-% 
-% 元素模板接口的具体实现代码。
-%    \begin{macrocode}
-\DeclareTemplateCode { ecnu } { element } { \c_zero_int }
-  {
-    content     = \l_@@_elem_tmpl_content_tl,
-    format      = \l_@@_elem_tmpl_format_tl,
-    bottom-skip = \l_@@_elem_tmpl_bottom_skip,
-    align =
-      {
-        left    = { \cs_set_eq:NN \@@_elem_tmpl_align: \raggedright },
-        right   = { \cs_set_eq:NN \@@_elem_tmpl_align: \raggedleft },
-        center  = { \cs_set_eq:NN \@@_elem_tmpl_align: \centering },
-        normal  = { \cs_set_eq:NN \@@_elem_tmpl_align: \prg_do_nothing: }
-      }
-  }
-  {
-    \AssignTemplateKeys
-    \noindent
-    \group_begin:
-      \@@_elem_tmpl_align:
-      \tl_use:N \l_@@_elem_tmpl_format_tl
-      \tl_use:N \l_@@_elem_tmpl_content_tl
-      \par
-    \group_end:
-    \@@_vspace:N \l_@@_elem_tmpl_bottom_skip
-  }
-%    \end{macrocode}
-% 
-% \subsubsection{页面模板}
-% 
-% 定义页面模板接口。
-% 一个页面是若干元素的集合。一个抽象的页面具备以下属性：
-% \begin{description}
-%   \item[\opt{element}] 包含的元素，这里使用的是名称列表；
-%   \item[\opt{format}] 格式，例如行距；
-%   \item[\opt{top-skip}] 上间距，即与页面顶部的距离；
-%   \item[\opt{bottom-skip}] 下间距，即与页面底部的距离；
-%   \item[\opt{bookmark}] PDF 书签锚点名。
-% \end{description}
-%    \begin{macrocode}
-\DeclareTemplateInterface { ecnu } { page } { \c_zero_int }
-  {
-    element     : commalist = \c_empty_clist,
-    format      : tokenlist = \c_empty_tl,
-    top-skip    : skip      = \c_zero_skip,
-    bottom-skip : skip      = \c_zero_skip,
-    bookmark    : tokenlist
-  }
-%    \end{macrocode}
-%    
-% \begin{macro}{
-%   \l_@@_page_tmpl_elem_clist,
-%   \l_@@_page_tmpl_format_tl,
-%   \l_@@_page_tmpl_top_skip,
-%   \l_@@_page_tmpl_bottom_skip
-% }
-% 实现页面模板接口所需的变量，用于记录元素列表、格式、下间距。
-%    \begin{macrocode}
-\clist_new:N \l_@@_page_tmpl_elem_clist
-\tl_new:N    \l_@@_page_tmpl_format_tl
-\skip_new:N  \l_@@_page_tmpl_top_skip
-\skip_new:N  \l_@@_page_tmpl_bottom_skip
-\tl_new:N    \l_@@_page_tmpl_bookmark_tl
-%    \end{macrocode}
-% \end{macro}
-%    
-% 页面模板接口的具体实现代码。
-%    \begin{macrocode}
-\DeclareTemplateCode { ecnu } { page } { \c_zero_int }
-  {
-    element     = \l_@@_page_tmpl_elem_clist,
-    format      = \l_@@_page_tmpl_format_tl,
-    top-skip    = \l_@@_page_tmpl_top_skip,
-    bottom-skip = \l_@@_page_tmpl_bottom_skip,
-    bookmark    = \l_@@_page_tmpl_bookmark_tl
-  }
-  {
-    \tl_set_eq:NN \l_@@_page_tmpl_bookmark_tl \c_novalue_tl
-    \AssignTemplateKeys
-    \cleardoublepage
-    \thispagestyle { empty }
-    \skip_if_eq:nnF { \l_@@_page_tmpl_top_skip } { \c_zero_skip }
-      { \@@_vspace:N \l_@@_page_tmpl_top_skip }
-    \group_begin:
-      \exp_args:No \tl_if_novalue:nF { \l_@@_page_tmpl_bookmark_tl }
-        { \@@_pdf_bookmark:nn { 0 } { \l_@@_page_tmpl_bookmark_tl } }
-      \l_@@_page_tmpl_format_tl
-      \clist_map_inline:Nn \l_@@_page_tmpl_elem_clist
-        { \UseInstance { ecnu } { ##1 } }
-    \group_end:
-    \@@_vspace:N \l_@@_page_tmpl_bottom_skip
-  }
-%    \end{macrocode}
-%    
-% \begin{macro}{\@@_declare_element:nn,\@@_declare_page:nn}
-% 封装 \pkg{xtemplate} 提供的函数，简化创建实例的过程。
-% \begin{arguments}
-%   \item 实例名称
-%   \item 参数列表
-% \end{arguments}
-%    \begin{macrocode}
-\cs_new:Npn \@@_declare_element:nn #1#2
-  { \DeclareInstance { ecnu } { #1 } { element } { #2 } }
-\cs_new:Npn \@@_declare_page:nn    #1#2
-  { \DeclareInstance { ecnu } { #1 } { page    } { #2 } }
-%    \end{macrocode}
-% \end{macro}
-% 
-% 本科生毕业论文内封面，中英文题名在同一页面排版。
+% 本科生毕业论文内封面。
 %    \begin{macrocode}
 \@@_declare_element:nn { cover-ug-top }
   {
@@ -3313,7 +3304,8 @@
   }
 %    \end{macrocode}
 %
-% 保留旧内封面模板中空置的 title-en 元素，以保持段落及间距一致。
+% \subsubsection{博士、硕士学位论文内封面}
+% 
 % 博士、硕士学位论文中文内封面。
 %    \begin{macrocode}
 \@@_declare_element:nn { cover-pg-zh-top }
@@ -3409,126 +3401,8 @@
       },
   }
 %    \end{macrocode}
-%
-% 本科生毕业论文版权声明页。
-%    \begin{macrocode}
-\@@_declare_element:nn { declaration-ug-orig-title }
-  {
-    content     = \c_@@_orig_title_ug_tl,
-    format      = \@@_line_spread:n { 1.85714286 } \zihao { 4 } \bfseries,
-    align       = center,
-  }
-\@@_declare_element:nn { declaration-ug-orig-text }
-  {
-    content     = 
-      {
-        \indent \c_@@_orig_text_ug_part_one_tl \par
-        \c_@@_orig_text_ug_part_two_tl
-      },
-    format      = \@@_line_spread:n { 1.625 },
-  }
-\@@_declare_element:nn { declaration-ug-orig-sign }
-  {
-    content     = \@@_orig_sign_area_ug:,
-    bottom-skip = 70.2 bp,
-    align       = right,
-  }
-\@@_declare_element:nn { declaration-ug-auth-title }
-  {
-    content     = \c_@@_auth_title_ug_tl,
-    format      = \@@_line_spread:n { 1.85714286 } \zihao { 4 } \bfseries,
-    align       = center,
-  }
-\@@_declare_element:nn { declaration-ug-auth-text }
-  {
-    content     = 
-      {
-        \indent \c_@@_auth_text_ug_part_one_tl \par
-        \c_@@_auth_text_ug_part_two_tl
-      },
-    format      = \@@_line_spread:n { 1.625 },
-    bottom-skip = 23.4 bp,
-  }
-\@@_declare_element:nn { declaration-ug-auth-sign }
-  {
-    content     = \@@_auth_sign_area_ug:,
-    align       = right,
-  }
-\@@_declare_element:nn { declaration-ug-others } { }
-\@@_declare_page:nn { declaration-ug }
-  {
-    element =
-      {
-        declaration-ug-orig-title,
-        declaration-ug-orig-text,
-        declaration-ug-orig-sign,
-        declaration-ug-auth-title,
-        declaration-ug-auth-text,
-        declaration-ug-auth-sign,
-        declaration-ug-others,
-      },
-  }
-%    \end{macrocode}
-%
-% 博士、硕士学位论文版权声明页。
-%    \begin{macrocode}
-\@@_declare_element:nn { declaration-pg-orig-title }
-  {
-    content     = \c_@@_orig_title_pg_tl,
-    format      = \zihao { 4 } \bfseries,
-    bottom-skip = 6 bp,
-    align       = center,
-  }
-\@@_declare_element:nn { declaration-pg-orig-text }
-  {
-    content     = \@@_orig_text_pg:,
-    format      = \zihao { 5 },
-    bottom-skip = 3 bp,
-  }
-\@@_declare_element:nn { declaration-pg-orig-sign }
-  {
-    content     = \@@_orig_sign_area_pg:,
-    bottom-skip = 55.8 bp,
-  }
-\@@_declare_element:nn { declaration-pg-auth-title }
-  {
-    content     = \c_@@_auth_title_pg_tl,
-    format      = \zihao { 4 } \bfseries,
-    bottom-skip = 6 bp,
-    align       = center,
-  }
-\@@_declare_element:nn { declaration-pg-auth-text }
-  {
-    content     = \@@_auth_text_pg:,
-    format      = \zihao { 5 },
-    bottom-skip = 3 bp,
-  }
-\@@_declare_element:nn { declaration-pg-auth-sign }
-  {
-    content     = \@@_auth_sign_area_pg:,
-    bottom-skip = 29.4 bp,
-  }
-\@@_declare_element:nn { declaration-pg-others }
-  {
-    content     = \indent \c_@@_auth_others_text_pg_tl,
-    format      = \@@_line_spread:n { 2.1388889 } \zihao { -5 },
-  }
-\@@_declare_page:nn { declaration-pg }
-  {
-    element =
-      {
-        declaration-pg-orig-title,
-        declaration-pg-orig-text,
-        declaration-pg-orig-sign,
-        declaration-pg-auth-title,
-        declaration-pg-auth-text,
-        declaration-pg-auth-sign,
-        declaration-pg-others,
-      },
-    format = \@@_line_spread:n { 1.85714286 } \zihao { 5 },
-  }
-%    \end{macrocode}
-%
+%    
+% \subsubsection{内封面生成命令}
 % 
 % \begin{macro}{\l_@@_cover_info_label_ug_prop}
 % 本科生毕业论文内封面信息栏预设标签属性列表。
@@ -3666,6 +3540,149 @@
   }
 %    \end{macrocode}
 % \end{macro}
+% 
+% \subsection{声明页}
+% 
+% \subsubsection{本科生毕业论文相关声明页}
+%
+% 本科生毕业论文版权声明页。
+%    \begin{macrocode}
+\@@_declare_element:nn { declaration-ug-orig-title }
+  {
+    content     = \c_@@_orig_title_ug_tl,
+    format      = \@@_line_spread:n { 1.85714286 } \zihao { 4 } \bfseries,
+    align       = center,
+  }
+\@@_declare_element:nn { declaration-ug-orig-text }
+  {
+    content     = 
+      {
+        \indent \c_@@_orig_text_ug_part_one_tl \par
+        \c_@@_orig_text_ug_part_two_tl
+      },
+    format      = \@@_line_spread:n { 1.625 },
+  }
+\@@_declare_element:nn { declaration-ug-orig-sign }
+  {
+    content     = \@@_orig_sign_area_ug:,
+    bottom-skip = 70.2 bp,
+    align       = right,
+  }
+\@@_declare_element:nn { declaration-ug-auth-title }
+  {
+    content     = \c_@@_auth_title_ug_tl,
+    format      = \@@_line_spread:n { 1.85714286 } \zihao { 4 } \bfseries,
+    align       = center,
+  }
+\@@_declare_element:nn { declaration-ug-auth-text }
+  {
+    content     = 
+      {
+        \indent \c_@@_auth_text_ug_part_one_tl \par
+        \c_@@_auth_text_ug_part_two_tl
+      },
+    format      = \@@_line_spread:n { 1.625 },
+    bottom-skip = 23.4 bp,
+  }
+\@@_declare_element:nn { declaration-ug-auth-sign }
+  {
+    content     = \@@_auth_sign_area_ug:,
+    align       = right,
+  }
+\@@_declare_element:nn { declaration-ug-others } { }
+\@@_declare_page:nn { declaration-ug }
+  {
+    element =
+      {
+        declaration-ug-orig-title,
+        declaration-ug-orig-text,
+        declaration-ug-orig-sign,
+        declaration-ug-auth-title,
+        declaration-ug-auth-text,
+        declaration-ug-auth-sign,
+        declaration-ug-others,
+      },
+  }
+%    \end{macrocode}
+%
+% \subsubsection{博士、硕士学位论文相关声明页}
+% 
+% 博士、硕士学位论文版权声明页。
+%    \begin{macrocode}
+\@@_declare_element:nn { declaration-pg-orig-title }
+  {
+    content     = \c_@@_orig_title_pg_tl,
+    format      = \zihao { 4 } \bfseries,
+    bottom-skip = 6 bp,
+    align       = center,
+  }
+\@@_declare_element:nn { declaration-pg-orig-text }
+  {
+    content     = \@@_orig_text_pg:,
+    format      = \zihao { 5 },
+    bottom-skip = 3 bp,
+  }
+\@@_declare_element:nn { declaration-pg-orig-sign }
+  {
+    content     = \@@_orig_sign_area_pg:,
+    bottom-skip = 55.8 bp,
+  }
+\@@_declare_element:nn { declaration-pg-auth-title }
+  {
+    content     = \c_@@_auth_title_pg_tl,
+    format      = \zihao { 4 } \bfseries,
+    bottom-skip = 6 bp,
+    align       = center,
+  }
+\@@_declare_element:nn { declaration-pg-auth-text }
+  {
+    content     = \@@_auth_text_pg:,
+    format      = \zihao { 5 },
+    bottom-skip = 3 bp,
+  }
+\@@_declare_element:nn { declaration-pg-auth-sign }
+  {
+    content     = \@@_auth_sign_area_pg:,
+    bottom-skip = 29.4 bp,
+  }
+\@@_declare_element:nn { declaration-pg-others }
+  {
+    content     = \indent \c_@@_auth_others_text_pg_tl,
+    format      = \@@_line_spread:n { 2.1388889 } \zihao { -5 },
+  }
+\@@_declare_page:nn { declaration-pg }
+  {
+    element =
+      {
+        declaration-pg-orig-title,
+        declaration-pg-orig-text,
+        declaration-pg-orig-sign,
+        declaration-pg-auth-title,
+        declaration-pg-auth-text,
+        declaration-pg-auth-sign,
+        declaration-pg-others,
+      },
+    format = \@@_line_spread:n { 1.85714286 } \zihao { 5 },
+  }
+%    \end{macrocode}
+% 
+% \begin{macro}{style/declaration-src}
+% 定义声明页扫描件路径接口。
+%    \begin{macrocode}
+\tl_new:N \l_@@_declaration_page_tl
+\keys_define:nn { ecnu / style }
+  {
+    declaration-src   .tl_set:N = \l_@@_declaration_page_tl
+  }
+\AtBeginDocument
+  {
+    \tl_if_empty:NF \l_@@_declaration_page_tl
+      { \RequirePackage { pdfpages } }
+  }
+%    \end{macrocode}
+% \end{macro}
+% 
+% \subsubsection{声明页生成命令}
 % 
 % \begin{macro}{\declarationpage}
 % 声明页命令。
