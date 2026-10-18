@@ -3317,33 +3317,6 @@
     authorization-title / align       = center,
     authorization-sign  / align       = right,
   }
-\DeclareInstance { ecnu / cover } { cover-ii-pg } { cover-ii }
-  {
-    format                            = 
-      \@@_line_spread:n { 1.85714286 } \zihao { 5 },
-    originality-title   / content     = \c_@@_orig_title_pg_tl,
-    originality-text    / content     = \@@_orig_text_pg:,
-    originality-sign    / content     = \@@_orig_sign_area_pg:,
-    authorization-title / content     = \c_@@_auth_title_pg_tl,
-    authorization-text  / content     = \@@_auth_text_pg:,
-    authorization-sign  / content     = \@@_auth_sign_area_pg:,
-    others              / content     = 
-      \indent \c_@@_auth_others_text_pg_tl,
-    originality-title   / format      = \zihao { 4 } \bfseries,
-    originality-text    / format      = \zihao { 5 },
-    others              / format      = 
-      \@@_line_spread:n { 2.1388889 } \zihao { -5 },
-    authorization-title / format      = \zihao { 4 } \bfseries,
-    authorization-text  / format      = \zihao { 5 },
-    originality-title   / bottom-skip = 6 bp,
-    originality-text    / bottom-skip = 3 bp,
-    originality-sign    / bottom-skip = 55.8 bp,
-    authorization-title / bottom-skip = 6 bp,
-    authorization-text  / bottom-skip = 3 bp,
-    authorization-sign  / bottom-skip = 29.4 bp,
-    originality-title   / align       = center,
-    authorization-title / align       = center,
-  }
 \tl_new:N \l_@@_declaration_page_tl
 \keys_define:nn { ecnu / style }
   {
@@ -3501,6 +3474,66 @@
 %    \end{macrocode}
 % \end{macro}
 % 
+% 博士、硕士学位论文版权声明页。
+%    \begin{macrocode}
+\@@_declare_element:nn { declaration-pg-orig-title }
+  {
+    content     = \c_@@_orig_title_pg_tl,
+    format      = \zihao { 4 } \bfseries,
+    bottom-skip = 6 bp,
+    align       = center,
+  }
+\@@_declare_element:nn { declaration-pg-orig-text }
+  {
+    content     = \@@_orig_text_pg:,
+    format      = \zihao { 5 },
+    bottom-skip = 3 bp,
+  }
+\@@_declare_element:nn { declaration-pg-orig-sign }
+  {
+    content     = \@@_orig_sign_area_pg:,
+    bottom-skip = 55.8 bp,
+  }
+\@@_declare_element:nn { declaration-pg-auth-title }
+  {
+    content     = \c_@@_auth_title_pg_tl,
+    format      = \zihao { 4 } \bfseries,
+    bottom-skip = 6 bp,
+    align       = center,
+  }
+\@@_declare_element:nn { declaration-pg-auth-text }
+  {
+    content     = \@@_auth_text_pg:,
+    format      = \zihao { 5 },
+    bottom-skip = 3 bp,
+  }
+\@@_declare_element:nn { declaration-pg-auth-sign }
+  {
+    content     = \@@_auth_sign_area_pg:,
+    bottom-skip = 29.4 bp,
+  }
+\@@_declare_element:nn { declaration-pg-others }
+  {
+    content     = \indent \c_@@_auth_others_text_pg_tl,
+    format      = \@@_line_spread:n { 2.1388889 } \zihao { -5 },
+  }
+\@@_declare_page:nn { declaration-pg }
+  {
+    element =
+      {
+        declaration-pg-orig-title,
+        declaration-pg-orig-text,
+        declaration-pg-orig-sign,
+        declaration-pg-auth-title,
+        declaration-pg-auth-text,
+        declaration-pg-auth-sign,
+        declaration-pg-others,
+      },
+    format = \@@_line_spread:n { 1.85714286 } \zihao { 5 },
+  }
+%    \end{macrocode}
+%
+% 
 % \begin{macro}{\l_@@_cover_info_label_ug_prop}
 % 本科生毕业论文内封面信息栏预设标签属性列表。
 %    \begin{macrocode}
@@ -3642,14 +3675,15 @@
 %    \begin{macrocode}
 \NewDocumentCommand \declarationpage { }
   {
-    \cleardoublepage
-    \thispagestyle { empty }
     \tl_set:Nn \thepage { B }
     \tl_if_empty:NTF \l_@@_declaration_page_tl
       {
         \bool_if:NTF \g_@@_is_bachelor_bool
-          { \UseInstance { ecnu / cover } { cover-ii-ug } }
-          { \UseInstance { ecnu / cover } { cover-ii-pg } }
+          {
+            \cleardoublepage
+            \UseInstance { ecnu / cover } { cover-ii-ug }
+          }
+          { \UseInstance { ecnu } { declaration-pg } }
       }
       { \includepdf [pages=-] { \l_@@_declaration_page_tl } }
   }
@@ -4272,40 +4306,39 @@
 %
 % 设置前导页内容。
 %    \begin{macrocode}
-        \begin{titlepage}
-          \bool_if:NT \g_@@_cover_page_bool
-            {
-              \bool_if:NTF \g_@@_is_bachelor_bool
-                {
-                  \innercover{
-                    \field{author}
-                    \field{student-id}
-                    \field{department}
-                    \field{major}
-                    \field{supervisor}
-                    \field{academic-title}
-                  }
+        \pagenumbering { Alph }
+        \bool_if:NT \g_@@_cover_page_bool
+          {
+            \bool_if:NTF \g_@@_is_bachelor_bool
+              {
+                \innercover{
+                  \field{author}
+                  \field{student-id}
+                  \field{department}
+                  \field{major}
+                  \field{supervisor}
+                  \field{academic-title}
                 }
-                {
-                  \innercover{
-                    \field{department}
-                    \field{major}
-                    \field{field}
-                    \field{author}
-                    \field{supervisor}
-                  }
-                  \innercover[lang=en]{
-                    \field{department}
-                    \field{major}
-                    \field{field}
-                    \field{author}
-                    \field{supervisor}
-                  }
+              }
+              {
+                \innercover{
+                  \field{department}
+                  \field{major}
+                  \field{field}
+                  \field{author}
+                  \field{supervisor}
                 }
-            }
-          \bool_if:NT \g_@@_declaration_page_bool
-            { \declarationpage }
-        \end{titlepage}
+                \innercover[lang=en]{
+                  \field{department}
+                  \field{major}
+                  \field{field}
+                  \field{author}
+                  \field{supervisor}
+                }
+              }
+          }
+        \bool_if:NT \g_@@_declaration_page_bool
+          { \declarationpage }
 %    \end{macrocode}
 %
 % 在本科生毕业论文中，前导页设置完成后需要将页面恢复到初始设置。
