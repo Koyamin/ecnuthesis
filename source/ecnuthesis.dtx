@@ -3101,151 +3101,6 @@
 % \subsubsection{封面实现接口}
 %
 %    \begin{macrocode}
-\tl_new:N \l_@@_cover_template_tl
-\DeclareObjectType { ecnu / cover } { \c_zero_int }
-\cs_new_protected:Npn \@@_cover_declare_template_interface:nn #1#2
-  { \DeclareTemplateInterface { ecnu / cover } {#1} { \c_zero_int } {#2} }
-\cs_new_protected:Npn \@@_cover_declare_template_code:nnn #1#2#3
-  { \DeclareTemplateCode { ecnu / cover } {#1} { \c_zero_int } {#2} {#3} }
-\cs_generate_variant:Nn \@@_cover_declare_template_interface:nn { nx  }
-\cs_generate_variant:Nn \@@_cover_declare_template_code:nnn     { nxn }
-\cs_new:Npn \@@_cover_key_type:n #1
-  {
-    #1 / content     : tokenlist,
-    #1 / format      : tokenlist,
-    #1 / bottom-skip : skip,
-    #1 / align       : choice { left, right, center, normal } = normal,
-  }
-\cs_new:Npn \@@_cover_key_binding:n #1
-  {
-    #1 / content     =
-      \exp_not:c
-        { l_@@_cover / \l_@@_cover_template_tl / #1 / content_tl  },
-    #1 / format      =
-      \exp_not:c
-        { l_@@_cover / \l_@@_cover_template_tl / #1 / format_tl   },
-    #1 / bottom-skip =
-      \exp_not:c
-        { l_@@_cover / \l_@@_cover_template_tl / #1 / bottom_skip },
-    #1 / align       =
-      {
-        left   =
-          \exp_not:N \cs_set_protected:cpn
-            { @@_cover / \l_@@_cover_template_tl / #1 / align:n }
-            \exp_not:n {##1}
-            {
-              \exp_not:n
-                {
-                  \group_begin:
-                    \raggedright ##1
-                  \group_end:
-                }
-            },
-        right  =
-          \exp_not:N \cs_set_protected:cpn
-            { @@_cover / \l_@@_cover_template_tl / #1 / align:n }
-            \exp_not:n {##1}
-            {
-              \exp_not:n
-                {
-                  \group_begin:
-                    \raggedleft ##1
-                  \group_end:
-                }
-            },
-        center =
-          \exp_not:N \cs_set_protected:cpn
-            { @@_cover / \l_@@_cover_template_tl / #1 / align:n }
-            \exp_not:n {##1}
-            {
-              \exp_not:n
-                {
-                  \group_begin:
-                    \centering ##1
-                  \group_end:
-                }
-            },
-        normal =
-          \exp_not:N \cs_set_protected:cpn
-            { @@_cover / \l_@@_cover_template_tl / #1 / align:n }
-            \exp_not:n {##1}
-            { \exp_not:n { \group_begin: ##1 \group_end: } }
-      },
-  }
-\cs_new_protected:Npn \@@_cover_declare_template:nn #1#2
-  {
-    \tl_set:Nn \l_@@_cover_template_tl {#1}
-    \@@_cover_declare_template_interface:nx {#1}
-      {
-        format      : tokenlist,
-        top-skip    : skip,
-        bottom-skip : skip,
-        \clist_map_function:nN {#2} \@@_cover_key_type:n
-      }
-    \tl_new:c   { l_@@_cover / #1 / format_tl   }
-    \skip_new:c { l_@@_cover / #1 / top_skip    }
-    \skip_new:c { l_@@_cover / #1 / bottom_skip }
-    \clist_map_inline:nn {#2}
-      {
-        \tl_new:c   { l_@@_cover / #1 / ##1 / content_tl  }
-        \tl_new:c   { l_@@_cover / #1 / ##1 / format_tl   }
-        \skip_new:c { l_@@_cover / #1 / ##1 / bottom_skip }
-      }
-    \@@_cover_declare_template_code:nxn {#1}
-      {
-        format      = \exp_not:c { l_@@_cover / #1 / format_tl   },
-        top-skip    = \use:c     { l_@@_cover / #1 / top_skip    },
-        bottom-skip = \use:c     { l_@@_cover / #1 / bottom_skip },
-        \clist_map_function:nN {#2} \@@_cover_key_binding:n
-      }
-      {
-        \AssignTemplateKeys
-        \tl_use:c        { l_@@_cover / #1 / format_tl }
-        \clist_map_inline:nn {#2}
-          { 
-            \noindent
-            \use:c { @@_cover / #1 / ####1 / align:n }
-              {
-                \tl_use:c { l_@@_cover / #1 / ####1 / format_tl  }
-                \tl_use:c { l_@@_cover / #1 / ####1 / content_tl }
-                \par
-              }
-            \@@_vspace:c { l_@@_cover / #1 / ####1 / bottom_skip }
-          }
-        \@@_vspace:c { l_@@_cover / #1 / bottom_skip }
-        \cleardoublepage
-      }
-  }
-\NewDocumentCommand \DeclareCoverTemplate { m m }
-  { \@@_cover_declare_template:nn {#1} {#2} }
-\DeclareCoverTemplate { cover-i   }
-  { top, logo, title, title-en, info, date }
-\DeclareInstance { ecnu / cover } { cover-i-ug } { cover-i }
-  {
-    bottom-skip            = 0 pt plus 0.5 fill,
-    top      / content     = \@@_cover_ug_top:,
-    logo     / content     = \@@_cover_ug_logo:,
-    title    / content     =
-      \expandafter\uline\expandafter{\l_@@_info_title_zh_tl},
-    title-en / content     =
-      \expandafter\uline\expandafter{\l_@@_info_title_en_tl},
-    info     / content     = \@@_cover_ug_info:,
-    date     / content     = \@@_cover_ug_date:,
-    title    / format      =
-      \@@_line_spread:n { 1.1 } \zihao { 1 } \bfseries,
-    title-en / format      =
-      \@@_line_spread:n { 1.1 } \zihao { 1 } \bfseries,
-    top      / bottom-skip = 0 pt plus 0.5 fill,
-    logo     / bottom-skip = 0 pt plus 0.3 fill,
-    title-en / bottom-skip = 0 pt plus 1 fill,
-    info     / bottom-skip = 31.2 bp,
-    top      / align       = right,
-    logo     / align       = center,
-    title    / align       = center,
-    title-en / align       = center,
-    info     / align       = center,
-    date     / align       = center,
-  }
 \tl_new:N \l_@@_declaration_page_tl
 \keys_define:nn { ecnu / style }
   {
@@ -3403,6 +3258,61 @@
 %    \end{macrocode}
 % \end{macro}
 % 
+% 本科生毕业论文内封面，中英文题名在同一页面排版。
+%    \begin{macrocode}
+\@@_declare_element:nn { cover-ug-top }
+  {
+    content     = \@@_cover_ug_top:,
+    bottom-skip = 0 pt plus 0.5 fill,
+    align       = right,
+  }
+\@@_declare_element:nn { cover-ug-logo }
+  {
+    content     = \@@_cover_ug_logo:,
+    bottom-skip = 0 pt plus 0.3 fill,
+    align       = center,
+  }
+\@@_declare_element:nn { cover-ug-title-zh }
+  {
+    content     =
+      \expandafter\uline\expandafter{\l_@@_info_title_zh_tl},
+    format      = \@@_line_spread:n { 1.1 } \zihao { 1 } \bfseries,
+    align       = center,
+  }
+\@@_declare_element:nn { cover-ug-title-en }
+  {
+    content     =
+      \expandafter\uline\expandafter{\l_@@_info_title_en_tl},
+    format      = \@@_line_spread:n { 1.1 } \zihao { 1 } \bfseries,
+    bottom-skip = 0 pt plus 1 fill,
+    align       = center,
+  }
+\@@_declare_element:nn { cover-ug-info }
+  {
+    content     = \@@_cover_ug_info:,
+    bottom-skip = 31.2 bp,
+    align       = center,
+  }
+\@@_declare_element:nn { cover-ug-date }
+  {
+    content     = \@@_cover_ug_date:,
+    align       = center,
+  }
+\@@_declare_page:nn { cover-ug }
+  {
+    element =
+      {
+        cover-ug-top,
+        cover-ug-logo,
+        cover-ug-title-zh,
+        cover-ug-title-en,
+        cover-ug-info,
+        cover-ug-date,
+      },
+    bottom-skip = 0 pt plus 0.5 fill,
+  }
+%    \end{macrocode}
+%
 % 保留旧内封面模板中空置的 title-en 元素，以保持段落及间距一致。
 % 博士、硕士学位论文中文内封面。
 %    \begin{macrocode}
@@ -3735,10 +3645,9 @@
       #2
       \bool_if:NTF \g_@@_is_bachelor_bool
         {
-          \cleardoublepage
-          \thispagestyle { empty }
           \tl_set:Nn \thepage { A }
-          \UseInstance { ecnu / cover } { cover-i-ug }
+          \UseInstance { ecnu } { cover-ug }
+          \cleardoublepage
         }
         {
           \tl_if_eq:NnTF \l_@@_env_lang_tl { en }
