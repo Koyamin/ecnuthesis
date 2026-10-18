@@ -3246,46 +3246,6 @@
     info     / align       = center,
     date     / align       = center,
   }
-\DeclareInstance { ecnu / cover } { cover-i-pg } { cover-i }
-  {
-    bottom-skip            = 0 pt,
-    top      / content     = \@@_cover_pg_top:,
-    logo     / content     = \@@_cover_pg_logo:,
-    title    / content     = \@@_cover_pg_title:,
-    info     / content     = \@@_cover_pg_info_zh:,
-    date     / content     = \@@_cover_pg_date:,
-    title    / format      = \zihao { 1 } \bfseries,
-    top      / format      = \zihao { 5 },
-    top      / bottom-skip = 25.272 bp,
-    logo     / bottom-skip = 1 em plus .5 fill,
-    title    / bottom-skip = 1 em plus 1 fill,
-    info     / bottom-skip = 2 em plus .5 fill,
-    top      / align       = center,
-    logo     / align       = center,
-    title    / align       = center,
-    info     / align       = center,
-    date     / align       = center,
-  }
-\DeclareInstance { ecnu / cover } { cover-i-pg-en } { cover-i }
-  {
-    bottom-skip            = 0 pt,
-    top      / content     = \@@_cover_pg_top_en:,
-    logo     / content     = \@@_cover_pg_logo_en:,
-    title    / content     = \@@_cover_pg_title_en:,
-    info     / content     = \@@_cover_pg_info_en:,
-    date     / content     = \@@_cover_pg_date_en:,
-    title    / format      = \zihao { 3 } \bfseries,
-    top      / format      = \zihao { 5 },
-    top      / bottom-skip = 49.696 bp,
-    logo     / bottom-skip = 1 em plus .5 fill,
-    title    / bottom-skip = 1 em plus 1 fill,
-    info     / bottom-skip = 2 em plus .5 fill,
-    top      / align       = center,
-    logo     / align       = center,
-    title    / align       = center,
-    info     / align       = center,
-    date     / align       = center,
-  }
 \tl_new:N \l_@@_declaration_page_tl
 \keys_define:nn { ecnu / style }
   {
@@ -3443,6 +3403,103 @@
 %    \end{macrocode}
 % \end{macro}
 % 
+% 保留旧内封面模板中空置的 title-en 元素，以保持段落及间距一致。
+% 博士、硕士学位论文中文内封面。
+%    \begin{macrocode}
+\@@_declare_element:nn { cover-pg-zh-top }
+  {
+    content     = \@@_cover_pg_top:,
+    format      = \zihao { 5 },
+    bottom-skip = 25.272 bp,
+    align       = center,
+  }
+\@@_declare_element:nn { cover-pg-zh-logo }
+  {
+    content     = \@@_cover_pg_logo:,
+    bottom-skip = 1 em plus .5 fill,
+    align       = center,
+  }
+\@@_declare_element:nn { cover-pg-zh-title }
+  {
+    content     = \@@_cover_pg_title:,
+    format      = \zihao { 1 } \bfseries,
+    bottom-skip = 1 em plus 1 fill,
+    align       = center,
+  }
+\@@_declare_element:nn { cover-pg-zh-title-en } { }
+\@@_declare_element:nn { cover-pg-zh-info }
+  {
+    content     = \@@_cover_pg_info_zh:,
+    bottom-skip = 2 em plus .5 fill,
+    align       = center,
+  }
+\@@_declare_element:nn { cover-pg-zh-date }
+  {
+    content     = \@@_cover_pg_date:,
+    align       = center,
+  }
+\@@_declare_page:nn { cover-pg-zh }
+  {
+    element =
+      {
+        cover-pg-zh-top,
+        cover-pg-zh-logo,
+        cover-pg-zh-title,
+        cover-pg-zh-title-en,
+        cover-pg-zh-info,
+        cover-pg-zh-date,
+      },
+  }
+%    \end{macrocode}
+%
+% 博士、硕士学位论文外文内封面。
+%    \begin{macrocode}
+\@@_declare_element:nn { cover-pg-en-top }
+  {
+    content     = \@@_cover_pg_top_en:,
+    format      = \zihao { 5 },
+    bottom-skip = 49.696 bp,
+    align       = center,
+  }
+\@@_declare_element:nn { cover-pg-en-logo }
+  {
+    content     = \@@_cover_pg_logo_en:,
+    bottom-skip = 1 em plus .5 fill,
+    align       = center,
+  }
+\@@_declare_element:nn { cover-pg-en-title }
+  {
+    content     = \@@_cover_pg_title_en:,
+    format      = \zihao { 3 } \bfseries,
+    bottom-skip = 1 em plus 1 fill,
+    align       = center,
+  }
+\@@_declare_element:nn { cover-pg-en-title-en } { }
+\@@_declare_element:nn { cover-pg-en-info }
+  {
+    content     = \@@_cover_pg_info_en:,
+    bottom-skip = 2 em plus .5 fill,
+    align       = center,
+  }
+\@@_declare_element:nn { cover-pg-en-date }
+  {
+    content     = \@@_cover_pg_date_en:,
+    align       = center,
+  }
+\@@_declare_page:nn { cover-pg-en }
+  {
+    element =
+      {
+        cover-pg-en-top,
+        cover-pg-en-logo,
+        cover-pg-en-title,
+        cover-pg-en-title-en,
+        cover-pg-en-info,
+        cover-pg-en-date,
+      },
+  }
+%    \end{macrocode}
+%
 % 本科生毕业论文版权声明页。
 %    \begin{macrocode}
 \@@_declare_element:nn { declaration-ug-orig-title }
@@ -3676,10 +3733,10 @@
       \NewDocumentCommand \addfield { m m }
         { \seq_gput_right:Nn \g_@@_cover_info_seq { { ##1 } { ##2 } } }
       #2
-      \cleardoublepage
-      \thispagestyle { empty }
       \bool_if:NTF \g_@@_is_bachelor_bool
         {
+          \cleardoublepage
+          \thispagestyle { empty }
           \tl_set:Nn \thepage { A }
           \UseInstance { ecnu / cover } { cover-i-ug }
         }
@@ -3687,11 +3744,13 @@
           \tl_if_eq:NnTF \l_@@_env_lang_tl { en }
             {
               \tl_set:Nn \thepage { A-EN }
-              \UseInstance { ecnu / cover } { cover-i-pg-en }
+              \UseInstance { ecnu } { cover-pg-en }
+              \cleardoublepage
             }
             {
               \tl_set:Nn \thepage { A }
-              \UseInstance { ecnu / cover } { cover-i-pg }
+              \UseInstance { ecnu } { cover-pg-zh }
+              \cleardoublepage
             }
         }
     \group_end:
