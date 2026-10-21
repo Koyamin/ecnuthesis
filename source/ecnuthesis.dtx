@@ -2669,6 +2669,14 @@
   { \linespread {#1} \selectfont }
 %    \end{macrocode}
 % \end{macro}
+% 
+% \begin{macro}{\@@_fontsize:nn}
+% 用于设置字号的辅助函数。
+%    \begin{macrocode}
+\cs_new:Npn \@@_fontsize:nn #1#2
+  { \fontsize {#1} {#2} \selectfont }
+%    \end{macrocode}
+% \end{macro}
 %
 % \subsubsection{内封面各部件}
 %
@@ -3608,14 +3616,70 @@
 % \subsubsection{博士、硕士学位论文相关声明页}
 % 
 % 博士、硕士学位论文版权声明页。
+% 
+% 研究生院提供的声明页模板中将段落间距设置为段前 \qty{3}{bp}、
+% 段后 \qty{3}{bp}。然而 Word 的段落间距默认采用取段前段后间距最大值，
+% 故两段之间的段间距为 \qty{3}{bp}。
+% 
+% 在博士、硕士学位论文版权声明页中，标题为四号字，正文为五号字，
+% 行盒高度分别为 \qty{31.2}{bp} 和 \qty{23.4}{bp}。
+% 根据公开参考资料，宋体的字体度量盒在行盒中垂直居中
+% \footnote{\url{https://www.docx-editor.dev/docs/2.x/word-fidelity}}；
+% 此外，中易宋体的上伸高度（Ascent）和下伸高度（Descent）的比为 $220:36$
+% \footnote{\url{https://tex.stackexchange.com/a/435192}}。
+% 
+% 记 $H_1,H_2$ 为上下两行的行盒高度，$A_1,A_2$ 为两行字体的
+% 上伸高度（Ascent），$B_1,B_2$ 为两行字体的下伸高度（Descent），
+% Word 中两个行盒之间设置的段落间距为 $S$。
+% 第一行基线到行盒底部的距离是
+% \[ b_1=\frac{H_1-A_1-B_1}{2}+B_1=\frac{H_1-A_1+B_1}{2}, \]
+% 第二行行盒顶部到基线的距离是
+% \[ t_2=\frac{H_2-A_2-B_2}{2}+A_2=\frac{H_2+A_2-B_2}{2}, \]
+% 于是两行的基线间距离为
+% \begin{equation}\label{eq:adjacent-baseline-distance}
+%     D=b_1+t_2+S = D=\frac{H_1+H_2}{2}+\frac{(A_2-B_2)-(A_1-B_1)}{2}+S.
+% \end{equation}
+% 
+% 标题行的行盒高度 $H_1=\qty{31.2}{bp}$，正文行的行盒高度 $H_2=\qty{23.4}{bp}$，
+% 两行字体的上伸高度和下伸高度分别为
+% \[ A_1=\frac{220}{256}\cdot\qty{14}{bp}
+%   ,A_2=\frac{220}{256}\cdot\qty{10.5}{bp}
+%   ,B_1=\frac{36}{256}\cdot\qty{14}{bp}
+%   ,B_2=\frac{36}{256}\cdot\qty{10.5}{bp},
+% \]
+% 段落间距为 $S=\qty{3}{bp}$，所以上下两行的行盒的基线距离为
+% \[ D=\frac{31.2 + 23.4}{2} - 
+%     \frac{(14 - 10.5) \times (220 - 36)}{2 \times (220+36)}
+%      + 3 = \qty{29.04219}{bp},
+% \]
+% 扣除基线间距 \qty{23.4}{bp}，故需补偿的竖直距离约 \qty{5.6422}{bp} bp。
 %    \begin{macrocode}
 \@@_declare_element:nn { declaration-pg-orig-title }
   {
     content     = \c_@@_orig_title_pg_tl,
     format      = \zihao { 4 } \bfseries,
-    bottom-skip = 6 bp,
+    bottom-skip = 5.6422 bp,
     align       = center,
   }
+\@@_declare_element:nn { declaration-pg-auth-title }
+  {
+    content     = \c_@@_auth_title_pg_tl,
+    format      = \zihao { 4 } \bfseries,
+    bottom-skip = 5.64219 bp,
+    align       = center,
+  }
+%    \end{macrocode}
+% 
+% 原创性声明签名部分距离版权声明页标题有两个空行间隔，每一行的行距为 \qty{23.4}{bp}，
+% 段间距为 \qty{3}{bp}。而根据公式 \ref{eq:adjacent-baseline-distance}，
+% 第二个空行的基线到版权声明页标题行的基线的距离为
+% \[
+%   D = \frac{23.4+31.2}{2}+\frac{(14-10.5)\cdot(220-36)}{2\cdot(220+36)}+3
+%     = \qty{84.3578125}{bp},
+% \]
+% 由于标题行的字号为 \qty{14}{bp}，故该标题行的基线间距为
+% \qty{31.2}{bp}，所以需要补偿的竖直距离约为 \qty{53.1578}{bp}。
+%    \begin{macrocode}
 \@@_declare_element:nn { declaration-pg-orig-text }
   {
     content     = \@@_orig_text_pg:,
@@ -3625,15 +3689,20 @@
 \@@_declare_element:nn { declaration-pg-orig-sign }
   {
     content     = \@@_orig_sign_area_pg:,
-    bottom-skip = 55.8 bp,
+    bottom-skip = 53.1578 bp,
   }
-\@@_declare_element:nn { declaration-pg-auth-title }
-  {
-    content     = \c_@@_auth_title_pg_tl,
-    format      = \zihao { 4 } \bfseries,
-    bottom-skip = 6 bp,
-    align       = center,
-  }
+%    \end{macrocode}
+% 
+% 版权声明页签名部分距离备注文字有一个空行间隔，行距为 \qty{23.4}{bp}，
+% 段间距为 \qty{3}{bp}。而根据公式 \ref{eq:adjacent-baseline-distance}，
+% 空行的基线到版权声明页标题行的基线的距离为
+% \[
+%   D = \frac{23.4+23.4}{2}+\frac{(10-10.5)(220-36)}{2\cdot(220+36)}+3
+%     = \qty{26.2203125}{bp},
+% \]
+% 而备注文字的行间距为 \qty{23.4}{bp}，所以需要
+% 补偿的竖直距离约为 \qty{29.2203}{bp}。
+%    \begin{macrocode}
 \@@_declare_element:nn { declaration-pg-auth-text }
   {
     content     = \@@_auth_text_pg:,
@@ -3643,13 +3712,22 @@
 \@@_declare_element:nn { declaration-pg-auth-sign }
   {
     content     = \@@_auth_sign_area_pg:,
-    bottom-skip = 29.4 bp,
+    bottom-skip = 29.2203 bp,
   }
+%    \end{macrocode}
+% 
+% 备注文字为 \qty{10}{bp}，行距同样为 1.5 倍。
+%    \begin{macrocode}
 \@@_declare_element:nn { declaration-pg-others }
   {
     content     = \indent \c_@@_auth_others_text_pg_tl,
-    format      = \@@_line_spread:n { 2.1388889 } \zihao { -5 },
+    format      = 
+      \@@_line_spread:n { 1.5 } \@@_fontsize:nn { 10 bp } { 15.6 bp },
   }
+%    \end{macrocode}
+% 
+% 实例化博士、硕士学位论文的版权声明页。
+%    \begin{macrocode}
 \@@_declare_page:nn { declaration-pg }
   {
     element =
@@ -3662,7 +3740,16 @@
         declaration-pg-auth-sign,
         declaration-pg-others,
       },
-    format = \@@_line_spread:n { 1.85714286 } \zihao { 5 },
+%    \end{macrocode}
+% 
+% 调整博士、硕士学位论文的版权声明页行距。
+% 
+% 研究生院提供的声明页模板正文采用五号宋体、1.5 倍行距，并对齐 Word 文档网格。
+% 文档网格行距为 \qty{15.6}{bp}。于是，该行距相当于 \LaTeX{} 标准行距的
+% $(\qty{15.6}{bp} \times 1.5) / \qty{10.5}{bp} / 1.2 = 13 / 7$ 倍。
+%    \begin{macrocode}
+    format = 
+      \@@_line_spread:n { \fp_eval:n { 13 / 7 } } \zihao { 5 },
   }
 %    \end{macrocode}
 % 
