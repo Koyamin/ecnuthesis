@@ -695,7 +695,7 @@
 %   在信息栏中插入一项自定义信息。标签和值均由用户直接指定，
 %   不受已有字段名的限制。
 % \end{function}
-%
+% 
 % \subsection{声明页}\label{subsubsection:declaration-page}
 % 
 % \begin{function}{\declaration}
@@ -3769,12 +3769,6 @@
 % 所以，签名部分所属元素实例的 \opt{bottom-skip} 应设置为
 % $\qty{52.6203125}{bp} - \qty{23.4}{bp} \approx \qty{29.2203}{bp}$。
 %    \begin{macrocode}
-\@@_declare_element:nn { declaration-pg-auth-text }
-  {
-    content     = \@@_auth_text_pg:,
-    format      = \zihao { 5 },
-    bottom-skip = 3 bp,
-  }
 \@@_declare_element:nn { declaration-pg-auth-sign }
   {
     content     = \@@_auth_sign_area_pg:,
@@ -3819,6 +3813,128 @@
       \@@_line_spread:n { \fp_eval:n { 13 / 7 } } \zihao { 5 },
   }
 %    \end{macrocode}
+%    
+% \subsubsection{博士、硕士学位论文的使用人工智能工具声明页}
+% 
+% 使用人工智能工具声明页的标题文字元素实例。
+% 使用人工智能工具声明页的标题文字的字号为小三（即 \qty{15}{bp}），实际行距为
+% \qty{31.2}{bp}；其下方正文文字的字号为小四（即 \qty{12}{bp}），实际行距
+% 为 \qty{21.84}{bp}。两者之间有一个空行，实际行距为 \qty{20.28}{bp}；
+% 两行间的额外段落间距为 \qty{8}{bp}。根据公式 \ref{eq:adjacent-baseline-distance}，
+% 标题行到正文首行的基线距离为
+% \[
+%   D = \frac{31.2+21.84}{2} - \frac{23}{64}(15-12)
+%       + 20.28 + 8
+%     = \qty{53.721875}{bp},
+% \]
+% 所以，标题行所属元素实例的 \opt{bottom-skip} 应设置为
+% $\qty{53.721875}{bp} - \qty{21.84}{bp} \approx \qty{31.8819}{bp}$。
+%    \begin{macrocode}
+\@@_declare_element:nn { ai-declaration-pg-title }
+  {
+    content     = \c_@@_ai_decl_pg_title_tl,
+    format      = \zihao { -3 } \bfseries,
+    bottom-skip = 31.8819 bp,
+    align       = center,
+  }
+%    \end{macrocode}
+% 
+% 使用人工智能工具声明页的正文各元素实例。
+% 使用人工智能工具声明页的正文末行与其下方的签名区域首行的字号均为
+% 小四（即 \qty{12}{bp}），采用
+% 1.4 倍行距，实际行距均为 \qty{21.84}{bp}。两者之间有一个空行，
+% 同样为小四字，实际行距为 \qty{21.84}{bp}；此处将空行前后的有效段落间距
+% 分别按 \qty{2.1}{bp} 和 \qty{8}{bp} 计入。根据
+% 公式 \ref{eq:adjacent-baseline-distance}，
+% 正文末行到签名首行的基线距离为
+% \[
+%   D = \frac{21.84+21.84}{2} - \frac{23}{64}(12-12)
+%       + 21.84 + 2.1 + 8
+%     = \qty{53.78}{bp},
+% \]
+% 所以，正文所属元素实例的 \opt{bottom-skip} 应设置为
+% $\qty{53.78}{bp} - \qty{21.84}{bp} = \qty{31.94}{bp}$。
+%    \begin{macrocode}
+\@@_declare_element:nn { ai-declaration-pg-text }
+  {
+    content =
+      {
+        \indent \c_@@_ai_decl_pg_intro_tl
+          { \ecnu@kai \c_@@_ai_decl_pg_intro_hint_tl }
+          \c_@@_colon_tl \par
+        \c_@@_ai_decl_pg_checkbox_tl
+          \c_@@_ai_decl_pg_option_one_tl \par
+        \c_@@_ai_decl_pg_no_use_tl \par
+        \c_@@_ai_decl_pg_checkbox_tl
+          \c_@@_ai_decl_pg_option_two_tl \par
+        \c_@@_ai_decl_pg_tools_title_tl \par
+        \c_@@_ai_decl_pg_tool_name_tl
+          \uline { \hbox_to_wd:nn { 5 em } { } }
+          { \ecnu@kai \c_@@_ai_decl_pg_tool_example_tl } \par
+        \c_@@_ai_decl_pg_purpose_tl
+          \uline { \hbox_to_wd:nn { 5 em } { } }
+          { \ecnu@kai \c_@@_ai_decl_pg_purpose_example_tl } \par
+        \c_@@_ai_decl_pg_responsibility_title_tl \par
+        \c_@@_ai_decl_pg_responsibility_tl \par
+        \c_@@_ai_decl_pg_commitment_title_tl \par
+        \c_@@_ai_decl_pg_commitment_tl
+      },
+    bottom-skip = 31.94 bp,
+  }
+%    \end{macrocode}
+% 
+% 使用人工智能工具声明页的签名区域元素实例。
+%    \begin{macrocode}
+\@@_declare_element:nn { ai-declaration-pg-sign }
+  {
+    content = \@@_ai_decl_pg_sign:,
+    align   = right,
+  }
+%    \end{macrocode}
+% 
+% 实例化博士、硕士学位论文的使用人工智能工具声明页。
+%    \begin{macrocode}
+\@@_declare_page:nn { ai-declaration-pg }
+  {
+    element =
+      {
+        ai-declaration-pg-title,
+        ai-declaration-pg-text,
+        ai-declaration-pg-sign,
+      },
+%    \end{macrocode}
+% 
+% 调整博士、硕士学位论文的使用人工智能工具声明页的行距。
+% 
+% 研究生院提供的模板正文采用小四宋体、1.4 倍行距，并对齐 Word 文档网格。
+% 文档网格行距为 \qty{15.6}{bp}。于是，该行距相当于 \LaTeX{} 标准行距的
+% $(\qty{15.6}{bp} \times 1.4) / \qty{12}{bp} / 1.2 = 91 / 60$ 倍。
+%    \begin{macrocode}
+    format = \@@_line_spread:n { \fp_eval:n { 91 / 60 } } \zihao { -4 }
+  }
+%    \end{macrocode} 
+%
+% \begin{macro}{\@@_ai_decl_pg_sign:}
+% 博士、硕士学位论文的使用人工智能工具声明页的签名区域。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_ai_decl_pg_sign:
+  {
+    \hbox_set:Nn \l_@@_tmpb_box
+      {
+        \uline { \hbox_to_wd:nn { 3 em } { } } \c_@@_year_tl
+        \uline { \hbox_to_wd:nn { 1.5 em } { } } \c_@@_month_tl
+        \uline { \hbox_to_wd:nn { 1.5 em } { } } \c_@@_day_tl
+      }
+    \hfill
+    \@@_spread_box:no { 4 em } { \c_@@_author_sign_tl } \c_@@_colon_tl
+    \uline { \hbox_to_wd:nn { \box_wd:N \l_@@_tmpb_box } { } } \par
+    \@@_vspace:n { 8 bp }
+    \hfill
+    \@@_spread_box:no { 4 em } { \c_@@_date_tl } \c_@@_colon_tl
+    \box_use:N \l_@@_tmpb_box
+  }
+%    \end{macrocode}
+% \end{macro}
 % 
 % \begin{macro}{style/declaration-src}
 % 定义声明页扫描件路径接口。
@@ -3851,6 +3967,17 @@
           { \UseInstance { ecnu } { declaration-pg } }
       }
       { \includepdf [pages=-] { \l_@@_declaration_page_tl } }
+  }
+%    \end{macrocode}
+% \end{macro}
+% 
+% \begin{macro}{\aideclarationpage}
+% 使用人工智能工具声明页生成命令。
+%    \begin{macrocode}
+\NewDocumentCommand \aideclarationpage { }
+  {
+    \bool_if:NF \g_@@_is_bachelor_bool
+      { \UseInstance { ecnu } { ai-declaration-pg } }
   }
 %    \end{macrocode}
 % \end{macro}
@@ -4713,6 +4840,63 @@
     研究生申请学位论文“涉密”审批表》方为有效），未经上述
     部门审定的学位论文均为公开学位论文。此声明栏不填写的，
     默认为公开学位论文，均适用上述授权）。
+  }
+\tl_const:Nn \c_@@_ai_decl_pg_title_tl
+  { 研究生学位论文/实践成果报告使用人工智能工具声明 }
+\tl_const:Nn \c_@@_ai_decl_pg_checkbox_tl
+  { 【 \quad 】 }
+\tl_const:Nn \c_@@_ai_decl_pg_intro_tl
+  {
+    就本学位论文/实践成果报告的研究与撰写过程，是否使用生成式人工智能辅助工具情况，
+    声明如下
+  }
+\tl_const:Nn \c_@@_ai_decl_pg_intro_hint_tl
+  { （根据实际情况，在以下两项中选择一项打勾） }
+\tl_const:Nn \c_@@_ai_decl_pg_option_one_tl
+  {
+    1.本学位论文/实践成果报告的研究与撰写过程未使用任何生成式人工智能工具
+    （指能够根据提示自动生成文本、代码、图表等内容的大模型及其衍生工具）。
+  }
+\tl_const:Nn \c_@@_ai_decl_pg_no_use_tl
+  {
+    所有内容均基于个人研究、文献阅读及实验数据完成，本人承诺符合学术诚信要求，
+    论文/成果中不存在任何人工智能辅助生成内容。违反本声明所产生的责任与后果，
+    由本人独立承担。
+  }
+\tl_const:Nn \c_@@_ai_decl_pg_option_two_tl
+  {
+    2.本学位论文/实践成果报告的研究与撰写过程使用了生成式人工智能辅助工具，
+    现按照要求披露如下：
+  }
+\tl_const:Nn \c_@@_ai_decl_pg_tools_title_tl
+  { （1）使用的生成式人工智能工具名称及目的 }
+\tl_const:Nn \c_@@_ai_decl_pg_tool_name_tl
+  { 工具名称： }
+\tl_const:Nn \c_@@_ai_decl_pg_tool_example_tl
+  {
+    （例如：DeepSeek、文心一言、豆包、智谱、千问等~AI~大模型，
+    以及调用~AI~大模型的智能体工具等）
+  }
+\tl_const:Nn \c_@@_ai_decl_pg_purpose_tl
+  { 具体用途： }
+\tl_const:Nn \c_@@_ai_decl_pg_purpose_example_tl
+  { （例如：文献检索、语言润色、数据处理等） }
+\tl_const:Nn \c_@@_ai_decl_pg_responsibility_title_tl
+  { （2）使用边界与责任说明 }
+\tl_const:Nn \c_@@_ai_decl_pg_responsibility_tl
+  {
+    本学位论文/实践成果报告的核心观点、研究设计、实验方案、论证过程均由本人独立完成；
+    人工智能生成内容均经过本人人工审核、修改与验证，并对其内容负责。
+    本人对学位论文/实践成果报告全部内容的原创性、真实性、学术规范性承担全部责任，
+    不存在由人工智能代写、伪造等学术不端行为。
+  }
+\tl_const:Nn \c_@@_ai_decl_pg_commitment_title_tl
+  { （3）承诺 }
+\tl_const:Nn \c_@@_ai_decl_pg_commitment_tl
+  {
+    本人承诺人工智能工具在学位论文/实践成果报告中的使用符合国家相关法律法规、
+    相关学术组织的规范及学校有关要求，不存在不当使用行为，愿意接受审查与监督，
+    并独立承担相应责任和后果。
   }
 \prop_const_from_keyval:Nn \c_@@_thesis_type_prop
   {
