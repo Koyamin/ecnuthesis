@@ -633,7 +633,7 @@
 %   设置该环境的标题是否在目录中出现。默认在目录中出现。
 % \end{function}
 % 
-% \subsection{自定义内封面}
+% \subsection{内封面}\label{subsection:innercover}
 %
 % 模板默认根据论文类型自动生成内封面。然而，有些院系可能对内封面的信息栏内容
 % 的排列顺序和预设标签文字有特殊的要求，或要求在内封面的信息栏中增加一些新的信息。
@@ -694,6 +694,22 @@
 %   该命令用于 \cs{innercover} 的 \meta{信息栏内容} 参数，其作用是
 %   在信息栏中插入一项自定义信息。标签和值均由用户直接指定，
 %   不受已有字段名的限制。
+% \end{function}
+%
+% \subsection{声明页}\label{subsubsection:declaration-page}
+% 
+% \begin{function}{\declaration}
+%   \begin{syntax}
+%     \TNi{declaration}
+%   \end{syntax}
+%   生成版权声明页。
+% \end{function}
+% 
+% \begin{function}{\aideclarationpage}
+%   \begin{syntax}
+%     \TNi{aideclarationpage}
+%   \end{syntax}
+%   生成使用人工智能工具声明页。目前仅支持在博士、硕士学位论文中使用。
 % \end{function}
 %
 % \subsection{前置部分}\label{subsubsection:frontmatter}
@@ -3551,7 +3567,61 @@
 % 
 % \subsection{声明页}
 % 
-% \subsubsection{本科生毕业论文相关声明页}
+% 使用元素模板接口和页面模板接口实现本科生毕业论文和博士、硕士学位
+% 论文的各项声明页，包括版权声明页和使用人工智能工具声明页。
+% 
+% 为了更好地还原学校提供的 Word 模板中所定义的格式，需要精准地设置
+% 声明页中每个元素的字体大小及行距。然而，在 Word 中，若相邻两行的
+% 字号或行距不同，则相邻两行之间的实际基线距离就会发生变化，从而
+% 难以在 \LaTeX 中实现精准的行距计算。
+% 
+% 为在 \LaTeX 中使用元素模板复现 Word 的行间距，需先计算 Word 中
+% 相邻两行的基线距离，随后将这两行分别用不同的元素实例实现，再据此
+% 确定上一行所属元素的 \opt{bottom-skip} 值，从而实现精准的行距
+% 控制。
+%
+% 记一行的基线上方的上伸高度（Ascent）和下方的下伸高度
+% （Descent）分别为 $A, B$，则二者界定的
+% 垂直区域称为字体度量盒，其高度为 $A+B$。
+% 根据公开参考资料，Word 中的字体度量盒在行盒内垂直居中
+% \footnote{\url{https://www.docx-editor.dev/docs/2.x/word-fidelity}}，
+% 且中易宋体的上伸高度与下伸高度之比为 $220:36$
+% \footnote{\url{https://tex.stackexchange.com/a/435192}}。
+% 记某一行字号的大小为 $F$，则字体度量盒的高度为 $F$，即 $F=A+B$。
+% 于是，可以得到
+% \[
+%   A = \frac{220}{220+36}F=\frac{220}{256}F,
+%   B = \frac{36}{220+36}F=\frac{36}{256}F.
+% \]
+%
+% 设 Word 中上下相邻两行的行盒高度分别为 $H_1,H_2$， 字体的
+% 上伸高度分别为 $A_1,A_2$，下伸高度分别为 $B_1,B_2$，
+% 两行的字号分别为 $F_1,F_2$，两行之间的额外段落间距为 $D'$。
+% 由字体度量盒在行盒内垂直居中可知，上一行基线至其行盒底部的
+% 距离为
+% \[
+%   b_1 = \frac{H_1-A_1-B_1}{2}+B_1
+%       = \frac{H_1-A_1+B_1}{2},
+% \]
+% 下一行行盒顶部至其基线的距离为
+% \[
+%   t_2 = \frac{H_2-A_2-B_2}{2}+A_2
+%       = \frac{H_2+A_2-B_2}{2}.
+% \]
+% 因此，Word 中两行的基线距离为
+% \begin{equation}\label{eq:adjacent-baseline-distance}
+%   \begin{aligned}
+%     D
+%     &= b_1+t_2+D' \\
+%     &= \frac{H_1+H_2}{2}
+%        + \frac{1}{2}\cdot\frac{220-36}{256}\cdot(F_2-F_1)+D' \\
+%     &= \frac{H_1+H_2}{2} + \frac{23}{64}(F_2-F_1)+D'.
+%   \end{aligned}
+% \end{equation}
+% 若下一行的行高为 $D_0$，则上一行所属元素
+% 实例的 \opt{bottom-skip} 应设置为 $D-D_0$。
+% 
+% \subsubsection{本科生毕业论文的版权声明页}
 %
 % 本科生毕业论文版权声明页。
 %    \begin{macrocode}
@@ -3613,46 +3683,20 @@
   }
 %    \end{macrocode}
 %
-% \subsubsection{博士、硕士学位论文相关声明页}
+% \subsubsection{博士、硕士学位论文的版权声明页}
 % 
-% 博士、硕士学位论文版权声明页。
-% 
-% 研究生院提供的声明页模板中将段落间距设置为段前 \qty{3}{bp}、
-% 段后 \qty{3}{bp}。然而 Word 的段落间距默认采用取段前段后间距最大值，
-% 故两段之间的段间距为 \qty{3}{bp}。
-% 
-% 在博士、硕士学位论文版权声明页中，标题为四号字，正文为五号字，
-% 行盒高度分别为 \qty{31.2}{bp} 和 \qty{23.4}{bp}。
-% 根据公开参考资料，宋体的字体度量盒在行盒中垂直居中
-% \footnote{\url{https://www.docx-editor.dev/docs/2.x/word-fidelity}}；
-% 此外，中易宋体的上伸高度（Ascent）和下伸高度（Descent）的比为 $220:36$
-% \footnote{\url{https://tex.stackexchange.com/a/435192}}。
-% 
-% 记 $H_1,H_2$ 为上下两行的行盒高度，$A_1,A_2$ 为两行字体的
-% 上伸高度（Ascent），$B_1,B_2$ 为两行字体的下伸高度（Descent），
-% Word 中两个行盒之间设置的段落间距为 $S$。
-% 第一行基线到行盒底部的距离是
-% \[ b_1=\frac{H_1-A_1-B_1}{2}+B_1=\frac{H_1-A_1+B_1}{2}, \]
-% 第二行行盒顶部到基线的距离是
-% \[ t_2=\frac{H_2-A_2-B_2}{2}+A_2=\frac{H_2+A_2-B_2}{2}, \]
-% 于是两行的基线间距离为
-% \begin{equation}\label{eq:adjacent-baseline-distance}
-%     D=b_1+t_2+S = D=\frac{H_1+H_2}{2}+\frac{(A_2-B_2)-(A_1-B_1)}{2}+S.
-% \end{equation}
-% 
-% 标题行的行盒高度 $H_1=\qty{31.2}{bp}$，正文行的行盒高度 $H_2=\qty{23.4}{bp}$，
-% 两行字体的上伸高度和下伸高度分别为
-% \[ A_1=\frac{220}{256}\cdot\qty{14}{bp}
-%   ,A_2=\frac{220}{256}\cdot\qty{10.5}{bp}
-%   ,B_1=\frac{36}{256}\cdot\qty{14}{bp}
-%   ,B_2=\frac{36}{256}\cdot\qty{10.5}{bp},
+% “原创性声明”标题和“著作权使用声明”的标题元素实例。
+% “原创性声明”标题和“著作权使用声明”的标题
+% 文字的字号为四号（即 \qty{14}{bp}），实际行距为 \qty{31.2}{bp}；它们下方
+% 的正文文字的字号为五号（即 \qty{10.5}{bp}），实际行距为 \qty{23.4}{bp}；
+% 两行间的额外段落间距为 \qty{3}{bp}。根据
+% 公式 \ref{eq:adjacent-baseline-distance}，于是两行的基线距离为
+% \[ 
+%   D = \frac{31.2 + 23.4}{2} - \frac{23}{64}(14 - 10.5) + 3 
+%     = \qty{29.04219}{bp},
 % \]
-% 段落间距为 $S=\qty{3}{bp}$，所以上下两行的行盒的基线距离为
-% \[ D=\frac{31.2 + 23.4}{2} - 
-%     \frac{(14 - 10.5) \times (220 - 36)}{2 \times (220+36)}
-%      + 3 = \qty{29.04219}{bp},
-% \]
-% 扣除基线间距 \qty{23.4}{bp}，故需补偿的竖直距离约 \qty{5.6422}{bp} bp。
+% 所以，这两个标题行所属元素实例的 \opt{bottom-skip} 应设置为
+% $\qty{29.04219}{bp}-\qty{23.4}{bp} \approx \qty{5.6422}{bp}$。
 %    \begin{macrocode}
 \@@_declare_element:nn { declaration-pg-orig-title }
   {
@@ -3670,15 +3714,10 @@
   }
 %    \end{macrocode}
 % 
-% 原创性声明签名部分距离版权声明页标题有两个空行间隔，每一行的行距为 \qty{23.4}{bp}，
-% 段间距为 \qty{3}{bp}。而根据公式 \ref{eq:adjacent-baseline-distance}，
-% 第二个空行的基线到版权声明页标题行的基线的距离为
-% \[
-%   D = \frac{23.4+31.2}{2}+\frac{(14-10.5)\cdot(220-36)}{2\cdot(220+36)}+3
-%     = \qty{84.3578125}{bp},
-% \]
-% 由于标题行的字号为 \qty{14}{bp}，故该标题行的基线间距为
-% \qty{31.2}{bp}，所以需要补偿的竖直距离约为 \qty{53.1578}{bp}。
+% “原创性声明”和“著作权使用声明”的正文元素实例。
+% “原创性声明”和“著作权使用声明”的正文文字与签名区域的的字号均
+% 为五号，两行间的额外段落间距为 \qty{3}{bp}。于是，两个正文行所属
+% 元素实例的 \opt{bottom-skip} 应设置为 $\qty{3}{bp}$。
 %    \begin{macrocode}
 \@@_declare_element:nn { declaration-pg-orig-text }
   {
@@ -3686,6 +3725,29 @@
     format      = \zihao { 5 },
     bottom-skip = 3 bp,
   }
+\@@_declare_element:nn { declaration-pg-auth-text }
+  {
+    content     = \@@_auth_text_pg:,
+    format      = \zihao { 5 },
+    bottom-skip = 3 bp,
+  }
+%    \end{macrocode}
+% 
+% “原创性声明”签名元素实例。
+% “原创性声明”签名末行的字号为五号（即 \qty{10.5}{bp}），实际行距为
+% \qty{23.4}{bp}；其下方“著作权使用声明”标题文字的字号为四号
+% （即 \qty{14}{bp}），实际行距为 \qty{31.2}{bp}。两者之间有两个空行，
+% 实际行距为 \qty{23.4}{bp}；各相邻段落间的额外段落间距
+% 为 \qty{3}{bp}。根据公式 \ref{eq:adjacent-baseline-distance}，
+% 签名末行到标题行的基线距离为
+% \[
+%   D = \frac{23.4+31.2}{2} - \frac{23}{64}(10.5-14)
+%       + 2\cdot 23.4 + 3\cdot 3
+%     = \qty{84.3578125}{bp},
+% \]
+% 所以，签名部分所属元素实例的 \opt{bottom-skip} 应设置为
+% $\qty{84.3578125}{bp} - \qty{31.2}{bp} \approx \qty{53.1578}{bp}$。
+%    \begin{macrocode}
 \@@_declare_element:nn { declaration-pg-orig-sign }
   {
     content     = \@@_orig_sign_area_pg:,
@@ -3693,15 +3755,19 @@
   }
 %    \end{macrocode}
 % 
-% 版权声明页签名部分距离备注文字有一个空行间隔，行距为 \qty{23.4}{bp}，
-% 段间距为 \qty{3}{bp}。而根据公式 \ref{eq:adjacent-baseline-distance}，
-% 空行的基线到版权声明页标题行的基线的距离为
+% “著作权使用声明”签名元素实例。
+% “著作权使用声明”签名末行的字号为五号（即 \qty{10.5}{bp}），实际行距为
+% \qty{23.4}{bp}；其下方备注文字的字号为 \qty{10}{bp}，实际行距为
+% \qty{23.4}{bp}。两者之间有一个空行，实际行距为 \qty{23.4}{bp}；
+% 各相邻段落间的额外段落间距为 \qty{3}{bp}。根据
+% 公式 \ref{eq:adjacent-baseline-distance}，签名末行到备注首行的基线距离为
 % \[
-%   D = \frac{23.4+23.4}{2}+\frac{(10-10.5)(220-36)}{2\cdot(220+36)}+3
-%     = \qty{26.2203125}{bp},
+%   D = \frac{23.4+23.4}{2} - \frac{23}{64}(10.5-10)
+%       + 23.4 + 2\cdot 3
+%     = \qty{52.6203125}{bp},
 % \]
-% 而备注文字的行间距为 \qty{23.4}{bp}，所以需要
-% 补偿的竖直距离约为 \qty{29.2203}{bp}。
+% 所以，签名部分所属元素实例的 \opt{bottom-skip} 应设置为
+% $\qty{52.6203125}{bp} - \qty{23.4}{bp} \approx \qty{29.2203}{bp}$。
 %    \begin{macrocode}
 \@@_declare_element:nn { declaration-pg-auth-text }
   {
@@ -3716,7 +3782,8 @@
   }
 %    \end{macrocode}
 % 
-% 备注文字为 \qty{10}{bp}，行距同样为 1.5 倍。
+% 版权声明页的备注文字元素实例。
+% 版权声明页的备注文字为 \qty{10}{bp}，行距同样为 1.5 倍。
 %    \begin{macrocode}
 \@@_declare_element:nn { declaration-pg-others }
   {
@@ -3742,10 +3809,10 @@
       },
 %    \end{macrocode}
 % 
-% 调整博士、硕士学位论文的版权声明页行距。
+% 调整博士、硕士学位论文的版权声明页的行距。
 % 
-% 研究生院提供的声明页模板正文采用五号宋体、1.5 倍行距，并对齐 Word 文档网格。
-% 文档网格行距为 \qty{15.6}{bp}。于是，该行距相当于 \LaTeX{} 标准行距的
+% 学校提供的 Word 模板正文的字号为五号，字体为中易宋体，实际行距
+% 为 \qty{23.4}{bp}。于是，该行距相当于 \LaTeX{} 标准行距的
 % $(\qty{15.6}{bp} \times 1.5) / \qty{10.5}{bp} / 1.2 = 13 / 7$ 倍。
 %    \begin{macrocode}
     format = 
@@ -3772,7 +3839,7 @@
 % \subsubsection{声明页生成命令}
 % 
 % \begin{macro}{\declarationpage}
-% 声明页命令。
+% 版权声明页生成命令。
 %    \begin{macrocode}
 \NewDocumentCommand \declarationpage { }
   {
