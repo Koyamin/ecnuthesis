@@ -3343,6 +3343,17 @@
         cover-ug-info,
         cover-ug-date,
       },
+%    \end{macrocode}
+%    
+% 根据本科生院提供的内封面模板，左、右页面
+% 边距均为 \qty{1.25}{in}；上、下页面边距均为 \qty{1}{in}。
+% 此处使用 \cs{newgeometry} 命令设置页面边距；在该页面
+% 结束时使用 \cs{restoregeometry} 命令恢复为默认页面边距。
+%    \begin{macrocode}
+    before-code = {
+      \newgeometry { vmargin = 1 in, hmargin = 1.25 in }
+      \group_insert_after:N \restoregeometry
+      },
     bottom-skip = 0 pt plus 0.5 fill,
   }
 %    \end{macrocode}
@@ -3686,7 +3697,10 @@
     content     = \@@_auth_sign_area_ug:,
     align       = right,
   }
-\@@_declare_element:nn { declaration-ug-others } { }
+%    \end{macrocode}
+%    
+% 实例化本科生毕业论文的版权声明页。
+%    \begin{macrocode}
 \@@_declare_page:nn { declaration-ug }
   {
     element =
@@ -3697,8 +3711,19 @@
         declaration-ug-auth-title,
         declaration-ug-auth-text,
         declaration-ug-auth-sign,
-        declaration-ug-others,
       },
+%    \end{macrocode}
+% 
+% 根据本科生院提供的内封面模板，左、右页面
+% 边距均为 \qty{1.25}{in}；上、下页面边距均为 \qty{1}{in}。
+% 此处使用 \cs{newgeometry} 命令设置页面边距；在该页面
+% 结束时使用 \cs{restoregeometry} 命令恢复为默认页面边距。
+%    \begin{macrocode}
+    before-code = {
+      \newgeometry { vmargin = 1 in, hmargin = 1.25 in }
+      \group_insert_after:N \restoregeometry
+    },
+    format = \@@_line_spread:n { 1.625 } \zihao { -4 },
   }
 %    \end{macrocode}
 %
@@ -3709,7 +3734,7 @@
 % 文字的字号为四号（即 \qty{14}{bp}），实际行距为 \qty{31.2}{bp}；它们下方
 % 的正文文字的字号为五号（即 \qty{10.5}{bp}），实际行距为 \qty{23.4}{bp}；
 % 两行间的额外段落间距为 \qty{3}{bp}。根据
-% 公式 \ref{eq:adjacent-baseline-distance}，于是两行的基线距离为
+% 公式 \ref{eq:adjacent-baseline-distance}，两行的基线距离为
 % \[ 
 %   D = \frac{31.2 + 23.4}{2} - \frac{23}{64}(14 - 10.5) + 3 
 %     = \qty{29.04219}{bp},
@@ -4601,20 +4626,6 @@
       {
 %    \end{macrocode}
 %
-% 在本科生毕业论文中，前导页的页边距与正文有不同。
-%    \begin{macrocode}
-        \bool_if:NT \g_@@_is_bachelor_bool
-          {
-            \newgeometry
-              {
-                top     = 2.0 cm, 
-                bottom  = 2.0 cm,
-                left    = 3.0 cm, 
-                right   = 3.0 cm
-              }
-          }
-%    \end{macrocode}
-%
 % 设置前导页内容。
 %    \begin{macrocode}
         \pagenumbering { Alph }
@@ -4650,11 +4661,6 @@
           }
         \bool_if:NT \g_@@_declaration_page_bool
           { \declarationpage }
-%    \end{macrocode}
-%
-% 在本科生毕业论文中，前导页设置完成后需要将页面恢复到初始设置。
-%    \begin{macrocode}
-        \bool_if:NT \g_@@_is_bachelor_bool { \restoregeometry }
       }
   }
 %    \end{macrocode}
