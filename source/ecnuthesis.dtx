@@ -2338,15 +2338,15 @@
     \cleardoublepage
     \group_begin:
       \l_@@_page_tmpl_before_code
-    \thispagestyle { empty }
-    \skip_if_eq:nnF { \l_@@_page_tmpl_top_skip } { \c_zero_skip }
+      \thispagestyle { empty }
+      \skip_if_eq:nnF { \l_@@_page_tmpl_top_skip } { \c_zero_skip }
         { \@@_vskip:N \l_@@_page_tmpl_top_skip }
       \exp_args:No \tl_if_novalue:nF { \l_@@_page_tmpl_bookmark_tl }
         { \@@_pdf_bookmark:nn { 0 } { \l_@@_page_tmpl_bookmark_tl } }
       \l_@@_page_tmpl_format_tl
       \clist_map_inline:Nn \l_@@_page_tmpl_elem_clist
         { \UseInstance { ecnu } { ##1 } }
-    \@@_vspace:N \l_@@_page_tmpl_bottom_skip
+      \@@_vspace:N \l_@@_page_tmpl_bottom_skip
     \group_end:
   }
 %    \end{macrocode}
@@ -3143,10 +3143,11 @@
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_orig_sign_area_ug:
   {
+    \indent
     \c_@@_orig_sign_tl \c_@@_colon_tl
-    \hbox_to_wd:nn { 15 em } { }
+    \hbox_to_wd:nn { 14.5 em } { }
     \c_@@_date_tl \c_@@_colon_tl
-    \hbox_to_wd:nn { 3.4 em } { } \c_@@_year_tl
+    \hbox_to_wd:nn { 2.5 em } { } \c_@@_year_tl
     \hbox_to_wd:nn { 1.5 em } { } \c_@@_month_tl
     \hbox_to_wd:nn { 1.5 em } { } \c_@@_day_tl
   }
@@ -3167,6 +3168,7 @@
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_auth_sign_area_ug:
   {
+    \indent
     \c_@@_author_sign_tl \c_@@_colon_tl
     \hbox_to_wd:nn { 5.5 em } { }
     \c_@@_supervisor_sign_tl \c_@@_colon_tl
@@ -3353,7 +3355,7 @@
     before-code = {
       \newgeometry { vmargin = 1 in, hmargin = 1.25 in }
       \group_insert_after:N \restoregeometry
-      },
+    },
     bottom-skip = 0 pt plus 0.5 fill,
   }
 %    \end{macrocode}
@@ -3654,13 +3656,37 @@
 % \subsubsection{本科生毕业论文的版权声明页}
 %
 % 本科生毕业论文版权声明页。
+% 
+% “学位论文诚信承诺”标题和“使用授权声明”的标题元素实例。
+% “学位论文诚信承诺”标题和“使用授权声明”的标题
+% 文字的字号为四号（即 \qty{14}{bp}），实际行距为 \qty{31.2}{bp}；它们下方
+% 的正文文字的字号为小四（即 \qty{12}{bp}），实际行距为 \qty{23.4}{bp}。
+% 根据公式 \ref{eq:adjacent-baseline-distance}，两行的基线距离为
+% \[ 
+%   D = \frac{31.2 + 23.4}{2} - \frac{23}{64}(14 - 12)
+%     = \qty{26.58125}{bp},
+% \]
+% 所以，这两个标题行所属元素实例的 \opt{bottom-skip} 应设置为
+% $\qty{26.58125}{bp}-\qty{23.4}{bp} = \qty{3.18125}{bp}$。
 %    \begin{macrocode}
 \@@_declare_element:nn { declaration-ug-orig-title }
   {
     content     = \c_@@_orig_title_ug_tl,
-    format      = \@@_line_spread:n { 1.85714286 } \zihao { 4 } \bfseries,
+    format      = \zihao { 4 } \bfseries,
+    bottom-skip = 3.18125 bp,
     align       = center,
   }
+\@@_declare_element:nn { declaration-ug-auth-title }
+  {
+    content     = \c_@@_auth_title_ug_tl,
+    format      = \zihao { 4 } \bfseries,
+    bottom-skip = 3.18125 bp,
+    align       = center,
+  }
+%    \end{macrocode}
+% 
+% 版权声明页“学位论文诚信承诺”正文元素实例。
+%    \begin{macrocode}
 \@@_declare_element:nn { declaration-ug-orig-text }
   {
     content     = 
@@ -3668,20 +3694,16 @@
         \indent \c_@@_orig_text_ug_part_one_tl \par
         \c_@@_orig_text_ug_part_two_tl
       },
-    format      = \@@_line_spread:n { 1.625 },
   }
-\@@_declare_element:nn { declaration-ug-orig-sign }
-  {
-    content     = \@@_orig_sign_area_ug:,
-    bottom-skip = 70.2 bp,
-    align       = right,
-  }
-\@@_declare_element:nn { declaration-ug-auth-title }
-  {
-    content     = \c_@@_auth_title_ug_tl,
-    format      = \@@_line_spread:n { 1.85714286 } \zihao { 4 } \bfseries,
-    align       = center,
-  }
+%    \end{macrocode}
+% 
+% 版权声明页“使用授权声明”正文元素实例。
+% “使用授权声明”正文元素末行的字号为小四（即 \qty{10.5}{bp}），实际行距为
+% \qty{23.4}{bp}；其下方的签名行的的字号为小四（即 \qty{10.5}{bp}），
+% 实际行距同前。两者之间有一个空行，实际行距为 \qty{23.4}{bp}。
+% 所以“使用授权声明”正文和签名行间的 \opt{bottom-skip} 应设置为
+% \qty{23.4}{bp}。
+%    \begin{macrocode}
 \@@_declare_element:nn { declaration-ug-auth-text }
   {
     content     = 
@@ -3689,13 +3711,39 @@
         \indent \c_@@_auth_text_ug_part_one_tl \par
         \c_@@_auth_text_ug_part_two_tl
       },
-    format      = \@@_line_spread:n { 1.625 },
     bottom-skip = 23.4 bp,
   }
+%    \end{macrocode}
+% 
+% 版权声明页“学位论文诚信承诺”签名区域元素实例。
+% “学位论文诚信承诺”签名末行的字号为小四（即 \qty{12}{bp}），实际行距为
+% \qty{23.4}{bp}；其下方“使用授权声明”标题文字的字号为四号
+% （即 \qty{14}{bp}），其实际行距为 \qty{31.2}{bp}。
+% 两者之间有三个空行，每个空行的行盒高度为 \qty{23.4}{bp}，
+% 此处不计额外段落间距。根据公式 \ref{eq:adjacent-baseline-distance}，
+% 签名末行到标题行的基线距离为
+% \[
+%   D = \frac{23.4+31.2}{2} - \frac{23}{64}(12-14)
+%       + 3\cdot 23.4
+%     = \qty{98.21875}{bp},
+% \]
+% 当前标题元素继承页面的 1.625 倍行距，其在 \LaTeX 中的基线间距为
+% $\qty{14}{bp}\times 1.2\times 1.625=\qty{27.3}{bp}$。
+% 所以，按此模型，签名部分所属元素实例的 \opt{bottom-skip} 应设置为
+% $\qty{98.21875}{bp}-\qty{27.3}{bp}=\qty{70.91875}{bp}$。
+%    \begin{macrocode}
+\@@_declare_element:nn { declaration-ug-orig-sign }
+  {
+    content     = \@@_orig_sign_area_ug:,
+    bottom-skip = 70.91875 bp,
+  }
+%    \end{macrocode}
+% 
+% 版权声明页“使用授权声明”签名区域元素实例。
+%    \begin{macrocode}
 \@@_declare_element:nn { declaration-ug-auth-sign }
   {
     content     = \@@_auth_sign_area_ug:,
-    align       = right,
   }
 %    \end{macrocode}
 %    
@@ -3724,6 +3772,7 @@
       \group_insert_after:N \restoregeometry
     },
     format = \@@_line_spread:n { 1.625 } \zihao { -4 },
+    top-skip = \dim_eval:n { 24.53125 bp - 12 pt }
   }
 %    \end{macrocode}
 %
