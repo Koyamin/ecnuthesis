@@ -3310,15 +3310,13 @@
   }
 \@@_declare_element:nn { cover-ug-title-zh }
   {
-    content     =
-      \expandafter\uline\expandafter{\l_@@_info_title_zh_tl},
+    content     = \exp_args:NV \uline \l_@@_info_title_zh_tl,
     format      = \@@_line_spread:n { 1.1 } \zihao { 1 } \bfseries,
     align       = center,
   }
 \@@_declare_element:nn { cover-ug-title-en }
   {
-    content     =
-      \expandafter\uline\expandafter{\l_@@_info_title_en_tl},
+    content     = \exp_args:NV \uline \l_@@_info_title_en_tl,
     format      = \@@_line_spread:n { 1.1 } \zihao { 1 } \bfseries,
     bottom-skip = 0 pt plus 1 fill,
     align       = center,
