@@ -31,7 +31,7 @@ Don't change this file in any respect.
 * \@mparswitchfalse
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
-Completed box being shipped out [1]
+Completed box being shipped out [2]
 \vbox(732.943+0.0)x454.106
 .\hbox(0.0+0.0)x0.0
 ..\kern -72.26999
@@ -76,6 +76,11 @@ Completed box being shipped out [1]
 ....\penalty 10000
 ....\glue 12.62323
 ....\glue 0.0
+....\special{pdf:dest (section*.1) [@thispage /XYZ @xpos @ypos null]}
+....\penalty 10000
+....\write5{\protect \BOOKMARK [0][-]{ecnu.bookmark.1.0}{\376\377\133\146\117\115\213\272\145\207\213\332\117\341\142\177\213\372\116\146\116\016\117\177\165\050\143\210\147\103\213\364\146\016\116\146}{}% 1}
+....\special{pdf:dest (ecnu.bookmark.1.0) [@thispage /XYZ @xpos @ypos null]}
+....\penalty 10000
 ....\glue(\parskip) 0.0 plus 1.0
 ....\glue(\parskip) 0.0
 ....\glue(\baselineskip) 16.58194

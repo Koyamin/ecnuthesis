@@ -32,7 +32,7 @@ Completed box being shipped out [2]
 ...\kern 0.0
 ...\kern 18.0675
 ...\kern -1.00374
-...\special{pdf:dest (page.2) [@thispage /XYZ @xpos @ypos null]}
+...\special{pdf:dest (page.B) [@thispage /XYZ @xpos @ypos null]}
 ...\penalty 10000
 ...\glue 0.0 plus 1.0fil minus 1.0fil
 ..\glue 0.0 plus 1.0fil minus 1.0fil
@@ -50,6 +50,9 @@ Completed box being shipped out [2]
 ...\glue(\lineskip) 0.0
 ...\vbox(700.50687+0.0)x416.83289, glue set 64.9397fil
 ....\write-{}
+....\special{pdf:dest (section*.1) [@thispage /XYZ @xpos @ypos null]}
+....\write5{\protect \BOOKMARK [0][-]{ecnu.bookmark.1.0}{\376\377\117\177\165\050\116\272\135\345\146\172\200\375\135\345\121\167\130\360\146\016}{}% 1}
+....\special{pdf:dest (ecnu.bookmark.1.0) [@thispage /XYZ @xpos @ypos null]}
 ....\glue(\topskip) 0.51208
 ....\hbox(11.48792+3.76405)x416.83289, glue set 31.03131fil
 .....\glue(\leftskip) 0.0 plus 1.0fil

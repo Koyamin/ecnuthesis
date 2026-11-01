@@ -77,6 +77,9 @@ Completed box being shipped out [1]
 ...\vbox(717.00946+0.0)x416.83289, glue set 30.70099fill
 ....\write-{}
 ....\write-{}
+....\special{pdf:dest (section*.1) [@thispage /XYZ @xpos @ypos null]}
+....\write5{\protect \BOOKMARK [0][-]{ecnu.bookmark.1.0}{\376\377\121\205\134\001\227\142}{}% 1}
+....\special{pdf:dest (ecnu.bookmark.1.0) [@thispage /XYZ @xpos @ypos null]}
 ....\glue(\topskip) 2.13832
 ....\hbox(9.86168+3.83919)x416.83289
 .....\glue(\leftskip) 0.0 plus 1.0fil

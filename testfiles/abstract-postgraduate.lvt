@@ -2,7 +2,7 @@
 
 \input{ecnuthesis-regression-test.tex}
 
-\documentclass[type=master,cover=false,degree = academic,declaration=false]{ecnuthesis}
+\documentclass[type=master,cover=false,degree=academic,declaration=false]{ecnuthesis}
 
 \DEFAULTSETUP
 
@@ -12,6 +12,8 @@
 
 \OMIT
 \EMPTYPAGE
+
+\frontmatter
 \TIMO
 
 \loggingoutput

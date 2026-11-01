@@ -1,6 +1,6 @@
 This is a generated file for the l3build validation system.
 Don't change this file in any respect.
-Completed box being shipped out [2]
+Completed box being shipped out [1]
 \vbox(722.98454+3.25217)x434.90039
 .\hbox(0.0+0.0)x0.0
 ..\kern -72.26999
@@ -21,7 +21,7 @@ Completed box being shipped out [2]
 ...\kern 0.0
 ...\kern 18.0675
 ...\kern -1.00374
-...\special{pdf:dest (page.2) [@thispage /XYZ @xpos @ypos null]}
+...\special{pdf:dest (page.I) [@thispage /XYZ @xpos @ypos null]}
 ...\penalty 10000
 ...\glue 0.0 plus 1.0fil minus 1.0fil
 ..\glue 0.0 plus 1.0fil minus 1.0fil
@@ -97,6 +97,7 @@ Completed box being shipped out [2]
 ...\glue 16.872
 ...\glue(\lineskip) 0.0
 ...\vbox(700.50687+0.0)x416.83289, glue set 220.58702fil
+....\write-{}
 ....\special{pdf:dest (section*.1) [@thispage /XYZ @xpos @ypos null]}
 ....\write5{\protect \BOOKMARK [0][-]{ecnu.bookmark.1.0}{\376\377\116\055\145\207\144\130\211\201}{}% 1}
 ....\special{pdf:dest (ecnu.bookmark.1.0) [@thispage /XYZ @xpos @ypos null]}
@@ -1238,10 +1239,10 @@ Completed box being shipped out [2]
 .........\glue 0.0 plus 1.0fil minus 1.0fil
 ........\glue 0.0 plus 1.0fill
 ........\vbox(7.5883+3.25217)x416.83289
-.........\hbox(7.5883+3.25217)x416.83289, glue set 206.09477fil
+.........\hbox(7.5883+3.25217)x416.83289, glue set 206.74069fil
 ..........\glue(\leftskip) 0.0 plus 1.0fil
 ..........\hbox(0.0+0.0)x0.0
-..........\TU/lmr/m/n/9.03374 2
+..........\TU/lmr/m/n/9.03374 I
 ..........\kern -0.0002
 ..........\kern 0.0002
 ..........\rule(7.5883+3.25217)x0.0

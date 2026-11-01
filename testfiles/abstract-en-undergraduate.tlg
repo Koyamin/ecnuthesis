@@ -11,7 +11,7 @@ Package fontspec Info:
 (fontspec)             - 'bold' (b/n) with NFSS spec.: <->"[FandolKai-Regular.otf]/OT:script=hani;language=dflt;"
 (fontspec)             - 'italic' (m/it) with NFSS spec.: <->"[FandolKai-Regular.otf]/OT:script=hani;language=dflt;"
 (fontspec)             - 'bold italic' (b/it) with NFSS spec.: <->"[FandolKai-Regular.otf]/OT:script=hani;language=dflt;"
-Completed box being shipped out [2]
+Completed box being shipped out [1]
 \vbox(732.943+3.25217)x454.106
 .\hbox(0.0+0.0)x0.0
 ..\kern -72.26999
@@ -32,7 +32,7 @@ Completed box being shipped out [2]
 ...\kern 0.0
 ...\kern 13.08827
 ...\kern -1.00374
-...\special{pdf:dest (page.2) [@thispage /XYZ @xpos @ypos null]}
+...\special{pdf:dest (page.I) [@thispage /XYZ @xpos @ypos null]}
 ...\penalty 10000
 ...\glue 0.0 plus 1.0fil minus 1.0fil
 ..\glue 0.0 plus 1.0fil minus 1.0fil
@@ -128,6 +128,7 @@ Completed box being shipped out [2]
 ...\glue 15.73387
 ...\glue(\lineskip) 0.0
 ...\vbox(717.00946+0.0)x441.01773, glue set 296.91261fil
+....\write-{}
 ....\write-{}
 ....\special{pdf:dest (chapter*.1) [@thispage /XYZ @xpos @ypos null]}
 ....\write5{\protect \BOOKMARK [0][-]{chapter*.1}{\376\377\000A\000B\000S\000T\000R\000A\000C\000T}{}% 1}
@@ -648,10 +649,10 @@ Completed box being shipped out [2]
 .........\glue 0.0 plus 1.0fil minus 1.0fil
 ........\glue 0.0 plus 1.0fill
 ........\vbox(7.5883+3.25217)x441.01773
-.........\hbox(7.5883+3.25217)x441.01773, glue set 218.1872fil
+.........\hbox(7.5883+3.25217)x441.01773, glue set 218.83311fil
 ..........\glue(\leftskip) 0.0 plus 1.0fil
 ..........\hbox(0.0+0.0)x0.0
-..........\TU/lmr/m/n/9.03374 2
+..........\TU/lmr/m/n/9.03374 I
 ..........\kern -0.0002
 ..........\kern 0.0002
 ..........\rule(7.5883+3.25217)x0.0
