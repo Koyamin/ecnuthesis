@@ -698,9 +698,9 @@
 % 
 % \subsection{声明页}\label{subsubsection:declaration-page}
 % 
-% \begin{function}{\declaration}
+% \begin{function}{\declarationpage}
 %   \begin{syntax}
-%     \TNi{declaration}
+%     \TNi{declarationpage}
 %   \end{syntax}
 %   生成版权声明页。
 % \end{function}
@@ -3343,6 +3343,7 @@
         cover-ug-info,
         cover-ug-date,
       },
+    bookmark = \c_@@_bookmark_name_inner_cover_zh_tl,
 %    \end{macrocode}
 %    
 % 根据本科生院提供的内封面模板，左、右页面
@@ -3405,6 +3406,7 @@
         cover-pg-zh-info,
         cover-pg-zh-date,
       },
+    bookmark = \c_@@_bookmark_name_inner_cover_zh_tl,
   }
 %    \end{macrocode}
 %
@@ -3572,23 +3574,10 @@
         { \seq_gput_right:Nn \g_@@_cover_info_seq { { ##1 } { ##2 } } }
       #2
       \bool_if:NTF \g_@@_is_bachelor_bool
+        { \UseInstance { ecnu } { cover-ug } }
         {
-          \tl_set:Nn \thepage { A }
-          \UseInstance { ecnu } { cover-ug }
-          \cleardoublepage
-        }
-        {
-          \tl_if_eq:NnTF \l_@@_env_lang_tl { en }
-            {
-              \tl_set:Nn \thepage { A-EN }
-              \UseInstance { ecnu } { cover-pg-en }
-              \cleardoublepage
-            }
-            {
-              \tl_set:Nn \thepage { A }
-              \UseInstance { ecnu } { cover-pg-zh }
-              \cleardoublepage
-            }
+          \exp_args:Nne \UseInstance { ecnu }
+            { cover-pg- \l_@@_env_lang_tl }
         }
     \group_end:
   }
@@ -3758,6 +3747,7 @@
         declaration-ug-auth-text,
         declaration-ug-auth-sign,
       },
+    bookmark = \c_@@_bookmark_name_decl_ug_tl,
 %    \end{macrocode}
 % 
 % 根据本科生院提供的内封面模板，左、右页面
@@ -3892,6 +3882,7 @@
         declaration-pg-auth-sign,
         declaration-pg-others,
       },
+    bookmark = \c_@@_bookmark_name_decl_pg_tl,
 %    \end{macrocode}
 % 
 % 调整博士、硕士学位论文的版权声明页的行距。
@@ -3993,6 +3984,7 @@
         ai-declaration-pg-text,
         ai-declaration-pg-sign,
       },
+    bookmark = \c_@@_bookmark_name_ai_decl_pg_tl,
 %    \end{macrocode}
 % 
 % 调整博士、硕士学位论文的使用人工智能工具声明页的行距。
@@ -4027,6 +4019,8 @@
 %    \end{macrocode}
 % \end{macro}
 % 
+% \subsubsection{声明页生成命令}
+% 
 % \begin{macro}{style/declaration-src}
 % 定义声明页扫描件路径接口。
 %    \begin{macrocode}
@@ -4035,6 +4029,12 @@
   {
     declaration-src   .tl_set:N = \l_@@_declaration_page_tl
   }
+\keys_define:nn { ecnu / customize }
+  {
+    file      .tl_set:N           = \l_@@_declaration_page_tl ,
+    file      .value_required:n   = { true } ,
+    file      .groups:n           = { declaration },
+  }
 \AtBeginDocument
   {
     \tl_if_empty:NF \l_@@_declaration_page_tl
@@ -4042,22 +4042,30 @@
   }
 %    \end{macrocode}
 % \end{macro}
-% 
-% \subsubsection{声明页生成命令}
+
 % 
 % \begin{macro}{\declarationpage}
 % 版权声明页生成命令。
 %    \begin{macrocode}
-\NewDocumentCommand \declarationpage { }
+\NewDocumentCommand \declarationpage { O{} }
   {
-    \tl_set:Nn \thepage { B }
-    \tl_if_empty:NTF \l_@@_declaration_page_tl
-      {
-        \bool_if:NTF \g_@@_is_bachelor_bool
-          { \UseInstance { ecnu } { declaration-ug } }
-          { \UseInstance { ecnu } { declaration-pg } }
-      }
-      { \includepdf [pages=-] { \l_@@_declaration_page_tl } }
+    \group_begin:
+      \keys_set_groups:nnnN { ecnu / customize } { declaration }
+        { #1 } \l_@@_tmpa_tl
+      \tl_if_empty:NTF \l_@@_declaration_page_tl
+        {
+          \bool_if:NTF \g_@@_is_bachelor_bool
+            { \UseInstance { ecnu } { declaration-ug } }
+            { \UseInstance { ecnu } { declaration-pg } }
+        }
+        {
+          \cleardoublepage
+          \bool_if:NTF \g_@@_is_bachelor_bool
+            { \@@_pdf_bookmark:nn { 0 } { \c_@@_bookmark_name_decl_ug_tl } }
+            { \@@_pdf_bookmark:nn { 0 } { \c_@@_bookmark_name_decl_pg_tl } }
+          \includepdf [ pages=- ] { \l_@@_declaration_page_tl }
+        }
+    \group_end:
   }
 %    \end{macrocode}
 % \end{macro}
@@ -4065,10 +4073,23 @@
 % \begin{macro}{\aideclarationpage}
 % 使用人工智能工具声明页生成命令。
 %    \begin{macrocode}
-\NewDocumentCommand \aideclarationpage { }
+\NewDocumentCommand \aideclarationpage { O{} }
   {
-    \bool_if:NF \g_@@_is_bachelor_bool
-      { \UseInstance { ecnu } { ai-declaration-pg } }
+    \group_begin:
+      \keys_set_groups:nnnN { ecnu / customize } { declaration }
+        { #1 } \l_@@_tmpa_tl
+      \tl_if_empty:NTF \l_@@_declaration_page_tl
+        {
+          \bool_if:NF \g_@@_is_bachelor_bool
+            { \UseInstance { ecnu } { ai-declaration-pg } }
+        }
+        {
+          \cleardoublepage
+          \bool_if:NTF \g_@@_is_bachelor_bool
+            { \@@_pdf_bookmark:nn { 0 } { \c_@@_bookmark_name_ai_decl_pg_tl } }
+          \includepdf [ pages=- ] { \l_@@_declaration_page_tl }
+        }
+    \group_end:
   }
 %    \end{macrocode}
 % \end{macro}
@@ -4666,16 +4687,17 @@
 %
 % 当设置开启生成封面页或声明页时，模板会在文档前导部分插入前导页（包括封面页和声明页）。
 %    \begin{macrocode}
+\AddToHook { begindocument/end }
+  { \pagenumbering { Alph } }
 \bool_lazy_or:nnT
   { \g_@@_cover_page_bool } { \g_@@_declaration_page_bool }
   {
-    \AtBeginDocument
+    \AddToHook { begindocument/end }
       {
 %    \end{macrocode}
 %
 % 设置前导页内容。
 %    \begin{macrocode}
-        \pagenumbering { Alph }
         \bool_if:NT \g_@@_cover_page_bool
           {
             \bool_if:NTF \g_@@_is_bachelor_bool
@@ -4970,6 +4992,14 @@
     相关学术组织的规范及学校有关要求，不存在不当使用行为，愿意接受审查与监督，
     并独立承担相应责任和后果。
   }
+\tl_const:Nn \c_@@_bookmark_name_inner_cover_zh_tl
+  { 内封面 }
+\tl_const:Nn \c_@@_bookmark_name_decl_ug_tl
+  { 学位论文诚信承诺书与使用授权说明书 }
+\tl_const:Nn \c_@@_bookmark_name_decl_pg_tl
+  { 学位论文原创性声明和授权使用声明 }
+\tl_const:Nn \c_@@_bookmark_name_ai_decl_pg_tl
+  { 使用人工智能工具声明 }
 \prop_const_from_keyval:Nn \c_@@_thesis_type_prop
   {
     doctor    = 博士,
