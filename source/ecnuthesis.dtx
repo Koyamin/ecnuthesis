@@ -3210,39 +3210,40 @@
 % \end{macro}
 %
 % \begin{macro}{\@@_cover_pg_logo_title:,\@@_cover_pg_logo_title_en:}
-% 博士、硕士学位论文中封面 logo 部分的中外文标题。
+% 博士、硕士学位论文中封面 logo 部分的中英文标题。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_cover_pg_logo_title:
   { 
     \prop_get:NVN \c_@@_thesis_type_prop
       \g_@@_thesis_type_tl \l_@@_tmpa_tl
     \l_@@_tmpa_tl
-    \tl_if_eq:NnT \l_@@_degree_type_tl { professional }
-      { \c_@@_professional_tl }
+    \tl_if_eq:NnT \g_@@_thesis_type_tl { master }
+      {
+        \tl_if_eq:NnT \l_@@_degree_type_tl { professional }
+          { \c_@@_professional_tl }
+      }
     \c_@@_degree_tl \c_@@_thesis_tl
   }
 \cs_new_protected:Npn \@@_cover_pg_logo_title_en:
   { 
-    \tl_if_eq:NnTF \l_@@_degree_type_tl { professional }
+    \tl_if_eq:NnTF \g_@@_thesis_type_tl { doctor }
       {
-        \tl_if_eq:NnTF \g_@@_thesis_type_tl { master }
+        \text_uppercase:n { \c_@@_doctoral_en_tl }
+        \c_space_token
+        \text_uppercase:n { \c_@@_dissertation_en_tl }
+      }
+      {
+        \tl_if_eq:NnTF \l_@@_degree_type_tl { professional }
           {
             \c_@@_masters_en_tl \c_space_token \c_@@_degree_en_tl
             \c_space_token \c_@@_thesis_en_tl
             \c_space_token (\c_@@_professional_en_tl)
           }
           {
-            \text_uppercase:n { \c_@@_doctoral_en_tl }
+            \text_uppercase:n { \c_@@_masters_en_tl }
             \c_space_token
             \text_uppercase:n { \c_@@_dissertation_en_tl }
           }
-      }
-      {
-        \tl_if_eq:NnTF \g_@@_thesis_type_tl { master }
-          { \text_uppercase:n { \c_@@_masters_en_tl } }
-          { \text_uppercase:n { \c_@@_doctoral_en_tl } }
-        \c_space_token
-        \text_uppercase:n { \c_@@_dissertation_en_tl }
       }
   }
 %    \end{macrocode}
