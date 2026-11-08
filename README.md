@@ -27,11 +27,11 @@ ecnuthesis（East China Normal University LaTeX Thesis Template）是华东师�
 
 ### 帮助
 
-若您在使用本模版的过程中有疑问，请移步 [Discussions](https://github.com/Koyamin/ecnuthesis/discussions) 进行讨论。
+若您在使用本模板的过程中有疑问，请移步 [Discussions](https://github.com/Koyamin/ecnuthesis/discussions) 进行讨论。
 
 ## 声明
 
-1. 本模版的开发行为**未得到**华东师范大学相关部门授权，本模版**未经**华东师范大学相关部门审核。任何因使用本模版而导致的**论文格式审查问题**与本模版作者无关。
+1. 本模板的开发行为**未得到**华东师范大学相关部门授权，本模板**未经**华东师范大学相关部门审核。任何因使用本模板而导致的**论文格式审查问题**与本模板作者无关。
 2. 使用本模板即视为已阅读并同意 LaTeX Project Public License (1.3c) 协议的全部内容。
 3. 任何个人或组织在修改、扩展本模板并生成新的专用模板时，需严格遵守 LaTeX Project Public License (1.3c) 协议。因违反协议而导致的任何纠纷争端与本模板作者无关。
 4. 若您使用的分发版中存在华东师范大学的校徽图案，请注意：该图案的版权归华东师范大学所有。关于校徽图案的具体使用规定，请参阅[《华东师范大学视觉形象识别系统(ECNU VI)管理暂行规定》](https://gzc.ecnu.edu.cn/d8/5a/c10632a120922/page.htm)。
@@ -42,7 +42,7 @@ ecnuthesis（East China Normal University LaTeX Thesis Template）是华东师�
 
 ## 贡献
 
-若您在使用模板时遇到 bug，或是发现本模版与学校的论文格式要求不符，抑或是对本模板有改进意见或建议，欢迎您提交 [Issues](https://github.com/Koyamin/ecnuthesis/issues) 以及 [Pull requests](https://github.com/Koyamin/ecnuthesis/pulls)。
+若您在使用模板时遇到 bug，或是发现本模板与学校的论文格式要求不符，抑或是对本模板有改进意见或建议，欢迎您提交 [Issues](https://github.com/Koyamin/ecnuthesis/issues) 以及 [Pull requests](https://github.com/Koyamin/ecnuthesis/pulls)。
 
 ## 软件许可证
 

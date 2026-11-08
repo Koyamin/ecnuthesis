@@ -68,13 +68,13 @@
 %
 % \section{声明}
 %
-% 本模版是华东师范大学学位论文模板的一个第三方 \LaTeX{} 开源实现。
+% 本模板是华东师范大学学位论文模板的一个第三方 \LaTeX{} 开源实现。
 % 本模板的发布遵守 \LaTeX{} Project Public License (1.3c) 协议。
 % 使用本模板前，请务必阅读并同意以下事项：
 %
 % \begin{enumerate}
-%   \item 本模版的开发行为未得到华东师范大学相关部门授权，本模版未经华东师范大学
-%     相关部门审核。任何因使用本模版而导致的论文格式审查问题与本模版作者无关。
+%   \item 本模板的开发行为未得到华东师范大学相关部门授权，本模板未经华东师范大学
+%     相关部门审核。任何因使用本模板而导致的论文格式审查问题与本模板作者无关。
 %   \item 使用本模板即视为已阅读并同意 \LaTeX{} Project Public License (1.3c) 
 %     协议的全部内容。
 %   \item 任何个人或组织在修改、扩展本模板并生成新的专用模板时，需严格遵守
@@ -109,9 +109,9 @@
 % \end{itemize}
 %
 %
-% \subsection{模版组成}
+% \subsection{模板组成}
 %
-% \cls{ecnuthesis} 的主要组成部分由表
+% \cls{ecnuthesis} 的主要组成部分如表
 % \ref{table:ecnuthesis-components} 所示。
 %
 % \begin{table}[htb]
@@ -276,7 +276,7 @@
 %     \OPTKEY{cover} = (true)|false
 %   \end{syntax}
 %   选择是否生成封面页。模板默认自动生成封面页。
-%   若设置 \opt{cover=true}，模版将自动生成封面页；反之则不生成封面页。
+%   若设置 \opt{cover=true}，模板将自动生成封面页；反之则不生成封面页。
 % \end{function}
 %
 % \begin{function}{declaration}
@@ -285,7 +285,7 @@
 %   \end{syntax}
 %   选择是否生成声明页。模板默认不自动生成声明页。
 %   若缺省则不生成声明页，反之则生成声明页。
-%   声明页默认由模版自动生成，也可以使用
+%   声明页默认由模板自动生成，也可以使用
 %   \opt{style/declaration-src} 选项，
 %   将指定的 PDF 文件作为声明页插入到文档中。
 % 
@@ -436,7 +436,7 @@
 %     \CFGKEY{field} = \marg{研究方向中文名称}
 %     \CFGKEY{field-en} = \marg{研究方向外文名称}
 %   \end{syntax}
-%   作者所在研究方向的中外文名称。用于填写博士、硕士毕业论文内封面
+%   作者所在研究方向的中外文名称。用于填写博士、硕士学位论文内封面
 %   中的“研究方向”信息（学术学位）或“专业学位领域”信息（专业学位）。
 % \end{function}
 %
@@ -466,7 +466,7 @@
 %     \CFGKEY{year} = \meta{论文完成年份}
 %   \end{syntax}
 %   论文完成年份。用于填写内封面底部的年份信息。
-%   若该选项被省略，模版将调用当前年份。请注意，该选项没有花括号。
+%   若该选项被省略，模板将调用当前年份。请注意，该选项没有花括号。
 % \end{function}
 %
 % \begin{function}{info/month}
@@ -474,7 +474,7 @@
 %     \CFGKEY{month} = \meta{论文完成月份}
 %   \end{syntax}
 %   论文完成月份。用于填写内封面底部的月份信息。
-%   若该选项被省略，模版将调用当前月份。请注意，该选项没有花括号。
+%   若该选项被省略，模板将调用当前月份。请注意，该选项没有花括号。
 % \end{function}
 %
 % \begin{function}[EXP]{info/graduation-year}
@@ -482,8 +482,8 @@
 %     \CFGKEY{graduation-year} = \meta{毕业年份}
 %   \end{syntax}
 %   内封面毕业届别。用于填写内封面左上角的届别信息。
-%   若该选项被省略，模版将调用 \opt{year} 字段的值；
-%   若 \opt{year} 选项也被省略，模版将调用当前年份。
+%   若该选项被省略，模板将调用 \opt{year} 字段的值；
+%   若 \opt{year} 选项也被省略，模板将调用当前年份。
 %   请注意，该选项没有花括号。
 % \end{function}
 %
@@ -593,7 +593,7 @@
 %     \CFGKEY{declaration-src} = \marg{PDF 文件}
 %   \end{syntax}
 %   设置待插入的扫描版声明页 PDF 文件路径，可以是绝对路径或相对路径。
-%   若该值为空，则生成模版预定义的声明页；
+%   若该值为空，则生成模板预定义的声明页；
 %   否则将使用指定路径所对应的 PDF 文件作为声明页插入。
 % \end{function}
 %
@@ -1158,7 +1158,7 @@
 % \end{macro}
 %
 % \begin{macro}{cover}
-% 设置开启封面页。若开启封面页，则模版将自动生成封面页；反之则不会自动生成封面页。
+% 设置开启封面页。若开启封面页，则模板将自动生成封面页；反之则不会自动生成封面页。
 % 模板默认开启封面页。
 %    \begin{macrocode}
     cover         .bool_gset:N = \g_@@_cover_page_bool,
@@ -1168,7 +1168,7 @@
 % \end{macro}
 %
 % \begin{macro}{declaration}
-% 设置开启声明页。若开启声明页，则模版将自动生成声明页；反之则不会自动生成声明页。
+% 设置开启声明页。若开启声明页，则模板将自动生成声明页；反之则不会自动生成声明页。
 % 默认关闭声明页。
 %    \begin{macrocode}
     declaration   .bool_gset:N = \g_@@_declaration_page_bool,
@@ -1304,7 +1304,7 @@
 % 边距均为 \qty{1.25}{in}；上、下边距均为 \qty{1}{in}。
 %
 % 在 Word 的默认设置中，页眉至顶端的距离设置为 \qty{15}{mm}，
-% 页眉文字的字号为小五（即 \qty{9}{bp}），边框与正文的间距默认为 \qty{1}{bp}，。
+% 页眉文字的字号为小五（即 \qty{9}{bp}），边框与正文的间距默认为 \qty{1}{bp}。
 % 在学士学位论文中，由于上边距为 \qty{25}{mm}，于是页眉与正文的间距应为
 % \[ \qty{25}{mm}-\qty{15}{mm}-\qty{1}{bp}-1.296875\times\qty{9}{bp} = \qty{10}{mm}-\qty{12.6713575}{bp} \]
 %
@@ -3003,7 +3003,7 @@
 % \end{macro}
 %
 % \begin{macro}{\@@_cover_pg_info_zh:}
-% 博士、硕士学位中文内论文封面中的个人信息。
+% 博士、硕士学位中文论文内封面中的个人信息。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_cover_pg_info_zh:
   {
@@ -3038,7 +3038,7 @@
 % \end{macro}
 %
 % \begin{macro}{\@@_cover_pg_info_en:}
-% 博士、硕士学位英文内论文封面中的个人信息。
+% 博士、硕士学位英文论文内封面中的个人信息。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_cover_pg_info_en:
   {
@@ -3687,7 +3687,7 @@
 % 
 % 版权声明页“使用授权声明”正文元素实例。
 % “使用授权声明”正文元素末行的字号为小四（即 \qty{10.5}{bp}），实际行距为
-% \qty{23.4}{bp}；其下方的签名行的的字号为小四（即 \qty{10.5}{bp}），
+% \qty{23.4}{bp}；其下方的签名行的字号为小四（即 \qty{10.5}{bp}），
 % 实际行距同前。两者之间有一个空行，实际行距为 \qty{23.4}{bp}。
 % 所以“使用授权声明”正文和签名行间的 \opt{bottom-skip} 应设置为
 % \qty{23.4}{bp}。
@@ -3797,7 +3797,7 @@
 %    \end{macrocode}
 % 
 % “原创性声明”和“著作权使用声明”的正文元素实例。
-% “原创性声明”和“著作权使用声明”的正文文字与签名区域的的字号均
+% “原创性声明”和“著作权使用声明”的正文文字与签名区域字号均
 % 为五号，两行间的额外段落间距为 \qty{3}{bp}。于是，两个正文行所属
 % 元素实例的 \opt{bottom-skip} 应设置为 $\qty{3}{bp}$。
 %    \begin{macrocode}
@@ -4225,6 +4225,7 @@
       \l_@@_tmpa_tl \l_@@_heading_contents_tl
   }
 %    \end{macrocode}
+% \end{macro}
 %
 % \subsection{目录}
 %
@@ -4363,8 +4364,6 @@
 \RenewDocumentCommand \listoftables { }
   { \@@_toc_page:Nn \listtablename {lot} }
 %    \end{macrocode}
-% \end{macro}
-%
 % \end{macro}
 %
 % \subsection{摘要}
@@ -4567,7 +4566,7 @@
 %
 % \subsection{参考文献}
 %
-% 模版使用 \cs{biblatex} 和 Biber 处理参考文献。
+% 模板使用 \cs{biblatex} 和 Biber 处理参考文献。
 %
 % \begin{variable}{\l_@@_bib_resource_tl}
 % 声明变量。
